@@ -9,13 +9,14 @@ Homepage: http://www.deepin.org
 Package: deepin-font-installer
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Deepin Font Installer is used to install and uninstall font file for users with bulk install function.
+Description: Deepin Font Installer binary
+ Deepin Font Installer is used to install and uninstall font file for users with bulk install function.
 
 Package: libdeepin-font-installer
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Multi-Arch: same
-Description: Deepin Font Instaler library
+Description: Deepin Font Installer library
  This package contains the shared libraries.
 
 Package: libdeepin-font-installer-dev
