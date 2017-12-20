@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=Utility
+Comment=Install fonts on your system
+Exec=deepin-font-installer
+Icon=preferences-desktop-font
+Name=Deepin Font Installer
+StartupNotify=true
+TryExec=deepin-font-installer
+Type=Application

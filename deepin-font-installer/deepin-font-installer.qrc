@@ -1,0 +1,11 @@
+<!DOCTYPE RCC><RCC version="1.0">
+  <qresource>
+    <file>qss/style.qss</file>
+    <file>images/deepin-font-installer.svg</file>
+    <file>images/icon.svg</file>
+    <file>images/split_line.svg</file>
+    <file>images/close_normal.svg</file>
+    <file>images/close_hover.svg</file>
+    <file>images/close_press.svg</file>
+  </qresource>
+</RCC>

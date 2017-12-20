@@ -1,0 +1,34 @@
+#BlueButton {
+    color: #2CA7F8;
+    border: 1px solid #2CA7F8;
+    border-radius: 4px;
+    width: 120px;
+    height: 36px;
+}
+
+#BlueButton:hover {
+    color: white;
+    background-color: qlineargradient(x1:0 y1:0, x2:0 y2:1, stop:0 #8ccfff, stop:1 #4bb8ff);
+}
+
+#BlueButton:pressed {
+    background-color: qlineargradient(x1:0 y1:0, x2:0 y2:1, stop:0 #0b8cff, stop:1 #0aa1ff);
+}
+
+
+#GrayButton {
+    color: #303030;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 4px;
+    width: 120px;
+    height: 36px;
+}
+
+#GrayButton:hover {
+    color: white;
+    background-color: qlineargradient(x1:0 y1:0, x2:0 y2:1, stop:0 #8ccfff, stop:1 #4bb8ff);
+}
+
+#GrayButton:pressed {
+    background-color: qlineargradient(x1:0 y1:0, x2:0 y2:1, stop:0 #0b8cff, stop:1 #0aa1ff);
+}

@@ -1,0 +1,35 @@
+#!/usr/bin/make -f
+
+export QT_SELECT=5
+include /usr/share/dpkg/default.mk
+
+VERSION=$(shell dpkg-parsechangelog -ldebian/changelog -SVersion | awk -F'-' '{print $$1}')
+DEB_BUILD_ARCH ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+
+%:
+	dh $@ --parallel
+
+override_dh_shlibdeps:
+	dh_shlibdeps -l$(shell pwd)/debian/dde-sharefiles/usr/share/deepin-font-installer/sharefiles/lib
+
+override_dh_auto_configure:
+	dh_auto_configure -- DAPP_VERSION=$(VERSION) LIB_INSTALL_DIR=/usr/lib/$(DEB_HOST_MULTIARCH)
+
+ifeq ($(DEB_BUILD_ARCH), mipsel)
+override_dh_install:
+	sed -i '/deepin-font-installer-xdg-autostart.desktop/d' debian/deepin-font-installer.install
+	dh_install --
+endif
+
+ifeq ($(DEB_BUILD_ARCH), mips64el)
+override_dh_install:
+	sed -i '/deepin-font-installer-xdg-autostart.desktop/d' debian/deepin-font-installer.install
+	dh_install --
+endif
+
+ifeq ($(DEB_BUILD_ARCH), sw_64)
+override_dh_install:
+	sed -i '/deepin-font-installer-xdg-autostart.desktop/d' debian/deepin-font-installer.install
+	dh_install --
+endif
+
