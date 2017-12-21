@@ -27,15 +27,6 @@
 #include <QFontInfo>
 #include <QFontDatabase>
 
-#include <fontconfig/fontconfig.h>
-#include <ft2build.h>
-#include <glib.h>
-
-#include FT_FREETYPE_H
-#include FT_TYPE1_TABLES_H
-#include FT_SFNT_NAMES_H
-#include FT_TRUETYPE_IDS_H
-
 QString Utils::getQssContent(const QString &filePath)
 {
     QFile file(filePath);

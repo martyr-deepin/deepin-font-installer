@@ -9,7 +9,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = deepin-font-installer
 TEMPLATE = lib
 CONFIG += c++11 link_pkgconfig
-PKGCONFIG += glib-2.0 freetype2 fontconfig
+PKGCONFIG += glib-2.0 freetype2 fontconfig harfbuzz
 
 CONFIG += create_pc create_prl no_install_prl
 

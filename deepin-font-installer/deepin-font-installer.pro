@@ -10,7 +10,7 @@ TEMPLATE = app
 TARGET = deepin-font-installer
 
 CONFIG += c++11 link_pkgconfig
-PKGCONFIG += dtkwidget freetype2 fontconfig glib-2.0 harfbuzz
+PKGCONFIG += dtkwidget glib-2.0 freetype2 fontconfig
 
 INCLUDEPATH += $$PWD/../libdeepin-font-installer
 
@@ -21,21 +21,21 @@ DEFINES += QT_MESSAGELOGCONTEXT
 
 # Input
 HEADERS += homepage.h \
-           listitem.h \
-           listview.h \
-           mainwindow.h \
-           multifilepage.h \
-           singlefilepage.h \
-           utils.h
+	   listitem.h \
+	   listview.h \
+	   mainwindow.h \
+	   multifilepage.h \
+	   singlefilepage.h \
+	   utils.h
 
 SOURCES += homepage.cpp \
-           listitem.cpp \
-           listview.cpp \
-           main.cpp \
-           mainwindow.cpp \
-           multifilepage.cpp \
-           singlefilepage.cpp \
-           utils.cpp
+	   listitem.cpp \
+	   listview.cpp \
+	   main.cpp \
+	   mainwindow.cpp \
+	   multifilepage.cpp \
+	   singlefilepage.cpp \
+	   utils.cpp
 
 RESOURCES += deepin-font-installer.qrc
 

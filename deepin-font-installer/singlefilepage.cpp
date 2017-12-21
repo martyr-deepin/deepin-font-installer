@@ -125,7 +125,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_layout->addWidget(m_statusLabel, 0, Qt::AlignHCenter);
     m_layout->addSpacing(5);
     m_layout->addLayout(bottomLayout);
-    m_layout->addStretch();
+    m_layout->addSpacing(20);
     m_layout->setMargin(0);
 
     connect(m_installBtn, &QPushButton::clicked, this, &SingleFilePage::installBtnClicked);
