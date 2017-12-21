@@ -23,6 +23,7 @@
 #include <QObject>
 
 #include <fontconfig/fontconfig.h>
+#include <fontconfig/fcfreetype.h>
 #include <ft2build.h>
 #include <glib.h>
 

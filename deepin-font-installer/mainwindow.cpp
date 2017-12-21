@@ -47,8 +47,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_homePage, &HomePage::fileSelected, this, &MainWindow::onSelected);
     connect(m_multiFilePage, &MultiFilePage::countChanged, this, &MainWindow::refreshPage);
     connect(m_singleFilePage, &SingleFilePage::installBtnClicked, this, [=] {
-                                                                            m_multiFilePage->install();
-                                                                                });
+        m_multiFilePage->install();
+    });
 }
 
 MainWindow::~MainWindow()

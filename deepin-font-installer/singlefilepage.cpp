@@ -152,8 +152,6 @@ void SingleFilePage::updateInfo(DFontData *data)
                                               this->width() * 1.2));
 
 
-    qDebug() << data->description;
-
     // m_statusLabel->setText(tr("Same version installed"));
     // m_statusLabel->setStyleSheet("QLabel { color: #D70751; }");
 
