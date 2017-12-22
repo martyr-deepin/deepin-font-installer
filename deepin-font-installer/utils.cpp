@@ -21,7 +21,6 @@
 #include "utils.h"
 
 #include <QDebug>
-#include <QProcess>
 #include <QFile>
 #include <QDir>
 #include <QFontInfo>
@@ -50,33 +49,5 @@ bool Utils::isFontSuffix(const QString &suffix)
 
 QString Utils::suffixList()
 {
-    return QString("Font Files (*.ttf *.ttc *.otf *.txt)");
-}
-
-QString Utils::getFontType(const QString &suffix)
-{
-    if (suffix == "ttf" || suffix == "ttc") {
-        return "TrueType";
-    } else if (suffix == "otf") {
-        return "OpenType";
-    } else {
-        return "Unknow";
-    }
-}
-
-void Utils::fontInstall(const QStringList &files)
-{
-    QProcess *process = new QProcess;
-    QString cmd = "pkexec cp -r ";
-
-    for (auto const file : files) {
-        cmd.append(file + " ");
-    }
-
-    cmd.append("/usr/share/fonts/");
-
-    process->start(cmd);
-    process->waitForFinished();
-    process->kill();
-    process->close();
+    return QString("Font Files (*.ttf *.ttc *.otf)");
 }

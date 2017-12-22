@@ -24,7 +24,11 @@ ListView::ListView(QWidget *parent)
     : QListWidget(parent)
 {
     setSelectionMode(QAbstractItemView::NoSelection);
-    setStyleSheet("QListWidget { border: 1px solid #F4F4F4; border-radius: 8px; }");
+    setStyleSheet("QListView {"
+                  "border: 1px solid #eee;"
+                  "border-radius: 8px;"
+                  "}");
+
 }
 
 ListView::~ListView()

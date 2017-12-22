@@ -19,6 +19,8 @@
 
 #include "mainwindow.h"
 #include "utils.h"
+#include "dtitlebar.h"
+#include "dhidpihelper.h"
 #include <QDebug>
 #include <QDragEnterEvent>
 #include <QMimeData>
@@ -42,6 +44,10 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle(tr("Deepin Font Installer"));
     setCentralWidget(m_mainWidget);
     setAcceptDrops(true);
+
+    if (titlebar()) {
+        titlebar()->setTitle("");
+    }
 
     // connect the signals to the slot function.
     connect(m_homePage, &HomePage::fileSelected, this, &MainWindow::onSelected);

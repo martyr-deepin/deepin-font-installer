@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
     app.setProductIcon(QIcon(":/images/deepin-font-installer.svg"));
     app.setProductName(DApplication::translate("Main", "Deepin Font Installer"));
     app.setStyleSheet(Utils::getQssContent(":/qss/style.qss"));
-    app.setApplicationDescription(DApplication::translate("Main", "Deepin Font Installer is used to install and uninstall font file for users with bulk install function."));
+    app.setApplicationDescription(DApplication::translate("Main","Deepin Font Installer is used to install and uninstall font file for users with bulk install function."));
 
     DLogManager::registerConsoleAppender();
     DLogManager::registerFileAppender();
@@ -57,8 +57,6 @@ int main(int argc, char *argv[])
     parser.addPositionalArgument("filename", "Font file path.", "file [file..]");
     parser.process(app);
 
-    const QStringList fileList = parser.positionalArguments();
-
     // init modules.
     MainWindow w;
     w.setFixedSize(520, 410);
@@ -66,6 +64,8 @@ int main(int argc, char *argv[])
     w.show();
 
     Dtk::Widget::moveToCenter(&w);
+
+    const QStringList fileList = parser.positionalArguments();
 
     // handle command line parser.
     if (!fileList.isEmpty()) {

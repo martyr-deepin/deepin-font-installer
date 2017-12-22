@@ -22,81 +22,28 @@
 #include <QProcess>
 #include <QDebug>
 
+#include <fontconfig/fontconfig.h>
+#include <freetype/ftfntfmt.h>
+#include <ft2build.h>
+#include <glib.h>
+
+#include FT_FREETYPE_H
+#include FT_TYPE1_TABLES_H
+#include FT_SFNT_NAMES_H
+#include FT_TRUETYPE_IDS_H
+
 DFontInfo::DFontInfo(QObject *parent)
     : QObject(parent)
 {
-    m_library = 0;
-    m_face = 0;
 }
 
 DFontInfo::~DFontInfo()
 {
 }
 
-QString DFontInfo::getFontType(const QString &suffix)
+QList<DFontData> DFontInfo::families()
 {
-    if (suffix == "ttf" || suffix == "ttc") {
-        return "TrueType";
-    } else if (suffix == "otf") {
-        return "OpenType";
-    } else {
-        return "Unknow";
-    }
-}
-
-void DFontInfo::getFontInfo(DFontData *data)
-{
-    FT_Init_FreeType(&m_library);
-    FT_New_Face(m_library, data->filePath.toLatin1().data(), 0, &m_face);
-
-    // get the basic data.
-    data->familyName = QString::fromLatin1(m_face->family_name);
-    data->styleName = QString::fromLatin1(m_face->style_name);
-
-    const QFileInfo fileInfo(data->filePath);
-    data->type = getFontType(fileInfo.suffix());
-
-    for (int i = 0; i < FT_Get_Sfnt_Name_Count(m_face); ++i) {
-        FT_SfntName sname;
-
-        if (FT_Get_Sfnt_Name(m_face, i, &sname) != 0) {
-            continue;
-        }
-
-        // only handle the unicode names for US langid.
-        if (!(sname.platform_id == TT_PLATFORM_MICROSOFT &&
-              sname.encoding_id == TT_MS_ID_UNICODE_CS &&
-              sname.language_id == TT_MS_LANGID_ENGLISH_UNITED_STATES)) {
-            continue;
-        }
-
-        switch (sname.name_id) {
-        case TT_NAME_ID_COPYRIGHT:
-            data->copyright = g_convert((char *)sname.string,
-                                        sname.string_len,
-                                        "UTF-8", "UTF-16BE", NULL, NULL, NULL);
-            break;
-        case TT_NAME_ID_VERSION_STRING:
-            data->version = g_convert((char *)sname.string,
-                                      sname.string_len,
-                                      "UTF-8", "UTF-16BE", NULL, NULL, NULL);
-                break;
-            case TT_NAME_ID_DESCRIPTION:
-                data->description = g_convert((char *)sname.string,
-                                              sname.string_len,
-                                              "UTF-8", "UTF-16BE", NULL, NULL, NULL);
-                break;
-            }
-        }
-
-    // destroy object.
-    FT_Done_Face(m_face);
-    FT_Done_FreeType(m_library);
-}
-
-QStringList DFontInfo::families()
-{
-    QStringList list;
+    QList<DFontData> list;
 
     FcPattern *pattern = FcNameParse((FcChar8 *) ":");
     FcObjectSet *objectset = FcObjectSetBuild(FC_FILE, NULL);
@@ -111,10 +58,12 @@ QStringList DFontInfo::families()
         FcChar8 *filePath;
         if (FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &filePath) == FcResultMatch) {
             FT_New_Face(library, (char *)filePath, 0, &face);
-            list << face->family_name;
-        }
 
-        // FcStrFree(filePath);
+            DFontData data;
+            data.familyName = face->family_name;
+            data.styleName = face->style_name;
+            list << data;
+        }
     }
 
     // destroy object.
@@ -132,18 +81,86 @@ QStringList DFontInfo::families()
     return list;
 }
 
+void DFontInfo::getFontInfo(DFontData *data)
+{
+    FT_Library m_library = 0;
+    FT_Face m_face = 0;
+
+    FT_Init_FreeType(&m_library);
+    FT_New_Face(m_library, data->filePath.toLatin1().data(), 0, &m_face);
+
+    // get the basic data.
+    data->familyName = QString::fromLatin1(m_face->family_name);
+    data->styleName = QString::fromLatin1(m_face->style_name);
+
+    /* return a string describing the format of a given face.
+     * possible values are ‘TrueType’, ‘Type 1’, ‘BDF’,
+     *                     ‘PCF’, ‘Type 42’, ‘CID Type 1’,
+     *                     ‘CFF’, ‘PFR’, and ‘Windows FNT’.
+    */
+    const char *fontFormat = FT_Get_X11_Font_Format(m_face);
+    data->type = fontFormat;
+
+    if (FT_IS_SFNT(m_face)) {
+        const int count = FT_Get_Sfnt_Name_Count(m_face);
+
+        for (int i = 0; i < count; ++i) {
+            FT_SfntName sname;
+
+            if (FT_Get_Sfnt_Name(m_face, i, &sname) != 0) {
+                continue;
+            }
+
+            // only handle the unicode names for US langid.
+            if (!(sname.platform_id == TT_PLATFORM_MICROSOFT &&
+                  sname.encoding_id == TT_MS_ID_UNICODE_CS &&
+                  sname.language_id == TT_MS_LANGID_ENGLISH_UNITED_STATES)) {
+                continue;
+            }
+
+            switch (sname.name_id) {
+            case TT_NAME_ID_COPYRIGHT:
+                data->copyright = g_convert((char *)sname.string,
+                                            sname.string_len,
+                                            "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                break;
+
+            case TT_NAME_ID_VERSION_STRING:
+                data->version = g_convert((char *)sname.string,
+                                          sname.string_len,
+                                          "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                break;
+
+            case TT_NAME_ID_DESCRIPTION:
+                data->description = g_convert((char *)sname.string,
+                                              sname.string_len,
+                                              "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                break;
+            default:
+                break;
+            }
+        }
+    }
+
+    // destroy object.
+    FT_Done_Face(m_face);
+    FT_Done_FreeType(m_library);
+}
+
 bool DFontInfo::isFontInstalled(DFontData *data)
 {
-    const QStringList famList = families();
+    const QList<DFontData> famList = families();
 
-    for (const QString &name : famList) {
-        if (data->familyName == name)
+    for (const DFontData &famItem : famList) {
+        if (data->familyName == famItem.familyName &&
+            data->styleName == famItem.styleName) {
             return true;
+        }
+
     }
 
     return false;
 }
-
 
 void DFontInfo::fontInstall(const QStringList &files)
 {

@@ -22,16 +22,6 @@
 
 #include <QObject>
 
-#include <fontconfig/fontconfig.h>
-#include <fontconfig/fcfreetype.h>
-#include <ft2build.h>
-#include <glib.h>
-
-#include FT_FREETYPE_H
-#include FT_TYPE1_TABLES_H
-#include FT_SFNT_NAMES_H
-#include FT_TRUETYPE_IDS_H
-
 class DFontData
 {
 public:
@@ -52,15 +42,10 @@ public:
     DFontInfo(QObject *parent = nullptr);
     ~DFontInfo();
 
-    QString getFontType(const QString &suffix);
-    void getFontInfo(DFontData *data);
-    static QStringList families();
+    static QList<DFontData> families();
+    static void getFontInfo(DFontData *data);
     static bool isFontInstalled(DFontData *data);
     static void fontInstall(const QStringList &files);
-
-private:
-    FT_Library m_library;
-    FT_Face m_face;
 };
 
 #endif

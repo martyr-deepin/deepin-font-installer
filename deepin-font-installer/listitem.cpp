@@ -25,11 +25,11 @@ ListItem::ListItem(QWidget *parent)
     : QWidget(parent),
       m_item(new QListWidgetItem),
       m_fontData(nullptr),
-      m_layout(new QHBoxLayout(this)),
+      m_mainLayout(new QHBoxLayout(this)),
       m_infoLayout(new QVBoxLayout),
       m_nameLabel(new QLabel),
       m_styleLabel(new QLabel),
-      m_infoLabel(new QLabel("不知道显示什么")),
+      m_infoLabel(new QLabel),
       m_statusLabel(new QLabel),
       m_closeBtn(new DImageButton (":/images/close_normal.svg",
                                    ":/images/close_hover.svg",
@@ -37,7 +37,9 @@ ListItem::ListItem(QWidget *parent)
 {
     QHBoxLayout *nameLayout = new QHBoxLayout;
     nameLayout->addWidget(m_nameLabel);
+    nameLayout->addSpacing(5);
     nameLayout->addWidget(m_styleLabel);
+    nameLayout->addStretch();
 
     m_styleLabel->setStyleSheet("QLabel { color: #909090; }");
 
@@ -47,10 +49,10 @@ ListItem::ListItem(QWidget *parent)
     m_infoLayout->addLayout(nameLayout);
     m_infoLayout->addWidget(m_infoLabel);
 
-    m_layout->addLayout(m_infoLayout);
-    m_layout->addStretch();
-    m_layout->addWidget(m_closeBtn);
-    m_layout->addWidget(m_statusLabel);
+    m_mainLayout->addLayout(m_infoLayout);
+    m_mainLayout->addStretch();
+    m_mainLayout->addWidget(m_closeBtn);
+    m_mainLayout->addWidget(m_statusLabel);
 
     connect(m_closeBtn, &DImageButton::clicked, this, [=] {
         emit closeBtnClicked(m_item);
@@ -76,6 +78,7 @@ void ListItem::setFontData(DFontData *p)
     m_fontData = p;
     m_nameLabel->setText(m_fontData->familyName);
     m_styleLabel->setText(m_fontData->styleName);
+    m_infoLabel->setText("xxxxxx");
 }
 
 DFontData *ListItem::getFontData()

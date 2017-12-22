@@ -20,6 +20,7 @@
 #include "singlefilepage.h"
 #include "dsvgrenderer.h"
 #include <QFileInfo>
+#include <QDebug>
 
 DWIDGET_USE_NAMESPACE
 
@@ -135,8 +136,6 @@ SingleFilePage::~SingleFilePage()
 {
 }
 
-#include <QDebug>
-
 void SingleFilePage::updateInfo(DFontData *data)
 {
     const QFontMetrics fm = m_versionLabel->fontMetrics();
@@ -148,17 +147,20 @@ void SingleFilePage::updateInfo(DFontData *data)
                                           this->width() / 2));
     m_copyrightLabel->setText(fm.elidedText(data->copyright, Qt::ElideRight,
                                             this->width() / 2 + fm.width(tr("Copyright: "))));
-    m_descriptionLabel->setText(fm.elidedText(data->description.remove(QRegExp("[\\n\\t\\r]")), Qt::ElideRight,
-                                              this->width() * 1.2));
 
-
-    // m_statusLabel->setText(tr("Same version installed"));
-    // m_statusLabel->setStyleSheet("QLabel { color: #D70751; }");
+    // description string in some font files has '\n' & '\t' & '\r'
+    m_descriptionLabel->setText(fm.elidedText(data->description.simplified(),
+                                              Qt::ElideRight,
+                                              this->width() * 1.35));
 
     if (DFontInfo::isFontInstalled(data)) {
         m_installBtn->hide();
         m_removeBtn->show();
         m_reinstallBtn->show();
+
+        m_statusLabel->show();
+        m_statusLabel->setText(tr("Same version installed"));
+        m_statusLabel->setStyleSheet("QLabel { color: #D70751; }");
     } else {
         m_installBtn->show();
         m_removeBtn->hide();

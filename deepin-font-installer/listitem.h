@@ -52,7 +52,7 @@ protected:
 private:
     QListWidgetItem *m_item;
     DFontData *m_fontData;
-    QHBoxLayout *m_layout;
+    QHBoxLayout *m_mainLayout;
     QVBoxLayout *m_infoLayout;
     QLabel *m_nameLabel;
     QLabel *m_styleLabel;
