@@ -65,6 +65,8 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *e)
 {
     auto *const mime = e->mimeData();
 
+    qDebug() << mime->formats();
+
     // not has urls.
     if (!mime->hasUrls())
         return e->ignore();

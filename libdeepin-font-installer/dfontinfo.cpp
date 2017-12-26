@@ -60,6 +60,7 @@ QList<DFontData> DFontInfo::families()
             FT_New_Face(library, (char *)filePath, 0, &face);
 
             DFontData data;
+            data.filePath = (char *)filePath;
             data.familyName = face->family_name;
             data.styleName = face->style_name;
             list << data;
@@ -81,6 +82,20 @@ QList<DFontData> DFontInfo::families()
     return list;
 }
 
+QString DFontInfo::getFontType(const QString &filePath)
+{
+    const QFileInfo fileInfo(filePath);
+    const QString suffix = fileInfo.suffix().toLower();
+
+    if (suffix == "ttf" || suffix == "ttc") {
+        return "TrueType";
+    } else if (suffix == "otf") {
+        return "OpenType";
+    } else {
+        return "Unknown";
+    }
+}
+
 void DFontInfo::getFontInfo(DFontData *data)
 {
     FT_Library m_library = 0;
@@ -92,14 +107,7 @@ void DFontInfo::getFontInfo(DFontData *data)
     // get the basic data.
     data->familyName = QString::fromLatin1(m_face->family_name);
     data->styleName = QString::fromLatin1(m_face->style_name);
-
-    /* return a string describing the format of a given face.
-     * possible values are ‘TrueType’, ‘Type 1’, ‘BDF’,
-     *                     ‘PCF’, ‘Type 42’, ‘CID Type 1’,
-     *                     ‘CFF’, ‘PFR’, and ‘Windows FNT’.
-    */
-    const char *fontFormat = FT_Get_X11_Font_Format(m_face);
-    data->type = fontFormat;
+    data->type = getFontType(data->filePath);
 
     if (FT_IS_SFNT(m_face)) {
         const int count = FT_Get_Sfnt_Name_Count(m_face);
@@ -156,7 +164,6 @@ bool DFontInfo::isFontInstalled(DFontData *data)
             data->styleName == famItem.styleName) {
             return true;
         }
-
     }
 
     return false;

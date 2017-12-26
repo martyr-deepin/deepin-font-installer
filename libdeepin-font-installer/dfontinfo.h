@@ -43,6 +43,7 @@ public:
     ~DFontInfo();
 
     static QList<DFontData> families();
+    static QString getFontType(const QString &filePath);
     static void getFontInfo(DFontData *data);
     static bool isFontInstalled(DFontData *data);
     static void fontInstall(const QStringList &files);
