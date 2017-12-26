@@ -63,7 +63,9 @@ int main(int argc, char *argv[])
     w.setWindowIcon(QIcon(":/images/deepin-font-installer.svg"));
     w.show();
 
-    Dtk::Widget::moveToCenter(&w);
+    if (app.setSingleInstance("deepin-font-installer")) {
+        Dtk::Widget::moveToCenter(&w);
+    }
 
     const QStringList fileList = parser.positionalArguments();
 

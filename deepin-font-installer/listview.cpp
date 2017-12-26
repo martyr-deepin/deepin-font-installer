@@ -28,7 +28,6 @@ ListView::ListView(QWidget *parent)
                   "border: 1px solid #eee;"
                   "border-radius: 8px;"
                   "}");
-
 }
 
 ListView::~ListView()

@@ -36,7 +36,6 @@ public:
     ~MultiFilePage();
 
     void addItem(const QString &path);
-    void install();
 
 signals:
     void countChanged();
@@ -47,10 +46,10 @@ private:
     QVBoxLayout *m_layout;
     ListView *m_listView;
     QPushButton *m_installBtn;
+    DFontInfo *m_fontInfo;
 
 public:
     QList<DFontData *> dataList;
-    DFontInfo *m_fontInfo;
 };
 
 #endif

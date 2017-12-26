@@ -60,17 +60,6 @@ void MultiFilePage::addItem(const QString &path)
     }
 }
 
-void MultiFilePage::install()
-{
-    QStringList list;
-
-    for (const auto *item : dataList) {
-        list << item->filePath;
-    }
-
-    m_fontInfo->fontInstall(list);
-}
-
 void MultiFilePage::handleDelete(DFontData *p)
 {
     dataList.removeAt(dataList.indexOf(p));

@@ -24,7 +24,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
-#include "../libdeepin-font-installer/dfontinfo.h"
+#include "dfontinfo.h"
 
 class SingleFilePage : public QWidget
 {
@@ -35,14 +35,18 @@ public:
     ~SingleFilePage();
 
     void updateInfo(DFontData *data);
+    void showInstalled();
 
-signals:
-    void installBtnClicked();
+private slots:
+    void handleInstall();
+    void handleRemove();
+    void viewFilePath();
 
 private:
+    DFontData *m_data;
+    DFontInfo *m_info;
     QVBoxLayout *m_layout;
     QLabel *m_nameLabel;
-    QLabel *m_iconLabel;
     QLabel *m_styleLabel;
     QLabel *m_typeLabel;
     QLabel *m_versionLabel;
@@ -52,6 +56,8 @@ private:
     QPushButton *m_installBtn;
     QPushButton *m_removeBtn;
     QPushButton *m_reinstallBtn;
+    QPushButton *m_viewFileBtn;
+    QPushButton *m_closeBtn;
 };
 
 #endif

@@ -41,10 +41,11 @@ ListItem::ListItem(QWidget *parent)
     nameLayout->addWidget(m_styleLabel);
     nameLayout->addStretch();
 
+    m_infoLabel->setStyleSheet("QLabel { color: #444444; }");
     m_styleLabel->setStyleSheet("QLabel { color: #909090; }");
 
     m_closeBtn->setFixedSize(24, 24);
-    m_closeBtn->setVisible(false);
+    m_closeBtn->hide();
 
     m_infoLayout->addLayout(nameLayout);
     m_infoLayout->addWidget(m_infoLabel);
@@ -71,14 +72,20 @@ QString ListItem::getFilePath() const
 
 void ListItem::setFontData(DFontData *p)
 {
+    const QFontMetrics fm = m_infoLabel->fontMetrics();
+
     if (DFontInfo::isFontInstalled(p)) {
+        m_statusLabel->setStyleSheet("QLabel { color: #528315; }");
         m_statusLabel->setText(tr("Installed"));
     }
 
     m_fontData = p;
     m_nameLabel->setText(m_fontData->familyName);
     m_styleLabel->setText(m_fontData->styleName);
-    m_infoLabel->setText("xxxxxx");
+
+    m_infoLabel->setText(fm.elidedText(m_fontData->description,
+                                       Qt::ElideRight,
+                                       this->width() / 1.8));
 }
 
 DFontData *ListItem::getFontData()
@@ -93,21 +100,21 @@ void ListItem::paintEvent(QPaintEvent *e)
 
     painter.setPen(Qt::NoPen);
     painter.setBrush(QColor("#e4e4e4"));
-    painter.drawRect(QRect(0, rect().height() - 1, rect().width(), 1));
+    painter.drawRect(QRect(10, rect().height() - 1, rect().width() - 20, 1));
 }
 
 void ListItem::enterEvent(QEvent *e)
 {
-    m_closeBtn->setVisible(true);
-    m_statusLabel->setVisible(false);
+    m_closeBtn->show();
+    m_statusLabel->hide();
 
     QWidget::enterEvent(e);
 }
 
 void ListItem::leaveEvent(QEvent *e)
 {
-    m_closeBtn->setVisible(false);
-    m_statusLabel->setVisible(true);
+    m_closeBtn->hide();
+    m_statusLabel->show();
 
     QWidget::leaveEvent(e);
 }

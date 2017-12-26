@@ -25,19 +25,16 @@
 HomePage::HomePage(QWidget *parent)
     : QWidget(parent),
       m_layout(new QVBoxLayout(this)),
-      m_iconLabel(new QLabel),
       m_tipsLabel(new QLabel(tr("Drag font file here"))),
       m_splitLine(new QLabel),
       m_chooseBtn(new DLinkButton(tr("Select file")))
 {
-    QPixmap iconPixmap = DSvgRenderer::render(":/images/icon.svg", QSize(140, 140) * devicePixelRatioF());
-    m_iconLabel->setFixedSize(140, 140);
-    m_iconLabel->setPixmap(iconPixmap);
-
+    QSvgWidget *iconWidget = new QSvgWidget(":/images/icon.svg");
+    iconWidget->setFixedSize(140, 140);
     m_splitLine->setPixmap(QPixmap(":/images/split_line.svg"));
 
     m_layout->addStretch();
-    m_layout->addWidget(m_iconLabel, 0, Qt::AlignTop | Qt::AlignHCenter);
+    m_layout->addWidget(iconWidget, 0, Qt::AlignTop | Qt::AlignHCenter);
     m_layout->addSpacing(20);
     m_layout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
     m_layout->addSpacing(10);

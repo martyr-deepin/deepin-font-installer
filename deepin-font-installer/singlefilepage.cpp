@@ -18,16 +18,16 @@
  */
 
 #include "singlefilepage.h"
-#include "dsvgrenderer.h"
+#include <QApplication>
+#include <QSvgWidget>
 #include <QFileInfo>
+#include <QProcess>
 #include <QDebug>
-
-DWIDGET_USE_NAMESPACE
 
 SingleFilePage::SingleFilePage(QWidget *parent)
     : QWidget(parent),
+      m_info(new DFontInfo),
       m_layout(new QVBoxLayout(this)),
-      m_iconLabel(new QLabel),
       m_nameLabel(new QLabel),
       m_styleLabel(new QLabel),
       m_typeLabel(new QLabel),
@@ -37,15 +37,16 @@ SingleFilePage::SingleFilePage(QWidget *parent)
       m_statusLabel(new QLabel),
       m_installBtn(new QPushButton(tr("Install"))),
       m_removeBtn(new QPushButton(tr("Remove"))),
-      m_reinstallBtn(new QPushButton(tr("Reinstall")))
+      m_reinstallBtn(new QPushButton(tr("Reinstall"))),
+      m_viewFileBtn(new QPushButton(tr("View font directory"))),
+      m_closeBtn(new QPushButton(tr("OK")))
 {
     m_descriptionLabel->setWordWrap(true);
     m_statusLabel->hide();
 
     // top icon, set pixmap to icon label.
-    QPixmap iconPixmap = DSvgRenderer::render(":/images/icon.svg",QSize(65, 65) * devicePixelRatioF());
-    m_iconLabel->setFixedSize(65, 65);
-    m_iconLabel->setPixmap(iconPixmap);
+    QSvgWidget *iconWidget = new QSvgWidget(":/images/font-x-generic.svg");
+    iconWidget->setFixedSize(65, 65);
 
     // info layout
     QHBoxLayout *styleLayout = new QHBoxLayout;
@@ -99,6 +100,8 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     bottomLayout->addWidget(m_installBtn);
     bottomLayout->addWidget(m_removeBtn);
     bottomLayout->addWidget(m_reinstallBtn);
+    bottomLayout->addWidget(m_viewFileBtn);
+    bottomLayout->addWidget(m_closeBtn);
     bottomLayout->addStretch();
 
     m_installBtn->setFixedSize(120, 36);
@@ -113,8 +116,16 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_reinstallBtn->setObjectName("GrayButton");
     m_reinstallBtn->hide();
 
+    m_viewFileBtn->setFixedSize(160, 36);
+    m_viewFileBtn->setObjectName("BlueButton");
+    m_viewFileBtn->hide();
+
+    m_closeBtn->setFixedSize(160, 36);
+    m_closeBtn->setObjectName("BlueButton");
+    m_closeBtn->hide();
+
     // add widgets to main layout.
-    m_layout->addWidget(m_iconLabel, 0, Qt::AlignTop | Qt::AlignHCenter);
+    m_layout->addWidget(iconWidget, 0, Qt::AlignTop | Qt::AlignHCenter);
     m_layout->addWidget(m_nameLabel, 0, Qt::AlignHCenter);
     m_layout->addSpacing(10);
     m_layout->addLayout(styleLayout);
@@ -129,27 +140,46 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_layout->addSpacing(20);
     m_layout->setMargin(0);
 
-    connect(m_installBtn, &QPushButton::clicked, this, &SingleFilePage::installBtnClicked);
+    connect(m_installBtn, &QPushButton::clicked, this, &SingleFilePage::handleInstall);
+    connect(m_removeBtn, &QPushButton::clicked, this, &SingleFilePage::handleRemove);
+    connect(m_viewFileBtn, &QPushButton::clicked, this, &SingleFilePage::viewFilePath);
+    connect(m_closeBtn, &QPushButton::clicked, this, &QApplication::quit);
 }
 
 SingleFilePage::~SingleFilePage()
 {
+    delete m_data;
+    delete m_info;
 }
 
 void SingleFilePage::updateInfo(DFontData *data)
 {
     const QFontMetrics fm = m_versionLabel->fontMetrics();
+    m_data = data;
 
-    m_nameLabel->setText(data->familyName);
-    m_styleLabel->setText(data->styleName);
+    if (m_data->version.isEmpty()) {
+        m_data->version = tr("Unknown");
+    }
+
+    if (data->copyright.isEmpty()) {
+        m_data->copyright = tr("Unknown");
+    }
+
+    if (data->description.isEmpty()) {
+        m_data->description = tr("Unknown");
+    }
+
+    m_nameLabel->setText(m_data->familyName);
+    m_styleLabel->setText(m_data->styleName);
     m_typeLabel->setText(data->type);
-    m_versionLabel->setText(fm.elidedText(data->version, Qt::ElideRight,
+    m_versionLabel->setText(fm.elidedText(m_data->version, Qt::ElideRight,
                                           this->width() / 2));
-    m_copyrightLabel->setText(fm.elidedText(data->copyright, Qt::ElideRight,
+
+    m_copyrightLabel->setText(fm.elidedText(m_data->copyright, Qt::ElideRight,
                                             this->width() / 2 + fm.width(tr("Copyright: "))));
 
-    // description string in some font files has '\n' & '\t' & '\r'
-    m_descriptionLabel->setText(fm.elidedText(data->description.simplified(),
+    //description string in some font files has '\n' & '\t' & '\r'
+    m_descriptionLabel->setText(fm.elidedText(m_data->description.simplified(),
                                               Qt::ElideRight,
                                               this->width() * 1.35));
 
@@ -157,6 +187,7 @@ void SingleFilePage::updateInfo(DFontData *data)
         m_installBtn->hide();
         m_removeBtn->show();
         m_reinstallBtn->show();
+        m_viewFileBtn->hide();
 
         m_statusLabel->show();
         m_statusLabel->setText(tr("Same version installed"));
@@ -166,4 +197,47 @@ void SingleFilePage::updateInfo(DFontData *data)
         m_removeBtn->hide();
         m_reinstallBtn->hide();
     }
+}
+
+void SingleFilePage::showInstalled()
+{
+    m_viewFileBtn->show();
+    m_installBtn->hide();
+    m_removeBtn->hide();
+    m_reinstallBtn->hide();
+
+    m_statusLabel->show();
+    m_statusLabel->setText(tr("Installed successfully"));
+    m_statusLabel->setStyleSheet("QLabel { color: #528315; }");
+}
+
+void SingleFilePage::handleInstall()
+{
+    int exitCode = m_info->fontInstall(m_data->filePath);
+
+    if (!exitCode) {
+        showInstalled();
+    }
+}
+
+void SingleFilePage::handleRemove()
+{
+    int exitCode = m_info->fontRemove(m_data);
+
+    // if exitCode is 127 then it is not enter the password.
+    if (exitCode != 127) {
+        m_statusLabel->show();
+        m_statusLabel->setText(tr("Removed successfully"));
+        m_statusLabel->setStyleSheet("QLabel { color: #528315; }");
+
+        m_closeBtn->show();
+        m_viewFileBtn->hide();
+        m_installBtn->hide();
+        m_removeBtn->hide();
+        m_reinstallBtn->hide();
+    }
+}
+
+void SingleFilePage::viewFilePath()
+{
 }

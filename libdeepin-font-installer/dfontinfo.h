@@ -46,7 +46,9 @@ public:
     static QString getFontType(const QString &filePath);
     static void getFontInfo(DFontData *data);
     static bool isFontInstalled(DFontData *data);
-    static void fontInstall(const QStringList &files);
+    int fontInstall(const QString &filePath);
+    int fontsInstall(const QStringList &files);
+    int fontRemove(DFontData *data);
 };
 
 #endif

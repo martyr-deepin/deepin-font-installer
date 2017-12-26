@@ -21,6 +21,7 @@
 #include "utils.h"
 #include "dtitlebar.h"
 #include "dhidpihelper.h"
+#include <QSvgWidget>
 #include <QDebug>
 #include <QDragEnterEvent>
 #include <QMimeData>
@@ -46,15 +47,16 @@ MainWindow::MainWindow(QWidget *parent)
     setAcceptDrops(true);
 
     if (titlebar()) {
+        QSvgWidget *iconWidget = new QSvgWidget(":/images/deepin-font-installer.svg");
+        iconWidget->setFixedSize(24, 24);
+
+        titlebar()->setCustomWidget(iconWidget, Qt::AlignLeft, false);
         titlebar()->setTitle("");
     }
 
     // connect the signals to the slot function.
     connect(m_homePage, &HomePage::fileSelected, this, &MainWindow::onSelected);
     connect(m_multiFilePage, &MultiFilePage::countChanged, this, &MainWindow::refreshPage);
-    connect(m_singleFilePage, &SingleFilePage::installBtnClicked, this, [=] {
-        m_multiFilePage->install();
-    });
 }
 
 MainWindow::~MainWindow()
@@ -64,8 +66,6 @@ MainWindow::~MainWindow()
 void MainWindow::dragEnterEvent(QDragEnterEvent *e)
 {
     auto *const mime = e->mimeData();
-
-    qDebug() << mime->formats();
 
     // not has urls.
     if (!mime->hasUrls())
@@ -120,9 +120,11 @@ void MainWindow::refreshPage()
         m_mainLayout->setCurrentIndex(1);
         // update info.
         m_singleFilePage->updateInfo(m_multiFilePage->dataList.first());
+        titlebar()->setTitle("");
     } else {
         // switch to multi file page.
         m_mainLayout->setCurrentIndex(2);
+        titlebar()->setTitle(tr("Bulk Install"));
     }
 }
 

@@ -44,7 +44,6 @@ private:
 
 private:
     QVBoxLayout *m_layout;
-    QLabel *m_iconLabel;
     QLabel *m_tipsLabel;
     QLabel *m_splitLine;
     DLinkButton *m_chooseBtn;
