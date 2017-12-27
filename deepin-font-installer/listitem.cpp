@@ -20,6 +20,7 @@
 #include "listitem.h"
 #include "utils.h"
 #include <QPainter>
+#include <QSvgWidget>
 
 ListItem::ListItem(QWidget *parent)
     : QWidget(parent),
@@ -35,6 +36,9 @@ ListItem::ListItem(QWidget *parent)
                                    ":/images/close_hover.svg",
                                    ":/images/close_press.svg"))
 {
+    QSvgWidget *iconWidget = new QSvgWidget(":/images/font-x-generic.svg");
+    iconWidget->setFixedSize(50, 50);
+
     QHBoxLayout *nameLayout = new QHBoxLayout;
     nameLayout->addWidget(m_nameLabel);
     nameLayout->addSpacing(5);
@@ -50,6 +54,7 @@ ListItem::ListItem(QWidget *parent)
     m_infoLayout->addLayout(nameLayout);
     m_infoLayout->addWidget(m_infoLabel);
 
+    m_mainLayout->addWidget(iconWidget);
     m_mainLayout->addLayout(m_infoLayout);
     m_mainLayout->addStretch();
     m_mainLayout->addWidget(m_closeBtn);
