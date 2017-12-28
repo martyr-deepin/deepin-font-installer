@@ -157,6 +157,7 @@ void SingleFilePage::updateInfo(DFontData *data)
     const QFontMetrics fm = m_versionLabel->fontMetrics();
     m_data = data;
 
+    // if the content is empty, it shows "Unknown".
     if (m_data->version.isEmpty()) {
         m_data->version = tr("Unknown");
     }
