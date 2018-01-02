@@ -12,8 +12,11 @@ class DFontView : public QWidget
 public:
     DFontView(QWidget *parent = nullptr);
 
+    void setFileUrl(const QString &url);
+
 private:
     QVBoxLayout *m_mainLayout;
+    QLabel *m_topLabel;
 };
 
 #endif // DFONTVIEW_H
