@@ -5,6 +5,9 @@
 #include <QVBoxLayout>
 #include <QLabel>
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 class DFontView : public QWidget
 {
     Q_OBJECT
@@ -13,6 +16,9 @@ public:
     DFontView(QWidget *parent = nullptr);
 
     void setFileUrl(const QString &url);
+
+private:
+    bool checkFontContainText(FT_Face face, const QString &text);
 
 private:
     QVBoxLayout *m_mainLayout;

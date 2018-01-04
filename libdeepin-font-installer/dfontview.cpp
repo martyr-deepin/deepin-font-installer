@@ -1,9 +1,9 @@
 #include "dfontview.h"
 #include <QFontDatabase>
 
-static QString content = "abcdefghijklmnopqrstuvwxyz\n"
-                         "ABCDEFGHIJKLMNOPQRSTUVWXYZ\n"
-                         "0123456789.:,;(*!?')\n";
+static const QString lowerTextStock = "abcdefghijklmnopqrstuvwxyz";
+static const QString upperTextStock = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+static const QString punctuationTextStock = "0123456789.:,;(*!?')";
 
 DFontView::DFontView(QWidget *parent)
     : QWidget(parent),
@@ -20,4 +20,20 @@ void DFontView::setFileUrl(const QString &url)
     QFont font(family);
     font.setPointSize(28);
     m_topLabel->setFont(font);
+}
+
+bool DFontView::checkFontContainText(FT_Face face, const QString &text)
+{
+    bool retval = true;
+
+    FT_Select_Charmap(face, FT_ENCODING_UNICODE);
+
+    for (auto ch : text) {
+        if (!FT_Get_Char_Index(face, ch.unicode())) {
+            retval = false;
+            break;
+        }
+    }
+
+    return retval;
 }
