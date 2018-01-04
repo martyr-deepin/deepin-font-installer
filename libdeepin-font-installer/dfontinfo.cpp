@@ -45,9 +45,9 @@ QList<DFontData> DFontInfo::families()
 {
     QList<DFontData> list;
 
-    FcPattern *pattern = FcNameParse((FcChar8 *) ":");
-    FcObjectSet *objectset = FcObjectSetBuild(FC_FILE, NULL);
-    FcFontSet *fontset = FcFontList(NULL, pattern, objectset);
+    FcPattern *pattern = FcPatternCreate();
+    FcObjectSet *objset = FcObjectSetBuild(FC_FILE, NULL);
+    FcFontSet *fontset = FcFontList(0, pattern, objset);
     FcInit();
 
     FT_Library library = 0;
@@ -72,8 +72,8 @@ QList<DFontData> DFontInfo::families()
         FT_Done_Face(face);
     if (library)
         FT_Done_FreeType(library);
-    if (objectset)
-        FcObjectSetDestroy(objectset);
+    if (objset)
+        FcObjectSetDestroy(objset);
     if (pattern)
         FcPatternDestroy(pattern);
     if (fontset)
