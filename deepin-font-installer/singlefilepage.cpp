@@ -214,19 +214,18 @@ void SingleFilePage::showInstalled()
 
 void SingleFilePage::handleInstall()
 {
-    int exitCode = m_info->fontInstall(m_data->filePath);
+    bool isInstall = m_info->fontInstall(m_data->filePath);
 
-    if (!exitCode) {
+    if (isInstall) {
         showInstalled();
     }
 }
 
 void SingleFilePage::handleRemove()
 {
-    int exitCode = m_info->fontRemove(m_data);
+    bool isRemove = m_info->fontRemove(m_data);
 
-    // if exitCode is 127 then it is not enter the password.
-    if (exitCode != 127) {
+    if (isRemove) {
         m_statusLabel->show();
         m_statusLabel->setText(tr("Removed successfully"));
         m_statusLabel->setStyleSheet("QLabel { color: #528315; }");

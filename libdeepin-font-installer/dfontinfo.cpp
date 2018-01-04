@@ -169,22 +169,28 @@ bool DFontInfo::isFontInstalled(DFontData *data)
     return false;
 }
 
-int DFontInfo::fontInstall(const QString &filePath)
+bool DFontInfo::fontInstall(const QString &filePath)
 {
     QProcess *process = new QProcess;
     QString cmd = "pkexec cp -r " + filePath + " /usr/share/fonts";
-    int exit;
+    bool isInstall;
 
     process->start(cmd);
     process->waitForFinished();
-    exit = process->exitCode();
+
+    if (process->readAllStandardError().isEmpty()) {
+        isInstall = true;
+    } else {
+        isInstall = false;
+    }
+
     process->kill();
     process->close();
 
-    return exit;
+    return isInstall;
 }
 
-int DFontInfo::fontsInstall(const QStringList &files)
+bool DFontInfo::fontsInstall(const QStringList &files)
 {
     QString m_files;
 
@@ -195,12 +201,12 @@ int DFontInfo::fontsInstall(const QStringList &files)
     return fontInstall(m_files);
 }
 
-int DFontInfo::fontRemove(DFontData *data)
+bool DFontInfo::fontRemove(DFontData *data)
 {
     const QList<DFontData> famList = families();
     QProcess *process = new QProcess;
     QString filePath = nullptr;
-    int exit;
+    bool isRemove;
 
     for (const auto &famItem : famList) {
         if (data->familyName == famItem.familyName &&
@@ -211,9 +217,15 @@ int DFontInfo::fontRemove(DFontData *data)
 
     process->start("pkexec rm -rf " + filePath);
     process->waitForFinished();
-    exit = process->exitCode();
+
+    if (process->readAllStandardError().isEmpty()) {
+        isRemove = true;
+    } else {
+        isRemove = false;
+    }
+
     process->kill();
     process->close();
 
-    return exit;
+    return isRemove;
 }
