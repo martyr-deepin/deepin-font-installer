@@ -37,3 +37,24 @@ bool DFontView::checkFontContainText(FT_Face face, const QString &text)
 
     return retval;
 }
+
+QString DFontView::buildCharlistForFace(FT_Face face, int length)
+{
+    QString retval;
+    unsigned long ch;
+    unsigned int glyph;
+    int totalChars = 0;
+
+    ch = FT_Get_First_Char(face, &glyph);
+
+    while (glyph != 0) {
+        retval.append(QChar((int) ch));
+        ch = FT_Get_Next_Char(face, ch, &glyph);
+        totalChars++;
+
+        if (totalChars == length)
+            break;
+    }
+
+    return retval;
+}

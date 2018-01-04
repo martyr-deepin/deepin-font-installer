@@ -19,6 +19,7 @@ public:
 
 private:
     bool checkFontContainText(FT_Face face, const QString &text);
+    QString buildCharlistForFace(FT_Face face, int length);
 
 private:
     QVBoxLayout *m_mainLayout;
