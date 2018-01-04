@@ -36,6 +36,11 @@ MainWindow::MainWindow(QWidget *parent)
       m_singleFilePage(new SingleFilePage),
       m_multiFilePage(new MultiFilePage)
 {
+    if (titlebar()) {
+        titlebar()->setIcon(QIcon(":/images/deepin-font-installer.svg"));
+        titlebar()->setTitle("");
+    }
+
     // add widget to main layout.
     m_mainLayout->addWidget(m_homePage);
     m_mainLayout->addWidget(m_singleFilePage);
@@ -45,14 +50,6 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle(tr("Deepin Font Installer"));
     setCentralWidget(m_mainWidget);
     setAcceptDrops(true);
-
-    if (titlebar()) {
-        QSvgWidget *iconWidget = new QSvgWidget(":/images/deepin-font-installer.svg");
-        iconWidget->setFixedSize(24, 24);
-
-        titlebar()->setCustomWidget(iconWidget, Qt::AlignLeft, false);
-        titlebar()->setTitle("");
-    }
 
     // connect the signals to the slot function.
     connect(m_homePage, &HomePage::fileSelected, this, &MainWindow::onSelected);

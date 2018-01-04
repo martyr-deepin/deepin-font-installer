@@ -16,7 +16,6 @@ INCLUDEPATH += $$PWD/../libdeepin-font-installer
 
 LIBS += -L$$OUT_PWD/../libdeepin-font-installer -ldeepin-font-installer
 
-
 DEFINES += QT_MESSAGELOGCONTEXT
 
 # Input
