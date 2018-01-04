@@ -19,20 +19,34 @@
 
 #include "multifilepage.h"
 #include <QDebug>
+#include <QApplication>
 
 MultiFilePage::MultiFilePage(QWidget *parent)
     : QWidget(parent),
       m_fontInfo(new DFontInfo),
       m_layout(new QVBoxLayout(this)),
       m_listView(new ListView),
-      m_installBtn(new QPushButton(tr("Install")))
+      m_installBtn(new QPushButton(tr("Install"))),
+      m_closeBtn(new QPushButton(tr("OK")))
 {
+    QHBoxLayout *bottomLayout = new QHBoxLayout;
+    bottomLayout->addWidget(m_installBtn, 0, Qt::AlignHCenter);
+    bottomLayout->addWidget(m_closeBtn, 0, Qt::AlignHCenter);
+
     m_installBtn->setObjectName("BlueButton");
+    m_closeBtn->setObjectName("BlueButton");
+
+    m_installBtn->hide();
+    m_closeBtn->hide();
 
     m_layout->addWidget(m_listView);
-    m_layout->addWidget(m_installBtn, 0, Qt::AlignHCenter);
+    m_layout->addSpacing(15);
+    m_layout->addLayout(bottomLayout);
+    m_layout->addSpacing(10);
 
     connect(m_listView, &ListView::deleteItem, this, &MultiFilePage::handleDelete);
+    connect(m_installBtn, &QPushButton::clicked, this, &MultiFilePage::batchInstallation);
+    connect(m_closeBtn, &QPushButton::clicked, this, &QApplication::quit);
 }
 
 MultiFilePage::~MultiFilePage()
@@ -57,6 +71,8 @@ void MultiFilePage::addItem(const QString &path)
         dataList << data;
         m_fontInfo->getFontInfo(data);
         m_listView->addListItem(data);
+
+        refreshPage();
     }
 }
 
@@ -68,5 +84,52 @@ void MultiFilePage::handleDelete(DFontData *p)
         delete p;
     }
 
+    refreshPage();
+
     emit countChanged();
+}
+
+void MultiFilePage::refreshList()
+{
+    for (const auto &item : dataList) {
+        if (!item->isInstalled) {
+            item->isInstalled = m_fontInfo->isFontInstalled(item);
+        }
+    }
+}
+
+void MultiFilePage::refreshPage()
+{
+    bool isAllInstalled = true;
+
+    for (const auto &item : dataList) {
+        if (!item->isInstalled) {
+            isAllInstalled = false;
+        }
+    }
+
+    if (isAllInstalled) {
+        m_installBtn->hide();
+        m_closeBtn->show();
+    } else {
+        m_installBtn->show();
+        m_closeBtn->hide();
+    }
+}
+
+void MultiFilePage::batchInstallation()
+{
+    QStringList filePaths;
+
+    for (auto const &item : dataList) {
+        if (!item->isInstalled) {
+            filePaths << item->filePath;
+        }
+    }
+
+    if (filePaths.count() != 0) {
+        bool isInstalled = m_fontInfo->fontsInstall(filePaths);
+
+        refreshPage();
+    }
 }

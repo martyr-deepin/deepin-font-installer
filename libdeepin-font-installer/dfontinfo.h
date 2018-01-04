@@ -32,6 +32,7 @@ public:
     QString version;
     QString copyright;
     QString description;
+    bool isInstalled;
 };
 
 class DFontInfo : public QObject

@@ -108,6 +108,7 @@ void DFontInfo::getFontInfo(DFontData *data)
     data->familyName = QString::fromLatin1(m_face->family_name);
     data->styleName = QString::fromLatin1(m_face->style_name);
     data->type = getFontType(data->filePath);
+    data->isInstalled = isFontInstalled(data);
 
     if (FT_IS_SFNT(m_face)) {
         const int count = FT_Get_Sfnt_Name_Count(m_face);

@@ -184,7 +184,9 @@ void SingleFilePage::updateInfo(DFontData *data)
                                               Qt::ElideRight,
                                               this->width() * 1.35));
 
-    if (DFontInfo::isFontInstalled(data)) {
+    m_closeBtn->hide();
+
+    if (data->isInstalled) {
         m_installBtn->hide();
         m_removeBtn->show();
         m_reinstallBtn->show();

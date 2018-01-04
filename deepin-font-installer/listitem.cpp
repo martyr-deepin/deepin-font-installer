@@ -79,7 +79,7 @@ void ListItem::setFontData(DFontData *p)
 {
     const QFontMetrics fm = m_infoLabel->fontMetrics();
 
-    if (DFontInfo::isFontInstalled(p)) {
+    if (p->isInstalled) {
         m_statusLabel->setStyleSheet("QLabel { color: #528315; }");
         m_statusLabel->setText(tr("Installed"));
     }

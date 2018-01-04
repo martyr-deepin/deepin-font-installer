@@ -40,12 +40,17 @@ public:
 signals:
     void countChanged();
 
-private:
+private slots:
     void handleDelete(DFontData *);
+    void refreshList();
+    void refreshPage();
+    void batchInstallation();
 
+private:
     QVBoxLayout *m_layout;
     ListView *m_listView;
     QPushButton *m_installBtn;
+    QPushButton *m_closeBtn;
     DFontInfo *m_fontInfo;
 
 public:
