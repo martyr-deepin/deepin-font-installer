@@ -25,7 +25,6 @@
 namespace Utils
 {
     QString getQssContent(const QString &filePath);
-    bool isFontSuffix(const QString &suffix);
     bool isFontMimeType(const QString &filePath);
     QString suffixList();
 }

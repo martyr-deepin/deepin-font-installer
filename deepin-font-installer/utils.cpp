@@ -41,15 +41,6 @@ QString Utils::getQssContent(const QString &filePath)
     return qss;
 }
 
-bool Utils::isFontSuffix(const QString &suffix)
-{
-    if (suffix == "ttf" || suffix == "ttc" || suffix == "otf") {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 bool Utils::isFontMimeType(const QString &filePath)
 {
     const QMimeType mimeType = QMimeDatabase().mimeTypeForUrl(QUrl(filePath));

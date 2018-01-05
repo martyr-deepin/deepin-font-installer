@@ -111,6 +111,7 @@ void ListItem::paintEvent(QPaintEvent *e)
 void ListItem::enterEvent(QEvent *e)
 {
     m_closeBtn->show();
+    m_closeBtn->raise();
     m_statusLabel->hide();
 
     QWidget::enterEvent(e);
