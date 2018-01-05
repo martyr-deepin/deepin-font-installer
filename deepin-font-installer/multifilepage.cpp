@@ -60,6 +60,7 @@ void MultiFilePage::addItem(const QString &path)
     for (const auto *d : dataList) {
         if (d->filePath == path) {
             isExist = true;
+            break;
         }
     }
 
@@ -91,7 +92,7 @@ void MultiFilePage::handleDelete(DFontData *p)
 
 void MultiFilePage::refreshList()
 {
-    for (const auto &item : dataList) {
+    for (auto *item : dataList) {
         if (!item->isInstalled) {
             item->isInstalled = m_fontInfo->isFontInstalled(item);
         }
@@ -102,9 +103,10 @@ void MultiFilePage::refreshPage()
 {
     bool isAllInstalled = true;
 
-    for (const auto &item : dataList) {
+    for (const auto *item : dataList) {
         if (!item->isInstalled) {
             isAllInstalled = false;
+            break;
         }
     }
 
@@ -128,8 +130,9 @@ void MultiFilePage::batchInstallation()
     }
 
     if (filePaths.count() != 0) {
-        bool isInstalled = m_fontInfo->fontsInstall(filePaths);
-
-        refreshPage();
+        if (m_fontInfo->fontsInstall(filePaths)) {
+            refreshList();
+            refreshPage();
+        }
     }
 }
