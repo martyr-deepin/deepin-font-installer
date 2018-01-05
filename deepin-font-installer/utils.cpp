@@ -22,9 +22,12 @@
 
 #include <QDebug>
 #include <QFile>
+#include <QUrl>
 #include <QDir>
 #include <QFontInfo>
 #include <QFontDatabase>
+#include <QMimeType>
+#include <QMimeDatabase>
 
 QString Utils::getQssContent(const QString &filePath)
 {
@@ -45,6 +48,20 @@ bool Utils::isFontSuffix(const QString &suffix)
     } else {
         return false;
     }
+}
+
+bool Utils::isFontMimeType(const QString &filePath)
+{
+    const QMimeType mimeType = QMimeDatabase().mimeTypeForUrl(QUrl(filePath));
+    const QString mimeName = mimeType.name();
+
+    if (mimeName == "application/x-font-ttf" ||
+        mimeName == "application/x-font-otf" ||
+        mimeName == "application/x-font-type1") {
+        return true;
+    }
+
+    return false;
 }
 
 QString Utils::suffixList()

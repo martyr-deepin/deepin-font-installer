@@ -62,17 +62,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *e)
 {
-    auto *const mime = e->mimeData();
+    const auto *mime = e->mimeData();
 
     // not has urls.
-    if (!mime->hasUrls())
+    if (!mime->hasUrls()) {
         return e->ignore();
+    }
 
-    for (const auto &item : mime->urls()) {
-        const QFileInfo info = item.path();
-        if (info.isDir())
-            return e->accept();
-        if (info.isFile() && Utils::isFontSuffix(info.suffix().toLower()))
+    for (const auto &url : mime->urls()) {
+        const QFileInfo info(url.toLocalFile());
+
+        if (info.isDir() || Utils::isFontMimeType(url.toLocalFile()))
             return e->accept();
     }
 
@@ -91,14 +91,21 @@ void MainWindow::dropEvent(QDropEvent *e)
     // find font files.
     QStringList fileList;
     for (const auto &url : mime->urls()) {
-        if (!url.isLocalFile())
+        if (!url.isLocalFile()) {
             continue;
+        }
 
         const QString localPath = url.toLocalFile();
         const QFileInfo info(localPath);
 
-        if (info.isFile() && Utils::isFontSuffix(info.suffix().toLower())) {
+        if (info.isFile() && Utils::isFontMimeType(localPath)) {
             fileList << localPath;
+        } else if (info.isDir()) {
+            for (const auto &file : QDir(localPath).entryInfoList()) {
+                if (Utils::isFontMimeType(file.absoluteFilePath())) {
+                    fileList << file.absoluteFilePath();
+                }
+            }
         }
     }
 
