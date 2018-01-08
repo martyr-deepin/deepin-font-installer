@@ -23,6 +23,8 @@ HEADERS += dfontinfo.h \
 SOURCES += dfontinfo.cpp \
            dfontview.cpp
 
+RESOURCES += resources.qrc
+
 QMAKE_PKGCONFIG_LIBDIR = $$target.path
 QMAKE_PKGCONFIG_VERSION = $$VERSION
 QMAKE_PKGCONFIG_DESTDIR = pkgconfig

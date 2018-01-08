@@ -43,10 +43,11 @@ public:
     DFontInfo(QObject *parent = nullptr);
     ~DFontInfo();
 
-    static QList<DFontData> families();
-    static QString getFontType(const QString &filePath);
-    static void getFontInfo(DFontData *data);
-    static bool isFontInstalled(DFontData *data);
+    QList<DFontData> families() const;
+    QStringList getAllFontPath() const;
+    QString getFontType(const QString &filePath);
+    void getFontInfo(DFontData *data);
+    bool isFontInstalled(DFontData *data);
     bool fontInstall(const QString &filePath);
     bool fontsInstall(const QStringList &files);
     bool fontRemove(DFontData *data);

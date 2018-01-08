@@ -41,45 +41,53 @@ DFontInfo::~DFontInfo()
 {
 }
 
-QList<DFontData> DFontInfo::families()
+QList<DFontData> DFontInfo::families() const
 {
+    FT_Face face = 0;
+    FT_Library library = 0;
     QList<DFontData> list;
+    const QStringList fontList = getAllFontPath();
+
+    FT_Init_FreeType(&library);
+
+    for (auto path : fontList) {
+        FT_New_Face(library, path.toLatin1().data(), 0, &face);
+
+        DFontData data;
+        data.filePath = path;
+        data.familyName = face->family_name;
+        data.styleName = face->style_name;
+        list << data;
+    }
+
+    // destroy object.
+    FT_Done_Face(face);
+    FT_Done_FreeType(library);
+
+    return list;
+}
+
+QStringList DFontInfo::getAllFontPath() const
+{
+    QStringList pathList;
 
     FcPattern *pattern = FcPatternCreate();
     FcObjectSet *objset = FcObjectSetBuild(FC_FILE, NULL);
     FcFontSet *fontset = FcFontList(0, pattern, objset);
-    FcInit();
-
-    FT_Library library = 0;
-    FT_Face face = 0;
-    FT_Init_FreeType(&library);
 
     for (int i = 0; i < fontset->nfont; ++i) {
-        FcChar8 *filePath;
-        if (FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &filePath) == FcResultMatch) {
-            FT_New_Face(library, (char *)filePath, 0, &face);
+        FcChar8 *str;
 
-            DFontData data;
-            data.filePath = (char *)filePath;
-            data.familyName = face->family_name;
-            data.styleName = face->style_name;
-            list << data;
+        if (FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &str) == FcResultMatch) {
+            pathList << (char *)str;
         }
     }
 
-    // destroy object.
-    if (face)
-        FT_Done_Face(face);
-    if (library)
-        FT_Done_FreeType(library);
-    if (objset)
-        FcObjectSetDestroy(objset);
-    if (pattern)
-        FcPatternDestroy(pattern);
-    if (fontset)
-        FcFontSetDestroy(fontset);
+    FcObjectSetDestroy(objset);
+    FcPatternDestroy(pattern);
+    FcFontSetDestroy(fontset);
 
-    return list;
+    return pathList;
 }
 
 QString DFontInfo::getFontType(const QString &filePath)
@@ -158,11 +166,13 @@ void DFontInfo::getFontInfo(DFontData *data)
 
 bool DFontInfo::isFontInstalled(DFontData *data)
 {
-    const QList<DFontData> famList = families();
+    const QList<DFontData> list = families();
+    QListIterator<DFontData> i(list);
 
-    for (const DFontData &famItem : famList) {
-        if (data->familyName == famItem.familyName &&
-            data->styleName == famItem.styleName) {
+    while (i.hasNext()) {
+        auto item = i.next();
+        if (item.familyName == data->familyName &&
+            item.styleName == data->styleName) {
             return true;
         }
     }
@@ -213,6 +223,7 @@ bool DFontInfo::fontRemove(DFontData *data)
         if (data->familyName == famItem.familyName &&
             data->styleName == famItem.styleName) {
             filePath = famItem.filePath;
+            break;
         }
     }
 

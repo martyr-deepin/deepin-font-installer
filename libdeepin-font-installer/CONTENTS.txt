@@ -1,0 +1,2 @@
+zh_CN: 我能吞下玻璃而不伤身体。
+en_US: The quick brown fox jumps over the lazy dog.
