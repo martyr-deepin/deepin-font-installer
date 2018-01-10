@@ -61,6 +61,8 @@ void DFontView::paintEvent(QPaintEvent *e)
     font.setPointSize(25);
     painter.setFont(font);
     painter.drawText(rect(), Qt::AlignCenter, sampleString);
+
+    QWidget::paintEvent(e);
 }
 
 void DFontView::initContents()

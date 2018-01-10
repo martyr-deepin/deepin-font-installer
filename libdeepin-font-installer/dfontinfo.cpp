@@ -32,39 +32,51 @@
 #include FT_SFNT_NAMES_H
 #include FT_TRUETYPE_IDS_H
 
+static QList<DFontData> dataList;
+
 DFontInfo::DFontInfo(QObject *parent)
     : QObject(parent)
 {
+    initFamilies();
 }
 
 DFontInfo::~DFontInfo()
 {
 }
 
-QList<DFontData> DFontInfo::families() const
+void DFontInfo::initFamilies()
 {
     FT_Face face = 0;
     FT_Library library = 0;
-    QList<DFontData> list;
-    const QStringList fontList = getAllFontPath();
 
     FT_Init_FreeType(&library);
 
-    for (auto path : fontList) {
+    if (!dataList.isEmpty()) {
+        dataList.clear();
+    }
+
+    for (auto path : getAllFontPath()) {
         FT_New_Face(library, path.toLatin1().data(), 0, &face);
 
         DFontData data;
         data.filePath = path;
         data.familyName = face->family_name;
         data.styleName = face->style_name;
-        list << data;
+        dataList << data;
 
         FT_Done_Face(face);
     }
 
     FT_Done_FreeType(library);
+}
 
-    return list;
+QList<DFontData> DFontInfo::families(bool isRefresh)
+{
+    if (isRefresh) {
+        initFamilies();
+    }
+
+    return dataList;
 }
 
 QStringList DFontInfo::getAllFontPath() const
