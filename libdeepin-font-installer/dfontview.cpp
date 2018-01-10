@@ -7,6 +7,7 @@ static const QString lowerTextStock = "abcdefghijklmnopqrstuvwxyz";
 static const QString upperTextStock = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 static const QString punctuationTextStock = "0123456789.:,;(*!?')";
 static QString sampleString = nullptr;
+static QString styleName = nullptr;
 static QHash<QString, QString> contents = {};
 
 DFontView::DFontView(QWidget *parent)
@@ -32,6 +33,30 @@ void DFontView::paintEvent(QPaintEvent *e)
     QFont font(m_fontDatabase->applicationFontFamilies(0).first());
     painter.setPen(Qt::black);
     painter.setFont(font);
+
+    if (styleName.contains("Italic")) {
+        font.setItalic(true);
+    }
+
+    if (styleName.contains("Regular")) {
+        font.setWeight(QFont::Normal);
+    } else if (styleName.contains("Bold")) {
+        font.setWeight(QFont::Bold);
+    } else if (styleName.contains("Light")) {
+        font.setWeight(QFont::Light);
+    } else if (styleName.contains("Thin")) {
+        font.setWeight(QFont::Thin);
+    } else if (styleName.contains("ExtraLight")) {
+        font.setWeight(QFont::ExtraLight);
+    } else if (styleName.contains("ExtraBold")) {
+        font.setWeight(QFont::ExtraBold);
+    } else if (styleName.contains("Medium")) {
+        font.setWeight(QFont::Medium);
+    } else if (styleName.contains("DemiBold")) {
+        font.setWeight(QFont::DemiBold);
+    } else if (styleName.contains("Black")) {
+        font.setWeight(QFont::Black);
+    }
 
     font.setPointSize(25);
     painter.setFont(font);
@@ -68,20 +93,21 @@ void DFontView::setFileUrl(const QString &url)
     FT_New_Face(m_library, url.toLatin1().data(), 0, &m_face);
 
     sampleString = getSampleString().simplified();
+    styleName = (char *) m_face->style_name;
 
     FT_Done_Face(m_face);
     FT_Done_FreeType(m_library);
 
-    update();
+    repaint();
 }
 
 QString DFontView::getSampleString()
 {
-    QString sampleString;
+    QString sampleString = nullptr;
     bool isAvailable = false;
 
     // check the current system language sample string.
-    sampleString = getLanguageSampleString(nullptr);
+    sampleString = getLanguageSampleString(QLocale::system().name());
     if (checkFontContainText(sampleString) && !sampleString.isEmpty()) {
         isAvailable = true;
     }
@@ -105,11 +131,7 @@ QString DFontView::getSampleString()
 QString DFontView::getLanguageSampleString(const QString &text)
 {
     QString language = text;
-    QString result;
-
-    if (language.isEmpty()) {
-        language = QLocale::system().name();
-    }
+    QString result = nullptr;
 
     if (contents.contains(language)) {
         auto findResult = contents.find(language);

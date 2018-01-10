@@ -58,10 +58,10 @@ QList<DFontData> DFontInfo::families() const
         data.familyName = face->family_name;
         data.styleName = face->style_name;
         list << data;
+
+        FT_Done_Face(face);
     }
 
-    // destroy object.
-    FT_Done_Face(face);
     FT_Done_FreeType(library);
 
     return list;
