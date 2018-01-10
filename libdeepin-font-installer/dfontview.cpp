@@ -92,7 +92,7 @@ void DFontView::setFileUrl(const QString &url)
     m_fontDatabase->addApplicationFont(url);
 
     FT_Init_FreeType(&m_library);
-    FT_New_Face(m_library, url.toLatin1().data(), 0, &m_face);
+    FT_New_Face(m_library, url.toUtf8().constData(), 0, &m_face);
 
     sampleString = getSampleString().simplified();
     styleName = (char *) m_face->style_name;
@@ -130,9 +130,8 @@ QString DFontView::getSampleString()
     return sampleString;
 }
 
-QString DFontView::getLanguageSampleString(const QString &text)
+QString DFontView::getLanguageSampleString(const QString &language)
 {
-    QString language = text;
     QString result = nullptr;
 
     if (contents.contains(language)) {

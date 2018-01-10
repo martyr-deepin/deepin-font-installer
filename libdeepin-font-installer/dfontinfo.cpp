@@ -91,7 +91,7 @@ QStringList DFontInfo::getAllFontPath() const
         FcChar8 *str;
 
         if (FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &str) == FcResultMatch) {
-            pathList << (char *)str;
+            pathList << (char *) str;
         }
     }
 
@@ -122,7 +122,7 @@ void DFontInfo::getFontInfo(DFontData *data)
     FT_Face m_face = 0;
 
     FT_Init_FreeType(&m_library);
-    FT_New_Face(m_library, data->filePath.toLatin1().data(), 0, &m_face);
+    FT_New_Face(m_library, data->filePath.toUtf8().constData(), 0, &m_face);
 
     // get the basic data.
     data->familyName = QString::fromLatin1(m_face->family_name);

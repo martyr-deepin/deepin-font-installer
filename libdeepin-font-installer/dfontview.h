@@ -24,7 +24,7 @@ private:
     void initContents();
     void setFileUrl(const QString &url);
     QString getSampleString();
-    QString getLanguageSampleString(const QString &text);
+    QString getLanguageSampleString(const QString &language);
     bool checkFontContainText(const QString &text);
     QString buildCharlistForFace(int length);
 
