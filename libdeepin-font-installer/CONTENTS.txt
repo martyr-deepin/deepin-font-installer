@@ -1,2 +1,14 @@
-zh_CN: 我能吞下玻璃而不伤身体。
-en_US: The quick brown fox jumps over the lazy dog.
+zh_CN: 脚踏实地，不断创新
+zh_TW: 腳踏實地，不斷創新
+en_US: We do we change...
+cs: Pracujeme pilně a zavádíme novinky.
+fr: Nous créons, nous innovons.
+de: Wir sind die Veränderung!
+it: Cambiamo assieme.
+fa: تلاش برای تغییر
+pt: Fazemos a mudança
+ru: Съешь мягких булочек и выпей чаю
+sr: Ми радимо, ми стварамо...
+sl: Spremembe in razvoj - naše poslanstvo!
+es: Lo hacemos, cambiamos.
+tr: Biz değiştiririz
