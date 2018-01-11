@@ -1,6 +1,6 @@
 zh_CN: 脚踏实地，不断创新
 zh_TW: 腳踏實地，不斷創新
-en_US: We do we change...
+en: We do we change...
 cs: Pracujeme pilně a zavádíme novinky.
 fr: Nous créons, nous innovons.
 de: Wir sind die Veränderung!

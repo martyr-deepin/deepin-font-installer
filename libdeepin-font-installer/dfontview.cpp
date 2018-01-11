@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QPainter>
+#include <QDebug>
 
 static const QString lowerTextStock = "abcdefghijklmnopqrstuvwxyz";
 static const QString upperTextStock = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -32,7 +33,6 @@ void DFontView::paintEvent(QPaintEvent *e)
 
     QFont font(m_fontDatabase->applicationFontFamilies(0).first());
     painter.setPen(Qt::black);
-    painter.setFont(font);
 
     if (styleName.contains("Italic")) {
         font.setItalic(true);
@@ -58,9 +58,31 @@ void DFontView::paintEvent(QPaintEvent *e)
         font.setWeight(QFont::Black);
     }
 
+    const int padding = 20;
+    int y = 10;
+
     font.setPointSize(25);
     painter.setFont(font);
-    painter.drawText(rect(), Qt::AlignCenter, sampleString);
+
+    QFontMetrics metrics(font);
+    int lowerWidth = metrics.width(lowerTextStock);
+    int lowerHeight = metrics.height();
+    painter.drawText(QRect(20, y + padding, lowerWidth, lowerHeight), Qt::AlignLeft, lowerTextStock);
+    y += lowerHeight;
+
+    int upperWidth = metrics.width(upperTextStock);
+    int upperHeight = metrics.height();
+    painter.drawText(QRect(20, y + padding, upperWidth, upperHeight), Qt::AlignLeft, upperTextStock);
+    y += upperHeight;
+
+    int punWidth = metrics.width(punctuationTextStock);
+    int punHeight = metrics.height();
+    painter.drawText(QRect(20, y + padding, punWidth, punHeight), Qt::AlignLeft, punctuationTextStock);
+    y += punHeight;
+
+    int sampleWidth = metrics.width(sampleString);
+    int sampleHeight = metrics.height();
+    painter.drawText(QRect(20, y + padding * 2, sampleWidth, sampleHeight), Qt::AlignLeft, sampleString);
 
     QWidget::paintEvent(e);
 }
@@ -116,7 +138,7 @@ QString DFontView::getSampleString()
 
     // check english sample string.
     if (!isAvailable) {
-        sampleString = getLanguageSampleString("en_US");
+        sampleString = getLanguageSampleString("en");
         if (checkFontContainText(sampleString)) {
             isAvailable = true;
         }
@@ -133,11 +155,20 @@ QString DFontView::getSampleString()
 QString DFontView::getLanguageSampleString(const QString &language)
 {
     QString result = nullptr;
+    QString key = nullptr;
 
     if (contents.contains(language)) {
-        auto findResult = contents.find(language);
-        result.append(findResult.value());
+        key = language;
+    } else {
+        const QStringList parseList = language.split("_", QString::SkipEmptyParts);
+        if (parseList.length() > 0 &&
+            contents.contains(parseList.first())) {
+            key = parseList.first();
+        }
     }
+
+    auto findResult = contents.find(key);
+    result.append(findResult.value());
 
     return result;
 }
