@@ -34,7 +34,7 @@ public:
     SingleFilePage(QWidget *parent = nullptr);
     ~SingleFilePage();
 
-    void setFontData(DFontData *data);
+    void updateInfo(DFontData *data);
     void showInstalled();
 
 private slots:

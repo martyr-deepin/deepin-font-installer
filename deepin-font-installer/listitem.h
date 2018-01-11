@@ -17,44 +17,49 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MULTIFILEPAGE_H
-#define MULTIFILEPAGE_H
+#ifndef LISTITEM_H
+#define LISTITEM_H
 
 #include <QWidget>
-#include <QVBoxLayout>
+#include <QListWidgetItem>
 #include <QLabel>
-#include <QPushButton>
-#include "listview.h"
+#include <QVBoxLayout>
+#include "dimagebutton.h"
 #include "dfontinfo.h"
 
-class MultiFilePage : public QWidget
+DWIDGET_USE_NAMESPACE
+
+class ListItem : public QWidget
 {
     Q_OBJECT
 
 public:
-    MultiFilePage(QWidget *parent = 0);
-    ~MultiFilePage();
+    ListItem(QWidget *parent = nullptr);
 
-    void addItem(const QString &path);
+    QListWidgetItem *getItem();
+    QString getFilePath() const;
+    DFontData *getFontData();
+    void setFontData(DFontData *);
 
 signals:
-    void countChanged();
+    void closeBtnClicked(QListWidgetItem *item);
 
-private slots:
-    void handleDelete(DFontData *);
-    void refreshList();
-    void refreshPage();
-    void batchInstallation();
+protected:
+    void paintEvent(QPaintEvent *);
+    void enterEvent(QEvent *);
+    void leaveEvent(QEvent *);
 
 private:
-    QVBoxLayout *m_layout;
-    ListView *m_listView;
-    QPushButton *m_installBtn;
-    QPushButton *m_closeBtn;
-    DFontInfo *m_fontInfo;
-
-public:
-    QList<DFontData *> dataList;
+    QListWidgetItem *m_item;
+    DFontData *m_fontData;
+    QHBoxLayout *m_mainLayout;
+    QVBoxLayout *m_infoLayout;
+    QLabel *m_nameLabel;
+    QLabel *m_styleLabel;
+    QLabel *m_infoLabel;
+    QLabel *m_statusLabel;
+    DImageButton *m_closeBtn;
+    QString m_filePath;
 };
 
-#endif
+#endif // LISTITEM_H
