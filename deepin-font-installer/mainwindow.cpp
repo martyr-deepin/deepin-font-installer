@@ -32,9 +32,10 @@ MainWindow::MainWindow(QWidget *parent)
     : DMainWindow(parent),
       m_mainWidget(new QWidget),
       m_mainLayout(new QStackedLayout(m_mainWidget)),
+      m_listModel(new ListModel),
       m_homePage(new HomePage),
       m_singleFilePage(new SingleFilePage),
-      m_multiFilePage(new MultiFilePage)
+      m_multiFilePage(new MultiFilePage(m_listModel))
 {
     if (titlebar()) {
         titlebar()->setIcon(QIcon(":/images/deepin-font-installer.svg"));
@@ -51,9 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(m_mainWidget);
     setAcceptDrops(true);
 
-    // connect the signals to the slot function.
     connect(m_homePage, &HomePage::fileSelected, this, &MainWindow::onSelected);
-    connect(m_multiFilePage, &MultiFilePage::countChanged, this, &MainWindow::refreshPage);
 }
 
 MainWindow::~MainWindow()
@@ -114,19 +113,16 @@ void MainWindow::dropEvent(QDropEvent *e)
 
 void MainWindow::refreshPage()
 {
-    const int count = m_multiFilePage->dataList.count();
+    const int count = m_listModel->fontList().size();
 
     if (count == 0)
         return;
 
     if (count == 1) {
-        // switch to single file page.
         m_mainLayout->setCurrentIndex(1);
-        // update info.
-        m_singleFilePage->updateInfo(m_multiFilePage->dataList.first());
-        titlebar()->setTitle("");
+        m_singleFilePage->setFontData(m_listModel->fontList().first());
     } else {
-        // switch to multi file page.
+        m_multiFilePage->reset();
         m_mainLayout->setCurrentIndex(2);
         titlebar()->setTitle(tr("Bulk Install"));
     }
@@ -135,8 +131,7 @@ void MainWindow::refreshPage()
 void MainWindow::onSelected(const QStringList &files)
 {
     for (const auto &file : files) {
-        // add file path to multiFilePage class.
-        m_multiFilePage->addItem(file);
+        m_listModel->appendPath(file);
     }
 
     refreshPage();

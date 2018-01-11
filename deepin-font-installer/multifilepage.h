@@ -25,6 +25,8 @@
 #include <QLabel>
 #include <QPushButton>
 #include "listview.h"
+#include "listmodel.h"
+#include "listdelegate.h"
 #include "dfontinfo.h"
 
 class MultiFilePage : public QWidget
@@ -32,19 +34,10 @@ class MultiFilePage : public QWidget
     Q_OBJECT
 
 public:
-    MultiFilePage(QWidget *parent = 0);
+    MultiFilePage(ListModel *model, QWidget *parent = 0);
     ~MultiFilePage();
 
-    void addItem(const QString &path);
-
-signals:
-    void countChanged();
-
-private slots:
-    void handleDelete(DFontData *);
-    void refreshList();
-    void refreshPage();
-    void batchInstallation();
+    void reset();
 
 private:
     QVBoxLayout *m_layout;
@@ -52,9 +45,7 @@ private:
     QPushButton *m_installBtn;
     QPushButton *m_closeBtn;
     DFontInfo *m_fontInfo;
-
-public:
-    QList<DFontData *> dataList;
+    ListDelegate *m_listDelegate;
 };
 
 #endif

@@ -20,25 +20,16 @@
 #ifndef LISTVIEW_H
 #define LISTVIEW_H
 
-#include <QListWidget>
-#include "listitem.h"
+#include <QListView>
 #include "dfontinfo.h"
 
-class ListView : public QListWidget
+class ListView : public QListView
 {
     Q_OBJECT
 
 public:
     ListView(QWidget *parent = nullptr);
     ~ListView();
-
-    void addListItem(DFontData *);
-
-signals:
-    void deleteItem(DFontData *);
-
-private slots:
-    void handleClose(QListWidgetItem *list);
 };
 
 #endif

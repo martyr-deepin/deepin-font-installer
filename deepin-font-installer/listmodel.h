@@ -17,41 +17,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef LISTMODEL_H
+#define LISTMODEL_H
 
-#include <DMainWindow>
-#include <QStackedLayout>
-#include "homepage.h"
-#include "singlefilepage.h"
-#include "multifilepage.h"
-#include "listmodel.h"
+#include <QAbstractListModel>
+#include "dfontinfo.h"
 
-DWIDGET_USE_NAMESPACE
-
-class MainWindow : public DMainWindow
+class ListModel : public QAbstractListModel
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ListModel(QObject *parent = nullptr);
 
-protected:
-    void dragEnterEvent(QDragEnterEvent *);
-    void dropEvent(QDropEvent *);
+    enum FontRole
+    {
+        FontNameRole = Qt::DisplayRole,
+        UnusedRole = Qt::UserRole,
+        FontStyleRole,
+        FontTypeRole,
+        FontVersionRole,
+        FontCopyrightRole,
+        FontDescription,
+    };
 
-private slots:
-    void refreshPage();
-    void onSelected(const QStringList &);
+    int rowCount(const QModelIndex &parent) const;
+    QVariant data(const QModelIndex &index, int role) const;
+    void appendPath(const QString &filePath);
+
+    const QList<DFontData *> fontList() const { return m_fontList; };
 
 private:
-    QWidget *m_mainWidget;
-    QStackedLayout *m_mainLayout;
-    ListModel *m_listModel;
-    HomePage *m_homePage;
-    SingleFilePage *m_singleFilePage;
-    MultiFilePage *m_multiFilePage;
+    QList<DFontData *> m_fontList;
+    DFontInfo *m_fontInfo;
 };
 
-#endif
+#endif // LISTMODEL_H

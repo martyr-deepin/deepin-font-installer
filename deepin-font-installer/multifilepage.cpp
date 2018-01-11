@@ -18,17 +18,22 @@
  */
 
 #include "multifilepage.h"
+#include "listdelegate.h"
 #include <QDebug>
 #include <QApplication>
 
-MultiFilePage::MultiFilePage(QWidget *parent)
+MultiFilePage::MultiFilePage(ListModel *model, QWidget *parent)
     : QWidget(parent),
       m_fontInfo(new DFontInfo),
       m_layout(new QVBoxLayout(this)),
       m_listView(new ListView),
       m_installBtn(new QPushButton(tr("Install"))),
-      m_closeBtn(new QPushButton(tr("OK")))
+      m_closeBtn(new QPushButton(tr("OK"))),
+      m_listDelegate(new ListDelegate)
 {
+    m_listView->setModel(model);
+    m_listView->setItemDelegate(m_listDelegate);
+
     QHBoxLayout *bottomLayout = new QHBoxLayout;
     bottomLayout->addWidget(m_installBtn, 0, Qt::AlignHCenter);
     bottomLayout->addWidget(m_closeBtn, 0, Qt::AlignHCenter);
@@ -44,8 +49,6 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     m_layout->addLayout(bottomLayout);
     m_layout->addSpacing(10);
 
-    connect(m_listView, &ListView::deleteItem, this, &MultiFilePage::handleDelete);
-    connect(m_installBtn, &QPushButton::clicked, this, &MultiFilePage::batchInstallation);
     connect(m_closeBtn, &QPushButton::clicked, this, &QApplication::quit);
 }
 
@@ -53,86 +56,7 @@ MultiFilePage::~MultiFilePage()
 {
 }
 
-void MultiFilePage::addItem(const QString &path)
+void MultiFilePage::reset()
 {
-    // whether the same path.
-    bool isExist = false;
-    for (const auto *d : dataList) {
-        if (d->filePath == path) {
-            isExist = true;
-            break;
-        }
-    }
-
-    // add to dataList and listView if it does not exist.
-    if (!isExist) {
-        DFontData *data = new DFontData;
-
-        data->filePath = path;
-        dataList << data;
-        m_fontInfo->getFontInfo(data);
-        m_listView->addListItem(data);
-
-        refreshPage();
-    }
-}
-
-void MultiFilePage::handleDelete(DFontData *p)
-{
-    dataList.removeAt(dataList.indexOf(p));
-
-    if (p) {
-        delete p;
-    }
-
-    refreshPage();
-
-    emit countChanged();
-}
-
-void MultiFilePage::refreshList()
-{
-    for (auto *item : dataList) {
-        if (!item->isInstalled) {
-            item->isInstalled = m_fontInfo->isFontInstalled(item);
-        }
-    }
-}
-
-void MultiFilePage::refreshPage()
-{
-    bool isAllInstalled = true;
-
-    for (const auto *item : dataList) {
-        if (!item->isInstalled) {
-            isAllInstalled = false;
-            break;
-        }
-    }
-
-    if (isAllInstalled) {
-        m_installBtn->hide();
-        m_closeBtn->show();
-    } else {
-        m_installBtn->show();
-        m_closeBtn->hide();
-    }
-}
-
-void MultiFilePage::batchInstallation()
-{
-    QStringList filePaths;
-
-    for (auto const &item : dataList) {
-        if (!item->isInstalled) {
-            filePaths << item->filePath;
-        }
-    }
-
-    if (filePaths.count() != 0) {
-        if (m_fontInfo->fontsInstall(filePaths)) {
-            refreshList();
-            refreshPage();
-        }
-    }
+    m_listView->reset();
 }

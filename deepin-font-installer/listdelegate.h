@@ -17,19 +17,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "listview.h"
+#ifndef LISTDELEGATE_H
+#define LISTDELEGATE_H
 
-ListView::ListView(QWidget *parent)
-    : QListView(parent)
+#include <QAbstractItemDelegate>
+
+class ListDelegate : public QAbstractItemDelegate
 {
-    setVerticalScrollMode(ScrollPerPixel);
-    setAutoScroll(false);
+    Q_OBJECT
 
-    setStyleSheet("QListView {"
-                  "border: 1px solid #eee;"
-                  "}");
-}
+public:
+    explicit ListDelegate(QObject *parent = nullptr);
 
-ListView::~ListView()
-{
-}
+private:
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
+
+private:
+    QPixmap m_icon;
+};
+
+#endif // LISTDELEGATE_H
