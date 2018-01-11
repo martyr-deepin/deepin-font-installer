@@ -42,7 +42,7 @@ MultiFilePage::MultiFilePage(ListModel *model, QWidget *parent)
     m_closeBtn->setObjectName("BlueButton");
 
     m_installBtn->hide();
-    m_closeBtn->hide();
+    // m_closeBtn->hide();
 
     m_layout->addWidget(m_listView);
     m_layout->addSpacing(15);
