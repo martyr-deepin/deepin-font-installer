@@ -17,13 +17,12 @@ public:
     DFontView(QWidget *parent = nullptr);
     ~DFontView();
 
-    void setFileUrl(const QString &url);
-
 protected:
     void paintEvent(QPaintEvent *);
 
 private:
     void initContents();
+    void setFileUrl(const QString &url);
     QString getSampleString();
     QString getLanguageSampleString(const QString &language);
     bool checkFontContainText(const QString &text);

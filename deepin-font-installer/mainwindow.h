@@ -25,7 +25,6 @@
 #include "homepage.h"
 #include "singlefilepage.h"
 #include "multifilepage.h"
-#include "listmodel.h"
 
 DWIDGET_USE_NAMESPACE
 
@@ -48,7 +47,6 @@ private slots:
 private:
     QWidget *m_mainWidget;
     QStackedLayout *m_mainLayout;
-    ListModel *m_listModel;
     HomePage *m_homePage;
     SingleFilePage *m_singleFilePage;
     MultiFilePage *m_multiFilePage;

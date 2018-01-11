@@ -152,7 +152,7 @@ SingleFilePage::~SingleFilePage()
     delete m_info;
 }
 
-void SingleFilePage::setFontData(DFontData *data)
+void SingleFilePage::updateInfo(DFontData *data)
 {
     const QFontMetrics fm = m_versionLabel->fontMetrics();
     m_data = data;
