@@ -29,8 +29,10 @@ ListDelegate::ListDelegate(QObject *parent)
     : QAbstractItemDelegate(parent)
 {
     const auto ratio = qApp->devicePixelRatio();
-    m_icon = DSvgRenderer::render(":/images/font-x-generic.svg", QSize(42, 42) * ratio);
-    m_icon.setDevicePixelRatio(ratio);
+    m_fontIcon = DSvgRenderer::render(":/images/font-x-generic.svg", QSize(42, 42) * ratio);
+    m_removeIcon = DSvgRenderer::render(":/images/close_normal.svg", QSize(16, 16) * ratio);
+    m_fontIcon.setDevicePixelRatio(ratio);
+    m_removeIcon.setDevicePixelRatio(ratio);
 }
 
 void ListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -48,16 +50,16 @@ void ListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
 
     // draw separator line.
     if (index.row()) {
-        const QPoint startPos(contentX, rect.top());
-        const QPoint endPos(rect.right() - 10, rect.top());
+        const QPoint startPos(contentX, rect.y());
+        const QPoint endPos(rect.right() - 10, rect.y());
         painter->setPen(QColor(0, 0, 0, 255 * 0.1));
         painter->drawLine(startPos, endPos);
     }
 
     // draw icon.
-    const int x = 5;
-    const int y = rect.top() + (rect.height() - m_icon.height() / m_icon.devicePixelRatio()) / 2;
-    painter->drawPixmap(x, y, m_icon);
+    const int iconX = 5;
+    const int iconY = rect.y() + (rect.height() - m_fontIcon.height() / m_fontIcon.devicePixelRatio()) / 2;
+    painter->drawPixmap(iconX, iconY, m_fontIcon);
 
     // draw font family name.
     QRect nameRect = rect;
@@ -75,6 +77,11 @@ void ListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     styleRect.setRight(rect.right() - 85);
     painter->setPen(QColor(0, 0, 0, 255 * 0.5));
     painter->drawText(styleRect, Qt::AlignLeft | Qt::AlignBottom, styleName);
+
+    // draw remove icon.
+    const int x = rect.right() - m_removeIcon.width() / m_removeIcon.devicePixelRatio() - 10;
+    const int y = rect.y() + (rect.height() - m_removeIcon.height() / m_removeIcon.devicePixelRatio()) / 2;
+    painter->drawPixmap(x, y, m_removeIcon);
 }
 
 QSize ListDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const

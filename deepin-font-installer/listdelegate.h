@@ -34,7 +34,8 @@ private:
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
 private:
-    QPixmap m_icon;
+    QPixmap m_fontIcon;
+    QPixmap m_removeIcon;
 };
 
 #endif // LISTDELEGATE_H
