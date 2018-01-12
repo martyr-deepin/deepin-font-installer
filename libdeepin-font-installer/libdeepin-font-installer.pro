@@ -35,6 +35,10 @@ QMAKE_PKGCONFIG_INCDIR = $$includes.path
 includes.path = $$INCLUDE_INSTALL_DIR/deepin-font-installer
 includes.files += $$PWD/*.h
 
+isEmpty(PREFIX) {
+    PREFIX = /usr
+}
+
 isEmpty(LIB_INSTALL_DIR) {
     target.path = $$[QT_INSTALL_LIBS]
 } else {
