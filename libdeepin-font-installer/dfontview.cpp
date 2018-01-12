@@ -60,8 +60,9 @@ void DFontView::paintEvent(QPaintEvent *e)
 
     const int padding = 20;
     int y = 10;
+    int fontSize = 25;
 
-    font.setPointSize(25);
+    font.setPointSize(fontSize);
     painter.setFont(font);
 
     QFontMetrics metrics(font);
@@ -80,9 +81,21 @@ void DFontView::paintEvent(QPaintEvent *e)
     painter.drawText(QRect(20, y + padding, punWidth, punHeight), Qt::AlignLeft, punctuationTextStock);
     y += punHeight;
 
-    int sampleWidth = metrics.width(sampleString);
-    int sampleHeight = metrics.height();
-    painter.drawText(QRect(20, y + padding * 2, sampleWidth, sampleHeight), Qt::AlignLeft, sampleString);
+    for (int i = 0; i < 5; ++i) {
+        fontSize += 3;
+        font.setPointSize(fontSize);
+        painter.setFont(font);
+
+        QFontMetrics met(font);
+        int sampleWidth = met.width(sampleString);
+        int sampleHeight = met.height();
+        if (sampleWidth > rect().width()) {
+            sampleWidth - 20;
+        }
+
+        painter.drawText(QRect(20, y + padding * 2, sampleWidth , sampleHeight), Qt::AlignLeft, sampleString);
+        y += sampleHeight + padding;
+    }
 
     QWidget::paintEvent(e);
 }
