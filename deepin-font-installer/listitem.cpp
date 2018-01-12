@@ -88,9 +88,13 @@ void ListItem::setFontData(DFontData *p)
     m_nameLabel->setText(m_fontData->familyName);
     m_styleLabel->setText(m_fontData->styleName);
 
-    m_infoLabel->setText(fm.elidedText(m_fontData->description,
-                                       Qt::ElideRight,
-                                       this->width() / 1.8));
+    if (m_fontData->description.isEmpty()) {
+        m_infoLabel->setText(tr("Unknown"));
+    } else {
+        m_infoLabel->setText(fm.elidedText(m_fontData->description,
+                                           Qt::ElideRight,
+                                           this->width() / 1.8));
+    }
 }
 
 DFontData *ListItem::getFontData()
