@@ -24,7 +24,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
-#include "listview.h"
+#include "listwidget.h"
 #include "dfontinfo.h"
 
 class MultiFilePage : public QWidget
@@ -48,7 +48,7 @@ private slots:
 
 private:
     QVBoxLayout *m_layout;
-    ListView *m_listView;
+    ListWidget *m_listView;
     QPushButton *m_installBtn;
     QPushButton *m_closeBtn;
     DFontInfo *m_fontInfo;

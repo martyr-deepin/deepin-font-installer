@@ -25,7 +25,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     : QWidget(parent),
       m_fontInfo(new DFontInfo),
       m_layout(new QVBoxLayout(this)),
-      m_listView(new ListView),
+      m_listView(new ListWidget),
       m_installBtn(new QPushButton(tr("Install"))),
       m_closeBtn(new QPushButton(tr("OK")))
 {
@@ -44,7 +44,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     m_layout->addLayout(bottomLayout);
     m_layout->addSpacing(10);
 
-    connect(m_listView, &ListView::deleteItem, this, &MultiFilePage::handleDelete);
+    connect(m_listView, &ListWidget::deleteItem, this, &MultiFilePage::handleDelete);
     connect(m_installBtn, &QPushButton::clicked, this, &MultiFilePage::batchInstallation);
     connect(m_closeBtn, &QPushButton::clicked, this, &QApplication::quit);
 }

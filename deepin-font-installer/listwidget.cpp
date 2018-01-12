@@ -17,10 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "listview.h"
+#include "listwidget.h"
 #include <QListWidgetItem>
 
-ListView::ListView(QWidget *parent)
+ListWidget::ListWidget(QWidget *parent)
     : QListWidget(parent)
 {
     setVerticalScrollMode(ScrollPerPixel);
@@ -32,11 +32,11 @@ ListView::ListView(QWidget *parent)
                   "}");
 }
 
-ListView::~ListView()
+ListWidget::~ListWidget()
 {
 }
 
-void ListView::addListItem(DFontData *data)
+void ListWidget::addListItem(DFontData *data)
 {
     ListItem *fileItem = new ListItem;
 
@@ -45,10 +45,10 @@ void ListView::addListItem(DFontData *data)
     fileItem->getItem()->setSizeHint(QSize(100, 65));
     setItemWidget(fileItem->getItem(), fileItem);
 
-    connect(fileItem, &ListItem::closeBtnClicked, this, &ListView::handleClose);
+    connect(fileItem, &ListItem::closeBtnClicked, this, &ListWidget::handleClose);
 }
 
-void ListView::handleClose(QListWidgetItem *item)
+void ListWidget::handleClose(QListWidgetItem *item)
 {
     ListItem *fileItem = static_cast<ListItem *>(itemWidget(item));
     emit deleteItem(fileItem->getFontData());

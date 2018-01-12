@@ -21,20 +21,20 @@ DEFINES += QT_MESSAGELOGCONTEXT
 # Input
 HEADERS += homepage.h \
 	   listitem.h \
-	   listview.h \
 	   mainwindow.h \
 	   multifilepage.h \
 	   singlefilepage.h \
-	   utils.h
+	   utils.h \
+    listwidget.h
 
 SOURCES += homepage.cpp \
 	   listitem.cpp \
-	   listview.cpp \
 	   main.cpp \
 	   mainwindow.cpp \
 	   multifilepage.cpp \
 	   singlefilepage.cpp \
-	   utils.cpp
+	   utils.cpp \
+    listwidget.cpp
 
 RESOURCES += deepin-font-installer.qrc
 

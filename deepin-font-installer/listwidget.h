@@ -24,13 +24,13 @@
 #include "listitem.h"
 #include "dfontinfo.h"
 
-class ListView : public QListWidget
+class ListWidget : public QListWidget
 {
     Q_OBJECT
 
 public:
-    ListView(QWidget *parent = nullptr);
-    ~ListView();
+    ListWidget(QWidget *parent = nullptr);
+    ~ListWidget();
 
     void addListItem(DFontData *);
 
