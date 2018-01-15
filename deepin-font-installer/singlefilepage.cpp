@@ -216,7 +216,7 @@ void SingleFilePage::showInstalled()
 
 void SingleFilePage::handleInstall()
 {
-    bool isInstall = m_info->fontInstall(m_data->filePath);
+    bool isInstall = m_info->fontsInstall(QStringList() << m_data->filePath);
 
     if (isInstall) {
         showInstalled();

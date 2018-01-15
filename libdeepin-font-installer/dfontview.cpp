@@ -26,6 +26,23 @@ DFontView::~DFontView()
 {
 }
 
+void DFontView::setFileUrl(const QString &url)
+{
+    m_fontDatabase->removeAllApplicationFonts();
+    m_fontDatabase->addApplicationFont(url);
+
+    FT_Init_FreeType(&m_library);
+    FT_New_Face(m_library, url.toUtf8().constData(), 0, &m_face);
+
+    sampleString = getSampleString().simplified();
+    styleName = (char *) m_face->style_name;
+
+    FT_Done_Face(m_face);
+    FT_Done_FreeType(m_library);
+
+    repaint();
+}
+
 void DFontView::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
@@ -119,23 +136,6 @@ void DFontView::initContents()
 
         contents.insert(items.at(0), items.at(1));
     }
-}
-
-void DFontView::setFileUrl(const QString &url)
-{
-    m_fontDatabase->removeAllApplicationFonts();
-    m_fontDatabase->addApplicationFont(url);
-
-    FT_Init_FreeType(&m_library);
-    FT_New_Face(m_library, url.toUtf8().constData(), 0, &m_face);
-
-    sampleString = getSampleString().simplified();
-    styleName = (char *) m_face->style_name;
-
-    FT_Done_Face(m_face);
-    FT_Done_FreeType(m_library);
-
-    repaint();
 }
 
 QString DFontView::getSampleString()
