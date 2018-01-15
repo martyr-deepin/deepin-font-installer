@@ -47,4 +47,7 @@ target.path = $$INSTROOT$$BINDIR
 desktop.path = $$INSTROOT$$APPDIR
 desktop.files = $$PWD/../deepin-font-installer.desktop
 
-INSTALLS += target desktop
+policy.path = /usr/share/polkit-1/actions
+policy.files = com.deepin.pkexec.font-install.policy com.deepin.pkexec.font-uninstall.policy
+
+INSTALLS += target desktop policy
