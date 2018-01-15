@@ -56,7 +56,7 @@ void DFontInfo::initFamilies()
     }
 
     for (auto path : getAllFontPath()) {
-        FT_New_Face(library, path.toLatin1().data(), 0, &face);
+        FT_New_Face(library, path.toUtf8().constData(), 0, &face);
 
         DFontData data;
         data.filePath = path;

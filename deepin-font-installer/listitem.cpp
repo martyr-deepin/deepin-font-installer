@@ -97,6 +97,16 @@ void ListItem::setFontData(DFontData *p)
     }
 }
 
+void ListItem::updateStatus()
+{
+    if (m_fontData->isInstalled) {
+        m_statusLabel->setStyleSheet("QLabel { color: #528315; }");
+        m_statusLabel->setText(tr("Installed"));
+    } else {
+        m_statusLabel->setText("");
+    }
+}
+
 DFontData *ListItem::getFontData()
 {
     return m_fontData;

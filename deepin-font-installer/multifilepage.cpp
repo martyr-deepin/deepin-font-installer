@@ -20,6 +20,8 @@
 #include "multifilepage.h"
 #include <QDebug>
 #include <QApplication>
+#include <QListWidgetItem>
+#include "listitem.h"
 
 MultiFilePage::MultiFilePage(QWidget *parent)
     : QWidget(parent),
@@ -92,6 +94,8 @@ void MultiFilePage::handleDelete(DFontData *p)
 
 void MultiFilePage::refreshList()
 {
+    m_fontInfo->initFamilies();
+
     for (auto *item : dataList) {
         if (!item->isInstalled) {
             item->isInstalled = m_fontInfo->isFontInstalled(item);
@@ -110,12 +114,23 @@ void MultiFilePage::refreshPage()
         }
     }
 
+
     if (isAllInstalled) {
         m_installBtn->hide();
         m_closeBtn->show();
     } else {
         m_installBtn->show();
         m_closeBtn->hide();
+    }
+
+    for (int i = 0; i < m_listView->count(); ++i) {
+        QListWidgetItem *item = m_listView->item(i);
+        ListItem *itemWidget = qobject_cast<ListItem *>(m_listView->itemWidget(item));
+        DFontData *data = itemWidget->getFontData();
+
+        if (data->isInstalled) {
+           itemWidget->updateStatus();
+        }
     }
 }
 

@@ -40,6 +40,7 @@ public:
     QString getFilePath() const;
     DFontData *getFontData();
     void setFontData(DFontData *);
+    void updateStatus();
 
 signals:
     void closeBtnClicked(QListWidgetItem *item);
