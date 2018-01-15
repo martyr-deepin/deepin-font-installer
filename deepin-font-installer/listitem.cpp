@@ -119,7 +119,7 @@ void ListItem::paintEvent(QPaintEvent *e)
 
     painter.setPen(Qt::NoPen);
     painter.setBrush(QColor("#e4e4e4"));
-    painter.drawRect(QRect(10, rect().height() - 1, rect().width() - 20, 1));
+    painter.drawRect(QRect(60, rect().height() - 1, rect().width() - 70, 1));
 }
 
 void ListItem::enterEvent(QEvent *e)
