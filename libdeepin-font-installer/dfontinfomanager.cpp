@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "dfontinfo.h"
+#include "dfontinfomanager.h"
 #include <QFileInfo>
 #include <QProcess>
 #include <QDebug>
@@ -32,19 +32,19 @@
 #include FT_SFNT_NAMES_H
 #include FT_TRUETYPE_IDS_H
 
-static QList<DFontData> dataList;
+static QList<DFontInfo> dataList;
 
-DFontInfo::DFontInfo(QObject *parent)
+DFontInfoManager::DFontInfoManager(QObject *parent)
     : QObject(parent)
 {
     initFamilies();
 }
 
-DFontInfo::~DFontInfo()
+DFontInfoManager::~DFontInfoManager()
 {
 }
 
-void DFontInfo::initFamilies()
+void DFontInfoManager::initFamilies()
 {
     FT_Face face = 0;
     FT_Library library = 0;
@@ -58,7 +58,7 @@ void DFontInfo::initFamilies()
     for (auto path : getAllFontPath()) {
         FT_New_Face(library, path.toUtf8().constData(), 0, &face);
 
-        DFontData data;
+        DFontInfo data;
         data.filePath = path;
         data.familyName = face->family_name;
         data.styleName = face->style_name;
@@ -70,7 +70,7 @@ void DFontInfo::initFamilies()
     FT_Done_FreeType(library);
 }
 
-QList<DFontData> DFontInfo::families(bool isRefresh)
+QList<DFontInfo> DFontInfoManager::families(bool isRefresh)
 {
     if (isRefresh) {
         initFamilies();
@@ -79,7 +79,7 @@ QList<DFontData> DFontInfo::families(bool isRefresh)
     return dataList;
 }
 
-QStringList DFontInfo::getAllFontPath() const
+QStringList DFontInfoManager::getAllFontPath() const
 {
     QStringList pathList;
     FcPattern *pattern = FcPatternCreate();
@@ -101,7 +101,7 @@ QStringList DFontInfo::getAllFontPath() const
     return pathList;
 }
 
-QString DFontInfo::getFontType(const QString &filePath)
+QString DFontInfoManager::getFontType(const QString &filePath)
 {
     const QFileInfo fileInfo(filePath);
     const QString suffix = fileInfo.suffix().toLower();
@@ -115,7 +115,7 @@ QString DFontInfo::getFontType(const QString &filePath)
     }
 }
 
-void DFontInfo::getFontInfo(DFontData *data)
+void DFontInfoManager::getFontInfo(DFontInfo *data)
 {
     FT_Library m_library = 0;
     FT_Face m_face = 0;
@@ -175,10 +175,10 @@ void DFontInfo::getFontInfo(DFontData *data)
     FT_Done_FreeType(m_library);
 }
 
-bool DFontInfo::isFontInstalled(DFontData *data)
+bool DFontInfoManager::isFontInstalled(DFontInfo *data)
 {
-    const QList<DFontData> list = families();
-    QListIterator<DFontData> i(list);
+    const QList<DFontInfo> list = families();
+    QListIterator<DFontInfo> i(list);
 
     while (i.hasNext()) {
         auto item = i.next();
@@ -191,7 +191,7 @@ bool DFontInfo::isFontInstalled(DFontData *data)
     return false;
 }
 
-bool DFontInfo::fontsInstall(const QStringList &files)
+bool DFontInfoManager::fontsInstall(const QStringList &files)
 {
     QProcess *process = new QProcess;
     bool isInstall;
@@ -211,9 +211,9 @@ bool DFontInfo::fontsInstall(const QStringList &files)
     return isInstall;
 }
 
-bool DFontInfo::fontRemove(DFontData *data)
+bool DFontInfoManager::fontRemove(DFontInfo *data)
 {
-    const QList<DFontData> famList = families();
+    const QList<DFontInfo> famList = families();
     QProcess *process = new QProcess;
     QString filePath = nullptr;
     bool isRemove;

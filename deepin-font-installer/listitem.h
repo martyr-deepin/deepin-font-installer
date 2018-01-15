@@ -25,7 +25,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include "dimagebutton.h"
-#include "dfontinfo.h"
+#include "dfontinfomanager.h"
 
 DWIDGET_USE_NAMESPACE
 
@@ -38,8 +38,8 @@ public:
 
     QListWidgetItem *getItem();
     QString getFilePath() const;
-    DFontData *getFontData();
-    void setFontData(DFontData *);
+    DFontInfo *getFontInfo();
+    void setFontInfo(DFontInfo *);
     void updateStatus();
 
 signals:
@@ -52,7 +52,7 @@ protected:
 
 private:
     QListWidgetItem *m_item;
-    DFontData *m_fontData;
+    DFontInfo *m_fontData;
     QHBoxLayout *m_mainLayout;
     QVBoxLayout *m_infoLayout;
     QLabel *m_nameLabel;

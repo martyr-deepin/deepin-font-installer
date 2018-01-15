@@ -25,7 +25,7 @@
 
 MultiFilePage::MultiFilePage(QWidget *parent)
     : QWidget(parent),
-      m_fontInfo(new DFontInfo),
+      m_fontInfo(new DFontInfoManager),
       m_layout(new QVBoxLayout(this)),
       m_listView(new ListWidget),
       m_installBtn(new QPushButton(tr("Install"))),
@@ -68,7 +68,7 @@ void MultiFilePage::addItem(const QString &path)
 
     // add to dataList and listView if it does not exist.
     if (!isExist) {
-        DFontData *data = new DFontData;
+        DFontInfo *data = new DFontInfo;
 
         data->filePath = path;
         dataList << data;
@@ -79,7 +79,7 @@ void MultiFilePage::addItem(const QString &path)
     }
 }
 
-void MultiFilePage::handleDelete(DFontData *p)
+void MultiFilePage::handleDelete(DFontInfo *p)
 {
     dataList.removeAt(dataList.indexOf(p));
 
@@ -114,7 +114,6 @@ void MultiFilePage::refreshPage()
         }
     }
 
-
     if (isAllInstalled) {
         m_installBtn->hide();
         m_closeBtn->show();
@@ -126,7 +125,7 @@ void MultiFilePage::refreshPage()
     for (int i = 0; i < m_listView->count(); ++i) {
         QListWidgetItem *item = m_listView->item(i);
         ListItem *itemWidget = qobject_cast<ListItem *>(m_listView->itemWidget(item));
-        DFontData *data = itemWidget->getFontData();
+        DFontInfo *data = itemWidget->getFontInfo();
 
         if (data->isInstalled) {
            itemWidget->updateStatus();

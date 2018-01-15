@@ -26,7 +26,7 @@
 
 SingleFilePage::SingleFilePage(QWidget *parent)
     : QWidget(parent),
-      m_info(new DFontInfo),
+      m_infoManager(new DFontInfoManager),
       m_layout(new QVBoxLayout(this)),
       m_nameLabel(new QLabel),
       m_styleLabel(new QLabel),
@@ -149,10 +149,10 @@ SingleFilePage::SingleFilePage(QWidget *parent)
 SingleFilePage::~SingleFilePage()
 {
     delete m_data;
-    delete m_info;
+    delete m_infoManager;
 }
 
-void SingleFilePage::updateInfo(DFontData *data)
+void SingleFilePage::updateInfo(DFontInfo *data)
 {
     const QFontMetrics fm = m_versionLabel->fontMetrics();
     m_data = data;
@@ -216,7 +216,7 @@ void SingleFilePage::showInstalled()
 
 void SingleFilePage::handleInstall()
 {
-    bool isInstall = m_info->fontsInstall(QStringList() << m_data->filePath);
+    bool isInstall = m_infoManager->fontsInstall(QStringList() << m_data->filePath);
 
     if (isInstall) {
         showInstalled();
@@ -225,7 +225,7 @@ void SingleFilePage::handleInstall()
 
 void SingleFilePage::handleRemove()
 {
-    bool isRemove = m_info->fontRemove(m_data);
+    bool isRemove = m_infoManager->fontRemove(m_data);
 
     if (isRemove) {
         m_statusLabel->show();

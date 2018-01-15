@@ -24,7 +24,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
-#include "dfontinfo.h"
+#include "dfontinfomanager.h"
 
 class SingleFilePage : public QWidget
 {
@@ -34,7 +34,7 @@ public:
     SingleFilePage(QWidget *parent = nullptr);
     ~SingleFilePage();
 
-    void updateInfo(DFontData *data);
+    void updateInfo(DFontInfo *data);
     void showInstalled();
 
 private slots:
@@ -43,8 +43,8 @@ private slots:
     void viewFilePath();
 
 private:
-    DFontData *m_data;
-    DFontInfo *m_info;
+    DFontInfo *m_data;
+    DFontInfoManager *m_infoManager;
     QVBoxLayout *m_layout;
     QLabel *m_nameLabel;
     QLabel *m_styleLabel;

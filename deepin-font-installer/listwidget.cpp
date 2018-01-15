@@ -36,12 +36,12 @@ ListWidget::~ListWidget()
 {
 }
 
-void ListWidget::addListItem(DFontData *data)
+void ListWidget::addListItem(DFontInfo *info)
 {
     ListItem *fileItem = new ListItem;
 
     addItem(fileItem->getItem());
-    fileItem->setFontData(data);
+    fileItem->setFontInfo(info);
     fileItem->getItem()->setSizeHint(QSize(100, 65));
     setItemWidget(fileItem->getItem(), fileItem);
 
@@ -51,6 +51,6 @@ void ListWidget::addListItem(DFontData *data)
 void ListWidget::handleClose(QListWidgetItem *item)
 {
     ListItem *fileItem = static_cast<ListItem *>(itemWidget(item));
-    emit deleteItem(fileItem->getFontData());
+    emit deleteItem(fileItem->getFontInfo());
     delete takeItem(row(fileItem->getItem()));
 }

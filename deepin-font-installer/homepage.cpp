@@ -18,7 +18,6 @@
  */
 
 #include "homepage.h"
-#include "dsvgrenderer.h"
 #include "utils.h"
 #include <QSvgWidget>
 

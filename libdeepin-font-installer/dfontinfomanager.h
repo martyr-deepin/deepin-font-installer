@@ -22,7 +22,7 @@
 
 #include <QObject>
 
-class DFontData
+class DFontInfo
 {
 public:
     QString filePath;
@@ -35,22 +35,22 @@ public:
     bool isInstalled;
 };
 
-class DFontInfo : public QObject
+class DFontInfoManager : public QObject
 {
     Q_OBJECT
 
 public:
-    DFontInfo(QObject *parent = nullptr);
-    ~DFontInfo();
+    DFontInfoManager(QObject *parent = nullptr);
+    ~DFontInfoManager();
 
     void initFamilies();
-    QList<DFontData> families(bool isRefresh = false);
+    QList<DFontInfo> families(bool isRefresh = false);
     QStringList getAllFontPath() const;
     QString getFontType(const QString &filePath);
-    void getFontInfo(DFontData *data);
-    bool isFontInstalled(DFontData *data);
+    void getFontInfo(DFontInfo *data);
+    bool isFontInstalled(DFontInfo *data);
     bool fontsInstall(const QStringList &files);
-    bool fontRemove(DFontData *data);
+    bool fontRemove(DFontInfo *data);
 };
 
 #endif

@@ -75,7 +75,7 @@ QString ListItem::getFilePath() const
     return m_filePath;
 }
 
-void ListItem::setFontData(DFontData *p)
+void ListItem::setFontInfo(DFontInfo *p)
 {
     const QFontMetrics fm = m_infoLabel->fontMetrics();
 
@@ -107,7 +107,7 @@ void ListItem::updateStatus()
     }
 }
 
-DFontData *ListItem::getFontData()
+DFontInfo *ListItem::getFontInfo()
 {
     return m_fontData;
 }
