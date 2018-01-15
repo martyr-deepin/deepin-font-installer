@@ -82,7 +82,6 @@ QList<DFontData> DFontInfo::families(bool isRefresh)
 QStringList DFontInfo::getAllFontPath() const
 {
     QStringList pathList;
-
     FcPattern *pattern = FcPatternCreate();
     FcObjectSet *objset = FcObjectSetBuild(FC_FILE, NULL);
     FcFontSet *fontset = FcFontList(0, pattern, objset);
