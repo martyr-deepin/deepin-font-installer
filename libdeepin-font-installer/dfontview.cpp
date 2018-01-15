@@ -82,18 +82,18 @@ void DFontView::paintEvent(QPaintEvent *e)
     font.setPointSize(fontSize);
     painter.setFont(font);
 
-    QFontMetrics metrics(font);
-    int lowerWidth = metrics.width(lowerTextStock);
-    int lowerHeight = metrics.height();
+    const QFontMetrics metrics(font);
+    const int lowerWidth = metrics.width(lowerTextStock);
+    const int lowerHeight = metrics.height();
     painter.drawText(QRect(20, y + padding, lowerWidth, lowerHeight), Qt::AlignLeft, lowerTextStock);
     y += lowerHeight;
 
-    int upperWidth = metrics.width(upperTextStock);
-    int upperHeight = metrics.height();
+    const int upperWidth = metrics.width(upperTextStock);
+    const int upperHeight = metrics.height();
     painter.drawText(QRect(20, y + padding, upperWidth, upperHeight), Qt::AlignLeft, upperTextStock);
     y += upperHeight;
 
-    int punWidth = metrics.width(punctuationTextStock);
+    const int punWidth = metrics.width(punctuationTextStock);
     int punHeight = metrics.height();
     painter.drawText(QRect(20, y + padding, punWidth, punHeight), Qt::AlignLeft, punctuationTextStock);
     y += punHeight;
@@ -109,6 +109,9 @@ void DFontView::paintEvent(QPaintEvent *e)
         if (sampleWidth > rect().width()) {
             sampleWidth - 20;
         }
+
+        if (y + sampleHeight >= rect().height() - padding * 2)
+            break;
 
         painter.drawText(QRect(20, y + padding * 2, sampleWidth , sampleHeight), Qt::AlignLeft, sampleString);
         y += sampleHeight + padding;

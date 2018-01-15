@@ -184,6 +184,11 @@ void SingleFilePage::updateInfo(DFontInfo *data)
                                               Qt::ElideRight,
                                               this->width() * 1.35));
 
+    m_statusLabel->hide();
+    m_closeBtn->hide();
+    m_removeBtn->hide();
+    m_reinstallBtn->hide();
+    m_viewFileBtn->hide();
     m_closeBtn->hide();
 
     if (data->isInstalled) {

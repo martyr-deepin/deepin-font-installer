@@ -98,7 +98,8 @@ void MultiFilePage::refreshList()
 
     for (auto *item : dataList) {
         if (!item->isInstalled) {
-            item->isInstalled = m_fontInfo->isFontInstalled(item);
+            // item->isInstalled = m_fontInfo->isFontInstalled(item);
+            item->isInstalled = true;
         }
     }
 }
