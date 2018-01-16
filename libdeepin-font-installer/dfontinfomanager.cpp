@@ -23,7 +23,6 @@
 #include <QDebug>
 
 #include <fontconfig/fontconfig.h>
-#include <freetype/ftfntfmt.h>
 #include <ft2build.h>
 #include <glib.h>
 
@@ -181,7 +180,7 @@ bool DFontInfoManager::isFontInstalled(DFontInfo *data)
     QListIterator<DFontInfo> i(list);
 
     while (i.hasNext()) {
-        auto item = i.next();
+        const auto item = i.next();
         if (item.familyName == data->familyName &&
             item.styleName == data->styleName) {
             return true;

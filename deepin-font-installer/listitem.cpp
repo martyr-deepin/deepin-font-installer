@@ -65,26 +65,12 @@ ListItem::ListItem(QWidget *parent)
     });
 }
 
-QListWidgetItem *ListItem::getItem()
-{
-    return m_item;
-}
-
-QString ListItem::getFilePath() const
-{
-    return m_filePath;
-}
-
 void ListItem::setFontInfo(DFontInfo *p)
 {
     const QFontMetrics fm = m_infoLabel->fontMetrics();
-
-    if (p->isInstalled) {
-        m_statusLabel->setStyleSheet("QLabel { color: #528315; }");
-        m_statusLabel->setText(tr("Installed"));
-    }
-
     m_fontData = p;
+
+    updateStatus();
     m_nameLabel->setText(m_fontData->familyName);
     m_styleLabel->setText(m_fontData->styleName);
 
@@ -105,11 +91,6 @@ void ListItem::updateStatus()
     } else {
         m_statusLabel->setText("");
     }
-}
-
-DFontInfo *ListItem::getFontInfo()
-{
-    return m_fontData;
 }
 
 void ListItem::paintEvent(QPaintEvent *e)

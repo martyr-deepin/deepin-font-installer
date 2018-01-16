@@ -36,9 +36,8 @@ class ListItem : public QWidget
 public:
     ListItem(QWidget *parent = nullptr);
 
-    QListWidgetItem *getItem();
-    QString getFilePath() const;
-    DFontInfo *getFontInfo();
+    QListWidgetItem *getItem() { return m_item; };
+    DFontInfo *getFontInfo() { return m_fontData; };
     void setFontInfo(DFontInfo *);
     void updateStatus();
 
@@ -60,7 +59,6 @@ private:
     QLabel *m_infoLabel;
     QLabel *m_statusLabel;
     DImageButton *m_closeBtn;
-    QString m_filePath;
 };
 
 #endif // LISTITEM_H

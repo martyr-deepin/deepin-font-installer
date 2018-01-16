@@ -36,6 +36,7 @@ public:
     ~MultiFilePage();
 
     void addItem(const QString &path);
+    QList<DFontInfo *> getInfoList() { return m_infoList; };
 
 signals:
     void countChanged();
@@ -52,9 +53,7 @@ private:
     QPushButton *m_installBtn;
     QPushButton *m_closeBtn;
     DFontInfoManager *m_fontInfo;
-
-public:
-    QList<DFontInfo *> dataList;
+    QList<DFontInfo *> m_infoList;
 };
 
 #endif

@@ -59,19 +59,19 @@ void MultiFilePage::addItem(const QString &path)
 {
     // whether the same path.
     bool isExist = false;
-    for (const auto *d : dataList) {
+    for (const auto *d : m_infoList) {
         if (d->filePath == path) {
             isExist = true;
             break;
         }
     }
 
-    // add to dataList and listView if it does not exist.
+    // add to infoList and listView if it does not exist.
     if (!isExist) {
         DFontInfo *data = new DFontInfo;
 
         data->filePath = path;
-        dataList << data;
+        m_infoList << data;
         m_fontInfo->getFontInfo(data);
         m_listView->addListItem(data);
 
@@ -81,7 +81,7 @@ void MultiFilePage::addItem(const QString &path)
 
 void MultiFilePage::handleDelete(DFontInfo *p)
 {
-    dataList.removeAt(dataList.indexOf(p));
+    m_infoList.removeAt(m_infoList.indexOf(p));
 
     if (p) {
         delete p;
@@ -96,7 +96,7 @@ void MultiFilePage::refreshList()
 {
     m_fontInfo->initFamilies();
 
-    for (auto *item : dataList) {
+    for (auto *item : m_infoList) {
         if (!item->isInstalled) {
             // item->isInstalled = m_fontInfo->isFontInstalled(item);
             item->isInstalled = true;
@@ -108,7 +108,7 @@ void MultiFilePage::refreshPage()
 {
     bool isAllInstalled = true;
 
-    for (const auto *item : dataList) {
+    for (const auto *item : m_infoList) {
         if (!item->isInstalled) {
             isAllInstalled = false;
             break;
@@ -138,7 +138,7 @@ void MultiFilePage::batchInstallation()
 {
     QStringList filePaths;
 
-    for (auto const &item : dataList) {
+    for (auto const &item : m_infoList) {
         if (!item->isInstalled) {
             filePaths << item->filePath;
         }

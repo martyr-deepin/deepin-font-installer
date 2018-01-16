@@ -114,7 +114,7 @@ void MainWindow::dropEvent(QDropEvent *e)
 
 void MainWindow::refreshPage()
 {
-    const int count = m_multiFilePage->dataList.count();
+    const int count = m_multiFilePage->getInfoList().count();
 
     if (count == 0)
         return;
@@ -123,7 +123,7 @@ void MainWindow::refreshPage()
         // switch to single file page.
         m_mainLayout->setCurrentIndex(1);
         // update info.
-        m_singleFilePage->updateInfo(m_multiFilePage->dataList.first());
+        m_singleFilePage->updateInfo(m_multiFilePage->getInfoList().first());
         titlebar()->setTitle("");
     } else {
         // switch to multi file page.
