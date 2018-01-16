@@ -99,7 +99,7 @@ void ListItem::paintEvent(QPaintEvent *e)
     painter.setRenderHint(QPainter::Antialiasing, true);
 
     painter.setPen(Qt::NoPen);
-    painter.setBrush(QColor("#e4e4e4"));
+    painter.setBrush(QColor(151, 151, 151, 255 * 0.1));
     painter.drawRect(QRect(60, rect().height() - 1, rect().width() - 70, 1));
 }
 

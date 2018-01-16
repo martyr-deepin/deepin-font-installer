@@ -27,8 +27,8 @@ ListWidget::ListWidget(QWidget *parent)
     setAutoScroll(false);
     setSelectionMode(QAbstractItemView::NoSelection);
     setStyleSheet("QListView {"
-                  "border: 1px solid #eee;"
-                  "border-radius: 8px;"
+                  "border: 1px solid rgba(151, 151, 151, 0.1);"
+                  "border-radius: 4px;"
                   "}");
 }
 
@@ -42,7 +42,7 @@ void ListWidget::addListItem(DFontInfo *info)
 
     addItem(fileItem->getItem());
     fileItem->setFontInfo(info);
-    fileItem->getItem()->setSizeHint(QSize(100, 65));
+    fileItem->getItem()->setSizeHint(QSize(100, 62));
     setItemWidget(fileItem->getItem(), fileItem);
 
     connect(fileItem, &ListItem::closeBtnClicked, this, &ListWidget::handleClose);
