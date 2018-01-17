@@ -106,9 +106,6 @@ void DFontView::paintEvent(QPaintEvent *e)
         QFontMetrics met(font);
         int sampleWidth = met.width(sampleString);
         int sampleHeight = met.height();
-        if (sampleWidth > rect().width()) {
-            sampleWidth - 20;
-        }
 
         if (y + sampleHeight >= rect().height() - padding * 2)
             break;

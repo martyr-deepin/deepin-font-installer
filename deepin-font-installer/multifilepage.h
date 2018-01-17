@@ -48,11 +48,11 @@ private slots:
     void batchInstallation();
 
 private:
+    DFontInfoManager *m_fontInfo;
     QVBoxLayout *m_layout;
     ListWidget *m_listView;
     QPushButton *m_installBtn;
     QPushButton *m_closeBtn;
-    DFontInfoManager *m_fontInfo;
     QList<DFontInfo *> m_infoList;
 };
 

@@ -95,6 +95,8 @@ void ListItem::updateStatus()
 
 void ListItem::paintEvent(QPaintEvent *e)
 {
+    Q_UNUSED(e);
+
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
 

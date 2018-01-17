@@ -127,8 +127,6 @@ void MultiFilePage::refreshPage()
     for (int i = 0; i < m_listView->count(); ++i) {
         QListWidgetItem *item = m_listView->item(i);
         ListItem *itemWidget = qobject_cast<ListItem *>(m_listView->itemWidget(item));
-        DFontInfo *data = itemWidget->getFontInfo();
-
         itemWidget->updateStatus();
     }
 }
