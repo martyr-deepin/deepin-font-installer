@@ -35,7 +35,7 @@ public:
     MultiFilePage(QWidget *parent = 0);
     ~MultiFilePage();
 
-    void addItem(const QString &path);
+    void addItems(const QStringList &paths);
     QList<DFontInfo *> getInfoList() { return m_infoList; };
 
 signals:

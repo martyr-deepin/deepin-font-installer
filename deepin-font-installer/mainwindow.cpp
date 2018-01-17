@@ -134,10 +134,7 @@ void MainWindow::refreshPage()
 
 void MainWindow::onSelected(const QStringList &files)
 {
-    for (const auto &file : files) {
-        // add file path to multiFilePage class.
-        m_multiFilePage->addItem(file);
-    }
-
+    // add file path to multiFilePage class.
+    m_multiFilePage->addItems(files);
     refreshPage();
 }

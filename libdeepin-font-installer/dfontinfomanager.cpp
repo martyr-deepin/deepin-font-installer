@@ -21,6 +21,7 @@
 #include <QFileInfo>
 #include <QProcess>
 #include <QDebug>
+#include <QDir>
 
 #include <fontconfig/fontconfig.h>
 #include <ft2build.h>
@@ -33,17 +34,33 @@
 
 static QList<DFontInfo> dataList;
 
+QString dirSyntax(const QString &d)
+{
+    if(!d.isEmpty()) {
+        QString ds(d);
+        ds.replace("//", "/");
+
+        int slashPos = ds.lastIndexOf('/');
+        if (slashPos != (((int)ds.length()) - 1))
+            ds.append('/');
+
+        return ds;
+    }
+
+    return d;
+}
+
 DFontInfoManager::DFontInfoManager(QObject *parent)
     : QObject(parent)
 {
-    initFamilies();
+    refreshList();
 }
 
 DFontInfoManager::~DFontInfoManager()
 {
 }
 
-void DFontInfoManager::initFamilies()
+void DFontInfoManager::refreshList()
 {
     FT_Face face = 0;
     FT_Library library = 0;
@@ -69,33 +86,28 @@ void DFontInfoManager::initFamilies()
     FT_Done_FreeType(library);
 }
 
-QList<DFontInfo> DFontInfoManager::families(bool isRefresh)
-{
-    if (isRefresh) {
-        initFamilies();
-    }
-
-    return dataList;
-}
-
 QStringList DFontInfoManager::getAllFontPath() const
 {
     QStringList pathList;
-    FcPattern *pattern = FcPatternCreate();
-    FcObjectSet *objset = FcObjectSetBuild(FC_FILE, NULL);
-    FcFontSet *fontset = FcFontList(0, pattern, objset);
+    FcStrList *strList = FcConfigGetFontDirs(FcInitLoadConfigAndFonts());
+    FcChar8 *fcDir;
 
-    for (int i = 0; i < fontset->nfont; ++i) {
-        FcChar8 *str;
+    while ((fcDir = FcStrListNext(strList)) != NULL) {
+        const QString pathStr = dirSyntax((const char *) fcDir);
+        const QDir dir(pathStr);
+        const QFileInfoList infoList = dir.entryInfoList(QDir::Files);
 
-        if (FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &str) == FcResultMatch) {
-            pathList << (char *) str;
+        for (const QFileInfo &info : infoList) {
+            const QString filePath = info.absoluteFilePath();
+            const QString suffix = info.suffix();
+
+            if (suffix == "ttf" || suffix == "ttc" || suffix == "otf") {
+                pathList.append(filePath);
+            }
         }
     }
 
-    FcObjectSetDestroy(objset);
-    FcPatternDestroy(pattern);
-    FcFontSetDestroy(fontset);
+    FcStrListDone(strList);
 
     return pathList;
 }
@@ -176,11 +188,11 @@ void DFontInfoManager::getFontInfo(DFontInfo *data)
 
 bool DFontInfoManager::isFontInstalled(DFontInfo *data)
 {
-    const QList<DFontInfo> list = families();
-    QListIterator<DFontInfo> i(list);
+    const QList<DFontInfo> list = dataList;
 
-    while (i.hasNext()) {
-        const auto item = i.next();
+    for (int i = 0; i < list.count(); ++i) {
+        const DFontInfo item = list.at(i);
+
         if (item.familyName == data->familyName &&
             item.styleName == data->styleName) {
             return true;
@@ -204,6 +216,9 @@ bool DFontInfoManager::fontsInstall(const QStringList &files)
         isInstall = false;
     }
 
+    // process->start("fc-cache");
+    // process->waitForFinished();
+
     process->kill();
     process->close();
 
@@ -212,7 +227,7 @@ bool DFontInfoManager::fontsInstall(const QStringList &files)
 
 bool DFontInfoManager::fontRemove(DFontInfo *data)
 {
-    const QList<DFontInfo> famList = families();
+    const QList<DFontInfo> famList = dataList;
     QProcess *process = new QProcess;
     QString filePath = nullptr;
     bool isRemove;

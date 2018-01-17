@@ -55,27 +55,31 @@ MultiFilePage::~MultiFilePage()
 {
 }
 
-void MultiFilePage::addItem(const QString &path)
+void MultiFilePage::addItems(const QStringList &paths)
 {
-    // whether the same path.
-    bool isExist = false;
-    for (const auto *d : m_infoList) {
-        if (d->filePath == path) {
-            isExist = true;
-            break;
+    refreshList();
+    refreshPage();
+
+    for (const QString &path : paths) {
+        bool isExist = false;
+        // whether the same path;
+        for (const auto *d : m_infoList) {
+            if (d->filePath == path) {
+                isExist = true;
+                break;
+            }
         }
-    }
 
-    // add to infoList and listView if it does not exist.
-    if (!isExist) {
-        DFontInfo *data = new DFontInfo;
-
-        data->filePath = path;
-        m_infoList << data;
-        m_fontInfo->getFontInfo(data);
-        m_listView->addListItem(data);
-
-        refreshPage();
+        // add to listView if it does not exist.
+        if (isExist) {
+            continue;
+        } else {
+            DFontInfo *data = new DFontInfo;
+            data->filePath = path;
+            m_infoList.append(data);
+            m_fontInfo->getFontInfo(data);
+            m_listView->addListItem(data);
+        }
     }
 }
 
@@ -94,13 +98,10 @@ void MultiFilePage::handleDelete(DFontInfo *p)
 
 void MultiFilePage::refreshList()
 {
-    m_fontInfo->initFamilies();
+    m_fontInfo->refreshList();
 
     for (auto *item : m_infoList) {
-        if (!item->isInstalled) {
-            // item->isInstalled = m_fontInfo->isFontInstalled(item);
-            item->isInstalled = true;
-        }
+        item->isInstalled = m_fontInfo->isFontInstalled(item);
     }
 }
 
@@ -128,9 +129,7 @@ void MultiFilePage::refreshPage()
         ListItem *itemWidget = qobject_cast<ListItem *>(m_listView->itemWidget(item));
         DFontInfo *data = itemWidget->getFontInfo();
 
-        if (data->isInstalled) {
-           itemWidget->updateStatus();
-        }
+        itemWidget->updateStatus();
     }
 }
 

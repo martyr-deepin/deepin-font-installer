@@ -44,7 +44,6 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_nameLabel->setStyleSheet("QLabel { font-size: 18px; font-weight: 500; }");
     m_copyrightLabel->setWordWrap(true);
     m_descriptionLabel->setWordWrap(true);
-    m_statusLabel->hide();
 
     // top icon, set pixmap to icon label.
     QSvgWidget *iconWidget = new QSvgWidget(":/images/font-x-generic.svg");
@@ -83,7 +82,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     copyrightLabel->setStyleSheet("QLabel { color: #444444; }");
     copyrightLayout->addSpacing(20);
     copyrightLayout->addWidget(copyrightLabel, 0, Qt::AlignTop);
-    copyrightLayout->addWidget(m_copyrightLabel, 0, Qt::AlignTop);
+    copyrightLayout->addWidget(m_copyrightLabel, 0, Qt::AlignLeft);
     copyrightLayout->addStretch();
     copyrightLayout->addSpacing(20);
 
@@ -92,7 +91,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     descLabel->setStyleSheet("QLabel { color: #444444; }");
     descLayout->addSpacing(20);
     descLayout->addWidget(descLabel, 0, Qt::AlignTop);
-    descLayout->addWidget(m_descriptionLabel, 0, Qt::AlignTop);
+    descLayout->addWidget(m_descriptionLabel, 0, Qt::AlignLeft);
     descLayout->addStretch();
     descLayout->addSpacing(20);
 
@@ -185,9 +184,9 @@ void SingleFilePage::updateInfo(DFontInfo *data)
     //description string in some font files has '\n' & '\t' & '\r'
     m_descriptionLabel->setText(fm.elidedText(m_data->description.simplified(),
                                               Qt::ElideRight,
-                                              this->width() * 1.8));
+                                              this->width() * 1.2));
 
-    m_statusLabel->hide();
+    m_statusLabel->setText("");
     m_closeBtn->hide();
     m_removeBtn->hide();
     m_reinstallBtn->hide();
@@ -200,7 +199,6 @@ void SingleFilePage::updateInfo(DFontInfo *data)
         m_reinstallBtn->show();
         m_viewFileBtn->hide();
 
-        m_statusLabel->show();
         m_statusLabel->setText(tr("Same version installed"));
         m_statusLabel->setStyleSheet("QLabel { color: #ff5a5a; }");
     } else {
@@ -217,7 +215,6 @@ void SingleFilePage::showInstalled()
     m_removeBtn->hide();
     m_reinstallBtn->hide();
 
-    m_statusLabel->show();
     m_statusLabel->setText(tr("Installed successfully"));
     m_statusLabel->setStyleSheet("QLabel { color: #47790c; }");
 }
@@ -228,6 +225,7 @@ void SingleFilePage::handleInstall()
 
     if (isInstall) {
         showInstalled();
+        m_data->isInstalled = true;
     }
 }
 
@@ -236,7 +234,6 @@ void SingleFilePage::handleRemove()
     bool isRemove = m_infoManager->fontRemove(m_data);
 
     if (isRemove) {
-        m_statusLabel->show();
         m_statusLabel->setText(tr("Removed successfully"));
         m_statusLabel->setStyleSheet("QLabel { color: #47790c; }");
 
@@ -245,6 +242,7 @@ void SingleFilePage::handleRemove()
         m_installBtn->hide();
         m_removeBtn->hide();
         m_reinstallBtn->hide();
+        m_data->isInstalled = false;
     }
 }
 

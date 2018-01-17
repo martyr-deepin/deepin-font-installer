@@ -43,8 +43,7 @@ public:
     DFontInfoManager(QObject *parent = nullptr);
     ~DFontInfoManager();
 
-    void initFamilies();
-    QList<DFontInfo> families(bool isRefresh = false);
+    void refreshList();
     QStringList getAllFontPath() const;
     QString getFontType(const QString &filePath);
     void getFontInfo(DFontInfo *data);
