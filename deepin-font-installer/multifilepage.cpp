@@ -57,9 +57,6 @@ MultiFilePage::~MultiFilePage()
 
 void MultiFilePage::addItems(const QStringList &paths)
 {
-    refreshList();
-    refreshPage();
-
     for (const QString &path : paths) {
         bool isExist = false;
         // whether the same path;
@@ -81,6 +78,9 @@ void MultiFilePage::addItems(const QStringList &paths)
             m_listView->addListItem(data);
         }
     }
+
+    refreshList();
+    refreshPage();
 }
 
 void MultiFilePage::handleDelete(DFontInfo *p)
