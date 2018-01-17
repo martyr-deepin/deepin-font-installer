@@ -47,53 +47,53 @@ SingleFilePage::SingleFilePage(QWidget *parent)
 
     // top icon, set pixmap to icon label.
     QSvgWidget *iconWidget = new QSvgWidget(":/images/font-x-generic.svg");
-    iconWidget->setFixedSize(65, 65);
+    iconWidget->setFixedSize(70, 70);
 
     // info layout
     QHBoxLayout *styleLayout = new QHBoxLayout;
     QLabel *styleLabel = new QLabel(tr("Style: "));
     styleLabel->setStyleSheet("QLabel { color: #444444; }");
-    styleLayout->addSpacing(20);
-    styleLayout->addWidget(styleLabel);
-    styleLayout->addWidget(m_styleLabel);
+    styleLayout->addSpacing(50);
+    styleLayout->addWidget(styleLabel, 0, Qt::AlignLeft | Qt::AlignTop);
+    styleLayout->addWidget(m_styleLabel, 0, Qt::AlignLeft | Qt::AlignTop);
     styleLayout->addStretch();
-    styleLayout->addSpacing(20);
+    styleLayout->addSpacing(50);
 
     QHBoxLayout *typeLayout = new QHBoxLayout;
     QLabel *typeLabel = new QLabel(tr("Type: "));
     typeLabel->setStyleSheet("QLabel { color: #444444; }");
-    typeLayout->addSpacing(20);
-    typeLayout->addWidget(typeLabel);
-    typeLayout->addWidget(m_typeLabel);
+    typeLayout->addSpacing(50);
+    typeLayout->addWidget(typeLabel, 0, Qt::AlignLeft | Qt::AlignTop);
+    typeLayout->addWidget(m_typeLabel, 0, Qt::AlignLeft | Qt::AlignTop);
     typeLayout->addStretch();
-    typeLayout->addSpacing(20);
+    typeLayout->addSpacing(50);
 
     QHBoxLayout *versionLayout = new QHBoxLayout;
     QLabel *versionLabel = new QLabel(tr("Version: "));
     versionLabel->setStyleSheet("QLabel { color: #444444; }");
-    versionLayout->addSpacing(20);
-    versionLayout->addWidget(versionLabel, 0, Qt::AlignTop);
-    versionLayout->addWidget(m_versionLabel, 0, Qt::AlignTop);
+    versionLayout->addSpacing(50);
+    versionLayout->addWidget(versionLabel, 0, Qt::AlignLeft | Qt::AlignTop);
+    versionLayout->addWidget(m_versionLabel, 0, Qt::AlignLeft | Qt::AlignTop);
     versionLayout->addStretch();
-    versionLayout->addSpacing(20);
+    versionLayout->addSpacing(50);
 
     QHBoxLayout *copyrightLayout = new QHBoxLayout;
     QLabel *copyrightLabel = new QLabel(tr("Copyright: "));
     copyrightLabel->setStyleSheet("QLabel { color: #444444; }");
-    copyrightLayout->addSpacing(20);
-    copyrightLayout->addWidget(copyrightLabel, 0, Qt::AlignTop);
-    copyrightLayout->addWidget(m_copyrightLabel, 0, Qt::AlignLeft);
+    copyrightLayout->addSpacing(50);
+    copyrightLayout->addWidget(copyrightLabel, 0, Qt::AlignLeft | Qt::AlignTop);
+    copyrightLayout->addWidget(m_copyrightLabel, 0, Qt::AlignLeft | Qt::AlignTop);
     copyrightLayout->addStretch();
-    copyrightLayout->addSpacing(20);
+    copyrightLayout->addSpacing(50);
 
     QHBoxLayout *descLayout = new QHBoxLayout;
     QLabel *descLabel = new QLabel(tr("Description: "));
     descLabel->setStyleSheet("QLabel { color: #444444; }");
-    descLayout->addSpacing(20);
-    descLayout->addWidget(descLabel, 0, Qt::AlignTop);
-    descLayout->addWidget(m_descriptionLabel, 0, Qt::AlignLeft);
+    descLayout->addSpacing(50);
+    descLayout->addWidget(descLabel, 0, Qt::AlignLeft | Qt::AlignTop);
+    descLayout->addWidget(m_descriptionLabel, 0, Qt::AlignLeft | Qt::AlignTop);
     descLayout->addStretch();
-    descLayout->addSpacing(20);
+    descLayout->addSpacing(50);
 
     // bottom
     QHBoxLayout *bottomLayout = new QHBoxLayout;
@@ -104,6 +104,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     bottomLayout->addWidget(m_viewFileBtn);
     bottomLayout->addWidget(m_closeBtn);
     bottomLayout->addStretch();
+    bottomLayout->setSpacing(15);
 
     m_installBtn->setFixedSize(160, 36);
     m_installBtn->setObjectName("BlueButton");
@@ -178,8 +179,8 @@ void SingleFilePage::updateInfo(DFontInfo *data)
     m_versionLabel->setText(fm.elidedText(m_data->version, Qt::ElideRight,
                                           this->width() / 2));
 
-    m_copyrightLabel->setText(fm.elidedText(m_data->copyright, Qt::ElideRight,
-                                            this->width() * 1.35));
+    m_copyrightLabel->setText(fm.elidedText(m_data->copyright.simplified(), Qt::ElideRight,
+                                            this->width() - fm.width(m_copyrightLabel->text())));
 
     //description string in some font files has '\n' & '\t' & '\r'
     m_descriptionLabel->setText(fm.elidedText(m_data->description.simplified(),

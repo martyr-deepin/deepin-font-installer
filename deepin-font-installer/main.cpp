@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 
     // init modules.
     MainWindow w;
-    w.setFixedSize(520, 430);
+    w.setFixedSize(520, 440);
     w.setWindowIcon(QIcon(":/images/deepin-font-installer.svg"));
     w.show();
 

@@ -50,7 +50,7 @@ private slots:
 private:
     DFontInfoManager *m_fontInfo;
     QVBoxLayout *m_layout;
-    ListWidget *m_listView;
+    ListWidget *m_listWidget;
     QPushButton *m_installBtn;
     QPushButton *m_closeBtn;
     QList<DFontInfo *> m_infoList;

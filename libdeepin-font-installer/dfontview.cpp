@@ -1,8 +1,10 @@
 #include "dfontview.h"
-#include <QFile>
+#include <QApplication>
+#include <QDesktopWidget>
 #include <QTextStream>
 #include <QPainter>
 #include <QDebug>
+#include <QFile>
 
 static const QString lowerTextStock = "abcdefghijklmnopqrstuvwxyz";
 static const QString upperTextStock = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -19,7 +21,8 @@ DFontView::DFontView(QWidget *parent)
 {
     initContents();
 
-    setFixedSize(800, 550);
+    setFixedSize(QApplication::desktop()->width() / 1.5,
+                 QApplication::desktop()->height() / 1.5);
 }
 
 DFontView::~DFontView()
@@ -98,7 +101,7 @@ void DFontView::paintEvent(QPaintEvent *e)
     painter.drawText(QRect(20, y + padding, punWidth, punHeight), Qt::AlignLeft, punctuationTextStock);
     y += punHeight;
 
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 10; ++i) {
         fontSize += 3;
         font.setPointSize(fontSize);
         painter.setFont(font);
