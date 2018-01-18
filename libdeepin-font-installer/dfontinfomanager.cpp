@@ -263,23 +263,19 @@ bool DFontInfoManager::fontRemove(DFontInfo *data)
 
 bool DFontInfoManager::fontReinstall(DFontInfo *data)
 {
-    QProcess *process = new QProcess;
+    QProcess process;
     QString filePath = getFontPath(data);
     bool isFini = false;
 
-    process->start("pkexec", QStringList() << "rm" << "-rf" << filePath);
-    process->waitForFinished(-1);
+    process.start("pkexec", QStringList() << "cp" << "-f" << data->filePath << filePath);
+    process.waitForFinished(-1);
 
-    if (process->readAllStandardError().isEmpty()) {
-        process->start("pkexec", QStringList() << "cp" << "-r" << data->filePath << "/usr/share/fonts");
-        process->waitForFinished(-1);
-
-        if (process->readAllStandardError().isEmpty())
-            isFini = true;
+    if (process.readAllStandardError().isEmpty()) {
+        isFini = true;
     }
 
-    process->kill();
-    process->close();
+    process.kill();
+    process.close();
 
     return isFini;
 }

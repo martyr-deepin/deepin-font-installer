@@ -46,7 +46,8 @@ desktop.path = $$INSTROOT$$APPDIR
 desktop.files = $$PWD/../deepin-font-installer.desktop
 
 policy.path = /usr/share/polkit-1/actions
-policy.files = com.deepin.pkexec.font-install.policy com.deepin.pkexec.font-uninstall.policy
+policy.files = com.deepin.pkexec.font-install.policy \ 
+               com.deepin.pkexec.font-uninstall.policy
 
 # Automating generation .qm files from .ts files
 !system($$PWD/translations/translate_generation.sh): error("Failed to generate translation")
