@@ -22,9 +22,8 @@
 
 #include <QObject>
 
-class DFontInfo
+struct DFontInfo
 {
-public:
     QString filePath;
     QString familyName;
     QString styleName;
