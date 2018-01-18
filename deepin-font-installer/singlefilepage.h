@@ -40,6 +40,7 @@ public:
 private slots:
     void handleInstall();
     void handleRemove();
+    void handleReinstall();
     void viewFilePath();
 
 private:

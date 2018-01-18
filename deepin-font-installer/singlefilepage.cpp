@@ -145,6 +145,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
 
     connect(m_installBtn, &QPushButton::clicked, this, &SingleFilePage::handleInstall);
     connect(m_removeBtn, &QPushButton::clicked, this, &SingleFilePage::handleRemove);
+    connect(m_reinstallBtn, &QPushButton::clicked, this, &SingleFilePage::handleReinstall);
     connect(m_viewFileBtn, &QPushButton::clicked, this, &SingleFilePage::viewFilePath);
     connect(m_closeBtn, &QPushButton::clicked, this, &QApplication::quit);
 }
@@ -180,7 +181,7 @@ void SingleFilePage::updateInfo(DFontInfo *data)
                                           this->width() / 2));
 
     m_copyrightLabel->setText(fm.elidedText(m_data->copyright.simplified(), Qt::ElideRight,
-                                            this->width() - fm.width(m_copyrightLabel->text())));
+                                            this->width()));
 
     //description string in some font files has '\n' & '\t' & '\r'
     m_descriptionLabel->setText(fm.elidedText(m_data->description.simplified(),
@@ -244,6 +245,15 @@ void SingleFilePage::handleRemove()
         m_removeBtn->hide();
         m_reinstallBtn->hide();
         m_data->isInstalled = false;
+    }
+}
+
+void SingleFilePage::handleReinstall()
+{
+    bool isReinstall = m_infoManager->fontReinstall(m_data);
+
+    if (isReinstall) {
+        showInstalled();
     }
 }
 

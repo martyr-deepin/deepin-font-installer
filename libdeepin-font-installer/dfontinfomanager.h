@@ -50,6 +50,7 @@ public:
     bool isFontInstalled(DFontInfo *data);
     bool fontsInstall(const QStringList &files);
     bool fontRemove(DFontInfo *data);
+    bool fontReinstall(DFontInfo *data);
 };
 
 #endif

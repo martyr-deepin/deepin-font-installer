@@ -50,6 +50,22 @@ QString dirSyntax(const QString &d)
     return d;
 }
 
+QString getFontPath(DFontInfo *info)
+{
+    const QList<DFontInfo> famList = dataList;
+    QString filePath = nullptr;
+
+    for (const auto &famItem : famList) {
+        if (info->familyName == famItem.familyName &&
+            info->styleName == famItem.styleName) {
+            filePath = famItem.filePath;
+            break;
+        }
+    }
+
+    return filePath;
+}
+
 DFontInfoManager::DFontInfoManager(QObject *parent)
     : QObject(parent)
 {
@@ -204,53 +220,66 @@ bool DFontInfoManager::isFontInstalled(DFontInfo *data)
 
 bool DFontInfoManager::fontsInstall(const QStringList &files)
 {
-    QProcess *process = new QProcess;
+    QProcess process;
     bool isInstall;
 
-    process->start("pkexec", QStringList() << "cp" << "-r" << files << "/usr/share/fonts");
-    process->waitForFinished();
+    process.start("pkexec", QStringList() << "cp" << "-r" << files << "/usr/share/fonts");
+    process.waitForFinished(-1);
 
-    if (process->readAllStandardError().isEmpty()) {
-        QProcess::execute("fc-cache");
+    if (process.readAllStandardError().isEmpty()) {
+        QProcess::startDetached("fc-cache");
         isInstall = true;
     } else {
         isInstall = false;
     }
 
-
-    process->kill();
-    process->close();
+    process.kill();
+    process.close();
 
     return isInstall;
 }
 
 bool DFontInfoManager::fontRemove(DFontInfo *data)
 {
-    const QList<DFontInfo> famList = dataList;
-    QProcess *process = new QProcess;
-    QString filePath = nullptr;
+    QProcess process;
+    QString filePath = getFontPath(data);
     bool isRemove;
 
-    for (const auto &famItem : famList) {
-        if (data->familyName == famItem.familyName &&
-            data->styleName == famItem.styleName) {
-            filePath = famItem.filePath;
-            break;
-        }
-    }
+    process.start("pkexec", QStringList() << "rm" << "-rf" << filePath);
+    process.waitForFinished(-1);
 
-    process->start("pkexec", QStringList() << "rm" << "-rf" << filePath);
-    process->waitForFinished();
-
-    if (process->readAllStandardError().isEmpty()) {
-        QProcess::execute("fc-cache");
+    if (process.readAllStandardError().isEmpty()) {
+        QProcess::startDetached("fc-cache");
         isRemove = true;
     } else {
         isRemove = false;
     }
 
+    process.kill();
+    process.close();
+
+    return isRemove;
+}
+
+bool DFontInfoManager::fontReinstall(DFontInfo *data)
+{
+    QProcess *process = new QProcess;
+    QString filePath = getFontPath(data);
+    bool isFini = false;
+
+    process->start("pkexec", QStringList() << "rm" << "-rf" << filePath);
+    process->waitForFinished(-1);
+
+    if (process->readAllStandardError().isEmpty()) {
+        process->start("pkexec", QStringList() << "cp" << "-r" << data->filePath << "/usr/share/fonts");
+        process->waitForFinished(-1);
+
+        if (process->readAllStandardError().isEmpty())
+            isFini = true;
+    }
+
     process->kill();
     process->close();
 
-    return isRemove;
+    return isFini;
 }
