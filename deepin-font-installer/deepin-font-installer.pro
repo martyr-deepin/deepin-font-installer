@@ -35,6 +35,7 @@ SOURCES += homepage.cpp \
     listwidget.cpp
 
 RESOURCES += deepin-font-installer.qrc
+TRANSLATIONS += translations/deepin-font-installer.ts
 
 isEmpty(BINDIR):BINDIR=/usr/bin
 isEmpty(APPDIR):APPDIR=/usr/share/applications
@@ -48,4 +49,10 @@ desktop.files = $$PWD/../deepin-font-installer.desktop
 policy.path = /usr/share/polkit-1/actions
 policy.files = com.deepin.pkexec.font-install.policy com.deepin.pkexec.font-uninstall.policy
 
-INSTALLS += target desktop policy
+# Automating generation .qm files from .ts files
+!system($$PWD/translations/translate_generation.sh): error("Failed to generate translation")
+
+translations.path = /usr/share/deepin-font-installer/translations
+translations.files = $$PWD/translations/*.qm
+
+INSTALLS += target desktop policy translations
