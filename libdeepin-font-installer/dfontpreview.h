@@ -1,5 +1,5 @@
-#ifndef DFONTVIEW_H
-#define DFONTVIEW_H
+#ifndef DFONTPREVIEW_H
+#define DFONTPREVIEW_H
 
 #include <QWidget>
 #include <QVBoxLayout>
@@ -9,13 +9,13 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-class DFontView : public QWidget
+class DFontPreview : public QWidget
 {
     Q_OBJECT
 
 public:
-    DFontView(QWidget *parent = nullptr);
-    ~DFontView();
+    DFontPreview(QWidget *parent = nullptr);
+    ~DFontPreview();
 
     void setFileUrl(const QString &url);
 
@@ -35,4 +35,4 @@ private:
     QFontDatabase *m_fontDatabase;
 };
 
-#endif  // DFONTVIEW_H
+#endif  // DFONTPREVIEW_H

@@ -18,11 +18,11 @@ DEFINES += QT_MESSAGELOGCONTEXT
 
 # Input
 HEADERS += \
-           dfontview.h \
+           dfontpreview.h \
     dfontinfomanager.h
 
 SOURCES += \
-           dfontview.cpp \
+           dfontpreview.cpp \
     dfontinfomanager.cpp
 
 RESOURCES += resources.qrc

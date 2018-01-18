@@ -47,7 +47,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     m_closeBtn->hide();
 
     m_layout->addLayout(contentLayout);
-    m_layout->addSpacing(20);
+    m_layout->addSpacing(10);
     m_layout->addLayout(bottomLayout);
     m_layout->addSpacing(10);
 

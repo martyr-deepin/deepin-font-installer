@@ -1,4 +1,4 @@
-#include "dfontview.h"
+#include "dfontpreview.h"
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QTextStream>
@@ -13,7 +13,7 @@ static QString sampleString = nullptr;
 static QString styleName = nullptr;
 static QHash<QString, QString> contents = {};
 
-DFontView::DFontView(QWidget *parent)
+DFontPreview::DFontPreview(QWidget *parent)
     : QWidget(parent),
       m_library(0),
       m_face(0),
@@ -25,11 +25,11 @@ DFontView::DFontView(QWidget *parent)
                  QApplication::desktop()->height() / 1.5);
 }
 
-DFontView::~DFontView()
+DFontPreview::~DFontPreview()
 {
 }
 
-void DFontView::setFileUrl(const QString &url)
+void DFontPreview::setFileUrl(const QString &url)
 {
     m_fontDatabase->removeAllApplicationFonts();
     m_fontDatabase->addApplicationFont(url);
@@ -46,7 +46,7 @@ void DFontView::setFileUrl(const QString &url)
     repaint();
 }
 
-void DFontView::paintEvent(QPaintEvent *e)
+void DFontPreview::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
@@ -120,7 +120,7 @@ void DFontView::paintEvent(QPaintEvent *e)
     QWidget::paintEvent(e);
 }
 
-void DFontView::initContents()
+void DFontPreview::initContents()
 {
     QFile file(":/CONTENTS.txt");
 
@@ -141,7 +141,7 @@ void DFontView::initContents()
     }
 }
 
-QString DFontView::getSampleString()
+QString DFontPreview::getSampleString()
 {
     QString sampleString = nullptr;
     bool isAvailable = false;
@@ -168,7 +168,7 @@ QString DFontView::getSampleString()
     return sampleString;
 }
 
-QString DFontView::getLanguageSampleString(const QString &language)
+QString DFontPreview::getLanguageSampleString(const QString &language)
 {
     QString result = nullptr;
     QString key = nullptr;
@@ -189,7 +189,7 @@ QString DFontView::getLanguageSampleString(const QString &language)
     return result;
 }
 
-bool DFontView::checkFontContainText(const QString &text)
+bool DFontPreview::checkFontContainText(const QString &text)
 {
     bool retval = true;
 
@@ -205,7 +205,7 @@ bool DFontView::checkFontContainText(const QString &text)
     return retval;
 }
 
-QString DFontView::buildCharlistForFace(int length)
+QString DFontPreview::buildCharlistForFace(int length)
 {
     unsigned int glyph;
     unsigned long ch;

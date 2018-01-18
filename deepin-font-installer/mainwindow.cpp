@@ -23,7 +23,6 @@
 #include "dhidpihelper.h"
 #include <QSvgWidget>
 #include <QDebug>
-#include <QProcess>
 #include <QDragEnterEvent>
 #include <QMimeData>
 #include <QFileInfo>
@@ -59,7 +58,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    QProcess::execute("fc-cache");
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *e)

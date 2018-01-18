@@ -211,13 +211,12 @@ bool DFontInfoManager::fontsInstall(const QStringList &files)
     process->waitForFinished();
 
     if (process->readAllStandardError().isEmpty()) {
+        QProcess::execute("fc-cache");
         isInstall = true;
     } else {
         isInstall = false;
     }
 
-    // process->start("fc-cache");
-    // process->waitForFinished();
 
     process->kill();
     process->close();
@@ -244,6 +243,7 @@ bool DFontInfoManager::fontRemove(DFontInfo *data)
     process->waitForFinished();
 
     if (process->readAllStandardError().isEmpty()) {
+        QProcess::execute("fc-cache");
         isRemove = true;
     } else {
         isRemove = false;
