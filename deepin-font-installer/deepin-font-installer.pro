@@ -42,7 +42,6 @@ isEmpty(APPDIR):APPDIR=/usr/share/applications
 isEmpty(DSRDIR):DSRDIR=/usr/share/deepin-font-installer
 
 target.path = $$INSTROOT$$BINDIR
-
 desktop.path = $$INSTROOT$$APPDIR
 desktop.files = $$PWD/../deepin-font-installer.desktop
 
