@@ -1,14 +1,27 @@
-zh_CN: 脚踏实地，不断创新
-zh_TW: 腳踏實地，不斷創新
-en: We do we change...
-cs: Pracujeme pilně a zavádíme novinky.
-fr: Nous créons, nous innovons.
-de: Wir sind die Veränderung!
-it: Cambiamo assieme.
-fa: تلاش برای تغییر
-pt: Fazemos a mudança
-ru: Съешь мягких булочек и выпей чаю
-sr: Ми радимо, ми стварамо...
-sl: Spremembe in razvoj - naše poslanstvo!
-es: Lo hacemos, cambiamos.
-tr: Biz değiştiririz
+fa:تلاش برای تغییر
+am_ET:ጠንክረን በ መስራት እንፈጥራለን
+ku_IQ:ئێمە ئەنجامی دەدەین ئێمە دەگۆڕێین...
+ar:نحن نستطيع التغيير
+bn_BD:নতুনের প্রত্যয়ে সর্বদা সচেষ্ট
+zh_CN:脚踏实地，不断创新
+zh_TW:腳踏實地，不斷創新
+en:We do we change...
+cs:Pracujeme pilně a zavádíme novinky.
+fr:Nous créons, nous innovons.
+de:Wir sind die Veränderung!
+it:Cambiamo assieme.
+pt:Fazemos a mudança
+ru:Съешь мягких булочек и выпей чаю
+sr:Ми радимо, ми стварамо...
+si:Spremembe in razvoj - naše poslanstvo!
+es:Lo hacemos, cambiamos.
+tr:Biz değiştiririz
+uk:Ми працюємо та змінюємось...
+ca:Fem, innovem...
+sr:Mi radimo. Mi menjamo
+sr:Ми радимо. Ми мењамо
+bs_BA:Mi radimo. Mi menjamo.
+sk:Tvoríme, meníme...
+pt_br:Nós fazemos. Nós inovamos...
+nl:wij doen, wij veranderen
+pl:Pracujemy, wprowadzamy innowacje
