@@ -31,6 +31,7 @@ struct DFontInfo
     QString version;
     QString copyright;
     QString description;
+    QString sysVersion;
     bool isInstalled;
 };
 

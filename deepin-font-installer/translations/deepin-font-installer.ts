@@ -114,5 +114,9 @@
         <source>Removed successfully</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Other version installed: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

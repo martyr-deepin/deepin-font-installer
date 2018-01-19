@@ -196,13 +196,18 @@ void SingleFilePage::updateInfo(DFontInfo *data)
     m_closeBtn->hide();
 
     if (data->isInstalled) {
+        if (data->sysVersion != data->version) {
+            m_statusLabel->setText(QString(tr("Other version installed: %1")).arg(data->sysVersion));
+            m_statusLabel->setStyleSheet("QLabel { color: #ff5a5a; }");
+        } else {
+            m_statusLabel->setText(tr("Same version installed"));
+            m_statusLabel->setStyleSheet("QLabel { color: #ff5a5a; }");
+        }
+
         m_installBtn->hide();
         m_removeBtn->show();
         m_reinstallBtn->show();
         m_viewFileBtn->hide();
-
-        m_statusLabel->setText(tr("Same version installed"));
-        m_statusLabel->setStyleSheet("QLabel { color: #ff5a5a; }");
     } else {
         m_installBtn->show();
         m_removeBtn->hide();

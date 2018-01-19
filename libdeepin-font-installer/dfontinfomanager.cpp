@@ -94,8 +94,35 @@ void DFontInfoManager::refreshList()
         data.filePath = path;
         data.familyName = face->family_name;
         data.styleName = face->style_name;
-        dataList << data;
 
+        if (FT_IS_SFNT(face)) {
+            const int count = FT_Get_Sfnt_Name_Count(face);
+
+            for (int i = 0; i < count; ++i) {
+                FT_SfntName sname;
+
+                if (FT_Get_Sfnt_Name(face, i, &sname) != 0) {
+                    continue;
+                }
+
+                // only handle the unicode names for US langid.
+                if (!(sname.platform_id == TT_PLATFORM_MICROSOFT &&
+                      sname.encoding_id == TT_MS_ID_UNICODE_CS &&
+                      sname.language_id == TT_MS_LANGID_ENGLISH_UNITED_STATES)) {
+                    continue;
+                }
+
+                switch (sname.name_id) {
+                case TT_NAME_ID_VERSION_STRING:
+                    data.version = g_convert((char *)sname.string,
+                                             sname.string_len,
+                                              "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                    break;
+                }
+            }
+        }
+
+        dataList << data;
         FT_Done_Face(face);
     }
 
@@ -211,6 +238,7 @@ bool DFontInfoManager::isFontInstalled(DFontInfo *data)
 
         if (item.familyName == data->familyName &&
             item.styleName == data->styleName) {
+            data->sysVersion = item.version;
             return true;
         }
     }
