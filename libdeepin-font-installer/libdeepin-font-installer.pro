@@ -25,8 +25,6 @@ SOURCES += \
            dfontpreview.cpp \
     dfontinfomanager.cpp
 
-RESOURCES += resources.qrc
-
 QMAKE_PKGCONFIG_LIBDIR = $$target.path
 QMAKE_PKGCONFIG_VERSION = $$VERSION
 QMAKE_PKGCONFIG_DESTDIR = pkgconfig
@@ -53,4 +51,7 @@ isEmpty(INCLUDE_INSTALL_DIR) {
     includes.path = $$INCLUDE_INSTALL_DIR/deepin-font-installer
 }
 
-INSTALLS += target includes
+contents_file.path = /usr/share/deepin-font-installer/
+contents_file.files += $$PWD/CONTENTS.txt
+
+INSTALLS += target includes contents_file

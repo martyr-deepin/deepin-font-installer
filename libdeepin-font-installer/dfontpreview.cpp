@@ -142,7 +142,7 @@ void DFontPreview::paintEvent(QPaintEvent *e)
 
 void DFontPreview::initContents()
 {
-    QFile file(":/CONTENTS.txt");
+    QFile file("/usr/share/deepin-font-installer/CONTENTS.txt");
 
     if (!file.open(QIODevice::ReadOnly)) {
         return;
