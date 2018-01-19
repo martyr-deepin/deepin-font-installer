@@ -162,10 +162,6 @@ void SingleFilePage::updateInfo(DFontInfo *data)
     m_data = data;
 
     // if the content is empty, it shows "Unknown".
-    if (m_data->version.isEmpty()) {
-        m_data->version = tr("Unknown");
-    }
-
     if (data->copyright.isEmpty()) {
         m_data->copyright = tr("Unknown");
     }
@@ -177,7 +173,8 @@ void SingleFilePage::updateInfo(DFontInfo *data)
     m_nameLabel->setText(m_data->familyName);
     m_styleLabel->setText(m_data->styleName);
     m_typeLabel->setText(data->type);
-    m_versionLabel->setText(fm.elidedText(m_data->version, Qt::ElideRight,
+    m_versionLabel->setText(fm.elidedText((m_data->version.isEmpty() ? tr("Unknown") : data->version),
+                                          Qt::ElideRight,
                                           this->width() / 2));
 
     m_copyrightLabel->setText(fm.elidedText(m_data->copyright.simplified(), Qt::ElideRight,
