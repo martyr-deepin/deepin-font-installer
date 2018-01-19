@@ -117,6 +117,7 @@ void DFontInfoManager::refreshList()
                     data.version = g_convert((char *)sname.string,
                                              sname.string_len,
                                               "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                    data.version.remove("Version").simplified();
                     break;
                 }
             }
@@ -211,6 +212,7 @@ void DFontInfoManager::getFontInfo(DFontInfo *data)
                 data->version = g_convert((char *)sname.string,
                                           sname.string_len,
                                           "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                data->version.remove("Version").simplified();
                 break;
 
             case TT_NAME_ID_DESCRIPTION:
