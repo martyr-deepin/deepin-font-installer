@@ -59,6 +59,7 @@ private:
     QPushButton *m_reinstallBtn;
     QPushButton *m_viewFileBtn;
     QPushButton *m_closeBtn;
+    QString m_filePath;
 };
 
 #endif

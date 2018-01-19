@@ -23,6 +23,8 @@
 #include <QFileInfo>
 #include <QProcess>
 #include <QDebug>
+#include <QUrl>
+#include <QDir>
 
 SingleFilePage::SingleFilePage(QWidget *parent)
     : QWidget(parent),
@@ -230,6 +232,8 @@ void SingleFilePage::handleInstall()
     if (isInstall) {
         showInstalled();
         m_data->isInstalled = true;
+
+        m_filePath = "/usr/share/fonts/" + QFileInfo(m_data->filePath).fileName();
     }
 }
 
@@ -252,13 +256,20 @@ void SingleFilePage::handleRemove()
 
 void SingleFilePage::handleReinstall()
 {
-    bool isReinstall = m_infoManager->fontReinstall(m_data);
+    const QString reinstStr = m_infoManager->fontReinstall(m_data);
 
-    if (isReinstall) {
+    if (!reinstStr.isEmpty()) {
         showInstalled();
+
+        m_filePath = reinstStr;
     }
 }
 
 void SingleFilePage::viewFilePath()
 {
+    const QFileInfo info(m_filePath);
+    const QString fileDir = QUrl::fromLocalFile(info.absoluteDir().absolutePath()).toString();
+    const QString filePath = QUrl::fromLocalFile(m_filePath).toString();
+
+    QProcess::startDetached("dde-file-manager", QStringList() << QString("%1?selectUrl=%2").arg(fileDir).arg(filePath));
 }

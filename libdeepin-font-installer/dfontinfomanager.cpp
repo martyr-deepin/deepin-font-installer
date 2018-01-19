@@ -289,21 +289,21 @@ bool DFontInfoManager::fontRemove(DFontInfo *data)
     return isRemove;
 }
 
-bool DFontInfoManager::fontReinstall(DFontInfo *data)
+QString DFontInfoManager::fontReinstall(DFontInfo *data) const
 {
     QProcess process;
-    QString filePath = getFontPath(data);
-    bool isFini = false;
+    QString sysPath = getFontPath(data);
+    QString instPath = nullptr;
 
-    process.start("pkexec", QStringList() << "cp" << "-f" << data->filePath << filePath);
+    process.start("pkexec", QStringList() << "cp" << "-f" << data->filePath << sysPath);
     process.waitForFinished(-1);
 
     if (process.readAllStandardError().isEmpty()) {
-        isFini = true;
+        instPath = sysPath;
     }
 
     process.kill();
     process.close();
 
-    return isFini;
+    return instPath;
 }
