@@ -50,7 +50,7 @@ QString dirSyntax(const QString &d)
     return d;
 }
 
-QString getFontPath(DFontInfo *info)
+QString getInstalledFontPath(DFontInfo *info)
 {
     const QList<DFontInfo> famList = dataList;
     QString filePath = nullptr;
@@ -143,7 +143,7 @@ QStringList DFontInfoManager::getAllFontPath() const
 
         for (const QFileInfo &info : infoList) {
             const QString filePath = info.absoluteFilePath();
-            const QString suffix = info.suffix();
+            const QString suffix = info.suffix().toLower();
 
             if (suffix == "ttf" || suffix == "ttc" || suffix == "otf") {
                 pathList.append(filePath);
@@ -272,7 +272,7 @@ bool DFontInfoManager::fontsInstall(const QStringList &files)
 bool DFontInfoManager::fontRemove(DFontInfo *data)
 {
     QProcess process;
-    QString filePath = getFontPath(data);
+    QString filePath = getInstalledFontPath(data);
     bool isRemove;
 
     process.start("pkexec", QStringList() << "rm" << "-rf" << filePath);
@@ -294,7 +294,7 @@ bool DFontInfoManager::fontRemove(DFontInfo *data)
 QString DFontInfoManager::fontReinstall(DFontInfo *data) const
 {
     QProcess process;
-    QString sysPath = getFontPath(data);
+    QString sysPath = getInstalledFontPath(data);
     QString instPath = nullptr;
 
     process.start("pkexec", QStringList() << "cp" << "-f" << data->filePath << sysPath);
