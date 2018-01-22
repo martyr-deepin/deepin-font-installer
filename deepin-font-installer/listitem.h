@@ -23,7 +23,6 @@
 #include <QWidget>
 #include <QListWidgetItem>
 #include <QLabel>
-#include <QVBoxLayout>
 #include "dimagebutton.h"
 #include "dfontinfomanager.h"
 
@@ -52,9 +51,8 @@ protected:
 private:
     QListWidgetItem *m_item;
     DFontInfo *m_fontData;
-    QHBoxLayout *m_mainLayout;
-    QVBoxLayout *m_infoLayout;
     QLabel *m_nameLabel;
+    QLabel *m_styleLabel;
     QLabel *m_infoLabel;
     QLabel *m_statusLabel;
     DImageButton *m_closeBtn;

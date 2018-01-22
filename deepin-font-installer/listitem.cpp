@@ -19,6 +19,7 @@
 
 #include "listitem.h"
 #include "utils.h"
+#include <QVBoxLayout>
 #include <QPainter>
 #include <QSvgWidget>
 
@@ -26,9 +27,8 @@ ListItem::ListItem(QWidget *parent)
     : QWidget(parent),
       m_item(new QListWidgetItem),
       m_fontData(nullptr),
-      m_mainLayout(new QHBoxLayout(this)),
-      m_infoLayout(new QVBoxLayout),
       m_nameLabel(new QLabel),
+      m_styleLabel(new QLabel),
       m_infoLabel(new QLabel),
       m_statusLabel(new QLabel),
       m_closeBtn(new DImageButton (":/images/close_normal.svg",
@@ -38,25 +38,36 @@ ListItem::ListItem(QWidget *parent)
     QSvgWidget *iconWidget = new QSvgWidget(":/images/font-x-generic.svg");
     iconWidget->setFixedSize(50, 50);
 
-    m_infoLabel->setStyleSheet("QLabel { color: #444444; }");
+    m_nameLabel->setStyleSheet("QLabel { font-size: 14px; font-weight: 500; color: #000000; }");
+    m_styleLabel->setStyleSheet("QLabel { font-size: 13px; color: #000000; }");
+    m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; }");
 
     m_closeBtn->setFixedSize(24, 24);
     m_closeBtn->hide();
 
-    m_infoLayout->setSpacing(0);
-    m_infoLayout->addStretch();
-    m_infoLayout->addWidget(m_nameLabel);
-    m_infoLayout->addWidget(m_infoLabel);
-    m_infoLayout->addStretch();
+    QHBoxLayout *topLayout = new QHBoxLayout;
+    topLayout->addWidget(m_nameLabel);
+    topLayout->addSpacing(10);
+    topLayout->addWidget(m_styleLabel);
+    topLayout->addStretch();
+    topLayout->setSpacing(true);
 
-    m_mainLayout->addSpacing(5);
-    m_mainLayout->addWidget(iconWidget);
-    m_mainLayout->addLayout(m_infoLayout);
-    m_mainLayout->addStretch();
-    m_mainLayout->addWidget(m_closeBtn);
-    m_mainLayout->addWidget(m_statusLabel);
-    m_mainLayout->addSpacing(5);
-    m_mainLayout->setMargin(0);
+    QVBoxLayout *contentLayout = new QVBoxLayout;
+    contentLayout->addStretch();
+    contentLayout->addLayout(topLayout);
+    contentLayout->addWidget(m_infoLabel);
+    contentLayout->addStretch();
+    contentLayout->setSpacing(0);
+
+    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    mainLayout->addSpacing(5);
+    mainLayout->addWidget(iconWidget);
+    mainLayout->addLayout(contentLayout);
+    mainLayout->addStretch();
+    mainLayout->addWidget(m_closeBtn);
+    mainLayout->addWidget(m_statusLabel);
+    mainLayout->addSpacing(5);
+    mainLayout->setMargin(0);
 
     connect(m_closeBtn, &DImageButton::clicked, this, [=] {
         emit closeBtnClicked(m_item);
@@ -69,9 +80,8 @@ void ListItem::setFontInfo(DFontInfo *p)
     m_fontData = p;
 
     updateStatus();
-    m_nameLabel->setText(QString("%1  <font color=\"#909090\">%2</font>")
-                         .arg(m_fontData->familyName)
-                         .arg(m_fontData->styleName));
+    m_nameLabel->setText(m_fontData->familyName);
+    m_styleLabel->setText(m_fontData->styleName);
 
     if (m_fontData->description.isEmpty()) {
         m_infoLabel->setText(tr("Unknown"));
