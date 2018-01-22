@@ -19,9 +19,11 @@
 
 #include "dfontpreview.h"
 #include <QApplication>
+#include <QGuiApplication>
 #include <QDesktopWidget>
 #include <QTextStream>
 #include <QPainter>
+#include <QScreen>
 #include <QDebug>
 #include <QFile>
 
@@ -40,8 +42,8 @@ DFontPreview::DFontPreview(QWidget *parent)
 {
     initContents();
 
-    setFixedSize(QApplication::desktop()->width() / 1.5,
-                 QApplication::desktop()->height() / 1.5);
+    setFixedSize(qApp->primaryScreen()->geometry().width() / 1.5,
+                 qApp->primaryScreen()->geometry().height() / 1.5);
 }
 
 DFontPreview::~DFontPreview()

@@ -6,6 +6,8 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
            deepin-font-installer\
-           libdeepin-font-installer
+           libdeepin-font-installer \
+           deepin-font-preview-plugin
 
 deepin-font-installer.depends = libdeepin-font-installer
+deepin-font-preview-plugin.depends = libdeepin-font-installer
