@@ -22,6 +22,7 @@
 #include <QSvgWidget>
 #include <QFileInfo>
 #include <QProcess>
+#include <QUrlQuery>
 #include <QDebug>
 #include <QUrl>
 #include <QDir>
@@ -267,9 +268,9 @@ void SingleFilePage::handleReinstall()
 
 void SingleFilePage::viewFilePath()
 {
-    const QFileInfo info(m_filePath);
-    const QString fileDir = QUrl::fromLocalFile(info.absoluteDir().absolutePath()).toString();
-    const QString filePath = QUrl::fromLocalFile(m_filePath).toString();
-
-    QProcess::startDetached("dde-file-manager", QStringList() << QString("%1?selectUrl=%2").arg(fileDir).arg(filePath));
+    QUrl url = QUrl::fromLocalFile(QFileInfo(m_filePath).dir().absolutePath());
+    QUrlQuery query;
+    query.addQueryItem("selectUrl", QUrl::fromLocalFile(m_filePath).toString());
+    url.setQuery(query);
+    QProcess::startDetached("dde-file-manager", QStringList(url.toString()));
 }

@@ -42,7 +42,7 @@ void ListWidget::addListItem(DFontInfo *info)
 
     addItem(fileItem->getItem());
     fileItem->setFontInfo(info);
-    fileItem->getItem()->setSizeHint(QSize(100, 62));
+    fileItem->getItem()->setSizeHint(QSize(100, 63));
     setItemWidget(fileItem->getItem(), fileItem);
 
     connect(fileItem, &ListItem::closeBtnClicked, this, &ListWidget::handleClose);

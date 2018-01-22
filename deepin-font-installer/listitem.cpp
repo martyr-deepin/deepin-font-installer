@@ -43,12 +43,11 @@ ListItem::ListItem(QWidget *parent)
     m_closeBtn->setFixedSize(24, 24);
     m_closeBtn->hide();
 
+    m_infoLayout->setSpacing(0);
     m_infoLayout->addStretch();
     m_infoLayout->addWidget(m_nameLabel);
-    m_infoLayout->addSpacing(5);
     m_infoLayout->addWidget(m_infoLabel);
     m_infoLayout->addStretch();
-    m_infoLayout->setSpacing(0);
 
     m_mainLayout->addSpacing(5);
     m_mainLayout->addWidget(iconWidget);
