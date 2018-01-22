@@ -43,7 +43,7 @@ isEmpty(DSRDIR):DSRDIR=/usr/share/deepin-font-installer
 
 target.path = $$INSTROOT$$BINDIR
 desktop.path = $$INSTROOT$$APPDIR
-desktop.files = deepin-font-installer.desktop
+desktop.files = $$PWD/../deepin-font-installer.desktop
 
 policy.path = /usr/share/polkit-1/actions
 policy.files = com.deepin.pkexec.font-install.policy \ 

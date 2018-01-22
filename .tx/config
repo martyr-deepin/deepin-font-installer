@@ -10,6 +10,6 @@ source_lang = en
 type = QT
 
 [deepin-font-installer.deepin-font-installer-config-helper]
-source_file = deepin-font-installer/deepin-font-installer.desktop
+source_file = deepin-font-installer.desktop
 source_lang = en
 type = DESKTOP

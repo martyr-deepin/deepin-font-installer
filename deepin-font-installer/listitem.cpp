@@ -64,9 +64,9 @@ ListItem::ListItem(QWidget *parent)
     mainLayout->addWidget(iconWidget);
     mainLayout->addLayout(contentLayout);
     mainLayout->addStretch();
-    mainLayout->addWidget(m_closeBtn);
     mainLayout->addWidget(m_statusLabel);
-    mainLayout->addSpacing(5);
+    mainLayout->addSpacing(15);
+    mainLayout->addWidget(m_closeBtn);
     mainLayout->setMargin(0);
 
     connect(m_closeBtn, &DImageButton::clicked, this, [=] {
