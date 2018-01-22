@@ -106,12 +106,16 @@ void ListItem::paintEvent(QPaintEvent *e)
 {
     Q_UNUSED(e);
 
+    if (m_item->listWidget()->count() >= 1 &&
+        m_item == m_item->listWidget()->item(m_item->listWidget()->count() - 1)) {
+        return;
+    }
+
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
-
-    painter.setPen(Qt::NoPen);
-    painter.setBrush(QColor(151, 151, 151, 255 * 0.1));
-    painter.drawRect(QRect(60, rect().height() - 1, rect().width() - 70, 1));
+    painter.setPen(QColor(151, 151, 151, 255 * 0.1));
+    painter.drawLine(QPoint(60, rect().height() - 1),
+                     QPoint(rect().width() - 5, rect().height() - 1));
 }
 
 void ListItem::enterEvent(QEvent *e)
