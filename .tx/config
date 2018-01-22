@@ -9,7 +9,7 @@ source_file = deepin-font-installer/translations/deepin-font-installer.ts
 source_lang = en
 type = QT
 
-[deepin-font-installer.deepin-font-installer-config-helper]
+[deepin-font-installer.desktop]
 source_file = deepin-font-installer.desktop
 source_lang = en
 type = DESKTOP
