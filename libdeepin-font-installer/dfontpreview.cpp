@@ -123,7 +123,7 @@ void DFontPreview::paintEvent(QPaintEvent *e)
     painter.drawText(QRect(x, y + padding, punWidth, punHeight), Qt::AlignLeft, punctuationTextStock);
     y += punHeight;
 
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 20; ++i) {
         fontSize += 3;
         font.setPointSize(fontSize);
         painter.setFont(font);
