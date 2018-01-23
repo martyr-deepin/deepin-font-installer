@@ -52,7 +52,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>OK</source>
+        <source>Done</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -72,10 +72,6 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -116,6 +112,10 @@
     </message>
     <message>
         <source>Other version installed: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Done</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -112,9 +112,9 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     mainLayout->addLayout(descLayout);
     mainLayout->addStretch();
     mainLayout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
-    mainLayout->addSpacing(5);
+    mainLayout->addSpacing(0);
     mainLayout->addLayout(m_bottomLayout);
-    mainLayout->addSpacing(25);
+    mainLayout->addSpacing(20);
     mainLayout->setContentsMargins(50, 0, 50, 0);
 
     // init property.
