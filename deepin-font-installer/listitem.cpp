@@ -26,7 +26,7 @@
 ListItem::ListItem(QWidget *parent)
     : QWidget(parent),
       m_item(new QListWidgetItem),
-      m_fontData(nullptr),
+      m_fontInfo(nullptr),
       m_nameLabel(new QLabel),
       m_styleLabel(new QLabel),
       m_infoLabel(new QLabel),
@@ -40,7 +40,6 @@ ListItem::ListItem(QWidget *parent)
 
     m_nameLabel->setStyleSheet("QLabel { font-size: 14px; font-weight: 500; color: #000000; }");
     m_styleLabel->setStyleSheet("QLabel { font-size: 13px; color: #000000; }");
-    m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; }");
 
     m_closeBtn->setFixedSize(24, 24);
     m_closeBtn->hide();
@@ -77,24 +76,35 @@ ListItem::ListItem(QWidget *parent)
 void ListItem::setFontInfo(DFontInfo *p)
 {
     const QFontMetrics fm = m_infoLabel->fontMetrics();
-    m_fontData = p;
+    m_fontInfo = p;
 
     updateStatus();
-    m_nameLabel->setText(m_fontData->familyName);
-    m_styleLabel->setText(m_fontData->styleName);
+    m_nameLabel->setText(m_fontInfo->familyName);
+    m_styleLabel->setText(m_fontInfo->styleName);
+    m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; }");
 
-    if (m_fontData->description.isEmpty()) {
-        m_infoLabel->setText(tr("Unknown"));
+    if (m_fontInfo->isInstalled) {
+        if (m_fontInfo->sysVersion != m_fontInfo->version) {
+            // m_infoLabel->setStyleSheet("QLabel { color: #ff5a5a; }");
+            m_infoLabel->setText(QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion));
+        } else {
+            // m_infoLabel->setStyleSheet("QLabel { color: #47790c; }");
+            m_infoLabel->setText(tr("Same version installed"));
+        }
     } else {
-        m_infoLabel->setText(fm.elidedText(m_fontData->description,
-                                           Qt::ElideRight,
-                                           this->width() / 1.9));
+        if (m_fontInfo->description.isEmpty()) {
+            m_infoLabel->setText(tr("Unknown"));
+        } else {
+            m_infoLabel->setText(fm.elidedText(m_fontInfo->description,
+                                               Qt::ElideRight,
+                                               this->width() / 1.9));
+        }
     }
 }
 
 void ListItem::updateStatus()
 {
-    if (m_fontData->isInstalled) {
+    if (m_fontInfo->isInstalled) {
         m_statusLabel->setStyleSheet("QLabel { color: #528315; }");
         m_statusLabel->setText(tr("Installed"));
     } else {

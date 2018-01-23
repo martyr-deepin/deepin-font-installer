@@ -36,7 +36,7 @@ public:
     ListItem(QWidget *parent = nullptr);
 
     QListWidgetItem *getItem() { return m_item; };
-    DFontInfo *getFontInfo() { return m_fontData; };
+    DFontInfo *getFontInfo() { return m_fontInfo; };
     void setFontInfo(DFontInfo *);
     void updateStatus();
 
@@ -50,7 +50,7 @@ protected:
 
 private:
     QListWidgetItem *m_item;
-    DFontInfo *m_fontData;
+    DFontInfo *m_fontInfo;
     QLabel *m_nameLabel;
     QLabel *m_styleLabel;
     QLabel *m_infoLabel;
