@@ -41,9 +41,11 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     bottomLayout->addWidget(m_closeBtn, 0, Qt::AlignHCenter);
 
     m_installBtn->setObjectName("BlueButton");
-    m_closeBtn->setObjectName("BlueButton");
-
+    m_installBtn->setFixedSize(160, 36);
     m_installBtn->hide();
+
+    m_closeBtn->setObjectName("BlueButton");
+    m_closeBtn->setFixedSize(160, 36);
     m_closeBtn->hide();
 
     m_layout->addLayout(contentLayout);
