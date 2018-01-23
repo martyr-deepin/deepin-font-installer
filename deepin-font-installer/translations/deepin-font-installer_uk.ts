@@ -1,120 +1,120 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>拖拽字体文件到此</translation>
+        <translation>Перетягніть файл шрифту сюди</translation>
     </message>
     <message>
         <source>Select file</source>
-        <translation>选择文件</translation>
+        <translation>Виберіть файл</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation>Невідомий</translation>
     </message>
     <message>
         <source>Installed</source>
-        <translation>已安装</translation>
+        <translation>Встановлено</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>深度字体安装器</translation>
+        <translation>Засіб встановлення шрифтів Deepin</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>深度字体安装器用于帮助用户安装和卸载字体文件，支持批量安装。</translation>
+        <translation>Засіб встановлення шрифтів Deepin використовується для встановлення і вилучення файлів шрифтів користувачів. Передбачено можливість пакетного встановлення.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>深度字体安装器</translation>
+        <translation>Засіб встановлення шрифтів Deepin</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>批量安装</translation>
+        <translation>Пакетне встановлення</translation>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>安装</translation>
+        <translation>Встановити</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>完成</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>安装</translation>
+        <translation>Встановити</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>卸载</translation>
+        <translation>Вилучити</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>重新安装</translation>
+        <translation>Перевстановити</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>查看字体目录</translation>
+        <translation>Переглянути каталог шрифтів</translation>
     </message>
     <message>
         <source>Style: </source>
-        <translation>样式：</translation>
+        <translation>Стиль:</translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation>类型：</translation>
+        <translation>Тип:</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation>版本：</translation>
+        <translation>Версія:</translation>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>版权：</translation>
+        <translation>Ліцензування:</translation>
     </message>
     <message>
         <source>Description: </source>
-        <translation>描述：</translation>
+        <translation>Опис:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation>Невідомо</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>已安装相同版本</translation>
+        <translation>Встановлено ту саму версію</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>安装成功</translation>
+        <translation>Успішно встановлено</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>卸载成功</translation>
+        <translation>Успішно вилучено</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>已安装其他版本：%1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
-        <translation>完成</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
