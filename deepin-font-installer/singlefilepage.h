@@ -21,9 +21,11 @@
 #define SINGLEFILEPAGE_H
 
 #include <QWidget>
-#include <QVBoxLayout>
-#include <QLabel>
+#include <QStackedLayout>
 #include <QPushButton>
+#include <QLabel>
+#include <QPropertyAnimation>
+#include "progress.h"
 #include "dfontinfomanager.h"
 
 class SingleFilePage : public QWidget
@@ -34,8 +36,9 @@ public:
     SingleFilePage(QWidget *parent = nullptr);
     ~SingleFilePage();
 
-    void updateInfo(DFontInfo *data);
-    void showInstalled();
+    void updateInfo(DFontInfo *info);
+    void refreshPage();
+    void progressBarStart();
 
 private slots:
     void handleInstall();
@@ -44,21 +47,23 @@ private slots:
     void viewFilePath();
 
 private:
-    DFontInfo *m_data;
+    DFontInfo *m_fontInfo;
     DFontInfoManager *m_infoManager;
-    QVBoxLayout *m_layout;
     QLabel *m_nameLabel;
     QLabel *m_styleLabel;
     QLabel *m_typeLabel;
     QLabel *m_versionLabel;
     QLabel *m_copyrightLabel;
     QLabel *m_descriptionLabel;
-    QLabel *m_statusLabel;
+    QLabel *m_tipsLabel;
     QPushButton *m_installBtn;
-    QPushButton *m_removeBtn;
+    QPushButton *m_uninstallBtn;
     QPushButton *m_reinstallBtn;
     QPushButton *m_viewFileBtn;
     QPushButton *m_closeBtn;
+    Progress *m_progress;
+    QPropertyAnimation *m_propertyAnimation;
+    QStackedLayout *m_bottomLayout;
     QString m_filePath;
 };
 

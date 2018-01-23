@@ -29,7 +29,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
       m_layout(new QVBoxLayout(this)),
       m_listWidget(new ListWidget),
       m_installBtn(new QPushButton(tr("Install"))),
-      m_closeBtn(new QPushButton(tr("OK")))
+      m_closeBtn(new QPushButton(tr("Done")))
 {
     QHBoxLayout *contentLayout = new QHBoxLayout;
     contentLayout->addSpacing(15);

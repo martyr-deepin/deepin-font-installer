@@ -206,6 +206,7 @@ void DFontInfoManager::getFontInfo(DFontInfo *data)
                 data->copyright = g_convert((char *)sname.string,
                                             sname.string_len,
                                             "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                data->copyright = data->copyright.simplified();
                 break;
 
             case TT_NAME_ID_VERSION_STRING:
@@ -219,6 +220,7 @@ void DFontInfoManager::getFontInfo(DFontInfo *data)
                 data->description = g_convert((char *)sname.string,
                                               sname.string_len,
                                               "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                data->description = data->description.simplified();
                 break;
             default:
                 break;
@@ -301,6 +303,7 @@ QString DFontInfoManager::fontReinstall(DFontInfo *data) const
     process.waitForFinished(-1);
 
     if (process.readAllStandardError().isEmpty()) {
+        QProcess::startDetached("fc-cache");
         instPath = sysPath;
     }
 
