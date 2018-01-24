@@ -69,35 +69,37 @@ ListItem::ListItem(QWidget *parent)
     mainLayout->setMargin(0);
 
     connect(m_closeBtn, &DImageButton::clicked, this, [=] {
-        emit closeBtnClicked(m_item);
-    });
+       emit closeBtnClicked(m_item);
+                                                      });
 }
 
 void ListItem::setFontInfo(DFontInfo *p)
 {
-    const QFontMetrics fm = m_infoLabel->fontMetrics();
     m_fontInfo = p;
-
     updateStatus();
+
+    const bool isInstalled = m_fontInfo->isInstalled;
+    const bool isSampleVersion = m_fontInfo->sysVersion == m_fontInfo->version;
+
     m_nameLabel->setText(m_fontInfo->familyName);
-    m_styleLabel->setText(m_fontInfo->styleName);
+    m_styleLabel->setText(m_styleLabel->fontMetrics().elidedText(m_fontInfo->styleName,
+                                                                 Qt::ElideRight, 160));
     m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; }");
 
-    if (m_fontInfo->isInstalled) {
-        if (m_fontInfo->sysVersion != m_fontInfo->version) {
-            // m_infoLabel->setStyleSheet("QLabel { color: #ff5a5a; }");
-            m_infoLabel->setText(QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion));
-        } else {
-            // m_infoLabel->setStyleSheet("QLabel { color: #47790c; }");
+    if (isInstalled) {
+        m_infoLabel->setStyleSheet("QLabel { color: #47790c; }");
+        if (isSampleVersion) {
             m_infoLabel->setText(tr("Same version installed"));
+        } else {
+            m_infoLabel->setText(QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion));
         }
     } else {
         if (m_fontInfo->description.isEmpty()) {
             m_infoLabel->setText(tr("Unknown"));
         } else {
-            m_infoLabel->setText(fm.elidedText(m_fontInfo->description,
-                                               Qt::ElideRight,
-                                               this->width() / 1.9));
+            m_infoLabel->setText(m_infoLabel->fontMetrics().elidedText(m_fontInfo->description,
+                                                                       Qt::ElideRight,
+                                                                       m_infoLabel->width() / 1.9));
         }
     }
 }

@@ -20,12 +20,11 @@
 #ifndef MULTIFILEPAGE_H
 #define MULTIFILEPAGE_H
 
+#include "dfontinfomanager.h"
+#include "listwidget.h"
 #include <QWidget>
-#include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
-#include "listwidget.h"
-#include "dfontinfomanager.h"
 
 class MultiFilePage : public QWidget
 {
@@ -49,7 +48,6 @@ private slots:
 
 private:
     DFontInfoManager *m_fontInfo;
-    QVBoxLayout *m_layout;
     ListWidget *m_listWidget;
     QPushButton *m_installBtn;
     QPushButton *m_closeBtn;
