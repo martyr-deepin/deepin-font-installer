@@ -28,6 +28,14 @@
 #include <QUrl>
 #include <QDir>
 
+void setElidedText(QLabel *label, const QString &text)
+{
+    const QFontMetrics fm(label->font());
+    const int textWidth = label->width() * 1.85;
+    const QString clippedText = fm.elidedText(text, Qt::ElideRight, textWidth);
+    label->setText(clippedText);
+}
+
 SingleFilePage::SingleFilePage(QWidget *parent)
     : QWidget(parent),
       m_infoManager(new DFontInfoManager),
@@ -115,6 +123,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     mainLayout->addSpacing(6);
     mainLayout->addLayout(descLayout);
     mainLayout->addStretch();
+    mainLayout->addSpacing(10);
     mainLayout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
     mainLayout->addSpacing(10);
     mainLayout->addLayout(m_bottomLayout);
@@ -173,33 +182,38 @@ SingleFilePage::~SingleFilePage()
 
 void SingleFilePage::updateInfo(DFontInfo *info)
 {
-    const QFontMetrics fm = m_descriptionLabel->fontMetrics();
     m_fontInfo = info;
-
     refreshPage();
+
+    const QString copyright = m_fontInfo->copyright;
+    const QString description = m_fontInfo->description;
+
     m_nameLabel->setText(m_fontInfo->familyName);
     m_styleLabel->setText(m_fontInfo->styleName);
     m_typeLabel->setText(m_fontInfo->type);
     m_versionLabel->setText(m_fontInfo->version);
-    m_copyrightLabel->setText(fm.elidedText(m_fontInfo->copyright, Qt::ElideRight, width() * 1.1));
-    m_descriptionLabel->setText(fm.elidedText(m_fontInfo->description, Qt::ElideRight, width() * 1.2));
+    setElidedText(m_copyrightLabel, copyright);
+    setElidedText(m_descriptionLabel, description);
 }
 
 void SingleFilePage::refreshPage()
 {
-    if (m_fontInfo->isInstalled) {
+    const bool isInstalled = m_fontInfo->isInstalled;
+    const bool isSameVersion = m_fontInfo->sysVersion == m_fontInfo->version;
+
+    if (isInstalled) {
         m_installBtn->setVisible(false);
         m_uninstallBtn->setVisible(true);
         m_reinstallBtn->setVisible(true);
         m_viewFileBtn->setVisible(false);
         m_closeBtn->setVisible(false);
 
-        if (m_fontInfo->sysVersion != m_fontInfo->version) {
-            m_tipsLabel->setStyleSheet("QLabel { color: #ff5a5a; }");
-            m_tipsLabel->setText(QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion));
-        } else {
+        if (isSameVersion) {
             m_tipsLabel->setStyleSheet("QLabel { color: #ff5a5a; }");
             m_tipsLabel->setText(tr("Same version installed"));
+        } else {
+            m_tipsLabel->setStyleSheet("QLabel { color: #ff5a5a; }");
+            m_tipsLabel->setText(QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion));
         }
     } else {
         m_tipsLabel->setText("");
