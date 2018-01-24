@@ -205,8 +205,10 @@ QString DFontPreview::getLanguageSampleString(const QString &language)
         }
     }
 
-    auto findResult = contents.find(key);
-    result.append(findResult.value());
+    if (contents.contains(key)) {
+        auto findResult = contents.find(key);
+        result.append(findResult.value());
+    }
 
     return result;
 }
