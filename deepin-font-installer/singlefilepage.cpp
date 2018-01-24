@@ -53,32 +53,32 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     QHBoxLayout *styleLayout = new QHBoxLayout;
     QLabel *styleLabel = new QLabel(tr("Style: "));
     styleLayout->addWidget(styleLabel, 0, Qt::AlignLeft | Qt::AlignTop);
-    styleLayout->addWidget(m_styleLabel, 0, Qt::AlignLeft | Qt::AlignTop);
-    styleLayout->addStretch();
+    styleLayout->addSpacing(3);
+    styleLayout->addWidget(m_styleLabel, Qt::AlignLeft);
 
     QHBoxLayout *typeLayout = new QHBoxLayout;
     QLabel *typeLabel = new QLabel(tr("Type: "));
     typeLayout->addWidget(typeLabel, 0, Qt::AlignLeft | Qt::AlignTop);
-    typeLayout->addWidget(m_typeLabel, 0, Qt::AlignLeft | Qt::AlignTop);
-    typeLayout->addStretch();
+    typeLayout->addSpacing(3);
+    typeLayout->addWidget(m_typeLabel, Qt::AlignLeft);
 
     QHBoxLayout *versionLayout = new QHBoxLayout;
     QLabel *versionLabel = new QLabel(tr("Version: "));
     versionLayout->addWidget(versionLabel, 0, Qt::AlignLeft | Qt::AlignTop);
-    versionLayout->addWidget(m_versionLabel, 0, Qt::AlignLeft | Qt::AlignTop);
-    versionLayout->addStretch();
+    versionLayout->addSpacing(3);
+    versionLayout->addWidget(m_versionLabel, Qt::AlignLeft);
 
     QHBoxLayout *copyrightLayout = new QHBoxLayout;
     QLabel *copyrightLabel = new QLabel(tr("Copyright: "));
     copyrightLayout->addWidget(copyrightLabel, 0, Qt::AlignLeft | Qt::AlignTop);
-    copyrightLayout->addWidget(m_copyrightLabel, 0, Qt::AlignLeft | Qt::AlignTop);
-    copyrightLayout->addStretch();
+    copyrightLayout->addSpacing(3);
+    copyrightLayout->addWidget(m_copyrightLabel, Qt::AlignLeft);
 
     QHBoxLayout *descLayout = new QHBoxLayout;
     QLabel *descLabel = new QLabel(tr("Description: "));
     descLayout->addWidget(descLabel, 0, Qt::AlignLeft | Qt::AlignTop);
-    descLayout->addWidget(m_descriptionLabel, 0, Qt::AlignLeft | Qt::AlignTop);
-    descLayout->addStretch();
+    descLayout->addSpacing(3);
+    descLayout->addWidget(m_descriptionLabel, Qt::AlignLeft);
 
     QWidget *btnsWidget = new QWidget;
     QHBoxLayout *btnsLayout = new QHBoxLayout(btnsWidget);
@@ -106,15 +106,20 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     mainLayout->addWidget(m_nameLabel, 0, Qt::AlignHCenter);
     mainLayout->addSpacing(10);
     mainLayout->addLayout(styleLayout);
+    mainLayout->addSpacing(6);
     mainLayout->addLayout(typeLayout);
+    mainLayout->addSpacing(6);
     mainLayout->addLayout(versionLayout);
+    mainLayout->addSpacing(6);
     mainLayout->addLayout(copyrightLayout);
+    mainLayout->addSpacing(6);
     mainLayout->addLayout(descLayout);
     mainLayout->addStretch();
     mainLayout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
-    mainLayout->addSpacing(0);
+    mainLayout->addSpacing(10);
     mainLayout->addLayout(m_bottomLayout);
     mainLayout->addSpacing(20);
+    mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(50, 0, 50, 0);
 
     // init property.
@@ -176,7 +181,7 @@ void SingleFilePage::updateInfo(DFontInfo *info)
     m_styleLabel->setText(m_fontInfo->styleName);
     m_typeLabel->setText(m_fontInfo->type);
     m_versionLabel->setText(m_fontInfo->version);
-    m_copyrightLabel->setText(fm.elidedText(m_fontInfo->copyright, Qt::ElideRight, width() * 1.2));
+    m_copyrightLabel->setText(fm.elidedText(m_fontInfo->copyright, Qt::ElideRight, width() * 1.1));
     m_descriptionLabel->setText(fm.elidedText(m_fontInfo->description, Qt::ElideRight, width() * 1.2));
 }
 
