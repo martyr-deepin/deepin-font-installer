@@ -17,47 +17,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MULTIFILEPAGE_H
-#define MULTIFILEPAGE_H
+#ifndef THREAD_H
+#define THREAD_H
 
-#include "dfontinfomanager.h"
-#include "listwidget.h"
-#include "thread.h"
-#include <QWidget>
-#include <QLabel>
-#include <QPushButton>
-#include "dspinner.h"
+#include <QThread>
 
-DWIDGET_USE_NAMESPACE
-
-class MultiFilePage : public QWidget
+class Thread : public QThread
 {
     Q_OBJECT
 
 public:
-    MultiFilePage(QWidget *parent = 0);
-    ~MultiFilePage();
+    Thread(QObject *parent = nullptr);
+    ~Thread();
 
-    void addItems(const QStringList &paths);
-    QList<DFontInfo *> getInfoList() { return m_infoList; };
+    void startInstall(const QStringList &list);
+    void run();
 
 signals:
-    void countChanged();
-
-private slots:
-    void handleDelete(DFontInfo *);
-    void refreshList();
-    void refreshPage();
-    void batchInstallation();
+    void installStarted();
+    void installFinished();
 
 private:
-    DFontInfoManager *m_fontInfo;
-    Thread *m_thread;
-    ListWidget *m_listWidget;
-    QPushButton *m_installBtn;
-    QPushButton *m_closeBtn;
-    DSpinner *m_spinner;
-    QList<DFontInfo *> m_infoList;
+    QStringList m_fileList;
 };
 
 #endif
