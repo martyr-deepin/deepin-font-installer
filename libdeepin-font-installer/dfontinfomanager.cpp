@@ -253,44 +253,40 @@ bool DFontInfoManager::isFontInstalled(DFontInfo *data)
 bool DFontInfoManager::fontsInstall(const QStringList &files)
 {
     QProcess process;
-    bool isInstall;
+    bool failed = false;
 
     process.start("pkexec", QStringList() << "cp" << "-r" << files << "/usr/share/fonts");
     process.waitForFinished(-1);
+    failed |= process.exitCode();
 
-    if (process.readAllStandardError().isEmpty()) {
+    if (!failed) {
         QProcess::startDetached("fc-cache");
-        isInstall = true;
-    } else {
-        isInstall = false;
     }
 
     process.kill();
     process.close();
 
-    return isInstall;
+    return failed;
 }
 
 bool DFontInfoManager::fontRemove(DFontInfo *data)
 {
     QProcess process;
     QString filePath = getInstalledFontPath(data);
-    bool isRemove;
+    bool failed = false;
 
     process.start("pkexec", QStringList() << "rm" << "-rf" << filePath);
     process.waitForFinished(-1);
+    failed |= process.exitCode();
 
-    if (process.readAllStandardError().isEmpty()) {
+    if (!failed) {
         QProcess::startDetached("fc-cache");
-        isRemove = true;
-    } else {
-        isRemove = false;
     }
 
     process.kill();
     process.close();
 
-    return isRemove;
+    return failed;
 }
 
 QString DFontInfoManager::fontReinstall(DFontInfo *data) const

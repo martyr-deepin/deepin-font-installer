@@ -148,8 +148,9 @@ void MultiFilePage::batchInstallation()
         }
     }
 
-    if (filePaths.count() != 0) {
-        if (m_fontInfo->fontsInstall(filePaths)) {
+    if (filePaths.count() > 0) {
+        bool failed = m_fontInfo->fontsInstall(filePaths);
+        if (!failed) {
             refreshList();
             refreshPage();
         }

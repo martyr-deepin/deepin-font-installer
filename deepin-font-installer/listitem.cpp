@@ -64,13 +64,14 @@ ListItem::ListItem(QWidget *parent)
     mainLayout->addLayout(contentLayout);
     mainLayout->addStretch();
     mainLayout->addWidget(m_statusLabel);
-    mainLayout->addSpacing(15);
+    mainLayout->addSpacing(5);
     mainLayout->addWidget(m_closeBtn);
+    mainLayout->addSpacing(5);
     mainLayout->setMargin(0);
 
     connect(m_closeBtn, &DImageButton::clicked, this, [=] {
        emit closeBtnClicked(m_item);
-                                                      });
+    });
 }
 
 void ListItem::setFontInfo(DFontInfo *p)

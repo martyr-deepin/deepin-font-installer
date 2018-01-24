@@ -245,9 +245,9 @@ void SingleFilePage::progressBarStart()
 
 void SingleFilePage::handleInstall()
 {
-    bool isInstall = m_infoManager->fontsInstall(QStringList() << m_fontInfo->filePath);
+    bool failed = m_infoManager->fontsInstall(QStringList() << m_fontInfo->filePath);
 
-    if (isInstall) {
+    if (!failed) {
         progressBarStart();
 
         QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
@@ -269,9 +269,9 @@ void SingleFilePage::handleInstall()
 
 void SingleFilePage::handleRemove()
 {
-    bool isRemove = m_infoManager->fontRemove(m_fontInfo);
+    bool failed = m_infoManager->fontRemove(m_fontInfo);
 
-    if (isRemove) {
+    if (!failed) {
         progressBarStart();
 
         QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
