@@ -255,12 +255,12 @@ bool DFontInfoManager::fontsInstall(const QStringList &files)
     QProcess process;
     bool failed = false;
 
-    process.start("pkexec", QStringList() << "cp" << "-r" << files << "/usr/share/fonts");
+    process.start("pkexec", QStringList() << "/usr/bin/deepin-font-install" << "-r" << files << "/usr/share/fonts");
     process.waitForFinished(-1);
     failed |= process.exitCode();
 
     if (!failed) {
-        QProcess::startDetached("fc-cache");
+        //QProcess::startDetached("fc-cache");
     }
 
     process.kill();
@@ -275,12 +275,12 @@ bool DFontInfoManager::fontRemove(DFontInfo *data)
     QString filePath = getInstalledFontPath(data);
     bool failed = false;
 
-    process.start("pkexec", QStringList() << "rm" << "-rf" << filePath);
+    process.start("pkexec", QStringList() << "/usr/bin/deepin-font-uninstall" << "-rf" << filePath);
     process.waitForFinished(-1);
     failed |= process.exitCode();
 
     if (!failed) {
-        QProcess::startDetached("fc-cache");
+        //QProcess::startDetached("fc-cache");
     }
 
     process.kill();
@@ -295,11 +295,11 @@ QString DFontInfoManager::fontReinstall(DFontInfo *data) const
     QString sysPath = getInstalledFontPath(data);
     QString instPath = nullptr;
 
-    process.start("pkexec", QStringList() << "cp" << "-f" << data->filePath << sysPath);
+    process.start("pkexec", QStringList() << "/usr/bin/deepin-font-install" << "-f" << data->filePath << sysPath);
     process.waitForFinished(-1);
 
     if (process.readAllStandardError().isEmpty()) {
-        QProcess::startDetached("fc-cache");
+        //QProcess::startDetached("fc-cache");
         instPath = sysPath;
     }
 
