@@ -3,8 +3,8 @@ am_ET:ጠንክረን በ መስራት እንፈጥራለን
 ku_IQ:ئێمە ئەنجامی دەدەین ئێمە دەگۆڕێین...
 ar:نحن نستطيع التغيير
 bn_BD:নতুনের প্রত্যয়ে সর্বদা সচেষ্ট
-zh_CN:脚踏实地，不断创新
-zh_TW:腳踏實地，不斷創新
+zh_CN:改变只为更好
+zh_TW:改變只為更好
 en:We do we change...
 cs:Pracujeme pilně a zavádíme novinky.
 fr:Nous créons, nous innovons.
