@@ -19,11 +19,13 @@ DEFINES += QT_MESSAGELOGCONTEXT
 # Input
 HEADERS += \
            dfontpreview.h \
-    dfontinfomanager.h
+	   dfontinfomanager.h \
+	   dfontinstall.h
 
 SOURCES += \
            dfontpreview.cpp \
-    dfontinfomanager.cpp
+	   dfontinfomanager.cpp \
+	   dfontinstall.cpp
 
 QMAKE_PKGCONFIG_LIBDIR = $$target.path
 QMAKE_PKGCONFIG_VERSION = $$VERSION

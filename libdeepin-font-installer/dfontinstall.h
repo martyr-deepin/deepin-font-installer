@@ -17,18 +17,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef THREAD_H
-#define THREAD_H
+#ifndef DFONTINSTALL_H
+#define DFONTINSTALL_H
 
 #include <QThread>
 
-class Thread : public QThread
+class DFontInstall : public QThread
 {
     Q_OBJECT
 
 public:
-    Thread(QObject *parent = nullptr);
-    ~Thread();
+    DFontInstall(QObject *parent = nullptr);
+    ~DFontInstall();
 
     void startInstall(const QStringList &list);
     void run();

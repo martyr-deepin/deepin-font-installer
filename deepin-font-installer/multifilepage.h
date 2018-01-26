@@ -21,12 +21,12 @@
 #define MULTIFILEPAGE_H
 
 #include "dfontinfomanager.h"
+#include "dfontinstall.h"
+#include "dspinner.h"
 #include "listwidget.h"
-#include "thread.h"
 #include <QWidget>
 #include <QLabel>
 #include <QPushButton>
-#include "dspinner.h"
 
 DWIDGET_USE_NAMESPACE
 
@@ -52,7 +52,7 @@ private slots:
 
 private:
     DFontInfoManager *m_fontInfo;
-    Thread *m_thread;
+    DFontInstall *m_fontInstall;
     ListWidget *m_listWidget;
     QPushButton *m_installBtn;
     QPushButton *m_closeBtn;

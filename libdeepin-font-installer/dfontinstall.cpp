@@ -17,19 +17,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "thread.h"
+#include "dfontinstall.h"
 #include <QProcess>
-#include <QDebug>
 
-Thread::Thread(QObject *parent) : QThread(parent)
+DFontInstall::DFontInstall(QObject *parent)
+    : QThread(parent)
+{
+
+}
+
+DFontInstall::~DFontInstall()
 {
 }
 
-Thread::~Thread()
-{
-}
-
-void Thread::startInstall(const QStringList &list)
+void DFontInstall::startInstall(const QStringList &list)
 {
     if (!m_fileList.isEmpty()) {
         m_fileList.clear();
@@ -39,7 +40,7 @@ void Thread::startInstall(const QStringList &list)
     QThread::start();
 }
 
-void Thread::run()
+void DFontInstall::run()
 {
     QProcess *process = new QProcess;
     bool failed = false;

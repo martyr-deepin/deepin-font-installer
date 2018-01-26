@@ -26,7 +26,7 @@
 MultiFilePage::MultiFilePage(QWidget *parent)
     : QWidget(parent),
       m_fontInfo(new DFontInfoManager),
-      m_thread(new Thread),
+      m_fontInstall(new DFontInstall),
       m_listWidget(new ListWidget),
       m_installBtn(new QPushButton(tr("Install"))),
       m_closeBtn(new QPushButton(tr("Done"))),
@@ -63,19 +63,19 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     connect(m_installBtn, &QPushButton::clicked, this, &MultiFilePage::batchInstallation);
     connect(m_closeBtn, &QPushButton::clicked, this, &QApplication::quit);
 
-   connect(m_thread, &Thread::installStarted, this, [=] {
-                                                        m_spinner->start();
-                                                        m_spinner->setVisible(true);
-                                                        m_installBtn->setVisible(false);
-                                                    });
+    connect(m_fontInstall, &DFontInstall::installStarted, this, [=] {
+                                                                    m_spinner->start();
+                                                                    m_spinner->setVisible(true);
+                                                                    m_installBtn->setVisible(false);
+                                                                });
 
-   connect(m_thread, &Thread::installFinished, this, [=] {
-                                                         m_spinner->stop();
-                                                         m_spinner->setVisible(false);
-                                                         m_installBtn->setVisible(true);
-                                                         refreshList();
-                                                         refreshPage();
-                                                     });
+    connect(m_fontInstall, &DFontInstall::installFinished, this, [=] {
+                                                                     m_spinner->stop();
+                                                                     m_spinner->setVisible(false);
+                                                                     m_installBtn->setVisible(true);
+                                                                     refreshList();
+                                                                     refreshPage();
+                                                                 });
 }
 
 MultiFilePage::~MultiFilePage()
@@ -169,6 +169,6 @@ void MultiFilePage::batchInstallation()
     }
 
     if (filePaths.count() > 0) {
-        m_thread->startInstall(filePaths);
+        m_fontInstall->startInstall(filePaths);
     }
 }
