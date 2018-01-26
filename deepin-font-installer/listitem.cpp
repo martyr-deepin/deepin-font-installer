@@ -84,17 +84,19 @@ void ListItem::setFontInfo(DFontInfo *p)
 
     m_nameLabel->setText(m_fontInfo->familyName);
     m_styleLabel->setText(m_styleLabel->fontMetrics().elidedText(m_fontInfo->styleName,
-                                                                 Qt::ElideRight, 160));
-    m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; }");
+                                                                 Qt::ElideRight, 180));
 
+    m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; }");
     if (isInstalled) {
-        m_infoLabel->setStyleSheet("QLabel { color: #47790c; }");
         if (isSampleVersion) {
+            m_infoLabel->setStyleSheet("QLabel { color: #FF5A5A; }");
             m_infoLabel->setText(tr("Same version installed"));
         } else {
+            m_infoLabel->setStyleSheet("QLabel { color: #47790C; }");
             m_infoLabel->setText(QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion));
         }
     } else {
+        m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; }");
         if (m_fontInfo->description.isEmpty()) {
             m_infoLabel->setText(tr("Unknown"));
         } else {

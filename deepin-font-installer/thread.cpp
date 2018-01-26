@@ -51,7 +51,7 @@ void Thread::run()
 
     if (!failed) {
         process->execute("fc-cache");
-        process->waitForFinished();
+        process->waitForFinished(-1);
         emit installFinished();
     }
 
