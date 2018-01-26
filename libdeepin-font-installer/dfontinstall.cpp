@@ -46,7 +46,7 @@ void DFontInstall::run()
     bool failed = false;
 
     connect(process, &QProcess::readyReadStandardOutput, this, [=] { emit installStarted(); });
-    process->start("pkexec", QStringList() << "/usr/bin/deepin-font-install" << "-r" << "-v" << m_fileList << "/usr/share/fonts");
+    process->start("pkexec", QStringList() << "cp" << "-r" << "-v" << m_fileList << "/usr/share/fonts");
     process->waitForFinished(-1);
     failed |= process->exitCode();
 
