@@ -25,7 +25,7 @@
 
 MultiFilePage::MultiFilePage(QWidget *parent)
     : QWidget(parent),
-      m_fontInfo(new DFontInfoManager),
+      m_fontInfo(DFontInfoManager::instance()),
       m_fontInstall(new DFontInstall),
       m_listWidget(new ListWidget),
       m_installBtn(new QPushButton(tr("Install"))),

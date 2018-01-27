@@ -33,6 +33,7 @@
 #include FT_TRUETYPE_IDS_H
 
 static QList<DFontInfo> dataList;
+static DFontInfoManager *m_instance = 0;
 
 QString dirSyntax(const QString &d)
 {
@@ -64,6 +65,16 @@ QString getInstalledFontPath(DFontInfo *info)
     }
 
     return filePath;
+}
+
+
+DFontInfoManager *DFontInfoManager::instance()
+{
+    if (!m_instance) {
+        m_instance = new DFontInfoManager;
+    }
+
+    return m_instance;
 }
 
 DFontInfoManager::DFontInfoManager(QObject *parent)

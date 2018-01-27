@@ -40,6 +40,7 @@ class DFontInfoManager : public QObject
     Q_OBJECT
 
 public:
+    static DFontInfoManager *instance();
     DFontInfoManager(QObject *parent = nullptr);
     ~DFontInfoManager();
 

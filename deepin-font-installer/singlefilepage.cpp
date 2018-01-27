@@ -38,7 +38,7 @@ void setElidedText(QLabel *label, const QString &text)
 
 SingleFilePage::SingleFilePage(QWidget *parent)
     : QWidget(parent),
-      m_infoManager(new DFontInfoManager),
+      m_infoManager(DFontInfoManager::instance()),
       m_nameLabel(new QLabel),
       m_styleLabel(new QLabel),
       m_typeLabel(new QLabel),
