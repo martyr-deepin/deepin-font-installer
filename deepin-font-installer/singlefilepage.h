@@ -25,8 +25,9 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QPropertyAnimation>
-#include "progress.h"
 #include "dfontinfomanager.h"
+#include "dfontmanager.h"
+#include "progress.h"
 
 class SingleFilePage : public QWidget
 {
@@ -44,11 +45,15 @@ private slots:
     void handleInstall();
     void handleRemove();
     void handleReinstall();
+    void onInstallFinished();
+    void onUninstallFinished();
+    void onReinstallFinished();
     void viewFilePath();
 
 private:
     DFontInfo *m_fontInfo;
-    DFontInfoManager *m_infoManager;
+    DFontInfoManager *m_fontInfoManager;
+    DFontManager *m_fontManager;
     QLabel *m_nameLabel;
     QLabel *m_styleLabel;
     QLabel *m_typeLabel;

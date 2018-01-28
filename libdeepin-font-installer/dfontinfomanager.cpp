@@ -51,23 +51,6 @@ QString dirSyntax(const QString &d)
     return d;
 }
 
-QString getInstalledFontPath(DFontInfo *info)
-{
-    const QList<DFontInfo> famList = dataList;
-    QString filePath = nullptr;
-
-    for (const auto &famItem : famList) {
-        if (info->familyName == famItem.familyName &&
-            info->styleName == famItem.styleName) {
-            filePath = famItem.filePath;
-            break;
-        }
-    }
-
-    return filePath;
-}
-
-
 DFontInfoManager *DFontInfoManager::instance()
 {
     if (!m_instance) {
@@ -167,6 +150,22 @@ QStringList DFontInfoManager::getAllFontPath() const
     return pathList;
 }
 
+QString DFontInfoManager::getInstalledFontPath(DFontInfo *info)
+{
+    const QList<DFontInfo> famList = dataList;
+    QString filePath = nullptr;
+
+    for (const auto &famItem : famList) {
+        if (info->familyName == famItem.familyName &&
+            info->styleName == famItem.styleName) {
+            filePath = famItem.filePath;
+            break;
+        }
+    }
+
+    return filePath;
+}
+
 QString DFontInfoManager::getFontType(const QString &filePath)
 {
     const QFileInfo fileInfo(filePath);
@@ -181,19 +180,20 @@ QString DFontInfoManager::getFontType(const QString &filePath)
     }
 }
 
-void DFontInfoManager::getFontInfo(DFontInfo *data)
+DFontInfo *DFontInfoManager::getFontInfo(const QString &filePath)
 {
+    DFontInfo *fontInfo = new DFontInfo;
     FT_Library m_library = 0;
     FT_Face m_face = 0;
 
     FT_Init_FreeType(&m_library);
-    FT_New_Face(m_library, data->filePath.toUtf8().constData(), 0, &m_face);
+    FT_New_Face(m_library, filePath.toUtf8().constData(), 0, &m_face);
 
     // get the basic data.
-    data->familyName = QString::fromLatin1(m_face->family_name);
-    data->styleName = QString::fromLatin1(m_face->style_name);
-    data->type = getFontType(data->filePath);
-    data->isInstalled = isFontInstalled(data);
+    fontInfo->filePath = filePath;
+    fontInfo->familyName = QString::fromLatin1(m_face->family_name);
+    fontInfo->styleName = QString::fromLatin1(m_face->style_name);
+    fontInfo->type = getFontType(filePath);
 
     if (FT_IS_SFNT(m_face)) {
         const int count = FT_Get_Sfnt_Name_Count(m_face);
@@ -214,24 +214,24 @@ void DFontInfoManager::getFontInfo(DFontInfo *data)
 
             switch (sname.name_id) {
             case TT_NAME_ID_COPYRIGHT:
-                data->copyright = g_convert((char *)sname.string,
-                                            sname.string_len,
-                                            "UTF-8", "UTF-16BE", NULL, NULL, NULL);
-                data->copyright = data->copyright.simplified();
+                fontInfo->copyright = g_convert((char *)sname.string,
+                                                sname.string_len,
+                                                "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                fontInfo->copyright = fontInfo->copyright.simplified();
                 break;
 
             case TT_NAME_ID_VERSION_STRING:
-                data->version = g_convert((char *)sname.string,
-                                          sname.string_len,
-                                          "UTF-8", "UTF-16BE", NULL, NULL, NULL);
-                data->version.remove("Version").simplified();
+                fontInfo->version = g_convert((char *)sname.string,
+                                              sname.string_len,
+                                              "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                fontInfo->version.remove("Version").simplified();
                 break;
 
             case TT_NAME_ID_DESCRIPTION:
-                data->description = g_convert((char *)sname.string,
-                                              sname.string_len,
-                                              "UTF-8", "UTF-16BE", NULL, NULL, NULL);
-                data->description = data->description.simplified();
+                fontInfo->description = g_convert((char *)sname.string,
+                                                  sname.string_len,
+                                                  "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                fontInfo->description = fontInfo->description.simplified();
                 break;
             default:
                 break;
@@ -239,9 +239,13 @@ void DFontInfoManager::getFontInfo(DFontInfo *data)
         }
     }
 
+    fontInfo->isInstalled = isFontInstalled(fontInfo);
+
     // destroy object.
     FT_Done_Face(m_face);
     FT_Done_FreeType(m_library);
+
+    return fontInfo;
 }
 
 bool DFontInfoManager::isFontInstalled(DFontInfo *data)
@@ -272,6 +276,8 @@ bool DFontInfoManager::fontsInstall(const QStringList &files)
 
     if (!failed) {
         //QProcess::startDetached("fc-cache");
+        process.start("fc-cache");
+        process.waitForFinished();
     }
 
     process.kill();
@@ -288,19 +294,21 @@ bool DFontInfoManager::fontRemove(DFontInfo *data)
 
     process.start("pkexec", QStringList() << "rm" << "-rf" << filePath);
     process.waitForFinished(-1);
-    failed |= process.exitCode();
+                                                            failed |= process.exitCode();
 
-    if (!failed) {
-        //QProcess::startDetached("fc-cache");
-    }
+                                                            if (!failed) {
+                                                                //QProcess::startDetached("fc-cache");
+                                                                process.start("fc-cache");
+                                                                process.waitForFinished();
+                                                            }
 
-    process.kill();
+                                                            process.kill();
     process.close();
 
     return failed;
 }
 
-QString DFontInfoManager::fontReinstall(DFontInfo *data) const
+QString DFontInfoManager::fontReinstall(DFontInfo *data)
 {
     QProcess process;
     QString sysPath = getInstalledFontPath(data);

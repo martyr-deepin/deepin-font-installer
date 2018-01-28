@@ -17,28 +17,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DFONTINSTALL_H
-#define DFONTINSTALL_H
+#include <QCoreApplication>
+#include <QCommandLineParser>
+#include <QCryptographicHash>
+#include <QFile>
+#include <QFileInfo>
+#include <QProcess>
+#include <QDir>
+#include <QDebug>
+#include <iostream>
 
-#include <QThread>
-
-class DFontInstall : public QThread
+int main(int argc, char *argv[])
 {
-    Q_OBJECT
+    QCoreApplication app(argc, argv);
+    QCommandLineParser parser;
+    parser.process(app);
 
-public:
-    DFontInstall(QObject *parent = nullptr);
-    ~DFontInstall();
+    const QStringList fileList = parser.positionalArguments();
 
-    void startInstall(const QStringList &list);
-    void run();
+    for (const QString file : fileList) {
+        QFile openFile(file);
 
-signals:
-    void installStarted();
-    void installFinished();
+        if (openFile.remove()) {
+            std::cout << "uninstall finished." << std::endl;
 
-private:
-    QStringList m_fileList;
-};
+            QProcess process;
+            process.start("fc-cache");
+            process.waitForFinished();
+        }
+    }
 
-#endif
+    return 0;
+}

@@ -33,12 +33,20 @@ class ListItem : public QWidget
     Q_OBJECT
 
 public:
+
+    enum Status {
+        None,
+        Installed,
+        Installing,
+        Waiting
+    };
+
     ListItem(QWidget *parent = nullptr);
 
     QListWidgetItem *getItem() { return m_item; };
     DFontInfo *getFontInfo() { return m_fontInfo; };
-    void setFontInfo(DFontInfo *);
-    void updateStatus();
+    void updateInfo(DFontInfo *);
+    void setStatus(Status status);
 
 signals:
     void closeBtnClicked(QListWidgetItem *item);

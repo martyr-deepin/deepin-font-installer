@@ -21,8 +21,6 @@
 #define LISTVIEW_H
 
 #include <QListWidget>
-#include "listitem.h"
-#include "dfontinfomanager.h"
 
 class ListWidget : public QListWidget
 {
@@ -31,14 +29,6 @@ class ListWidget : public QListWidget
 public:
     ListWidget(QWidget *parent = nullptr);
     ~ListWidget();
-
-    void addListItem(DFontInfo *);
-
-signals:
-    void deleteItem(DFontInfo *);
-
-private slots:
-    void handleClose(QListWidgetItem *list);
 };
 
 #endif

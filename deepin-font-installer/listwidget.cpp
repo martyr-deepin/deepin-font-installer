@@ -18,14 +18,14 @@
  */
 
 #include "listwidget.h"
-#include <QListWidgetItem>
 
 ListWidget::ListWidget(QWidget *parent)
     : QListWidget(parent)
 {
-    setVerticalScrollMode(ScrollPerPixel);
-    setAutoScroll(false);
+    setFixedHeight(300);
+    setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     setSelectionMode(QAbstractItemView::NoSelection);
+    setAutoScroll(false);
     setStyleSheet("QListView {"
                   "border: 1px solid rgba(151, 151, 151, 0.1);"
                   "border-radius: 4px;"
@@ -34,23 +34,4 @@ ListWidget::ListWidget(QWidget *parent)
 
 ListWidget::~ListWidget()
 {
-}
-
-void ListWidget::addListItem(DFontInfo *info)
-{
-    ListItem *fileItem = new ListItem;
-
-    addItem(fileItem->getItem());
-    fileItem->setFontInfo(info);
-    fileItem->getItem()->setSizeHint(QSize(100, 64));
-    setItemWidget(fileItem->getItem(), fileItem);
-
-    connect(fileItem, &ListItem::closeBtnClicked, this, &ListWidget::handleClose);
-}
-
-void ListWidget::handleClose(QListWidgetItem *item)
-{
-    ListItem *fileItem = static_cast<ListItem *>(itemWidget(item));
-    emit deleteItem(fileItem->getFontInfo());
-    delete takeItem(row(fileItem->getItem()));
 }

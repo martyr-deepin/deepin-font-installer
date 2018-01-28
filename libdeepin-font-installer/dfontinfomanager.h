@@ -46,12 +46,13 @@ public:
 
     void refreshList();
     QStringList getAllFontPath() const;
+    QString getInstalledFontPath(DFontInfo *info);
     QString getFontType(const QString &filePath);
-    void getFontInfo(DFontInfo *data);
+    DFontInfo *getFontInfo(const QString &filePath);
     bool isFontInstalled(DFontInfo *data);
     bool fontsInstall(const QStringList &files);
     bool fontRemove(DFontInfo *data);
-    QString fontReinstall(DFontInfo *data) const;
+    QString fontReinstall(DFontInfo *data);
 };
 
 #endif

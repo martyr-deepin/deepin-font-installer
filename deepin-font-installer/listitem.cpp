@@ -74,10 +74,9 @@ ListItem::ListItem(QWidget *parent)
     });
 }
 
-void ListItem::setFontInfo(DFontInfo *p)
+void ListItem::updateInfo(DFontInfo *p)
 {
     m_fontInfo = p;
-    updateStatus();
 
     const bool isInstalled = m_fontInfo->isInstalled;
     const bool isSampleVersion = m_fontInfo->sysVersion == m_fontInfo->version;
@@ -107,13 +106,25 @@ void ListItem::setFontInfo(DFontInfo *p)
     }
 }
 
-void ListItem::updateStatus()
+void ListItem::setStatus(Status status)
 {
-    if (m_fontInfo->isInstalled) {
+    m_closeBtn->hide();
+    m_statusLabel->setStyleSheet("QLabel { color: #7C7C7C; }");
+
+    switch (status) {
+    case None:
+        m_statusLabel->setText("");
+        break;
+    case Installed:
         m_statusLabel->setStyleSheet("QLabel { color: #528315; }");
         m_statusLabel->setText(tr("Installed"));
-    } else {
-        m_statusLabel->setText("");
+        break;
+    case Installing:
+        m_statusLabel->setText(tr("Installing"));
+        break;
+    case Waiting:
+        m_statusLabel->setText(tr("Waiting"));
+        break;
     }
 }
 

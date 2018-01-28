@@ -24,21 +24,22 @@
 #include <QFileInfo>
 #include <QUrlQuery>
 #include <QProcess>
+#include <QDebug>
 #include <QTimer>
 #include <QUrl>
 #include <QDir>
 
-void setElidedText(QLabel *label, const QString &text)
+void setElidedText(QLabel *label, const QString &text, const int &textWidth)
 {
     const QFontMetrics fm(label->font());
-    const int textWidth = label->width() * 1.85;
     const QString clippedText = fm.elidedText(text, Qt::ElideRight, textWidth);
     label->setText(clippedText);
 }
 
 SingleFilePage::SingleFilePage(QWidget *parent)
     : QWidget(parent),
-      m_infoManager(DFontInfoManager::instance()),
+      m_fontInfoManager(DFontInfoManager::instance()),
+      m_fontManager(DFontManager::instance()),
       m_nameLabel(new QLabel),
       m_styleLabel(new QLabel),
       m_typeLabel(new QLabel),
@@ -169,6 +170,10 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_propertyAnimation->setEndValue(100);
 
     // connect the signals to the slots function.
+    connect(m_fontManager, &DFontManager::installFinished, this, &SingleFilePage::onInstallFinished);
+    connect(m_fontManager, &DFontManager::uninstallFinished, this, &SingleFilePage::onUninstallFinished);
+    connect(m_fontManager, &DFontManager::reinstallFinished, this, &SingleFilePage::onReinstallFinished);
+    connect(m_fontManager, &DFontManager::installChanged, this, [=] (const QString &path) { m_filePath = path.trimmed(); });
     connect(m_installBtn, &QPushButton::clicked, this, &SingleFilePage::handleInstall);
     connect(m_uninstallBtn, &QPushButton::clicked, this, &SingleFilePage::handleRemove);
     connect(m_reinstallBtn, &QPushButton::clicked, this, &SingleFilePage::handleReinstall);
@@ -192,8 +197,12 @@ void SingleFilePage::updateInfo(DFontInfo *info)
     m_styleLabel->setText(m_fontInfo->styleName);
     m_typeLabel->setText(m_fontInfo->type);
     m_versionLabel->setText(m_fontInfo->version);
-    setElidedText(m_copyrightLabel, copyright);
-    setElidedText(m_descriptionLabel, description);
+
+    const QFontMetrics fm = m_versionLabel->fontMetrics();
+    const int cpLineWidth = this->width() - 120 - fm.width(tr("Copyright: "));
+    const int descLineWidth = this->width() - 120 - fm.width(tr("Description: "));
+    setElidedText(m_copyrightLabel, copyright, cpLineWidth * 2);
+    setElidedText(m_descriptionLabel, description, descLineWidth * 2);
 }
 
 void SingleFilePage::refreshPage()
@@ -245,71 +254,84 @@ void SingleFilePage::progressBarStart()
 
 void SingleFilePage::handleInstall()
 {
-    bool failed = m_infoManager->fontsInstall(QStringList() << m_fontInfo->filePath);
-
-    if (!failed) {
-        progressBarStart();
-
-        QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
-                m_fontInfo->isInstalled = true;
-                m_filePath = "/usr/share/fonts/" + QFileInfo(m_fontInfo->filePath).fileName();
-
-                m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
-                m_tipsLabel->setText(tr("Installed successfully"));
-                m_installBtn->setVisible(false);
-                m_uninstallBtn->setVisible(false);
-                m_reinstallBtn->setVisible(false);
-                m_viewFileBtn->setVisible(true);
-                m_closeBtn->setVisible(false);
-                m_progress->setValue(0);
-                m_bottomLayout->setCurrentIndex(0);
-        });
-    }
+    m_fontManager->setType(DFontManager::Install);
+    m_fontManager->setInstallFileList(QStringList() << m_fontInfo->filePath);
+    m_fontManager->start();
 }
 
 void SingleFilePage::handleRemove()
 {
-    bool failed = m_infoManager->fontRemove(m_fontInfo);
+    const QString target = m_fontInfoManager->getInstalledFontPath(m_fontInfo);
 
-    if (!failed) {
-        progressBarStart();
-
-        QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
-                m_fontInfo->isInstalled = false;
-
-                m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
-                m_tipsLabel->setText(tr("Removed successfully"));
-                m_installBtn->setVisible(false);
-                m_uninstallBtn->setVisible(false);
-                m_reinstallBtn->setVisible(false);
-                m_viewFileBtn->setVisible(false);
-                m_closeBtn->setVisible(true);
-                m_progress->setValue(0);
-                m_bottomLayout->setCurrentIndex(0);
-            });
-    }
+    m_fontManager->setType(DFontManager::UnInstall);
+    m_fontManager->setUnInstallFile(target);
+    m_fontManager->start();
 }
 
 void SingleFilePage::handleReinstall()
 {
-    const QString reinstStr = m_infoManager->fontReinstall(m_fontInfo);
+    const QString sysPath = m_fontInfoManager->getInstalledFontPath(m_fontInfo);
+    m_filePath = sysPath;
 
-    if (!reinstStr.isEmpty()) {
-        m_filePath = reinstStr;
-        progressBarStart();
+    m_fontManager->setType(DFontManager::ReInstall);
+    m_fontManager->setReInstallFile(m_fontInfo->filePath, sysPath);
+    m_fontManager->start();
+}
 
-        QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
-                m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
-                m_tipsLabel->setText(tr("Installed successfully"));
-                m_installBtn->setVisible(false);
-                m_uninstallBtn->setVisible(false);
-                m_reinstallBtn->setVisible(false);
-                m_viewFileBtn->setVisible(true);
-                m_closeBtn->setVisible(false);
-                m_progress->setValue(0);
-                m_bottomLayout->setCurrentIndex(0);
+void SingleFilePage::onInstallFinished()
+{
+    progressBarStart();
+
+    QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
+            m_fontInfo->isInstalled = true;
+
+            m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+            m_tipsLabel->setText(tr("Installed successfully"));
+            m_installBtn->setVisible(false);
+            m_uninstallBtn->setVisible(false);
+            m_reinstallBtn->setVisible(false);
+            m_viewFileBtn->setVisible(true);
+            m_closeBtn->setVisible(false);
+            m_progress->setValue(0);
+            m_bottomLayout->setCurrentIndex(0);
         });
-    }
+}
+
+void SingleFilePage::onUninstallFinished()
+{
+    progressBarStart();
+
+    QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
+            m_fontInfo->isInstalled = false;
+
+            m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+            m_tipsLabel->setText(tr("Removed successfully"));
+            m_installBtn->setVisible(false);
+            m_uninstallBtn->setVisible(false);
+            m_reinstallBtn->setVisible(false);
+            m_viewFileBtn->setVisible(false);
+            m_closeBtn->setVisible(true);
+            m_progress->setValue(0);
+            m_bottomLayout->setCurrentIndex(0);
+        });
+}
+
+void SingleFilePage::onReinstallFinished()
+{
+    progressBarStart();
+
+    QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
+         m_fontInfo->isInstalled = true;
+         m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+         m_tipsLabel->setText(tr("Installed successfully"));
+         m_installBtn->setVisible(false);
+         m_uninstallBtn->setVisible(false);
+         m_reinstallBtn->setVisible(false);
+         m_viewFileBtn->setVisible(true);
+         m_closeBtn->setVisible(false);
+         m_progress->setValue(0);
+         m_bottomLayout->setCurrentIndex(0);
+        });
 }
 
 void SingleFilePage::viewFilePath()
@@ -319,5 +341,4 @@ void SingleFilePage::viewFilePath()
     query.addQueryItem("selectUrl", QUrl::fromLocalFile(m_filePath).toString());
     url.setQuery(query);
 
-    QProcess::startDetached("dde-file-manager", QStringList(url.toString()));
-}
+    QProcess::startDetached("dde-file-manager", QStringList(url.toString()));}

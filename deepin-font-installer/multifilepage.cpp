@@ -21,16 +21,17 @@
 #include <QListWidgetItem>
 #include <QApplication>
 #include <QVBoxLayout>
+#include <QTimer>
 #include "listitem.h"
 
 MultiFilePage::MultiFilePage(QWidget *parent)
     : QWidget(parent),
-      m_fontInfo(DFontInfoManager::instance()),
-      m_fontInstall(new DFontInstall),
+      m_fontInfoManager(DFontInfoManager::instance()),
+      m_fontManager(DFontManager::instance()),
       m_listWidget(new ListWidget),
       m_installBtn(new QPushButton(tr("Install"))),
       m_closeBtn(new QPushButton(tr("Done"))),
-      m_spinner(new DSpinner)
+      m_progress(new Progress)
 {
     QHBoxLayout *contentLayout = new QHBoxLayout;
     contentLayout->addSpacing(15);
@@ -48,34 +49,20 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     m_closeBtn->setObjectName("BlueButton");
     m_closeBtn->setFixedSize(160, 36);
     m_closeBtn->hide();
+    m_progress->hide();
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
-    mainLayout->addLayout(contentLayout);
     mainLayout->addSpacing(10);
+    mainLayout->addLayout(contentLayout);
+    mainLayout->addStretch();
     mainLayout->addLayout(btnsLayout);
-    mainLayout->addWidget(m_spinner, 0, Qt::AlignHCenter);
-    mainLayout->addSpacing(14);
+    mainLayout->addWidget(m_progress, 0, Qt::AlignHCenter);
+    mainLayout->addSpacing(10);
 
-    m_spinner->setFixedSize(36, 36);
-    m_spinner->setVisible(false);
-
-    connect(m_listWidget, &ListWidget::deleteItem, this, &MultiFilePage::handleDelete);
     connect(m_installBtn, &QPushButton::clicked, this, &MultiFilePage::batchInstallation);
     connect(m_closeBtn, &QPushButton::clicked, this, &QApplication::quit);
-
-    connect(m_fontInstall, &DFontInstall::installStarted, this, [=] {
-                                                                    m_spinner->start();
-                                                                    m_spinner->setVisible(true);
-                                                                    m_installBtn->setVisible(false);
-                                                                });
-
-    connect(m_fontInstall, &DFontInstall::installFinished, this, [=] {
-                                                                     m_spinner->stop();
-                                                                     m_spinner->setVisible(false);
-                                                                     m_installBtn->setVisible(true);
-                                                                     refreshList();
-                                                                     refreshPage();
-                                                                 });
+    connect(m_listWidget, &ListWidget::itemClicked, this, &MultiFilePage::handleClose);
+    connect(m_fontManager, &DFontManager::installing, this, &MultiFilePage::onProgressChanged);
 }
 
 MultiFilePage::~MultiFilePage()
@@ -85,24 +72,18 @@ MultiFilePage::~MultiFilePage()
 void MultiFilePage::addItems(const QStringList &paths)
 {
     for (const QString &path : paths) {
-        bool isExist = false;
-        // whether the same path;
-        for (const auto *d : m_infoList) {
-            if (d->filePath == path) {
-                isExist = true;
-                break;
-            }
-        }
+        if (!m_listItems.contains(path)) {
+            DFontInfo *fontInfo = m_fontInfoManager->getFontInfo(path);
+            m_infoList.append(fontInfo);
 
-        // add to listView if it does not exist.
-        if (isExist) {
-            continue;
-        } else {
-            DFontInfo *data = new DFontInfo;
-            data->filePath = path;
-            m_infoList.append(data);
-            m_fontInfo->getFontInfo(data);
-            m_listWidget->addListItem(data);
+            ListItem *fileItem = new ListItem;
+            m_listWidget->addItem(fileItem->getItem());
+            fileItem->updateInfo(fontInfo);
+            fileItem->getItem()->setSizeHint(QSize(100, 60));
+            m_listWidget->setItemWidget(fileItem->getItem(), fileItem);
+            connect(fileItem, &ListItem::closeBtnClicked, this, &MultiFilePage::handleClose);
+
+            m_listItems.insert(path, fileItem);
         }
     }
 
@@ -110,25 +91,24 @@ void MultiFilePage::addItems(const QStringList &paths)
     refreshPage();
 }
 
-void MultiFilePage::handleDelete(DFontInfo *p)
+void MultiFilePage::handleClose(QListWidgetItem *item)
 {
-    m_infoList.removeAt(m_infoList.indexOf(p));
+    ListItem *fileItem = static_cast<ListItem *>(m_listWidget->itemWidget(item));
+    delete m_listWidget->takeItem(m_listWidget->row(fileItem->getItem()));
+    fileItem->deleteLater();
 
-    if (p) {
-        delete p;
-    }
-
-    refreshPage();
+    m_infoList.removeAt(m_infoList.indexOf(fileItem->getFontInfo()));
+    m_listItems.remove(fileItem->getFontInfo()->filePath);
 
     emit countChanged();
 }
 
 void MultiFilePage::refreshList()
 {
-    m_fontInfo->refreshList();
+    m_fontInfoManager->refreshList();
 
     for (auto *item : m_infoList) {
-        item->isInstalled = m_fontInfo->isFontInstalled(item);
+        item->isInstalled = m_fontInfoManager->isFontInstalled(item);
     }
 }
 
@@ -151,11 +131,11 @@ void MultiFilePage::refreshPage()
         m_closeBtn->hide();
     }
 
-    for (int i = 0; i < m_listWidget->count(); ++i) {
-        QListWidgetItem *item = m_listWidget->item(i);
-        ListItem *itemWidget = qobject_cast<ListItem *>(m_listWidget->itemWidget(item));
-        itemWidget->updateStatus();
-    }
+    // for (int i = 0; i < m_listWidget->count(); ++i) {
+    //     QListWidgetItem *item = m_listWidget->item(i);
+    //     ListItem *itemWidget = qobject_cast<ListItem *>(m_listWidget->itemWidget(item));
+    //     itemWidget->updateStatus();
+    // }
 }
 
 void MultiFilePage::batchInstallation()
@@ -169,6 +149,31 @@ void MultiFilePage::batchInstallation()
     }
 
     if (filePaths.count() > 0) {
-        m_fontInstall->startInstall(filePaths);
+        m_fontManager->setType(DFontManager::Install);
+        m_fontManager->setInstallFileList(filePaths);
+        m_fontManager->start();
     }
+}
+
+void MultiFilePage::onProgressChanged(const QString &filePath, const float &percent)
+{
+    m_installBtn->hide();
+    m_closeBtn->hide();
+    m_progress->show();
+    m_progress->setValue(percent);
+
+    ListItem *item = m_listItems.find(filePath).value();
+    item->setStatus(ListItem::Installed);
+    m_listWidget->scrollToItem(item->getItem());
+
+    if (percent == 100) {
+        onWorkerFinished();
+    }
+}
+
+void MultiFilePage::onWorkerFinished()
+{
+    m_installBtn->hide();
+    m_closeBtn->show();
+    m_progress->hide();
 }

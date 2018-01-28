@@ -20,15 +20,14 @@
 #ifndef MULTIFILEPAGE_H
 #define MULTIFILEPAGE_H
 
-#include "dfontinfomanager.h"
-#include "dfontinstall.h"
-#include "dspinner.h"
-#include "listwidget.h"
 #include <QWidget>
 #include <QLabel>
 #include <QPushButton>
-
-DWIDGET_USE_NAMESPACE
+#include "dfontinfomanager.h"
+#include "dfontmanager.h"
+#include "listwidget.h"
+#include "listitem.h"
+#include "progress.h"
 
 class MultiFilePage : public QWidget
 {
@@ -39,25 +38,28 @@ public:
     ~MultiFilePage();
 
     void addItems(const QStringList &paths);
+    void handleClose(QListWidgetItem *item);
     QList<DFontInfo *> getInfoList() { return m_infoList; };
 
 signals:
     void countChanged();
 
 private slots:
-    void handleDelete(DFontInfo *);
     void refreshList();
     void refreshPage();
     void batchInstallation();
+    void onProgressChanged(const QString &filePath, const float &percent);
+    void onWorkerFinished();
 
 private:
-    DFontInfoManager *m_fontInfo;
-    DFontInstall *m_fontInstall;
+    DFontInfoManager *m_fontInfoManager;
+    DFontManager *m_fontManager;
     ListWidget *m_listWidget;
     QPushButton *m_installBtn;
     QPushButton *m_closeBtn;
-    DSpinner *m_spinner;
+    Progress *m_progress;
     QList<DFontInfo *> m_infoList;
+    QMap<QString, ListItem *> m_listItems;
 };
 
 #endif

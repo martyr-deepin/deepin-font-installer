@@ -15,17 +15,16 @@ CONFIG += create_pc create_prl no_install_prl
 
 DEFINES += QT_MESSAGELOGCONTEXT
 
-
 # Input
 HEADERS += \
            dfontpreview.h \
 	   dfontinfomanager.h \
-	   dfontinstall.h
+	   dfontmanager.h
 
 SOURCES += \
            dfontpreview.cpp \
 	   dfontinfomanager.cpp \
-	   dfontinstall.cpp
+	   dfontmanager.cpp
 
 QMAKE_PKGCONFIG_LIBDIR = $$target.path
 QMAKE_PKGCONFIG_VERSION = $$VERSION
