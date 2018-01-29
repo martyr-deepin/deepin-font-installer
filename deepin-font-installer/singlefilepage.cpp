@@ -128,9 +128,8 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     mainLayout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
     mainLayout->addSpacing(10);
     mainLayout->addLayout(m_bottomLayout);
-    mainLayout->addSpacing(20);
     mainLayout->setSpacing(0);
-    mainLayout->setContentsMargins(50, 0, 50, 0);
+    mainLayout->setContentsMargins(50, 0, 50, 20);
 
     // init property.
     styleLabel->setStyleSheet("QLabel { color: #444444; }");
@@ -283,18 +282,18 @@ void SingleFilePage::onInstallFinished()
     progressBarStart();
 
     QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
-            m_fontInfo->isInstalled = true;
+        m_fontInfo->isInstalled = true;
 
-            m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
-            m_tipsLabel->setText(tr("Installed successfully"));
-            m_installBtn->setVisible(false);
-            m_uninstallBtn->setVisible(false);
-            m_reinstallBtn->setVisible(false);
-            m_viewFileBtn->setVisible(true);
-            m_closeBtn->setVisible(false);
-            m_progress->setValue(0);
-            m_bottomLayout->setCurrentIndex(0);
-        });
+        m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+        m_tipsLabel->setText(tr("Installed successfully"));
+        m_installBtn->setVisible(false);
+        m_uninstallBtn->setVisible(false);
+        m_reinstallBtn->setVisible(false);
+        m_viewFileBtn->setVisible(true);
+        m_closeBtn->setVisible(false);
+        m_progress->setValue(0);
+        m_bottomLayout->setCurrentIndex(0);
+    });
 }
 
 void SingleFilePage::onUninstallFinished()
@@ -302,18 +301,18 @@ void SingleFilePage::onUninstallFinished()
     progressBarStart();
 
     QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
-            m_fontInfo->isInstalled = false;
+        m_fontInfo->isInstalled = false;
 
-            m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
-            m_tipsLabel->setText(tr("Removed successfully"));
-            m_installBtn->setVisible(false);
-            m_uninstallBtn->setVisible(false);
-            m_reinstallBtn->setVisible(false);
-            m_viewFileBtn->setVisible(false);
-            m_closeBtn->setVisible(true);
-            m_progress->setValue(0);
-            m_bottomLayout->setCurrentIndex(0);
-        });
+        m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+        m_tipsLabel->setText(tr("Removed successfully"));
+        m_installBtn->setVisible(false);
+        m_uninstallBtn->setVisible(false);
+        m_reinstallBtn->setVisible(false);
+        m_viewFileBtn->setVisible(false);
+        m_closeBtn->setVisible(true);
+        m_progress->setValue(0);
+        m_bottomLayout->setCurrentIndex(0);
+    });
 }
 
 void SingleFilePage::onReinstallFinished()
@@ -321,17 +320,17 @@ void SingleFilePage::onReinstallFinished()
     progressBarStart();
 
     QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
-         m_fontInfo->isInstalled = true;
-         m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
-         m_tipsLabel->setText(tr("Installed successfully"));
-         m_installBtn->setVisible(false);
-         m_uninstallBtn->setVisible(false);
-         m_reinstallBtn->setVisible(false);
-         m_viewFileBtn->setVisible(true);
-         m_closeBtn->setVisible(false);
-         m_progress->setValue(0);
-         m_bottomLayout->setCurrentIndex(0);
-        });
+        m_fontInfo->isInstalled = true;
+        m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+        m_tipsLabel->setText(tr("Installed successfully"));
+        m_installBtn->setVisible(false);
+        m_uninstallBtn->setVisible(false);
+        m_reinstallBtn->setVisible(false);
+        m_viewFileBtn->setVisible(true);
+        m_closeBtn->setVisible(false);
+        m_progress->setValue(0);
+        m_bottomLayout->setCurrentIndex(0);
+    });
 }
 
 void SingleFilePage::viewFilePath()

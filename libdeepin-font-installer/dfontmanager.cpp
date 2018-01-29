@@ -90,15 +90,15 @@ bool DFontManager::doCmd(const QString &program, const QStringList &arguments)
 
     if (m_type == Install) {
         connect(process, &QProcess::readyReadStandardOutput, this, [&] {
-                                                                       const QString output = process->readAllStandardOutput();
+            const QString output = process->readAllStandardOutput();
 
-                                                                       if (m_instFileList.count() == 1) {
-                                                                           emit installChanged(output);
-                                                                       } else {
-                                                                           const QStringList items = output.split(QChar(':'));
-                                                                           emit installing(items.first(), items.last().toFloat());
-                                                                       }
-                                                                   });
+            if (m_instFileList.count() == 1) {
+               emit installChanged(output);
+            } else {
+               const QStringList items = output.split(QChar(':'));
+               emit installing(items.first(), items.last().toFloat());
+            }
+        });
     } else {
         connect(process, &QProcess::readyReadStandardOutput, this, [&] { emit output(process->readAllStandardOutput()); });
     }
