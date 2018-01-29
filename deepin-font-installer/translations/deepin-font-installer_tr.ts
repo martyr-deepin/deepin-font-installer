@@ -86,7 +86,7 @@
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>Telif hakkı:</translation>
+        <translation>Telif Hakkı:</translation>
     </message>
     <message>
         <source>Description: </source>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Düğer sürüm yüklü: %1</translation>
+        <translation>Diğer sürüm yüklü: %1</translation>
     </message>
     <message>
         <source>Done</source>

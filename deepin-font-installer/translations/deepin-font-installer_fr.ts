@@ -74,15 +74,15 @@
     </message>
     <message>
         <source>Style: </source>
-        <translation>Style:</translation>
+        <translation>Style :</translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation>Type:</translation>
+        <translation>Type :</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation>Version:</translation>
+        <translation>Version :</translation>
     </message>
     <message>
         <source>Copyright: </source>
@@ -90,7 +90,7 @@
     </message>
     <message>
         <source>Description: </source>
-        <translation>Description: </translation>
+        <translation>Description : </translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Autre version installée: %1</translation>
+        <translation>Autre version installée : %1</translation>
     </message>
     <message>
         <source>Done</source>

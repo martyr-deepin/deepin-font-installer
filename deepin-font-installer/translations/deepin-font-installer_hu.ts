@@ -1,120 +1,120 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Arraste o arquivo de fontes para cá</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select file</source>
-        <translation>Selecione o arquivo</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Unknown</source>
-        <translation>Desconhecido</translation>
+        <translation>Ismeretlen</translation>
     </message>
     <message>
         <source>Installed</source>
-        <translation>Instalado</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Instalador de fontes Deepin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>O Instalador de Fontes Deepin é usado para instalar e desinstalar arquivos de fonte para os usuários com a função de instalação em massa.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Instalador de fontes Deepin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>Instalar em Massa</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Instalar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
-        <translation>Feito</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Instalar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Remover</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>Reinstalar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Ver o diretório de fontes</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Style: </source>
-        <translation>Estilo:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Type: </source>
-        <translation>Tipo:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Version: </source>
-        <translation>Versão:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>Copyright:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Description: </source>
-        <translation>Descrição:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Desconhecido</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Mesma versão já instalada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Instalada com sucesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>Removida com sucesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Outra versão instalada: %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
-        <translation>Feito</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

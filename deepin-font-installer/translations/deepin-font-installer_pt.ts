@@ -29,14 +29,14 @@
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>O Instalador de Tipos de Letra Deepin é usado para instalar e desinstalar ficheiros font para utilizadores, com funcionalidade de instalação em série.</translation>
+        <translation>O Instalador de Tipos de Letra do Deepin é utilizado para instalar e desinstalar os ficheiros de tipos de letra para os utilizadores com a funcionalidade de instalação em série.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Instalador Deepin Font</translation>
+        <translation>Deepin Font Installer</translation>
     </message>
     <message>
         <source>Bulk Install</source>
@@ -51,7 +51,7 @@
     </message>
     <message>
         <source>Done</source>
-        <translation>Feito</translation>
+        <translation>Concluída</translation>
     </message>
 </context>
 <context>
@@ -70,7 +70,7 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Visualizar diretoria de tipos de letra</translation>
+        <translation>Ver diretoria dos tipos de letra</translation>
     </message>
     <message>
         <source>Style: </source>
@@ -86,7 +86,7 @@
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>Direitos de cópia:</translation>
+        <translation>Direitos de autor:</translation>
     </message>
     <message>
         <source>Description: </source>
@@ -114,7 +114,7 @@
     </message>
     <message>
         <source>Done</source>
-        <translation>Feito</translation>
+        <translation>Concluída</translation>
     </message>
 </context>
 </TS>
