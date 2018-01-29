@@ -51,7 +51,7 @@
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Готово</translation>
     </message>
 </context>
 <context>
@@ -110,11 +110,11 @@
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Інша версія встановлена: %1</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Готово</translation>
     </message>
 </context>
 </TS>

@@ -1,120 +1,120 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ca" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Arraste o arquivo de fontes para cá</translation>
+        <translation>Arrossegueu fins aquí el fitxer de lletra.</translation>
     </message>
     <message>
         <source>Select file</source>
-        <translation>Selecione o arquivo</translation>
+        <translation>Seleccioneu el fitxer</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Unknown</source>
-        <translation>Desconhecido</translation>
+        <translation>Desconegut</translation>
     </message>
     <message>
         <source>Installed</source>
-        <translation>Instalado</translation>
+        <translation>Instal·lat</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Instalador de fontes Deepin</translation>
+        <translation>Instal·lador de lletres del Deepin</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>O Instalador de Fontes Deepin é usado para instalar e desinstalar arquivos de fonte para os usuários com a função de instalação em massa.</translation>
+        <translation>L&apos;instal·lador de lletres del Deepin s&apos;usa per instal·lar i desinstal·lar fitxers de lletres per als usuaris amb una funció d&apos;instal·lació en bloc.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Instalador de fontes Deepin</translation>
+        <translation>Instal·lador de lletres del Deepin</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>Instalar em Massa</translation>
+        <translation>Instal·lació en bloc</translation>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Instalar</translation>
+        <translation>Instal·la</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>Feito</translation>
+        <translation>Fet</translation>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Instalar</translation>
+        <translation>Instal·la</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Remover</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>Reinstalar</translation>
+        <translation>Reinstal·la</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Ver o diretório de fontes</translation>
+        <translation>Mostra el directori de la lletra</translation>
     </message>
     <message>
         <source>Style: </source>
-        <translation>Estilo:</translation>
+        <translation>Estil:</translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation>Tipo:</translation>
+        <translation>Tipus:</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation>Versão:</translation>
+        <translation>Versió:</translation>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>Copyright:</translation>
+        <translation>Copyright: </translation>
     </message>
     <message>
         <source>Description: </source>
-        <translation>Descrição:</translation>
+        <translation>Descripció:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Desconhecido</translation>
+        <translation>Desconegut</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Mesma versão já instalada</translation>
+        <translation>Instal·lada la mateixa versió</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Instalada com sucesso</translation>
+        <translation>Instal·lació correcta</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>Removida com sucesso</translation>
+        <translation>Eliminació correcta</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Outra versão instalada: %1</translation>
+        <translation>Versió diferent instal·lada: %1</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>Feito</translation>
+        <translation>Fet</translation>
     </message>
 </context>
 </TS>

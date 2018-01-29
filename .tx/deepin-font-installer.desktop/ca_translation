@@ -10,5 +10,5 @@ Type=Application
 
 
 # Translations
-Icon[pt_BR]=preferences-desktop-font
-Name[pt_BR]=Instalador de fontes Deepin
+Icon[ca]=preferències-escriptori-lletra
+Name[ca]=Instal·lador de lletres del Deepin
