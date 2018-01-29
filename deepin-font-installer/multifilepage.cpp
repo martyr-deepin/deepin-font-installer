@@ -56,7 +56,10 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     mainLayout->addStretch();
     mainLayout->addWidget(m_progress, 0, Qt::AlignHCenter);
     mainLayout->addLayout(btnsLayout);
-    mainLayout->setContentsMargins(0, 10, 0, 20);
+    mainLayout->addSpacing(20);
+    mainLayout->setSpacing(0);
+    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins(0, 10, 0, 0);
 
     connect(m_installBtn, &QPushButton::clicked, this, &MultiFilePage::batchInstallation);
     connect(m_closeBtn, &QPushButton::clicked, this, &QApplication::quit);

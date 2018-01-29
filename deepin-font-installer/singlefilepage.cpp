@@ -124,11 +124,11 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     mainLayout->addSpacing(6);
     mainLayout->addLayout(descLayout);
     mainLayout->addStretch();
-    mainLayout->addSpacing(10);
     mainLayout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
     mainLayout->addSpacing(10);
     mainLayout->addLayout(m_bottomLayout);
     mainLayout->setSpacing(0);
+    mainLayout->setMargin(0);
     mainLayout->setContentsMargins(50, 0, 50, 20);
 
     // init property.
