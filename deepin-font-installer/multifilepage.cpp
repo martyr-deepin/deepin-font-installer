@@ -52,12 +52,11 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     m_progress->hide();
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
-    mainLayout->addSpacing(10);
     mainLayout->addLayout(contentLayout);
     mainLayout->addStretch();
-    mainLayout->addLayout(btnsLayout);
     mainLayout->addWidget(m_progress, 0, Qt::AlignHCenter);
-    mainLayout->addSpacing(10);
+    mainLayout->addLayout(btnsLayout);
+    mainLayout->setContentsMargins(0, 10, 0, 20);
 
     connect(m_installBtn, &QPushButton::clicked, this, &MultiFilePage::batchInstallation);
     connect(m_closeBtn, &QPushButton::clicked, this, &QApplication::quit);
