@@ -19,7 +19,7 @@
 
 #include "homepage.h"
 #include "utils.h"
-#include <QSvgWidget>
+#include <DSvgRenderer>
 
 HomePage::HomePage(QWidget *parent)
     : QWidget(parent),
@@ -28,19 +28,27 @@ HomePage::HomePage(QWidget *parent)
       m_splitLine(new QLabel),
       m_chooseBtn(new DLinkButton(tr("Select file")))
 {
-    QSvgWidget *iconWidget = new QSvgWidget(":/images/icon.svg");
-    iconWidget->setFixedSize(140, 140);
+    const auto ratio = devicePixelRatioF();
+    QPixmap iconPixmap = DSvgRenderer::render(":/images/font_unload.svg", QSize(160, 160) * ratio);
+    iconPixmap.setDevicePixelRatio(ratio);
+
+    QLabel *iconLabel = new QLabel;
+    iconLabel->setFixedSize(160, 160);
+    iconLabel->setPixmap(iconPixmap);
     m_splitLine->setPixmap(QPixmap(":/images/split_line.svg"));
 
-    m_layout->addStretch();
-    m_layout->addWidget(iconWidget, 0, Qt::AlignTop | Qt::AlignHCenter);
+    m_tipsLabel->setStyleSheet("QLabel { color: #6a6a6a; }");
+
+    m_layout->addSpacing(40);
+    m_layout->addWidget(iconLabel, 0, Qt::AlignTop | Qt::AlignHCenter);
     m_layout->addSpacing(20);
     m_layout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
-    m_layout->addSpacing(10);
+    m_layout->addSpacing(15);
     m_layout->addWidget(m_splitLine, 0, Qt::AlignHCenter);
-    m_layout->addSpacing(20);
+    m_layout->addSpacing(15);
     m_layout->addWidget(m_chooseBtn, 0, Qt::AlignHCenter);
     m_layout->addStretch();
+    m_layout->setSpacing(0);
 
     connect(m_chooseBtn, &DLinkButton::clicked, this, &HomePage::onChooseBtnClicked);
 }
