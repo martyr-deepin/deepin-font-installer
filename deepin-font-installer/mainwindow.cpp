@@ -56,9 +56,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_multiFilePage, &MultiFilePage::countChanged, this, &MainWindow::refreshPage);
 }
 
+
 MainWindow::~MainWindow()
 {
 }
+
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *e)
 {

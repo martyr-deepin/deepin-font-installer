@@ -43,16 +43,16 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     btnsLayout->addWidget(m_installBtn, 0, Qt::AlignHCenter);
     btnsLayout->addWidget(m_closeBtn, 0, Qt::AlignHCenter);
 
+    m_installBtn->setFocusPolicy(Qt::NoFocus);
     m_installBtn->setObjectName("BlueButton");
     m_installBtn->setFixedSize(160, 36);
     m_installBtn->hide();
-    m_installBtn->setFocusPolicy(Qt::NoFocus);
 
+    m_closeBtn->setFocusPolicy(Qt::NoFocus);
     m_closeBtn->setObjectName("BlueButton");
     m_closeBtn->setFixedSize(160, 36);
     m_closeBtn->hide();
     m_progress->hide();
-    m_closeBtn->setFocusPolicy(Qt::NoFocus);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addLayout(contentLayout);
@@ -66,7 +66,6 @@ MultiFilePage::MultiFilePage(QWidget *parent)
 
     connect(m_installBtn, &QPushButton::clicked, this, &MultiFilePage::batchInstallation);
     connect(m_closeBtn, &QPushButton::clicked, this, &QApplication::quit);
-    connect(m_listWidget, &ListWidget::itemClicked, this, &MultiFilePage::handleClose);
     connect(m_fontManager, &DFontManager::installing, this, &MultiFilePage::onProgressChanged);
 }
 
@@ -185,4 +184,5 @@ void MultiFilePage::onWorkerFinished()
     m_closeBtn->show();
     m_progress->hide();
     m_progress->setValue(0);
+    refreshList();
 }

@@ -9,7 +9,8 @@ SUBDIRS += \
            libdeepin-font-installer \
            deepin-font-preview-plugin \
            dfont-install \
-	   dfont-uninstall
+	   dfont-uninstall \
+	   dfont-reinstall
 
 deepin-font-installer.depends = libdeepin-font-installer
 deepin-font-preview-plugin.depends = libdeepin-font-installer

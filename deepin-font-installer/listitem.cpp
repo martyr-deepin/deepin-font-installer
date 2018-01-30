@@ -116,12 +116,14 @@ void ListItem::setStatus(Status status)
         m_statusLabel->setText("");
         break;
     case Installed:
+        m_status = Installed;
         m_statusLabel->setStyleSheet("QLabel { color: #528315; }");
         m_statusLabel->setText(tr("Installed"));
         break;
     case Installing:
+        m_status = Installing;
         m_statusLabel->setText(tr("Installing"));
-        break;
+    break;
     case Waiting:
         m_statusLabel->setText(tr("Waiting"));
         break;
@@ -146,6 +148,10 @@ void ListItem::paintEvent(QPaintEvent *e)
 
 void ListItem::enterEvent(QEvent *e)
 {
+    if (m_status == Installed) {
+        return;
+    }
+
     m_closeBtn->show();
     m_closeBtn->raise();
     m_statusLabel->hide();
@@ -155,6 +161,10 @@ void ListItem::enterEvent(QEvent *e)
 
 void ListItem::leaveEvent(QEvent *e)
 {
+    if (m_status == Installed) {
+        return;
+    }
+
     m_closeBtn->hide();
     m_statusLabel->show();
 

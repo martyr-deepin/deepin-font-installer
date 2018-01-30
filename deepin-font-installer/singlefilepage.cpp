@@ -66,13 +66,19 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     QLabel *copyrightLabel = new QLabel(tr("Copyright: "));
     QLabel *descLabel = new QLabel(tr("Description: "));
 
+    copyrightLabel->setAlignment(Qt::AlignTop);
+    m_copyrightLabel->setAlignment(Qt::AlignTop);
+
+    descLabel->setAlignment(Qt::AlignTop);
+    m_descriptionLabel->setAlignment(Qt::AlignTop);
+
     QFormLayout *formLayout = new QFormLayout;
     formLayout->addRow(styleLabel, m_styleLabel);
     formLayout->addRow(typeLabel, m_typeLabel);
     formLayout->addRow(versionLabel, m_versionLabel);
     formLayout->addRow(copyrightLabel, m_copyrightLabel);
     formLayout->addRow(descLabel, m_descriptionLabel);
-    formLayout->setLabelAlignment(Qt::AlignRight);
+    formLayout->setLabelAlignment(Qt::AlignLeft);
     formLayout->setHorizontalSpacing(5);
     formLayout->setVerticalSpacing(7);
 
@@ -124,29 +130,30 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_tipsLabel->setText("");
 
     m_installBtn->setFixedSize(160, 36);
+    m_installBtn->setFocusPolicy(Qt::NoFocus);
     m_installBtn->setObjectName("BlueButton");
     m_installBtn->setVisible(false);
-    m_installBtn->setFocusPolicy(Qt::NoFocus);
 
     m_uninstallBtn->setFixedSize(160, 36);
+    m_uninstallBtn->setFocusPolicy(Qt::NoFocus);
     m_uninstallBtn->setObjectName("GrayButton");
     m_uninstallBtn->setVisible(false);
-    m_uninstallBtn->setFocusPolicy(Qt::NoFocus);
 
     m_reinstallBtn->setFixedSize(160, 36);
+    m_reinstallBtn->setFocusPolicy(Qt::NoFocus);
     m_reinstallBtn->setObjectName("GrayButton");
     m_reinstallBtn->setVisible(false);
-    m_reinstallBtn->setFocusPolicy(Qt::NoFocus);
 
+    m_viewFileBtn->setText(tr("View font directory"));
     m_viewFileBtn->setFixedSize(160, 36);
+    m_viewFileBtn->setFocusPolicy(Qt::NoFocus);
     m_viewFileBtn->setObjectName("BlueButton");
     m_viewFileBtn->setVisible(false);
-    m_viewFileBtn->setFocusPolicy(Qt::NoFocus);
 
     m_closeBtn->setFixedSize(160, 36);
+    m_closeBtn->setFocusPolicy(Qt::NoFocus);
     m_closeBtn->setObjectName("BlueButton");
     m_closeBtn->setVisible(false);
-    m_closeBtn->setFocusPolicy(Qt::NoFocus);
 
     m_propertyAnimation->setDuration(500);
     m_propertyAnimation->setStartValue(0);
@@ -184,8 +191,8 @@ void SingleFilePage::updateInfo(DFontInfo *info)
     const QFontMetrics fm = m_versionLabel->fontMetrics();
     const int cpLineWidth = rect().width() - 100 - fm.width(tr("Copyright: "));
     const int descLineWidth = rect().width() - 100 - fm.width(tr("Description: "));
-    setElidedText(m_copyrightLabel, copyright, cpLineWidth * 1.85);
-    setElidedText(m_descriptionLabel, description, descLineWidth * 1.85);
+    setElidedText(m_copyrightLabel, copyright, cpLineWidth * 1.8);
+    setElidedText(m_descriptionLabel, description, descLineWidth * 1.8);
 }
 
 void SingleFilePage::refreshPage()

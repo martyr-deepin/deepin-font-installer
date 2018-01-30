@@ -24,23 +24,27 @@
 HomePage::HomePage(QWidget *parent)
     : QWidget(parent),
       m_layout(new QVBoxLayout(this)),
+      m_iconLabel(new QLabel),
       m_tipsLabel(new QLabel(tr("Drag font file here"))),
       m_splitLine(new QLabel),
       m_chooseBtn(new DLinkButton(tr("Select file")))
 {
     const auto ratio = devicePixelRatioF();
-    QPixmap iconPixmap = DSvgRenderer::render(":/images/font_unload.svg", QSize(160, 160) * ratio);
-    iconPixmap.setDevicePixelRatio(ratio);
 
-    QLabel *iconLabel = new QLabel;
-    iconLabel->setFixedSize(160, 160);
-    iconLabel->setPixmap(iconPixmap);
+    m_unloadPixmap = DSvgRenderer::render(":/images/font_unload.svg", QSize(160, 160) * ratio);
+    m_unloadPixmap.setDevicePixelRatio(ratio);
+
+    m_loadedPixmap = DSvgRenderer::render(":/images/font_loaded.svg", QSize(160, 160) * ratio);
+    m_loadedPixmap.setDevicePixelRatio(ratio);
+
+    m_iconLabel->setFixedSize(160, 160);
+    m_iconLabel->setPixmap(m_unloadPixmap);
     m_splitLine->setPixmap(QPixmap(":/images/split_line.svg"));
 
     m_tipsLabel->setStyleSheet("QLabel { color: #6a6a6a; }");
 
     m_layout->addSpacing(40);
-    m_layout->addWidget(iconLabel, 0, Qt::AlignTop | Qt::AlignHCenter);
+    m_layout->addWidget(m_iconLabel, 0, Qt::AlignTop | Qt::AlignHCenter);
     m_layout->addSpacing(20);
     m_layout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
     m_layout->addSpacing(15);
@@ -55,6 +59,15 @@ HomePage::HomePage(QWidget *parent)
 
 HomePage::~HomePage()
 {
+}
+
+void HomePage::setIconPixmap(bool isLoaded)
+{
+    if (isLoaded) {
+        m_iconLabel->setPixmap(m_loadedPixmap);
+    } else {
+        m_iconLabel->setPixmap(m_unloadPixmap);
+    }
 }
 
 void HomePage::onChooseBtnClicked()

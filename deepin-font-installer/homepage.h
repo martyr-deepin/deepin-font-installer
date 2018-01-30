@@ -36,6 +36,8 @@ public:
     HomePage(QWidget *parent = nullptr);
     ~HomePage();
 
+    void setIconPixmap(bool isLoaded);
+
 signals:
     void fileSelected(const QStringList files) const;
 
@@ -44,6 +46,9 @@ private:
 
 private:
     QVBoxLayout *m_layout;
+    QPixmap m_unloadPixmap;
+    QPixmap m_loadedPixmap;
+    QLabel *m_iconLabel;
     QLabel *m_tipsLabel;
     QLabel *m_splitLine;
     DLinkButton *m_chooseBtn;

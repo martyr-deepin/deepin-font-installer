@@ -64,6 +64,7 @@ private:
     QLabel *m_infoLabel;
     QLabel *m_statusLabel;
     DImageButton *m_closeBtn;
+    Status m_status;
 };
 
 #endif // LISTITEM_H

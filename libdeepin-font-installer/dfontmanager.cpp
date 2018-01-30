@@ -132,7 +132,7 @@ void DFontManager::handleUnInstall()
 
 void DFontManager::handleReInstall()
 {
-    if (doCmd("pkexec", QStringList() << "cp" << "-f" << m_reinstFile << m_sysFile)) {
+    if (doCmd("pkexec", QStringList() << "dfont-reinstall" << m_reinstFile << m_sysFile)) {
         emit reinstallFinished();
     }
 }

@@ -45,6 +45,7 @@ public:
 signals:
     void output(const QString &output);
     void installing(const QString &filePath, const float &percent);
+    void singleInstallFinished();
     void installFinished();
     void installChanged(const QString &instPath);
     void reinstallFinished();
