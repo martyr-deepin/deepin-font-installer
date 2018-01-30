@@ -31,7 +31,8 @@ MultiFilePage::MultiFilePage(QWidget *parent)
       m_listWidget(new ListWidget),
       m_installBtn(new QPushButton(tr("Install"))),
       m_closeBtn(new QPushButton(tr("Done"))),
-      m_progress(new Progress)
+      m_progress(new Progress),
+      m_animation(new QPropertyAnimation(m_progress, "value", this))
 {
     QHBoxLayout *contentLayout = new QHBoxLayout;
     contentLayout->addSpacing(15);
@@ -56,7 +57,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     mainLayout->addStretch();
     mainLayout->addWidget(m_progress, 0, Qt::AlignHCenter);
     mainLayout->addLayout(btnsLayout);
-    mainLayout->addSpacing(20);
+    mainLayout->addStretch();
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);
     mainLayout->setContentsMargins(0, 10, 0, 0);
@@ -162,7 +163,10 @@ void MultiFilePage::onProgressChanged(const QString &filePath, const float &perc
     m_installBtn->hide();
     m_closeBtn->hide();
     m_progress->show();
-    m_progress->setValue(percent);
+
+    m_animation->setStartValue(m_progress->value());
+    m_animation->setEndValue((int) percent);
+    m_animation->start();
 
     ListItem *item = m_listItems.find(filePath).value();
     item->setStatus(ListItem::Installed);
@@ -178,4 +182,5 @@ void MultiFilePage::onWorkerFinished()
     m_installBtn->hide();
     m_closeBtn->show();
     m_progress->hide();
+    m_progress->setValue(0);
 }
