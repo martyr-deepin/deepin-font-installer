@@ -23,6 +23,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QPushButton>
+#include <QPropertyAnimation>
 #include "dfontinfomanager.h"
 #include "dfontmanager.h"
 #include "listwidget.h"
@@ -58,6 +59,7 @@ private:
     QPushButton *m_installBtn;
     QPushButton *m_closeBtn;
     Progress *m_progress;
+    QPropertyAnimation *m_animation;
     QList<DFontInfo *> m_infoList;
     QMap<QString, ListItem *> m_listItems;
 };

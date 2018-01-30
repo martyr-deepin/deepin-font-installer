@@ -61,31 +61,31 @@ SingleFilePage::SingleFilePage(QWidget *parent)
 
     QHBoxLayout *styleLayout = new QHBoxLayout;
     QLabel *styleLabel = new QLabel(tr("Style: "));
-    styleLayout->addWidget(styleLabel, 0, Qt::AlignLeft | Qt::AlignTop);
+    styleLayout->addWidget(styleLabel, 0, Qt::AlignRight | Qt::AlignTop);
     styleLayout->addSpacing(3);
     styleLayout->addWidget(m_styleLabel, Qt::AlignLeft);
 
     QHBoxLayout *typeLayout = new QHBoxLayout;
     QLabel *typeLabel = new QLabel(tr("Type: "));
-    typeLayout->addWidget(typeLabel, 0, Qt::AlignLeft | Qt::AlignTop);
+    typeLayout->addWidget(typeLabel, 0, Qt::AlignRight | Qt::AlignTop);
     typeLayout->addSpacing(3);
     typeLayout->addWidget(m_typeLabel, Qt::AlignLeft);
 
     QHBoxLayout *versionLayout = new QHBoxLayout;
     QLabel *versionLabel = new QLabel(tr("Version: "));
-    versionLayout->addWidget(versionLabel, 0, Qt::AlignLeft | Qt::AlignTop);
+    versionLayout->addWidget(versionLabel, 0, Qt::AlignRight | Qt::AlignTop);
     versionLayout->addSpacing(3);
     versionLayout->addWidget(m_versionLabel, Qt::AlignLeft);
 
     QHBoxLayout *copyrightLayout = new QHBoxLayout;
     QLabel *copyrightLabel = new QLabel(tr("Copyright: "));
-    copyrightLayout->addWidget(copyrightLabel, 0, Qt::AlignLeft | Qt::AlignTop);
+    copyrightLayout->addWidget(copyrightLabel, 0, Qt::AlignRight | Qt::AlignTop);
     copyrightLayout->addSpacing(3);
     copyrightLayout->addWidget(m_copyrightLabel, Qt::AlignLeft);
 
     QHBoxLayout *descLayout = new QHBoxLayout;
     QLabel *descLabel = new QLabel(tr("Description: "));
-    descLayout->addWidget(descLabel, 0, Qt::AlignLeft | Qt::AlignTop);
+    descLayout->addWidget(descLabel, 0, Qt::AlignRight | Qt::AlignTop);
     descLayout->addSpacing(3);
     descLayout->addWidget(m_descriptionLabel, Qt::AlignLeft);
 
@@ -260,6 +260,7 @@ void SingleFilePage::handleInstall()
 
 void SingleFilePage::handleRemove()
 {
+    m_fontInfoManager->refreshList();
     const QString target = m_fontInfoManager->getInstalledFontPath(m_fontInfo);
 
     m_fontManager->setType(DFontManager::UnInstall);
