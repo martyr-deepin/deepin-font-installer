@@ -8,5 +8,7 @@
     <file>images/close_hover.svg</file>
     <file>images/close_press.svg</file>
     <file>images/font-x-generic.svg</file>
+    <file>images/font_loaded.svg</file>
+    <file>images/font_unload.svg</file>
   </qresource>
 </RCC>

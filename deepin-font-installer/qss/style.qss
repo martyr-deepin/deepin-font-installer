@@ -32,3 +32,14 @@
 #GrayButton:pressed {
     background-color: qlineargradient(x1:0 y1:0, x2:0 y2:1, stop:0 #0b8cff, stop:1 #0aa1ff);
 }
+
+QListView {
+    border: 1px solid rgba(151, 151, 151, 0.1);
+    border-radius: 4px;  
+}
+
+QListView::item:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}

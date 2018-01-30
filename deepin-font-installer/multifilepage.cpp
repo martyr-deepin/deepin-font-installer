@@ -46,11 +46,13 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     m_installBtn->setObjectName("BlueButton");
     m_installBtn->setFixedSize(160, 36);
     m_installBtn->hide();
+    m_installBtn->setFocusPolicy(Qt::NoFocus);
 
     m_closeBtn->setObjectName("BlueButton");
     m_closeBtn->setFixedSize(160, 36);
     m_closeBtn->hide();
     m_progress->hide();
+    m_closeBtn->setFocusPolicy(Qt::NoFocus);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addLayout(contentLayout);
