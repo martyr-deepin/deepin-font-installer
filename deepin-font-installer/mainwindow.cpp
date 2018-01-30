@@ -71,6 +71,10 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *e)
         return e->ignore();
     }
 
+
+
+    m_homePage->setIconPixmap(true);
+
     for (const auto &url : mime->urls()) {
         const QFileInfo info(url.toLocalFile());
 
@@ -79,6 +83,13 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *e)
     }
 
     e->ignore();
+}
+
+void MainWindow::dragLeaveEvent(QDragLeaveEvent *e)
+{
+    m_homePage->setIconPixmap(false);
+
+    DMainWindow::dragLeaveEvent(e);
 }
 
 void MainWindow::dropEvent(QDropEvent *e)

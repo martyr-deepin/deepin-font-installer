@@ -37,8 +37,9 @@ public:
     ~MainWindow();
 
 protected:
-    void dragEnterEvent(QDragEnterEvent *);
-    void dropEvent(QDropEvent *);
+    void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
+    void dragLeaveEvent(QDragLeaveEvent *) Q_DECL_OVERRIDE;
+    void dropEvent(QDropEvent *) Q_DECL_OVERRIDE;
 
 private slots:
     void refreshPage();
