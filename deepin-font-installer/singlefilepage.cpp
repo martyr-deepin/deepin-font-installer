@@ -20,6 +20,7 @@
 #include "singlefilepage.h"
 #include <QApplication>
 #include <QVBoxLayout>
+#include <QFormLayout>
 #include <QSvgWidget>
 #include <QFileInfo>
 #include <QUrlQuery>
@@ -59,35 +60,21 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     QSvgWidget *iconWidget = new QSvgWidget(":/images/font-x-generic.svg");
     iconWidget->setFixedSize(70, 70);
 
-    QHBoxLayout *styleLayout = new QHBoxLayout;
     QLabel *styleLabel = new QLabel(tr("Style: "));
-    styleLayout->addWidget(styleLabel, 0, Qt::AlignRight | Qt::AlignTop);
-    styleLayout->addSpacing(3);
-    styleLayout->addWidget(m_styleLabel, Qt::AlignLeft);
-
-    QHBoxLayout *typeLayout = new QHBoxLayout;
     QLabel *typeLabel = new QLabel(tr("Type: "));
-    typeLayout->addWidget(typeLabel, 0, Qt::AlignRight | Qt::AlignTop);
-    typeLayout->addSpacing(3);
-    typeLayout->addWidget(m_typeLabel, Qt::AlignLeft);
-
-    QHBoxLayout *versionLayout = new QHBoxLayout;
     QLabel *versionLabel = new QLabel(tr("Version: "));
-    versionLayout->addWidget(versionLabel, 0, Qt::AlignRight | Qt::AlignTop);
-    versionLayout->addSpacing(3);
-    versionLayout->addWidget(m_versionLabel, Qt::AlignLeft);
-
-    QHBoxLayout *copyrightLayout = new QHBoxLayout;
     QLabel *copyrightLabel = new QLabel(tr("Copyright: "));
-    copyrightLayout->addWidget(copyrightLabel, 0, Qt::AlignRight | Qt::AlignTop);
-    copyrightLayout->addSpacing(3);
-    copyrightLayout->addWidget(m_copyrightLabel, Qt::AlignLeft);
-
-    QHBoxLayout *descLayout = new QHBoxLayout;
     QLabel *descLabel = new QLabel(tr("Description: "));
-    descLayout->addWidget(descLabel, 0, Qt::AlignRight | Qt::AlignTop);
-    descLayout->addSpacing(3);
-    descLayout->addWidget(m_descriptionLabel, Qt::AlignLeft);
+
+    QFormLayout *formLayout = new QFormLayout;
+    formLayout->addRow(styleLabel, m_styleLabel);
+    formLayout->addRow(typeLabel, m_typeLabel);
+    formLayout->addRow(versionLabel, m_versionLabel);
+    formLayout->addRow(copyrightLabel, m_copyrightLabel);
+    formLayout->addRow(descLabel, m_descriptionLabel);
+    formLayout->setLabelAlignment(Qt::AlignRight);
+    formLayout->setHorizontalSpacing(5);
+    formLayout->setVerticalSpacing(5);
 
     QWidget *btnsWidget = new QWidget;
     QHBoxLayout *btnsLayout = new QHBoxLayout(btnsWidget);
@@ -114,15 +101,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     mainLayout->addSpacing(10);
     mainLayout->addWidget(m_nameLabel, 0, Qt::AlignHCenter);
     mainLayout->addSpacing(10);
-    mainLayout->addLayout(styleLayout);
-    mainLayout->addSpacing(6);
-    mainLayout->addLayout(typeLayout);
-    mainLayout->addSpacing(6);
-    mainLayout->addLayout(versionLayout);
-    mainLayout->addSpacing(6);
-    mainLayout->addLayout(copyrightLayout);
-    mainLayout->addSpacing(6);
-    mainLayout->addLayout(descLayout);
+    mainLayout->addLayout(formLayout);
     mainLayout->addStretch();
     mainLayout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
     mainLayout->addSpacing(10);
