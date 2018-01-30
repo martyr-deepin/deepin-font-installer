@@ -14,3 +14,4 @@ SUBDIRS += \
 
 deepin-font-installer.depends = libdeepin-font-installer
 deepin-font-preview-plugin.depends = libdeepin-font-installer
+dfont-install.depends = libdeepin-font-installer

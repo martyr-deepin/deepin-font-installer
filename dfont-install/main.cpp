@@ -26,6 +26,7 @@
 #include <QDir>
 #include <QDebug>
 #include <iostream>
+#include "dfontinfomanager.h"
 
 inline QString dataToMd5Hex(const QByteArray &data)
 {
@@ -48,10 +49,15 @@ int main(int argc, char *argv[])
     parser.process(app);
     checkDirectory();
 
+    DFontInfoManager *fontInfoManager = DFontInfoManager::instance();
     const QString sysDir = "/usr/share/fonts/deepin-font-install";
     const QStringList fileList = parser.positionalArguments();
 
     for (const QString file : fileList) {
+        //DFontInfo *fontInfo = fontInfoManager->getFontInfo(file);
+
+
+
         const QFileInfo info(file);
         const QString target = QString("%1/%2/%3").arg(sysDir, dataToMd5Hex(info.fileName().toUtf8()), info.fileName());
         const QString targetDir = QString("%1/%2").arg(sysDir, dataToMd5Hex(info.fileName().toUtf8()));
@@ -70,7 +76,7 @@ int main(int argc, char *argv[])
             std::cout << target.toUtf8().data() << std::endl;
         } else {
             const QString output = QString("%1:%2").arg(file, QString::number(currentIndex / float(count) * 100));
-            std::cout << output.toUtf8().data() << std::endl;            
+            std::cout << output.toUtf8().data() << std::endl;
         }
     }
 

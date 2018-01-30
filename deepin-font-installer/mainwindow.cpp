@@ -71,15 +71,13 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *e)
         return e->ignore();
     }
 
-
-
-    m_homePage->setIconPixmap(true);
-
     for (const auto &url : mime->urls()) {
         const QFileInfo info(url.toLocalFile());
 
-        if (info.isDir() || Utils::isFontMimeType(url.toLocalFile()))
+        if (info.isDir() || Utils::isFontMimeType(url.toLocalFile())) {
+            m_homePage->setIconPixmap(true);
             return e->accept();
+        }
     }
 
     e->ignore();

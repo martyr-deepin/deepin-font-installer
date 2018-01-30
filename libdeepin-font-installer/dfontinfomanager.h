@@ -50,9 +50,6 @@ public:
     QString getFontType(const QString &filePath);
     DFontInfo *getFontInfo(const QString &filePath);
     bool isFontInstalled(DFontInfo *data);
-    bool fontsInstall(const QStringList &files);
-    bool fontRemove(DFontInfo *data);
-    QString fontReinstall(DFontInfo *data);
 };
 
 #endif

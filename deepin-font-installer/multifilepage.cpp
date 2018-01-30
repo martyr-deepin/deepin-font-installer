@@ -147,16 +147,12 @@ void MultiFilePage::batchInstallation()
     QStringList filePaths;
 
     for (auto const &item : m_infoList) {
-        if (!item->isInstalled) {
-            filePaths << item->filePath;
-        }
+        filePaths << item->filePath;
     }
 
-    if (filePaths.count() > 0) {
-        m_fontManager->setType(DFontManager::Install);
-        m_fontManager->setInstallFileList(filePaths);
-        m_fontManager->start();
-    }
+    m_fontManager->setType(DFontManager::Install);
+    m_fontManager->setInstallFileList(filePaths);
+    m_fontManager->start();
 }
 
 void MultiFilePage::onProgressChanged(const QString &filePath, const float &percent)
@@ -176,6 +172,7 @@ void MultiFilePage::onProgressChanged(const QString &filePath, const float &perc
     if (nextIndex < m_listWidget->count()) {
         QListWidgetItem *item = m_listWidget->item(nextIndex);
         ListItem *nextItem = qobject_cast<ListItem *>(m_listWidget->itemWidget(item));
+
         nextItem->setStatus(ListItem::Installing);
         m_listWidget->scrollToItem(nextItem->getItem());
     }
@@ -190,6 +187,5 @@ void MultiFilePage::onWorkerFinished()
     m_installBtn->hide();
     m_closeBtn->show();
     m_progress->hide();
-    m_progress->setValue(0);
     refreshList();
 }

@@ -119,7 +119,9 @@ bool DFontManager::doCmd(const QString &program, const QStringList &arguments)
 void DFontManager::handleInstall()
 {
     if (doCmd("pkexec", QStringList() << "dfont-install" << m_instFileList)) {
-        emit installFinished();
+        if (m_instFileList.count() == 1) {
+            emit installFinished();
+        }
     }
 }
 
