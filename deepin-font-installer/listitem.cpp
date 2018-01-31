@@ -125,7 +125,7 @@ void ListItem::setStatus(Status status)
         m_statusLabel->setText(tr("Installing"));
     break;
     case Waiting:
-        m_statusLabel->setText(tr("Waiting"));
+        m_statusLabel->setText("Waiting");
         break;
     }
 }

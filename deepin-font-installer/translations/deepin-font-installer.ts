@@ -22,6 +22,18 @@
         <source>Installed</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other version installed: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Installing</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Main</name>

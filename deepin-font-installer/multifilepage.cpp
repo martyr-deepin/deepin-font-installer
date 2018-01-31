@@ -29,8 +29,8 @@ MultiFilePage::MultiFilePage(QWidget *parent)
       m_fontInfoManager(DFontInfoManager::instance()),
       m_fontManager(DFontManager::instance()),
       m_listWidget(new ListWidget),
-      m_installBtn(new QPushButton(tr("Install"))),
-      m_closeBtn(new QPushButton(tr("Done"))),
+      m_installBtn(new DSuggestButton),
+      m_closeBtn(new DSuggestButton),
       m_progress(new Progress),
       m_animation(new QPropertyAnimation(m_progress, "value", this))
 {
@@ -43,16 +43,19 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     btnsLayout->addWidget(m_installBtn, 0, Qt::AlignHCenter);
     btnsLayout->addWidget(m_closeBtn, 0, Qt::AlignHCenter);
 
+    m_installBtn->setText(tr("Install"));
     m_installBtn->setFocusPolicy(Qt::NoFocus);
     m_installBtn->setObjectName("BlueButton");
     m_installBtn->setFixedSize(160, 36);
-    m_installBtn->hide();
+    m_installBtn->setVisible(false);
 
+    m_closeBtn->setText(tr("Done"));
     m_closeBtn->setFocusPolicy(Qt::NoFocus);
     m_closeBtn->setObjectName("BlueButton");
     m_closeBtn->setFixedSize(160, 36);
-    m_closeBtn->hide();
-    m_progress->hide();
+    m_closeBtn->setVisible(false);
+    m_closeBtn->setVisible(false);
+    m_progress->setVisible(false);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addLayout(contentLayout);
@@ -128,11 +131,11 @@ void MultiFilePage::refreshPage()
     }
 
     if (isAllInstalled) {
-        m_installBtn->hide();
-        m_closeBtn->show();
+        m_installBtn->setVisible(false);
+        m_closeBtn->setVisible(true);
     } else {
-        m_installBtn->show();
-        m_closeBtn->hide();
+        m_installBtn->setVisible(true);
+        m_closeBtn->setVisible(false);
     }
 
     // for (int i = 0; i < m_listWidget->count(); ++i) {
@@ -157,9 +160,9 @@ void MultiFilePage::batchInstallation()
 
 void MultiFilePage::onProgressChanged(const QString &filePath, const float &percent)
 {
-    m_installBtn->hide();
-    m_closeBtn->hide();
-    m_progress->show();
+    m_installBtn->setVisible(false);
+    m_closeBtn->setVisible(false);
+    m_progress->setVisible(true);
 
     m_animation->setStartValue(m_progress->value());
     m_animation->setEndValue((int) percent);
@@ -184,8 +187,8 @@ void MultiFilePage::onProgressChanged(const QString &filePath, const float &perc
 
 void MultiFilePage::onWorkerFinished()
 {
-    m_installBtn->hide();
-    m_closeBtn->show();
-    m_progress->hide();
+    m_installBtn->setVisible(false);
+    m_closeBtn->setVisible(true);
+    m_progress->setVisible(false);
     refreshList();
 }

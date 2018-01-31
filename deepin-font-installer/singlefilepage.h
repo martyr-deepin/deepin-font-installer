@@ -28,6 +28,9 @@
 #include "dfontinfomanager.h"
 #include "dfontmanager.h"
 #include "progress.h"
+#include "dsuggestbutton.h"
+
+DWIDGET_USE_NAMESPACE
 
 class SingleFilePage : public QWidget
 {
@@ -61,10 +64,10 @@ private:
     QLabel *m_copyrightLabel;
     QLabel *m_descriptionLabel;
     QLabel *m_tipsLabel;
-    QPushButton *m_installBtn;
+    DSuggestButton *m_installBtn;
     QPushButton *m_uninstallBtn;
     QPushButton *m_reinstallBtn;
-    QPushButton *m_viewFileBtn;
+    DSuggestButton *m_viewFileBtn;
     QPushButton *m_closeBtn;
     Progress *m_progress;
     QPropertyAnimation *m_propertyAnimation;
