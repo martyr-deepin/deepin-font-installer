@@ -21,6 +21,7 @@
 #include "utils.h"
 #include <QVBoxLayout>
 #include <QPainter>
+#include <QFormLayout>
 #include <QSvgWidget>
 
 ListItem::ListItem(QWidget *parent)
@@ -44,24 +45,17 @@ ListItem::ListItem(QWidget *parent)
     m_closeBtn->setFixedSize(24, 24);
     m_closeBtn->hide();
 
-    QHBoxLayout *topLayout = new QHBoxLayout;
-    topLayout->addWidget(m_nameLabel);
-    topLayout->addSpacing(10);
-    topLayout->addWidget(m_styleLabel);
-    topLayout->addStretch();
-    topLayout->setSpacing(true);
-
-    QVBoxLayout *contentLayout = new QVBoxLayout;
-    contentLayout->addStretch();
-    contentLayout->addLayout(topLayout);
-    contentLayout->addWidget(m_infoLabel);
-    contentLayout->addStretch();
-    contentLayout->setSpacing(0);
+    QWidget *formWidget = new QWidget;
+    QFormLayout *formLayout = new QFormLayout(formWidget);
+    formLayout->addRow(m_nameLabel, m_styleLabel);
+    formLayout->addRow(m_infoLabel);
+    formLayout->setVerticalSpacing(0);
+    formLayout->setContentsMargins(0, 0, 0, 0);
 
     QHBoxLayout *mainLayout = new QHBoxLayout(this);
-    mainLayout->addSpacing(5);
+    mainLayout->addSpacing(10);
     mainLayout->addWidget(iconWidget);
-    mainLayout->addLayout(contentLayout);
+    mainLayout->addWidget(formWidget, 0, Qt::AlignVCenter);
     mainLayout->addStretch();
     mainLayout->addWidget(m_statusLabel);
     mainLayout->addSpacing(5);
@@ -87,11 +81,11 @@ void ListItem::updateInfo(DFontInfo *p)
 
     m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; font-size: 14px; }");
     if (isInstalled) {
+        m_infoLabel->setStyleSheet("QLabel { color: #47790C; font-size: 14px; }");
+
         if (isSampleVersion) {
-            m_infoLabel->setStyleSheet("QLabel { color: #FF5A5A; font-size: 14px; }");
             m_infoLabel->setText(tr("Same version installed"));
         } else {
-            m_infoLabel->setStyleSheet("QLabel { color: #47790C; font-size: 14px; }");
             m_infoLabel->setText(QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion));
         }
     } else {
