@@ -117,14 +117,19 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     mainLayout->setContentsMargins(50, 0, 50, 20);
 
     // init property.
-    styleLabel->setStyleSheet("QLabel { color: #444444; }");
-    typeLabel->setStyleSheet("QLabel { color: #444444; }");
-    versionLabel->setStyleSheet("QLabel { color: #444444; }");
-    copyrightLabel->setStyleSheet("QLabel { color: #444444; }");
-    descLabel->setStyleSheet("QLabel { color: #444444; }");
+    styleLabel->setStyleSheet("QLabel { color: #444444; font-size: 15px; }");
+    typeLabel->setStyleSheet("QLabel { color: #444444; font-size: 15px; }");
+    versionLabel->setStyleSheet("QLabel { color: #444444; font-size: 15px; }");
+    copyrightLabel->setStyleSheet("QLabel { color: #444444; font-size: 15px; }");
+    descLabel->setStyleSheet("QLabel { color: #444444; font-size: 15px; }");
 
     m_nameLabel->setStyleSheet("QLabel { font-size: 18px; font-weight: 500; }");
-    m_versionLabel->setWordWrap(true);
+    m_styleLabel->setStyleSheet("QLabel { font-size: 15px; }");
+    m_typeLabel->setStyleSheet("QLabel { font-size: 15px; }");
+    m_versionLabel->setStyleSheet("QLabel { font-size: 15px; }");
+    m_copyrightLabel->setStyleSheet("QLabel { font-size: 15px; }");
+    m_descriptionLabel->setStyleSheet("QLabel { font-size: 15px; }");
+
     m_copyrightLabel->setWordWrap(true);
     m_descriptionLabel->setWordWrap(true);
     m_tipsLabel->setText("");
