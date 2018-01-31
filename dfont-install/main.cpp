@@ -54,20 +54,27 @@ int main(int argc, char *argv[])
     const QStringList fileList = parser.positionalArguments();
 
     for (const QString file : fileList) {
-        //DFontInfo *fontInfo = fontInfoManager->getFontInfo(file);
+        DFontInfo *fontInfo = fontInfoManager->getFontInfo(file);
+        QProcess *process = new QProcess;
+        QString target = "";
+        const bool isInstalled = fontInfo->isInstalled;
 
+        if (isInstalled) {
+            const QString sysPath = fontInfoManager->getInstalledFontPath(fontInfo);
+            process->start("cp", QStringList() << "-f" << file << sysPath);
+            process->waitForFinished(-1);
+        } else {
+            const QFileInfo info(file);
+            target = QString("%1/%2/%3").arg(sysDir, dataToMd5Hex(info.fileName().toUtf8()), info.fileName());
+            const QString targetDir = QString("%1/%2").arg(sysDir, dataToMd5Hex(info.fileName().toUtf8()));
+            QDir dir(targetDir);
+            dir.mkpath(".");
+            QFile::copy(file, target);
+        }
 
-
-        const QFileInfo info(file);
-        const QString target = QString("%1/%2/%3").arg(sysDir, dataToMd5Hex(info.fileName().toUtf8()), info.fileName());
-        const QString targetDir = QString("%1/%2").arg(sysDir, dataToMd5Hex(info.fileName().toUtf8()));
-        QDir dir(targetDir);
-        dir.mkpath(".");
-
-        QFile::copy(file, target);
-        QProcess p;
-        p.start("fc-cache", QStringList() << "-v" << targetDir);
-        p.waitForFinished(-1);
+        process->start("fc-cache");
+        process->waitForFinished(-1);
+        process->deleteLater();
 
         const int currentIndex = fileList.indexOf(file);
         const int count = fileList.count() - 1;
