@@ -52,4 +52,8 @@ QProgressBar{
 QProgressBar::chunk{
     border: 1px solid #378CFA;
     background-color: #2CA7F8;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
 }

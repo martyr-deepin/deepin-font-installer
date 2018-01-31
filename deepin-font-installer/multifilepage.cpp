@@ -96,6 +96,7 @@ void MultiFilePage::addItems(const QStringList &paths)
 
     m_installBtn->setVisible(true);
     m_closeBtn->setVisible(false);
+    m_progress->setValue(0);
 
     refreshList();
 }
@@ -172,5 +173,6 @@ void MultiFilePage::onWorkerFinished()
     m_installBtn->setVisible(false);
     m_closeBtn->setVisible(true);
     m_progress->setVisible(false);
+    m_progress->setValue(0);
     refreshList();
 }

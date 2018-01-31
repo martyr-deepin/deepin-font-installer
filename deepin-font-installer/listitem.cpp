@@ -37,10 +37,10 @@ ListItem::ListItem(QWidget *parent)
                                    ":/images/close_press.svg"))
 {
     QSvgWidget *iconWidget = new QSvgWidget(":/images/font-x-generic.svg");
-    iconWidget->setFixedSize(50, 50);
+    iconWidget->setFixedSize(47, 45);
 
-    m_nameLabel->setStyleSheet("QLabel { font-size: 14px; font-weight: 500; color: #000000; }");
-    m_styleLabel->setStyleSheet("QLabel { font-size: 13px; color: #000000; }");
+    m_nameLabel->setStyleSheet("QLabel { font-size: 14px; font-weight: 510; color: #000000; }");
+    m_styleLabel->setStyleSheet("QLabel { font-size: 12px; color: #000000; }");
 
     m_closeBtn->setFixedSize(24, 24);
     m_closeBtn->hide();
@@ -49,6 +49,7 @@ ListItem::ListItem(QWidget *parent)
     QFormLayout *formLayout = new QFormLayout(formWidget);
     formLayout->addRow(m_nameLabel, m_styleLabel);
     formLayout->addRow(m_infoLabel);
+    formLayout->setHorizontalSpacing(8);
     formLayout->setVerticalSpacing(0);
     formLayout->setContentsMargins(0, 0, 0, 0);
 
