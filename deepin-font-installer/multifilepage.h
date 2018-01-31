@@ -50,7 +50,6 @@ signals:
 
 private slots:
     void refreshList();
-    void refreshPage();
     void batchInstallation();
     void onProgressChanged(const QString &filePath, const float &percent);
     void onWorkerFinished();

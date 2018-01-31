@@ -94,8 +94,10 @@ void MultiFilePage::addItems(const QStringList &paths)
         }
     }
 
+    m_installBtn->setVisible(true);
+    m_closeBtn->setVisible(false);
+
     refreshList();
-    refreshPage();
 }
 
 void MultiFilePage::handleClose(QListWidgetItem *item)
@@ -116,26 +118,6 @@ void MultiFilePage::refreshList()
 
     for (auto *item : m_infoList) {
         item->isInstalled = m_fontInfoManager->isFontInstalled(item);
-    }
-}
-
-void MultiFilePage::refreshPage()
-{
-    bool isAllInstalled = true;
-
-    for (const auto *item : m_infoList) {
-        if (!item->isInstalled) {
-            isAllInstalled = false;
-            break;
-        }
-    }
-
-    if (isAllInstalled) {
-        m_installBtn->setVisible(false);
-        m_closeBtn->setVisible(true);
-    } else {
-        m_installBtn->setVisible(true);
-        m_closeBtn->setVisible(false);
     }
 
     // for (int i = 0; i < m_listWidget->count(); ++i) {
