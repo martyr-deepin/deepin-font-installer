@@ -10,5 +10,5 @@ Type=Application
 
 
 # Translations
-Icon[pt]=preferences-desktop-font
-Name[pt]=Deepin Font Installer
+Icon[es_419]=preferencias-escritorio-fuente
+Name[es_419]=Deepin Font Installer

@@ -20,16 +20,28 @@
         <source>Installed</source>
         <translation>Instalado</translation>
     </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Other version installed: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installing</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Instalador de Tipos de Letra do Deepin</translation>
+        <translation>Deepin Font Installer</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>O Instalador de Tipos de Letra do Deepin é utilizado para instalar e desinstalar os ficheiros de tipos de letra para os utilizadores com a funcionalidade de instalação em série.</translation>
+        <translation>O Deepin Font Installer é utilizado para instalar e desinstalar os ficheiros de tipos de letra para os utilizadores com a funcionalidade de instalação em série.</translation>
     </message>
 </context>
 <context>
@@ -114,7 +126,7 @@
     </message>
     <message>
         <source>Done</source>
-        <translation>Concluída</translation>
+        <translation>Concluído</translation>
     </message>
 </context>
 </TS>

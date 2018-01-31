@@ -1,24 +1,24 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="es_419" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Glissez le fichier de la police ici</translation>
+        <translation>Arrastre el archivo de fuente hasta aquí</translation>
     </message>
     <message>
         <source>Select file</source>
-        <translation>Sélectionnez le fichier</translation>
+        <translation>Seleccione el archivo</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Unknown</source>
-        <translation>Inconnu</translation>
+        <translation>Desconocido</translation>
     </message>
     <message>
         <source>Installed</source>
-        <translation>Installé</translation>
+        <translation>Instalado</translation>
     </message>
     <message>
         <source>Same version installed</source>
@@ -37,96 +37,96 @@
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Installateur de Police Deepin</translation>
+        <translation>Deepin Font Installer</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>L&apos;installateur de polices est utilisé pour permettre à l&apos;utilisateur d&apos;installer et désinstaller une ou plusieurs polices à partir de fichiers.</translation>
+        <translation>Deepin Font Installer es utilizado para instalar y desinstalar archivos de fuentes para usuarios con función de instalación por lotes.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Installateur de Police Deepin</translation>
+        <translation>Deepin Font Installer</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>Installation en Vrac</translation>
+        <translation>Instalación por lote</translation>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Installer</translation>
+        <translation>Instalar</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>Succès</translation>
+        <translation>Terminado</translation>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Installer</translation>
+        <translation>Instalar</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Supprimer</translation>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>Réinstaller</translation>
+        <translation>Reinstalar</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Voir le dictionnaire des polices</translation>
+        <translation>Ver fuente en el directorio</translation>
     </message>
     <message>
         <source>Style: </source>
-        <translation>Style :</translation>
+        <translation>Estilo:</translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation>Type :</translation>
+        <translation>Tipo:</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation>Version :</translation>
+        <translation>Versión:</translation>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>Copyright:</translation>
+        <translation>Derechos de autor:</translation>
     </message>
     <message>
         <source>Description: </source>
-        <translation>Description : </translation>
+        <translation>Descripción:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Inconnu</translation>
+        <translation>Desconocido</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>La même version est installée</translation>
+        <translation>Misma versión instalada</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Installée avec succès</translation>
+        <translation>Instalado exitosamente</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>Supprimée avec succès</translation>
+        <translation>Eliminado exitosamente</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Autre version installée : %1</translation>
+        <translation>Otra versión instalada: %1</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>Fini</translation>
+        <translation>Terminado</translation>
     </message>
 </context>
 </TS>

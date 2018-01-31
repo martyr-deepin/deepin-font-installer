@@ -20,6 +20,18 @@
         <source>Installed</source>
         <translation>已安装</translation>
     </message>
+    <message>
+        <source>Same version installed</source>
+        <translation>已安装相同版本</translation>
+    </message>
+    <message>
+        <source>Other version installed: %1</source>
+        <translation>已安装其他版本：%1</translation>
+    </message>
+    <message>
+        <source>Installing</source>
+        <translation>正在安装</translation>
+    </message>
 </context>
 <context>
     <name>Main</name>
