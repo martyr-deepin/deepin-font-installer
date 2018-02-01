@@ -21,7 +21,9 @@
 #include <QListWidgetItem>
 #include <QApplication>
 #include <QVBoxLayout>
+#include <QProcess>
 #include <QTimer>
+#include <QUrl>
 #include "listitem.h"
 
 MultiFilePage::MultiFilePage(QWidget *parent)
@@ -29,8 +31,9 @@ MultiFilePage::MultiFilePage(QWidget *parent)
       m_fontInfoManager(DFontInfoManager::instance()),
       m_fontManager(DFontManager::instance()),
       m_listWidget(new ListWidget),
+      m_tipsLabel(new QLabel(tr("Installed successfully"))),
       m_installBtn(new DSuggestButton),
-      m_closeBtn(new DSuggestButton),
+      m_viewFileBtn(new DSuggestButton),
       m_progress(new Progress),
       m_animation(new QPropertyAnimation(m_progress, "value", this))
 {
@@ -41,7 +44,10 @@ MultiFilePage::MultiFilePage(QWidget *parent)
 
     QHBoxLayout *btnsLayout = new QHBoxLayout;
     btnsLayout->addWidget(m_installBtn, 0, Qt::AlignHCenter);
-    btnsLayout->addWidget(m_closeBtn, 0, Qt::AlignHCenter);
+    btnsLayout->addWidget(m_viewFileBtn, 0, Qt::AlignHCenter);
+
+    m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+    m_tipsLabel->setVisible(false);
 
     m_installBtn->setText(tr("Install"));
     m_installBtn->setFocusPolicy(Qt::NoFocus);
@@ -49,17 +55,19 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     m_installBtn->setFixedSize(160, 36);
     m_installBtn->setVisible(false);
 
-    m_closeBtn->setText(tr("Done"));
-    m_closeBtn->setFocusPolicy(Qt::NoFocus);
-    m_closeBtn->setObjectName("BlueButton");
-    m_closeBtn->setFixedSize(160, 36);
-    m_closeBtn->setVisible(false);
-    m_closeBtn->setVisible(false);
+    m_viewFileBtn->setText(tr("View font directory"));
+    m_viewFileBtn->setFocusPolicy(Qt::NoFocus);
+    m_viewFileBtn->setObjectName("BlueButton");
+    m_viewFileBtn->setFixedSize(160, 36);
+    m_viewFileBtn->setVisible(false);
+    m_viewFileBtn->setVisible(false);
     m_progress->setVisible(false);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addLayout(contentLayout);
     mainLayout->addStretch();
+    mainLayout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
+    mainLayout->addSpacing(5);
     mainLayout->addWidget(m_progress, 0, Qt::AlignHCenter);
     mainLayout->addLayout(btnsLayout);
     mainLayout->addStretch();
@@ -68,7 +76,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     mainLayout->setContentsMargins(0, 10, 0, 0);
 
     connect(m_installBtn, &QPushButton::clicked, this, &MultiFilePage::batchInstallation);
-    connect(m_closeBtn, &QPushButton::clicked, this, &QApplication::quit);
+    connect(m_viewFileBtn, &QPushButton::clicked, this, &MultiFilePage::onViewFileBtnClicked);
     connect(m_fontManager, &DFontManager::installing, this, &MultiFilePage::onProgressChanged);
 }
 
@@ -94,8 +102,9 @@ void MultiFilePage::addItems(const QStringList &paths)
         }
     }
 
+    m_tipsLabel->setVisible(false);
     m_installBtn->setVisible(true);
-    m_closeBtn->setVisible(false);
+    m_viewFileBtn->setVisible(false);
     m_progress->setValue(0);
 
     refreshList();
@@ -144,7 +153,7 @@ void MultiFilePage::batchInstallation()
 void MultiFilePage::onProgressChanged(const QString &filePath, const float &percent)
 {
     m_installBtn->setVisible(false);
-    m_closeBtn->setVisible(false);
+    m_viewFileBtn->setVisible(false);
     m_progress->setVisible(true);
 
     m_animation->setStartValue(m_progress->value());
@@ -170,9 +179,16 @@ void MultiFilePage::onProgressChanged(const QString &filePath, const float &perc
 
 void MultiFilePage::onWorkerFinished()
 {
+    m_tipsLabel->setVisible(true);
     m_installBtn->setVisible(false);
-    m_closeBtn->setVisible(true);
+    m_viewFileBtn->setVisible(true);
     m_progress->setVisible(false);
     m_progress->setValue(0);
     refreshList();
+}
+
+void MultiFilePage::onViewFileBtnClicked()
+{
+    QUrl url = QUrl::fromLocalFile("/usr/share/fonts/deepin-font-install");
+    QProcess::startDetached("dde-file-manager", QStringList() << url.toString());
 }

@@ -64,7 +64,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Done</source>
+        <source>Installed successfully</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View font directory</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

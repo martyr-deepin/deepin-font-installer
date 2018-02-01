@@ -114,6 +114,7 @@ void ListItem::setStatus(Status status)
         m_status = Installed;
         m_statusLabel->setStyleSheet("QLabel { color: #528315; }");
         m_statusLabel->setText(tr("Installed"));
+        m_statusLabel->show();
         break;
     case Installing:
         m_status = Installing;

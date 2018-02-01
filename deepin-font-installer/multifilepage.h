@@ -53,13 +53,15 @@ private slots:
     void batchInstallation();
     void onProgressChanged(const QString &filePath, const float &percent);
     void onWorkerFinished();
+    void onViewFileBtnClicked();
 
 private:
     DFontInfoManager *m_fontInfoManager;
     DFontManager *m_fontManager;
     ListWidget *m_listWidget;
+    QLabel *m_tipsLabel;
     DSuggestButton *m_installBtn;
-    DSuggestButton *m_closeBtn;
+    DSuggestButton *m_viewFileBtn;
     Progress *m_progress;
     QPropertyAnimation *m_animation;
     QList<DFontInfo *> m_infoList;
