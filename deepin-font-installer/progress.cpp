@@ -24,7 +24,7 @@
 Progress::Progress(QWidget *parent)
     : QProgressBar(parent)
 {
-    setFixedHeight(8);
+    setFixedHeight(9);
     setFixedWidth(240);
     setTextVisible(false);
 }

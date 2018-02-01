@@ -123,7 +123,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     copyrightLabel->setStyleSheet("QLabel { color: #444444; font-size: 15px; }");
     descLabel->setStyleSheet("QLabel { color: #444444; font-size: 15px; }");
 
-    m_nameLabel->setStyleSheet("QLabel { font-size: 18px; font-weight: 500; }");
+    m_nameLabel->setStyleSheet("QLabel { font-size: 18px; font-weight: 510; }");
     m_styleLabel->setStyleSheet("QLabel { font-size: 15px; }");
     m_typeLabel->setStyleSheet("QLabel { font-size: 15px; }");
     m_versionLabel->setStyleSheet("QLabel { font-size: 15px; }");

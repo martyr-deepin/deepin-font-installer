@@ -5,7 +5,7 @@
 <policyconfig>
   <vendor>LinuxDeepin</vendor>
   <vendor_url>https://www.deepin.com/</vendor_url>
-  <action id="com.deepin.pkexec.font-uninstall">
+  <action id="com.deepin.pkexec.font-reinstall">
     <message>Password is required to reinstall font file</message>
     <message xml:lang="zh_CN">重装字体文件包需要授权</message>
     <icon_name>font-x-generic</icon_name>

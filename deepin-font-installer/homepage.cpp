@@ -76,7 +76,6 @@ void HomePage::onChooseBtnClicked()
     dialog.setFileMode(QFileDialog::ExistingFiles);
     dialog.setNameFilter(Utils::suffixList());
 
-
     if (dialog.exec() != QDialog::Accepted) {
         return;
     }

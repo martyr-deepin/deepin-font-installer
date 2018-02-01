@@ -65,8 +65,8 @@ int main(int argc, char *argv[])
             process->waitForFinished(-1);
         } else {
             const QFileInfo info(file);
-            target = QString("%1/%2/%3").arg(sysDir, dataToMd5Hex(info.fileName().toUtf8()), info.fileName());
-            const QString targetDir = QString("%1/%2").arg(sysDir, dataToMd5Hex(info.fileName().toUtf8()));
+            target = QString("%1/%2/%3").arg(sysDir, fontInfo->familyName, info.fileName());
+            const QString targetDir = QString("%1/%2").arg(sysDir, fontInfo->familyName);
             QDir dir(targetDir);
             dir.mkpath(".");
             QFile::copy(file, target);

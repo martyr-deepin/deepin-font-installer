@@ -37,7 +37,7 @@ ListItem::ListItem(QWidget *parent)
                                    ":/images/close_press.svg"))
 {
     QSvgWidget *iconWidget = new QSvgWidget(":/images/font-x-generic.svg");
-    iconWidget->setFixedSize(47, 45);
+    iconWidget->setFixedSize(40, 40);
 
     m_nameLabel->setStyleSheet("QLabel { font-size: 14px; font-weight: 510; color: #000000; }");
     m_styleLabel->setStyleSheet("QLabel { font-size: 12px; color: #000000; }");
@@ -80,9 +80,9 @@ void ListItem::updateInfo(DFontInfo *p)
     m_styleLabel->setText(m_styleLabel->fontMetrics().elidedText(m_fontInfo->styleName,
                                                                  Qt::ElideRight, 180));
 
-    m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; font-size: 14px; }");
+    m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; font-size: 13px; }");
     if (isInstalled) {
-        m_infoLabel->setStyleSheet("QLabel { color: #47790C; font-size: 14px; }");
+        m_infoLabel->setStyleSheet("QLabel { color: #47790C; font-size: 13px; }");
 
         if (isSampleVersion) {
             m_infoLabel->setText(tr("Same version installed"));
@@ -90,7 +90,7 @@ void ListItem::updateInfo(DFontInfo *p)
             m_infoLabel->setText(QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion));
         }
     } else {
-        m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; font-size: 14px; }");
+        m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; font-size: 13px; }");
         if (m_fontInfo->description.isEmpty()) {
             m_infoLabel->setText(tr("Unknown"));
         } else {
