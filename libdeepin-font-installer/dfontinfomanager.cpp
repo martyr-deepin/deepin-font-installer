@@ -196,11 +196,10 @@ DFontInfo *DFontInfoManager::getFontInfo(const QString &filePath)
     fontInfo->type = getFontType(filePath);
 
     if (FT_IS_SFNT(m_face)) {
+        FT_SfntName sname;
         const int count = FT_Get_Sfnt_Name_Count(m_face);
 
         for (int i = 0; i < count; ++i) {
-            FT_SfntName sname;
-
             if (FT_Get_Sfnt_Name(m_face, i, &sname) != 0) {
                 continue;
             }

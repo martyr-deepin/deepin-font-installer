@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
       m_multiFilePage(new MultiFilePage)
 {
     if (titlebar()) {
+        titlebar()->setBackgroundTransparent(true);
         titlebar()->setIcon(QIcon(":/images/deepin-font-installer.svg"));
         titlebar()->setTitle("");
     }
