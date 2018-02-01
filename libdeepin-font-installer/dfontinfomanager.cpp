@@ -111,7 +111,7 @@ void DFontInfoManager::refreshList()
                     data.version = g_convert((char *)sname.string,
                                              sname.string_len,
                                               "UTF-8", "UTF-16BE", NULL, NULL, NULL);
-                    data.version.remove("Version").simplified();
+                    data.version = data.version.remove("Version").simplified();
                     break;
                 }
             }
@@ -224,7 +224,7 @@ DFontInfo *DFontInfoManager::getFontInfo(const QString &filePath)
                 fontInfo->version = g_convert((char *)sname.string,
                                               sname.string_len,
                                               "UTF-8", "UTF-16BE", NULL, NULL, NULL);
-                fontInfo->version.remove("Version").simplified();
+                fontInfo->version = fontInfo->version.remove("Version").simplified();
                 break;
 
             case TT_NAME_ID_DESCRIPTION:

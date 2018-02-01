@@ -184,19 +184,17 @@ void SingleFilePage::updateInfo(DFontInfo *info)
     m_fontInfo = info;
     refreshPage();
 
-    const QString copyright = m_fontInfo->copyright;
-    const QString description = m_fontInfo->description;
+    const QFontMetrics fm = m_versionLabel->fontMetrics();
+    const int cpLineWidth = rect().width() - 100 - fm.width(tr("Copyright: "));
+    const int descLineWidth = rect().width() - 100 - fm.width(tr("Description: "));
 
     m_nameLabel->setText(m_fontInfo->familyName);
     m_styleLabel->setText(m_fontInfo->styleName);
     m_typeLabel->setText(m_fontInfo->type);
-    m_versionLabel->setText(m_fontInfo->version);
 
-    const QFontMetrics fm = m_versionLabel->fontMetrics();
-    const int cpLineWidth = rect().width() - 100 - fm.width(tr("Copyright: "));
-    const int descLineWidth = rect().width() - 100 - fm.width(tr("Description: "));
-    setElidedText(m_copyrightLabel, copyright, cpLineWidth * 1.8);
-    setElidedText(m_descriptionLabel, description, descLineWidth * 1.8);
+    setElidedText(m_versionLabel, m_fontInfo->version, cpLineWidth / 1.1);
+    setElidedText(m_copyrightLabel, m_fontInfo->copyright, cpLineWidth * 1.8);
+    setElidedText(m_descriptionLabel, m_fontInfo->description, descLineWidth * 1.8);
 }
 
 void SingleFilePage::refreshPage()
