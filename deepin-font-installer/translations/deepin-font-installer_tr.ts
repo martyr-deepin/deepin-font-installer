@@ -22,15 +22,15 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Aynı sürüm yüklü</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Diğer sürüm yüklü: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished"/>
+        <translation>Yükleme</translation>
     </message>
 </context>
 <context>
@@ -62,8 +62,12 @@
         <translation>Yükle</translation>
     </message>
     <message>
-        <source>Done</source>
-        <translation>Bitti</translation>
+        <source>Installed successfully</source>
+        <translation>Başarıyla yüklendi</translation>
+    </message>
+    <message>
+        <source>View font directory</source>
+        <translation>Yazı tipi dizinini görüntüle</translation>
     </message>
 </context>
 <context>
@@ -114,7 +118,7 @@
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Yükleme başarılı</translation>
+        <translation>Başarıyla yüklendi</translation>
     </message>
     <message>
         <source>Removed successfully</source>

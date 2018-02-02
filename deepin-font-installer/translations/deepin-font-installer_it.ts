@@ -22,15 +22,15 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Medesima versione già installata</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Versione installata: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished"/>
+        <translation>Installazione in corso</translation>
     </message>
 </context>
 <context>
@@ -63,8 +63,12 @@ Localizzazione italiana a cura di Massimo A. Carofano.</translation>
         <translation>Installa</translation>
     </message>
     <message>
-        <source>Done</source>
-        <translation>Fatto</translation>
+        <source>Installed successfully</source>
+        <translation>Installazione riuscita</translation>
+    </message>
+    <message>
+        <source>View font directory</source>
+        <translation>Apri la cartella del font</translation>
     </message>
 </context>
 <context>
