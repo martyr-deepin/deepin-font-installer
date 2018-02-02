@@ -46,7 +46,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     btnsLayout->addWidget(m_installBtn, 0, Qt::AlignHCenter);
     btnsLayout->addWidget(m_viewFileBtn, 0, Qt::AlignHCenter);
 
-    m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+    m_tipsLabel->setStyleSheet("QLabel { color: #47790c; font-size: 14px; }");
     m_tipsLabel->setVisible(false);
 
     m_installBtn->setText(tr("Install"));
@@ -55,6 +55,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     m_installBtn->setFixedSize(160, 36);
     m_installBtn->setVisible(false);
 
+    m_viewFileBtn->setStyleSheet("QPushButton { font-size: 14px; }");
     m_viewFileBtn->setText(tr("View font directory"));
     m_viewFileBtn->setFocusPolicy(Qt::NoFocus);
     m_viewFileBtn->setObjectName("BlueButton");
@@ -73,7 +74,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     mainLayout->addStretch();
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);
-    mainLayout->setContentsMargins(0, 10, 0, 0);
+    mainLayout->setContentsMargins(10, 10, 10, 0);
 
     connect(m_installBtn, &QPushButton::clicked, this, &MultiFilePage::batchInstallation);
     connect(m_viewFileBtn, &QPushButton::clicked, this, &MultiFilePage::onViewFileBtnClicked);
@@ -94,7 +95,7 @@ void MultiFilePage::addItems(const QStringList &paths)
             ListItem *fileItem = new ListItem;
             m_listWidget->addItem(fileItem->getItem());
             fileItem->updateInfo(fontInfo);
-            fileItem->getItem()->setSizeHint(QSize(100, 60));
+            fileItem->getItem()->setSizeHint(QSize(100, 48));
             m_listWidget->setItemWidget(fileItem->getItem(), fileItem);
             connect(fileItem, &ListItem::closeBtnClicked, this, &MultiFilePage::handleClose);
 

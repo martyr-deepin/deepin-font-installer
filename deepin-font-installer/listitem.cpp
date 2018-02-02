@@ -37,7 +37,7 @@ ListItem::ListItem(QWidget *parent)
                                    ":/images/close_press.svg"))
 {
     QSvgWidget *iconWidget = new QSvgWidget(":/images/font-x-generic.svg");
-    iconWidget->setFixedSize(40, 40);
+    iconWidget->setFixedSize(32, 32);
 
     m_nameLabel->setStyleSheet("QLabel { font-size: 14px; font-weight: 510; color: #000000; }");
     m_styleLabel->setStyleSheet("QLabel { font-size: 12px; color: #000000; }");
@@ -80,9 +80,9 @@ void ListItem::updateInfo(DFontInfo *p)
     m_styleLabel->setText(m_styleLabel->fontMetrics().elidedText(m_fontInfo->styleName,
                                                                  Qt::ElideRight, 180));
 
-    m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; font-size: 13px; }");
+    m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; font-size: 12px; }");
     if (isInstalled) {
-        m_infoLabel->setStyleSheet("QLabel { color: #47790C; font-size: 13px; }");
+        m_infoLabel->setStyleSheet("QLabel { color: #47790C; font-size: 12px; }");
 
         if (isSampleVersion) {
             m_infoLabel->setText(tr("Same version installed"));
@@ -90,7 +90,7 @@ void ListItem::updateInfo(DFontInfo *p)
             m_infoLabel->setText(QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion));
         }
     } else {
-        m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; font-size: 13px; }");
+        m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; font-size: 12px; }");
         if (m_fontInfo->description.isEmpty()) {
             m_infoLabel->setText(tr("Unknown"));
         } else {
@@ -104,7 +104,7 @@ void ListItem::updateInfo(DFontInfo *p)
 void ListItem::setStatus(Status status)
 {
     m_closeBtn->hide();
-    m_statusLabel->setStyleSheet("QLabel { color: #7C7C7C; }");
+    m_statusLabel->setStyleSheet("QLabel { color: #7C7C7C; font-size: 12px; }");
 
     switch (status) {
     case None:
@@ -112,7 +112,7 @@ void ListItem::setStatus(Status status)
         break;
     case Installed:
         m_status = Installed;
-        m_statusLabel->setStyleSheet("QLabel { color: #528315; }");
+        m_statusLabel->setStyleSheet("QLabel { color: #528315; font-size: 12px; }");
         m_statusLabel->setText(tr("Installed"));
         m_statusLabel->show();
         break;

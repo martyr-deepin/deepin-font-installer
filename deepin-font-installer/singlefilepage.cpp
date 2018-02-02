@@ -117,11 +117,11 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     mainLayout->setContentsMargins(50, 0, 50, 20);
 
     // init property.
-    styleLabel->setStyleSheet("QLabel { color: #444444; font-size: 15px; }");
-    typeLabel->setStyleSheet("QLabel { color: #444444; font-size: 15px; }");
-    versionLabel->setStyleSheet("QLabel { color: #444444; font-size: 15px; }");
-    copyrightLabel->setStyleSheet("QLabel { color: #444444; font-size: 15px; }");
-    descLabel->setStyleSheet("QLabel { color: #444444; font-size: 15px; }");
+    styleLabel->setStyleSheet("QLabel { color: #797979; font-size: 15px; }");
+    typeLabel->setStyleSheet("QLabel { color: #797979; font-size: 15px; }");
+    versionLabel->setStyleSheet("QLabel { color: #797979; font-size: 15px; }");
+    copyrightLabel->setStyleSheet("QLabel { color: #797979; font-size: 15px; }");
+    descLabel->setStyleSheet("QLabel { color: #797979; font-size: 15px; }");
 
     m_nameLabel->setStyleSheet("QLabel { font-size: 18px; font-weight: 510; }");
     m_styleLabel->setStyleSheet("QLabel { font-size: 15px; }");
@@ -149,6 +149,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_reinstallBtn->setObjectName("GrayButton");
     m_reinstallBtn->setVisible(false);
 
+    m_viewFileBtn->setStyleSheet("QPushButton { font-size: 14px; }");
     m_viewFileBtn->setText(tr("View font directory"));
     m_viewFileBtn->setFixedSize(160, 36);
     m_viewFileBtn->setFocusPolicy(Qt::NoFocus);
