@@ -22,15 +22,15 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Samme version installeret</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Anden version installeret: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished"/>
+        <translation>Installerer</translation>
     </message>
 </context>
 <context>
@@ -62,8 +62,12 @@
         <translation>Installer</translation>
     </message>
     <message>
-        <source>Done</source>
-        <translation>Færdig</translation>
+        <source>Installed successfully</source>
+        <translation>Installation lykkedes</translation>
+    </message>
+    <message>
+        <source>View font directory</source>
+        <translation>Vis skrifttypemappe</translation>
     </message>
 </context>
 <context>

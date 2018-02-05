@@ -62,8 +62,12 @@
         <translation>Instal·la</translation>
     </message>
     <message>
-        <source>Done</source>
-        <translation>Fet</translation>
+        <source>Installed successfully</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View font directory</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

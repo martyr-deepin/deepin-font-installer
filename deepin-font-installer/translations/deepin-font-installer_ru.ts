@@ -22,15 +22,15 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Эта версия уже установлена</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Другая версия уже установлена: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished"/>
+        <translation>Установка</translation>
     </message>
 </context>
 <context>
@@ -62,8 +62,12 @@
         <translation>Установить</translation>
     </message>
     <message>
-        <source>Done</source>
-        <translation>Готово</translation>
+        <source>Installed successfully</source>
+        <translation>Установка успешно завершена</translation>
+    </message>
+    <message>
+        <source>View font directory</source>
+        <translation>Просмотр каталога шрифта</translation>
     </message>
 </context>
 <context>

@@ -22,15 +22,15 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>اﻹصدار نفسه مثبت</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>إصدار آخر مثبت : %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished"/>
+        <translation>يتم التثبيت</translation>
     </message>
 </context>
 <context>
@@ -62,8 +62,12 @@
         <translation>تثبيت</translation>
     </message>
     <message>
-        <source>Done</source>
-        <translation>انتهى</translation>
+        <source>Installed successfully</source>
+        <translation>تم التثبيت بنجاح</translation>
+    </message>
+    <message>
+        <source>View font directory</source>
+        <translation>عرض دليل الخط</translation>
     </message>
 </context>
 <context>

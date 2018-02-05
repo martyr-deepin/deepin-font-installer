@@ -22,15 +22,15 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Zainstalowana jest ta sama wersja</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Zainstalowana inna wersja: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished"/>
+        <translation>Instalowanie</translation>
     </message>
 </context>
 <context>
@@ -62,8 +62,12 @@
         <translation>Zainstaluj</translation>
     </message>
     <message>
-        <source>Done</source>
-        <translation>Gotowe</translation>
+        <source>Installed successfully</source>
+        <translation>Pomyślnie zainstalowano</translation>
+    </message>
+    <message>
+        <source>View font directory</source>
+        <translation>Zobacz katalog czcionek</translation>
     </message>
 </context>
 <context>

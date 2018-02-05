@@ -1,136 +1,136 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="sl" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation type="unfinished"/>
+        <translation>Povlecite sem datoteko s pisavo</translation>
     </message>
     <message>
         <source>Select file</source>
-        <translation type="unfinished"/>
+        <translation>Izberi datoteko</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Unknown</source>
-        <translation>Ismeretlen</translation>
+        <translation>Neznano</translation>
     </message>
     <message>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Nameščeno</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Ista različica nameščena</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Druga nameščena različica: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished"/>
+        <translation>Nameščam</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation type="unfinished"/>
+        <translation>Čarovnik za pisave Deepin</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation type="unfinished"/>
+        <translation>Čarovnik za pisave Deepin je namenjen nameščanju in odstranjevanju datotek s pisavami. Uporabljajo ga lahko vsi uporabniki s funkcijo namestitve bulk.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation type="unfinished"/>
+        <translation>Čarovnik za pisave Deepin</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation type="unfinished"/>
+        <translation>Namestitev z Bulkom</translation>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Namesti</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Uspešno nameščeno</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"/>
+        <translation>Prikaži mapo s pisavami</translation>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Namesti</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Odstrani</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Ponovno namesti</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"/>
+        <translation>Prikaži mapo s pisavami</translation>
     </message>
     <message>
         <source>Style: </source>
-        <translation type="unfinished"/>
+        <translation>Stil:</translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation type="unfinished"/>
+        <translation>Tip:</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation type="unfinished"/>
+        <translation>Različica:</translation>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation type="unfinished"/>
+        <translation>Avtorske pravice:</translation>
     </message>
     <message>
         <source>Description: </source>
-        <translation type="unfinished"/>
+        <translation>Opis:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Neznano</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Ista različica nameščena</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Uspešno nameščeno</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Uspešno odstranjeno</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Druga nameščena različica: %1</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Končano</translation>
     </message>
 </context>
 </TS>

@@ -22,15 +22,15 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Version identique installée</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Autre version installée : %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished"/>
+        <translation>Installation</translation>
     </message>
 </context>
 <context>
@@ -62,8 +62,12 @@
         <translation>Installer</translation>
     </message>
     <message>
-        <source>Done</source>
-        <translation>Succès</translation>
+        <source>Installed successfully</source>
+        <translation>Installée avec succès</translation>
+    </message>
+    <message>
+        <source>View font directory</source>
+        <translation>Afficher le répertoire des polices</translation>
     </message>
 </context>
 <context>
