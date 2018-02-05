@@ -20,6 +20,15 @@
 #include "homepage.h"
 #include "utils.h"
 #include <DSvgRenderer>
+#include <QApplication>
+#include <QStandardPaths>
+#include <QDir>
+
+QString configPath()
+{
+    return QDir(QDir(QStandardPaths::standardLocations(QStandardPaths::ConfigLocation).first())
+                .filePath(qApp->organizationName())).filePath(qApp->applicationName());
+}
 
 HomePage::HomePage(QWidget *parent)
     : QWidget(parent),
@@ -27,7 +36,8 @@ HomePage::HomePage(QWidget *parent)
       m_iconLabel(new QLabel),
       m_tipsLabel(new QLabel(tr("Drag font file here"))),
       m_splitLine(new QLabel),
-      m_chooseBtn(new DLinkButton(tr("Select file")))
+      m_chooseBtn(new DLinkButton(tr("Select file"))),
+      m_settings(new QSettings(QDir(configPath()).filePath("config.conf"), QSettings::IniFormat))
 {
     const auto ratio = devicePixelRatioF();
 
@@ -40,8 +50,11 @@ HomePage::HomePage(QWidget *parent)
     m_iconLabel->setFixedSize(160, 160);
     m_iconLabel->setPixmap(m_unloadPixmap);
     m_splitLine->setPixmap(QPixmap(":/images/split_line.svg"));
-
     m_tipsLabel->setStyleSheet("QLabel { color: #6a6a6a; }");
+
+    if (m_settings->value("dir").toString().isEmpty()) {
+        m_settings->setValue("dir", "");
+    }
 
     m_layout->addSpacing(40);
     m_layout->addWidget(m_iconLabel, 0, Qt::AlignTop | Qt::AlignHCenter);
@@ -75,8 +88,12 @@ void HomePage::onChooseBtnClicked()
     QFileDialog dialog;
     dialog.setFileMode(QFileDialog::ExistingFiles);
     dialog.setNameFilter(Utils::suffixList());
+    dialog.setDirectory(m_settings->value("dir").toString());
 
-    if (dialog.exec() != QDialog::Accepted) {
+    const int mode = dialog.exec();
+    m_settings->setValue("dir", dialog.directoryUrl().toLocalFile());
+
+    if (mode != QDialog::Accepted) {
         return;
     }
 
