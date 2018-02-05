@@ -121,6 +121,7 @@ void MainWindow::dropEvent(QDropEvent *e)
         }
     }
 
+    m_homePage->setIconPixmap(false);
     onSelected(fileList);
 }
 
