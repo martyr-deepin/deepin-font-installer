@@ -95,7 +95,7 @@ void MultiFilePage::addItems(const QStringList &paths)
             ListItem *fileItem = new ListItem;
             m_listWidget->addItem(fileItem->getItem());
             fileItem->updateInfo(fontInfo);
-            fileItem->getItem()->setSizeHint(QSize(100, 48));
+            fileItem->getItem()->setSizeHint(QSize(-1, 56));
             m_listWidget->setItemWidget(fileItem->getItem(), fileItem);
             connect(fileItem, &ListItem::closeBtnClicked, this, &MultiFilePage::handleClose);
 

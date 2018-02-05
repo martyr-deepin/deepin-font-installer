@@ -22,7 +22,7 @@
 ListWidget::ListWidget(QWidget *parent)
     : QListWidget(parent)
 {
-    setFixedHeight(288);
+    setFixedHeight(280);
     setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     setSelectionMode(QAbstractItemView::NoSelection);
     setAutoScroll(false);

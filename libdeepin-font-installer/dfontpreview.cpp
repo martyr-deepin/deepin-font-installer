@@ -240,6 +240,7 @@ QString DFontPreview::buildCharlistForFace(int length)
 
     while (glyph != 0) {
         retval.append(QChar((int) ch));
+        retval = retval.simplified();
         ch = FT_Get_Next_Char(m_face, ch, &glyph);
         totalChars++;
 
