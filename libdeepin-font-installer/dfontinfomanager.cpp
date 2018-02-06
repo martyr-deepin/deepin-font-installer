@@ -94,7 +94,7 @@ DFontInfoManager::~DFontInfoManager()
 void DFontInfoManager::refreshList()
 {
     if (!dataList.isEmpty()) {
-        qDeleteAll(dataList.begin(), dataList.end());
+        qDeleteAll(dataList);
         dataList.clear();
     }
 

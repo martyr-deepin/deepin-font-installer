@@ -52,15 +52,16 @@ int main(int argc, char *argv[])
     DFontInfoManager *fontInfoManager = DFontInfoManager::instance();
     const QString sysDir = "/usr/share/fonts/deepin-font-install";
     const QStringList fileList = parser.positionalArguments();
+    QString target = "";
 
     for (const QString file : fileList) {
         DFontInfo *fontInfo = fontInfoManager->getFontInfo(file);
         QProcess *process = new QProcess;
-        QString target = "";
         const bool isInstalled = fontInfo->isInstalled;
 
         if (isInstalled) {
             const QString sysPath = fontInfoManager->getInstalledFontPath(fontInfo);
+            target = sysPath;
             process->start("cp", QStringList() << "-f" << file << sysPath);
             process->waitForFinished(-1);
         } else {
@@ -72,7 +73,7 @@ int main(int argc, char *argv[])
             QFile::copy(file, target);
         }
 
-        process->start("fc-cache");
+        process->start("fc-cache", QStringList() << "-v" << target);
         process->waitForFinished(-1);
         process->deleteLater();
 

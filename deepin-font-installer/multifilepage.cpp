@@ -105,7 +105,6 @@ void MultiFilePage::addItems(const QStringList &paths)
     m_installBtn->setVisible(true);
     m_viewFileBtn->setVisible(false);
     m_progress->setValue(0);
-
     refreshList();
 }
 
@@ -113,10 +112,11 @@ void MultiFilePage::handleClose(QListWidgetItem *item)
 {
     ListItem *fileItem = static_cast<ListItem *>(m_listWidget->itemWidget(item));
     delete m_listWidget->takeItem(m_listWidget->row(fileItem->getItem()));
-    fileItem->deleteLater();
 
     m_infoList.removeAt(m_infoList.indexOf(fileItem->getFontInfo()));
     m_listItems.remove(fileItem->getFontInfo()->filePath);
+    delete fileItem->getFontInfo();
+    fileItem->deleteLater();
 
     emit countChanged();
 }

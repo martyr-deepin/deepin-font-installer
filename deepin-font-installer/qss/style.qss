@@ -37,12 +37,6 @@ QListView {
     border-radius: 4px;
 }
 
-QListView::item:hover {
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
-}
-
 QProgressBar{
     background-color: #F2F2F2;
     border: 1px solid #EAEAEA;
