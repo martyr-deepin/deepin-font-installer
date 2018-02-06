@@ -4,7 +4,7 @@ Deepin Font Installer is used to install and uninstall font file for users with 
 
 ## Dependencies
 
-* sudo apt install libdtkwidget-dev qttools5-dev-tools libglib2.0-dev libfontconfig1-dev libfreetype6-dev
+* sudo apt install libdtkwidget-dev qttools5-dev-tools libfontconfig1-dev libfreetype6-dev
 
 ## Installation
 

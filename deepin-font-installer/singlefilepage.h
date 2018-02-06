@@ -21,10 +21,9 @@
 #define SINGLEFILEPAGE_H
 
 #include <QWidget>
-#include <QStackedLayout>
-#include <QPushButton>
-#include <QLabel>
 #include <QPropertyAnimation>
+#include <QStackedLayout>
+#include <QLabel>
 #include "dfontinfomanager.h"
 #include "dfontmanager.h"
 #include "progress.h"
@@ -68,7 +67,7 @@ private:
     QPushButton *m_uninstallBtn;
     QPushButton *m_reinstallBtn;
     DSuggestButton *m_viewFileBtn;
-    QPushButton *m_closeBtn;
+    DSuggestButton *m_closeBtn;
     Progress *m_progress;
     QPropertyAnimation *m_propertyAnimation;
     QStackedLayout *m_bottomLayout;

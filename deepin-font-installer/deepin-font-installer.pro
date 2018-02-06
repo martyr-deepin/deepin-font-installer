@@ -10,7 +10,7 @@ TEMPLATE = app
 TARGET = deepin-font-installer
 
 CONFIG += c++11 link_pkgconfig
-PKGCONFIG += dtkwidget glib-2.0 freetype2 fontconfig
+PKGCONFIG += dtkwidget freetype2 fontconfig
 
 INCLUDEPATH += $$PWD/../libdeepin-font-installer
 LIBS += -L$$OUT_PWD/../libdeepin-font-installer -ldeepin-font-installer

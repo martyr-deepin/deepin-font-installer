@@ -25,15 +25,38 @@
 
 #include <fontconfig/fontconfig.h>
 #include <ft2build.h>
-#include <glib.h>
+#include <iconv.h>
 
 #include FT_FREETYPE_H
 #include FT_TYPE1_TABLES_H
 #include FT_SFNT_NAMES_H
 #include FT_TRUETYPE_IDS_H
 
-static QList<DFontInfo> dataList;
+static QList<DFontInfo *> dataList;
 static DFontInfoManager *m_instance = 0;
+
+QString convertToUtf8(QByteArray content, int len)
+{
+    std::string toCode = "UTF-8";
+    std::string fromCode = "UTF-16BE";
+    QString convertedStr = "";
+
+    std::size_t inputBufferSize = len;
+    std::size_t outputBufferSize = inputBufferSize * 4;
+    char *inputBuffer = content.data();
+    char *outputBuffer = new char[outputBufferSize];
+    char *backupPtr = outputBuffer;
+
+    iconv_t code = iconv_open(toCode.c_str(), fromCode.c_str());
+    std::size_t retVal = iconv(code, &inputBuffer, &inputBufferSize, &outputBuffer, &outputBufferSize);
+    std::size_t actuallyUsed = outputBuffer - backupPtr;
+
+    convertedStr = QString::fromUtf8(QByteArray(backupPtr, actuallyUsed));
+    iconv_close(code);
+
+    delete []backupPtr;
+    return convertedStr;
+}
 
 QString dirSyntax(const QString &d)
 {
@@ -42,7 +65,7 @@ QString dirSyntax(const QString &d)
         ds.replace("//", "/");
 
         int slashPos = ds.lastIndexOf('/');
-        if (slashPos != (((int)ds.length()) - 1))
+        if (slashPos != (((int) ds.length()) - 1))
             ds.append('/');
 
         return ds;
@@ -72,56 +95,15 @@ DFontInfoManager::~DFontInfoManager()
 
 void DFontInfoManager::refreshList()
 {
-    FT_Face face = 0;
-    FT_Library library = 0;
-
-    FT_Init_FreeType(&library);
-
     if (!dataList.isEmpty()) {
+        qDeleteAll(dataList.begin(), dataList.end());
         dataList.clear();
     }
 
     for (auto path : getAllFontPath()) {
-        FT_New_Face(library, path.toUtf8().constData(), 0, &face);
-
-        DFontInfo data;
-        data.filePath = path;
-        data.familyName = face->family_name;
-        data.styleName = face->style_name;
-
-        if (FT_IS_SFNT(face)) {
-            const int count = FT_Get_Sfnt_Name_Count(face);
-
-            for (int i = 0; i < count; ++i) {
-                FT_SfntName sname;
-
-                if (FT_Get_Sfnt_Name(face, i, &sname) != 0) {
-                    continue;
-                }
-
-                // only handle the unicode names for US langid.
-                if (!(sname.platform_id == TT_PLATFORM_MICROSOFT &&
-                      sname.encoding_id == TT_MS_ID_UNICODE_CS &&
-                      sname.language_id == TT_MS_LANGID_ENGLISH_UNITED_STATES)) {
-                    continue;
-                }
-
-                switch (sname.name_id) {
-                case TT_NAME_ID_VERSION_STRING:
-                    data.version = g_convert((char *)sname.string,
-                                             sname.string_len,
-                                              "UTF-8", "UTF-16BE", NULL, NULL, NULL);
-                    data.version = data.version.remove("Version").simplified();
-                    break;
-                }
-            }
-        }
-
-        dataList << data;
-        FT_Done_Face(face);
+        DFontInfo *fontInfo = getFontInfo(path);
+        dataList << fontInfo;
     }
-
-    FT_Done_FreeType(library);
 }
 
 QStringList DFontInfoManager::getAllFontPath() const
@@ -152,13 +134,13 @@ QStringList DFontInfoManager::getAllFontPath() const
 
 QString DFontInfoManager::getInstalledFontPath(DFontInfo *info)
 {
-    const QList<DFontInfo> famList = dataList;
+    const QList<DFontInfo *> famList = dataList;
     QString filePath = nullptr;
 
     for (const auto &famItem : famList) {
-        if (info->familyName == famItem.familyName &&
-            info->styleName == famItem.styleName) {
-            filePath = famItem.filePath;
+        if (info->familyName == famItem->familyName &&
+            info->styleName == famItem->styleName) {
+            filePath = famItem->filePath;
             break;
         }
     }
@@ -211,25 +193,25 @@ DFontInfo *DFontInfoManager::getFontInfo(const QString &filePath)
                 continue;
             }
 
+            QString content;
+            for (int i = 0; i != sname.string_len; ++i) {
+                char ch = static_cast<char>(sname.string[i]);
+                content.append(ch);
+            }
+
             switch (sname.name_id) {
             case TT_NAME_ID_COPYRIGHT:
-                fontInfo->copyright = g_convert((char *)sname.string,
-                                                sname.string_len,
-                                                "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                fontInfo->copyright = convertToUtf8(content.toLatin1(), sname.string_len);
                 fontInfo->copyright = fontInfo->copyright.simplified();
                 break;
 
             case TT_NAME_ID_VERSION_STRING:
-                fontInfo->version = g_convert((char *)sname.string,
-                                              sname.string_len,
-                                              "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                fontInfo->version = convertToUtf8(content.toLatin1(), sname.string_len);
                 fontInfo->version = fontInfo->version.remove("Version").simplified();
                 break;
 
             case TT_NAME_ID_DESCRIPTION:
-                fontInfo->description = g_convert((char *)sname.string,
-                                                  sname.string_len,
-                                                  "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                fontInfo->description = convertToUtf8(content.toLatin1(), sname.string_len);
                 fontInfo->description = fontInfo->description.simplified();
                 break;
             default:
@@ -249,14 +231,14 @@ DFontInfo *DFontInfoManager::getFontInfo(const QString &filePath)
 
 bool DFontInfoManager::isFontInstalled(DFontInfo *data)
 {
-    const QList<DFontInfo> list = dataList;
+    const QList<DFontInfo *> list = dataList;
 
     for (int i = 0; i < list.count(); ++i) {
-        const DFontInfo item = list.at(i);
+        DFontInfo *item = list.at(i);
 
-        if (item.familyName == data->familyName &&
-            item.styleName == data->styleName) {
-            data->sysVersion = item.version;
+        if (item->familyName == data->familyName &&
+            item->styleName == data->styleName) {
+            data->sysVersion = item->version;
             return true;
         }
     }

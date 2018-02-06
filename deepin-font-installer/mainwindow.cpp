@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     if (titlebar()) {
         titlebar()->setBackgroundTransparent(true);
-        titlebar()->setIcon(QIcon(":/images/deepin-font-installer.svg"));
+        titlebar()->setIcon(QIcon(":/images/icon.svg"));
         titlebar()->setTitle("");
     }
 
@@ -57,11 +57,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_multiFilePage, &MultiFilePage::countChanged, this, &MainWindow::refreshPage);
 }
 
-
 MainWindow::~MainWindow()
 {
 }
-
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *e)
 {
