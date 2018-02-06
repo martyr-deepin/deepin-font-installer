@@ -30,11 +30,28 @@
 #include <QUrl>
 #include <QDir>
 
-void setElidedText(QLabel *label, const QString &text, const int &textWidth)
+const QString holdTextInRect(const QFontMetrics &fm, const QString &text, const QRect &rect)
 {
-    const QFontMetrics fm(label->font());
-    const QString clippedText = fm.elidedText(text, Qt::ElideRight, textWidth);
-    label->setText(clippedText);
+    const int textFlag = Qt::AlignTop | Qt::AlignLeft | Qt::TextWordWrap | Qt::TextWrapAnywhere;
+
+    if (rect.contains(fm.boundingRect(rect, textFlag, text)))
+        return text;
+
+    QString str(text + "...");
+
+    while (true)
+    {
+        if (str.size() < 4)
+            break;
+
+        QRect boundingRect = fm.boundingRect(rect, textFlag, str);
+        if (rect.contains(boundingRect))
+            break;
+
+        str.remove(str.size() - 4, 1);
+    }
+
+    return str;
 }
 
 SingleFilePage::SingleFilePage(QWidget *parent)
@@ -67,10 +84,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     QLabel *descLabel = new QLabel(tr("Description: "));
 
     copyrightLabel->setAlignment(Qt::AlignTop);
-    m_copyrightLabel->setAlignment(Qt::AlignTop);
-
     descLabel->setAlignment(Qt::AlignTop);
-    m_descriptionLabel->setAlignment(Qt::AlignTop);
 
     QFormLayout *formLayout = new QFormLayout;
     formLayout->addRow(styleLabel, m_styleLabel);
@@ -130,7 +144,10 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_copyrightLabel->setStyleSheet("QLabel { font-size: 15px; }");
     m_descriptionLabel->setStyleSheet("QLabel { font-size: 15px; }");
 
+    m_copyrightLabel->setAlignment(Qt::AlignTop);
     m_copyrightLabel->setWordWrap(true);
+
+    m_descriptionLabel->setAlignment(Qt::AlignTop);
     m_descriptionLabel->setWordWrap(true);
     m_tipsLabel->setText("");
 
@@ -184,17 +201,22 @@ void SingleFilePage::updateInfo(DFontInfo *info)
     m_fontInfo = info;
     refreshPage();
 
-    const QFontMetrics fm = m_versionLabel->fontMetrics();
-    const int cpLineWidth = rect().width() - 100 - fm.width(tr("Copyright: "));
-    const int descLineWidth = rect().width() - 100 - fm.width(tr("Description: "));
-
     m_nameLabel->setText(m_fontInfo->familyName);
     m_styleLabel->setText(m_fontInfo->styleName);
     m_typeLabel->setText(m_fontInfo->type);
 
-    setElidedText(m_versionLabel, m_fontInfo->version, cpLineWidth / 1.1);
-    setElidedText(m_copyrightLabel, m_fontInfo->copyright, cpLineWidth * 1.8);
-    setElidedText(m_descriptionLabel, m_fontInfo->description, descLineWidth * 1.8);
+    m_versionLabel->setText(holdTextInRect(m_versionLabel->fontMetrics(),
+                                           m_fontInfo->version, QRect(0, 0, 100, 38)));
+
+    const QFontMetrics cpfm(m_copyrightLabel->font());
+    const int cpwidth = 400 - cpfm.width(tr("Copyright: "));
+    m_copyrightLabel->setText(holdTextInRect(m_copyrightLabel->fontMetrics(),
+                                             m_fontInfo->copyright, QRect(0, 0, cpwidth, cpfm.height() * 2)));
+
+    const QFontMetrics descfm(m_descriptionLabel->font());
+    const int descwidth = 400 - descfm.width(tr("Description: "));
+    m_descriptionLabel->setText(holdTextInRect(m_descriptionLabel->fontMetrics(),
+                                               m_fontInfo->description, QRect(0, 0, descwidth, descfm.height() * 2)));
 }
 
 void SingleFilePage::refreshPage()
