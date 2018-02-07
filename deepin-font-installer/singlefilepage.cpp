@@ -69,7 +69,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
       m_uninstallBtn(new QPushButton(tr("Remove"))),
       m_reinstallBtn(new QPushButton(tr("Reinstall"))),
       m_viewFileBtn(new DSuggestButton),
-      m_closeBtn(new DSuggestButton(tr("Done"))),
+      m_closeBtn(new DSuggestButton),
       m_progress(new Progress),
       m_propertyAnimation(new QPropertyAnimation(m_progress, "value", this)),
       m_bottomLayout(new QStackedLayout)
@@ -175,6 +175,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_closeBtn->setFixedSize(160, 36);
     m_closeBtn->setFocusPolicy(Qt::NoFocus);
     m_closeBtn->setVisible(false);
+    m_closeBtn->setText(tr("Done"));
 
     m_propertyAnimation->setDuration(500);
     m_propertyAnimation->setStartValue(0);
