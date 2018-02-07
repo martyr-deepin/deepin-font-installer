@@ -51,6 +51,7 @@ private:
 private:
     FT_Library m_library;
     FT_Face m_face;
+    FT_Error m_error = 1;
     QFontDatabase *m_fontDatabase;
 };
 

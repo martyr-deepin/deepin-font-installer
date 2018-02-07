@@ -22,6 +22,7 @@
 #include <QGuiApplication>
 #include <QDesktopWidget>
 #include <QTextStream>
+#include <QFileInfo>
 #include <QPainter>
 #include <QScreen>
 #include <QDebug>
@@ -56,7 +57,10 @@ void DFontPreview::setFileUrl(const QString &url)
     m_fontDatabase->addApplicationFont(url);
 
     FT_Init_FreeType(&m_library);
-    FT_New_Face(m_library, url.toUtf8().constData(), 0, &m_face);
+    m_error = FT_New_Face(m_library, url.toUtf8().constData(), 0, &m_face);
+
+    if (m_error != 0 && QFileInfo(url).completeSuffix() != "pcf.gz")
+        return;
 
     sampleString = getSampleString().simplified();
     styleName = (char *) m_face->style_name;
@@ -69,6 +73,9 @@ void DFontPreview::setFileUrl(const QString &url)
 
 void DFontPreview::paintEvent(QPaintEvent *e)
 {
+    if (m_error != 0)
+        return;
+
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
 
