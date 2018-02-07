@@ -22,15 +22,15 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Rovnaká verzia je nainštalovaná</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Iná inštalovaná verzia: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished"/>
+        <translation>Inštalujem</translation>
     </message>
 </context>
 <context>
@@ -63,11 +63,11 @@
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Úspešne nainštalované</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť adresár písem</translation>
     </message>
 </context>
 <context>
@@ -86,7 +86,7 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Zobraziť adresár písiem</translation>
+        <translation>Zobraziť adresár písem</translation>
     </message>
     <message>
         <source>Style: </source>
