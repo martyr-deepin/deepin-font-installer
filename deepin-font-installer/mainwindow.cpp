@@ -36,11 +36,11 @@ MainWindow::MainWindow(QWidget *parent)
       m_singleFilePage(new SingleFilePage),
       m_multiFilePage(new MultiFilePage)
 {
-    if (titlebar()) {
-        titlebar()->setBackgroundTransparent(true);
-        titlebar()->setIcon(QIcon(":/images/icon.svg"));
-        titlebar()->setTitle("");
-    }
+    titlebar()->setIcon(QIcon(":/images/icon.svg"));
+    titlebar()->setTitle("");
+#if DTK_VERSION >= 0x02000600
+    titlebar()->setBackgroundTransparent(true);
+#endif
 
     // add widget to main layout.
     m_mainLayout->addWidget(m_homePage);
