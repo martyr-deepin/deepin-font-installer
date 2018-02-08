@@ -53,6 +53,7 @@ int main(int argc, char *argv[])
     const QString sysDir = "/usr/share/fonts/deepin-font-install";
     const QStringList fileList = parser.positionalArguments();
     QString target = "";
+    QString targetDir = "";
 
     for (const QString file : fileList) {
         DFontInfo *fontInfo = fontInfoManager->getFontInfo(file);
@@ -67,7 +68,14 @@ int main(int argc, char *argv[])
         } else {
             const QFileInfo info(file);
             target = QString("%1/%2/%3").arg(sysDir, fontInfo->familyName, info.fileName());
-            const QString targetDir = QString("%1/%2").arg(sysDir, fontInfo->familyName);
+            targetDir = QString("%1/%2").arg(sysDir, fontInfo->familyName);
+
+            const QDir fontDir(sysDir);
+            if (fontDir.entryList(QDir::Files).count() == 0) {
+                targetDir = sysDir;
+                target = QString("%1/%2").arg(sysDir, info.fileName());
+            }
+
             QDir dir(targetDir);
             dir.mkpath(".");
             QFile::copy(file, target);

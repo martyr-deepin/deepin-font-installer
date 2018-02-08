@@ -88,8 +88,14 @@ void MultiFilePage::addItems(const QStringList &paths)
     for (const QString &path : paths) {
         if (!m_listItems.contains(path)) {
             DFontInfo *fontInfo = m_fontInfoManager->getFontInfo(path);
-            m_infoList.append(fontInfo);
 
+            if (fontInfo->familyName.isEmpty() &&
+                fontInfo->styleName.isEmpty()) {
+                delete fontInfo;
+                continue;
+            }
+
+            m_infoList.append(fontInfo);
             ListItem *fileItem = new ListItem;
             m_listWidget->addItem(fileItem->getItem());
             fileItem->updateInfo(fontInfo);

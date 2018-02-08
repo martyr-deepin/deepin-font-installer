@@ -167,7 +167,13 @@ DFontInfo *DFontInfoManager::getFontInfo(const QString &filePath)
     FT_Face m_face = 0;
 
     FT_Init_FreeType(&m_library);
-    FT_New_Face(m_library, filePath.toUtf8().constData(), 0, &m_face);
+    FT_Error error = FT_New_Face(m_library, filePath.toUtf8().constData(), 0, &m_face);
+
+    if (error != 0) {
+        FT_Done_Face(m_face);
+        FT_Done_FreeType(m_library);
+        return fontInfo;
+    }
 
     // get the basic data.
     fontInfo->filePath = filePath;
