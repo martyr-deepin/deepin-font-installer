@@ -1,12 +1,10 @@
 <a name=""></a>
-##  1.0 (2018-02-07)
-
-<a name=""></a>
-##  0.9 (2018-02-07)
+##  1.0.1 (2018-02-08)
 
 
 #### Bug Fixes
 
+*   could not open the file crashed. ([ce24876b](https://github.com/linuxdeepin/deepin-font-installer/commit/ce24876b8006bb9041698b19d92b21f4a21491b7))
 *   preview font error. ([b7735e57](https://github.com/linuxdeepin/deepin-font-installer/commit/b7735e579cacde71b707834c06d8cb35a363ceb5))
 *   character coding errors. ([3a879141](https://github.com/linuxdeepin/deepin-font-installer/commit/3a879141d38d74a4d494e81a477d27d8439d75df))
 *   home page icon status. ([43da38d0](https://github.com/linuxdeepin/deepin-font-installer/commit/43da38d0ed43ffdc6f0aca4508c454f6798ef1a9))
@@ -91,6 +89,3 @@
 
 
 
-### 0.0.1
-
-**
