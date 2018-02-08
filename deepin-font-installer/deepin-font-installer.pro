@@ -58,4 +58,7 @@ policy.files = com.deepin.pkexec.font-install.policy \
 translations.path = /usr/share/deepin-font-installer/translations
 translations.files = $$PWD/translations/*.qm
 
-INSTALLS += target desktop policy translations
+icon_files.path = /usr/share/icons/hicolor/scalable/apps
+icon_files.files = $$PWD/images/deepin-font-installer.svg
+
+INSTALLS += target desktop policy translations icon_files
