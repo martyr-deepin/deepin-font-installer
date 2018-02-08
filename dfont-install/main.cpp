@@ -70,11 +70,11 @@ int main(int argc, char *argv[])
             target = QString("%1/%2/%3").arg(sysDir, fontInfo->familyName, info.fileName());
             targetDir = QString("%1/%2").arg(sysDir, fontInfo->familyName);
 
-            const QDir fontDir(sysDir);
-            if (fontDir.entryList(QDir::Files).count() == 0) {
-                targetDir = sysDir;
-                target = QString("%1/%2").arg(sysDir, info.fileName());
-            }
+            // const QDir fontDir(sysDir);
+            // if (fontDir.entryList(QDir::Files).count() == 0) {
+            //     targetDir = sysDir;
+            //     target = QString("%1/%2").arg(sysDir, info.fileName());
+            // }
 
             QDir dir(targetDir);
             dir.mkpath(".");

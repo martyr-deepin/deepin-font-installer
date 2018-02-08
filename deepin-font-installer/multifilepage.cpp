@@ -52,8 +52,10 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     m_installBtn->setText(tr("Install"));
     m_installBtn->setFocusPolicy(Qt::NoFocus);
     m_installBtn->setFixedSize(160, 36);
+    m_installBtn->setObjectName("BlueButton");
     m_installBtn->setVisible(false);
 
+    m_viewFileBtn->setObjectName("BlueButton");
     m_viewFileBtn->setStyleSheet("QPushButton { font-size: 14px; }");
     m_viewFileBtn->setText(tr("View font directory"));
     m_viewFileBtn->setFocusPolicy(Qt::NoFocus);

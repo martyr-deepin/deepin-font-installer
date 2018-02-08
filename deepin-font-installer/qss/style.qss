@@ -1,6 +1,6 @@
 #BlueButton {
-    color: #2CA7F8;
-    border: 1px solid #2CA7F8;
+    color: rgba(0, 132, 255, 1);
+    border: 1px solid rgba(0, 132, 255, 0.4);
     border-radius: 4px;
     width: 120px;
     height: 36px;
@@ -8,11 +8,13 @@
 
 #BlueButton:hover {
     color: white;
-    background-color: qlineargradient(x1:0 y1:0, x2:0 y2:1, stop:0 #8ccfff, stop:1 #4bb8ff);
+    background-color: qlineargradient(x1: 0, y1: 0 x2: 0, y2: 1, stop:0 "#8ccfff", stop:1 "#4bb8ff");
+    border: 1px solid rgba(0, 188, 243, 0.2);
 }
 
 #BlueButton:pressed {
-    background-color: qlineargradient(x1:0 y1:0, x2:0 y2:1, stop:0 #0b8cff, stop:1 #0aa1ff);
+    background-color: qlineargradient(x1: 0, y1: 0 x2: 0, y2: 1, stop:0 "#0b8cff", stop:1 "#0aa1ff");
+    border: solid 1px rgba(29, 130, 255, 0.3);
 }
 
 #GrayButton {

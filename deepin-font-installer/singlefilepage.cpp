@@ -154,6 +154,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_installBtn->setText(tr("Install"));
     m_installBtn->setFixedSize(160, 36);
     m_installBtn->setFocusPolicy(Qt::NoFocus);
+    m_installBtn->setObjectName("BlueButton");
     m_installBtn->setVisible(false);
 
     m_uninstallBtn->setFixedSize(160, 36);
@@ -175,6 +176,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_closeBtn->setFixedSize(160, 36);
     m_closeBtn->setFocusPolicy(Qt::NoFocus);
     m_closeBtn->setVisible(false);
+    m_closeBtn->setObjectName("BlueButton");
     m_closeBtn->setText(tr("Done"));
 
     m_propertyAnimation->setDuration(500);
