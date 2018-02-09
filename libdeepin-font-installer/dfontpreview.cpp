@@ -246,7 +246,7 @@ QString DFontPreview::buildCharlistForFace(int length)
     ch = FT_Get_First_Char(m_face, &glyph);
 
     while (glyph != 0) {
-        retval.append(QChar((int) ch));
+        retval.append(QChar(static_cast<int>(ch)));
         retval = retval.simplified();
         ch = FT_Get_Next_Char(m_face, ch, &glyph);
         totalChars++;

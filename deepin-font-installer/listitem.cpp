@@ -18,151 +18,124 @@
  */
 
 #include "listitem.h"
-#include "utils.h"
-#include <QVBoxLayout>
+#include "dsvgrenderer.h"
+#include <QApplication>
 #include <QPainter>
-#include <QFormLayout>
-#include <QSvgWidget>
 
-ListItem::ListItem(QWidget *parent)
-    : QWidget(parent),
-      m_item(new QListWidgetItem),
-      m_fontInfo(nullptr),
-      m_nameLabel(new QLabel),
-      m_styleLabel(new QLabel),
-      m_infoLabel(new QLabel),
-      m_statusLabel(new QLabel),
-      m_closeBtn(new DImageButton (":/images/close_normal.svg",
-                                   ":/images/close_hover.svg",
-                                   ":/images/close_press.svg"))
+ListItem::ListItem(DFontInfo *fontInfo)
+    : m_fontInfo(fontInfo),
+      m_status(ListItem::None)
 {
-    QSvgWidget *iconWidget = new QSvgWidget(":/images/font-x-generic.svg");
-    iconWidget->setFixedSize(32, 32);
-
-    m_nameLabel->setStyleSheet("QLabel { font-size: 14px; font-weight: 510; color: #000000; }");
-    m_styleLabel->setStyleSheet("QLabel { font-size: 12px; color: #000000; }");
-
-    m_closeBtn->setFixedSize(24, 24);
-    m_closeBtn->hide();
-
-    QWidget *formWidget = new QWidget;
-    QFormLayout *formLayout = new QFormLayout(formWidget);
-    formLayout->addRow(m_nameLabel, m_styleLabel);
-    formLayout->addRow(m_infoLabel);
-    formLayout->setHorizontalSpacing(8);
-    formLayout->setVerticalSpacing(0);
-    formLayout->setContentsMargins(0, 0, 0, 0);
-
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
-    mainLayout->addSpacing(10);
-    mainLayout->addWidget(iconWidget);
-    mainLayout->addWidget(formWidget, 0, Qt::AlignVCenter);
-    mainLayout->addStretch();
-    mainLayout->addWidget(m_statusLabel);
-    mainLayout->addSpacing(5);
-    mainLayout->addWidget(m_closeBtn);
-    mainLayout->addSpacing(5);
-    mainLayout->setMargin(0);
-
-    connect(m_closeBtn, &DImageButton::clicked, this, [=] {
-       emit closeBtnClicked(m_item);
-    });
+    const auto ratio = qApp->devicePixelRatio();
+    m_icon = DSvgRenderer::render(":/images/font-x-generic.svg", QSize(32, 32) * ratio);
+    m_icon.setDevicePixelRatio(ratio);
 }
 
-void ListItem::updateInfo(DFontInfo *p)
+ListItem::~ListItem()
 {
-    m_fontInfo = p;
+}
 
-    const bool isInstalled = m_fontInfo->isInstalled;
-    const bool isSampleVersion = m_fontInfo->sysVersion == m_fontInfo->version;
+bool ListItem::sameAs(DSimpleListItem *item)
+{
+    // return name == (static_cast<SingleListItem*>(item))->name;
+}
 
-    m_nameLabel->setText(m_fontInfo->familyName);
-    m_styleLabel->setText(m_styleLabel->fontMetrics().elidedText(m_fontInfo->styleName,
-                                                                 Qt::ElideRight, 180));
-
-    m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; font-size: 12px; }");
-    if (isInstalled) {
-        m_infoLabel->setStyleSheet("QLabel { color: #47790C; font-size: 12px; }");
-
-        if (isSampleVersion) {
-            m_infoLabel->setText(tr("Same version installed"));
-        } else {
-            m_infoLabel->setText(QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion));
-        }
-    } else {
-        m_infoLabel->setStyleSheet("QLabel { color: #5A5A5A; font-size: 12px; }");
-        if (m_fontInfo->description.isEmpty()) {
-            m_infoLabel->setText(tr("Unknown"));
-        } else {
-            m_infoLabel->setText(m_infoLabel->fontMetrics().elidedText(m_fontInfo->description,
-                                                                       Qt::ElideRight,
-                                                                       m_infoLabel->width() / 1.9));
-        }
-    }
+void ListItem::drawBackground(QRect rect, QPainter *painter, int index, bool isSelect)
+{
+    // painter->setBrush(QColor("#FFFFFF"));
+    // painter->drawRect(rect);
 }
 
 void ListItem::setStatus(Status status)
 {
-    m_closeBtn->hide();
-    m_statusLabel->setStyleSheet("QLabel { color: #7C7C7C; font-size: 12px; }");
+    m_status = status;
+}
 
-    switch (status) {
-    case None:
-        m_statusLabel->setText("");
-        break;
+void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int index, bool isSelect)
+{
+    QFont font;
+    font.setPointSize(11);
+    font.setWeight(QFont::DemiBold);
+    painter->setFont(font);
+    painter->setPen(QPen(QColor("#000000")));
+    painter->setOpacity(1);
+
+    // draw icon.
+    const int iconY = rect.y() + (rect.height() - m_icon.height() / m_icon.devicePixelRatio()) / 2;
+    const int iconWidth = m_icon.width() / m_icon.devicePixelRatio();
+    const int iconHeight = m_icon.height() / m_icon.devicePixelRatio();
+    painter->drawPixmap(QRect(10, iconY, iconWidth, iconHeight), m_icon);
+
+    // draw name.
+    QRect nameRect = rect;
+    nameRect.setLeft(iconWidth + 15);
+    nameRect.setHeight(rect.height() / 2);
+
+    const QRectF nameBoundingRect = painter->boundingRect(nameRect, m_fontInfo->familyName, Qt::AlignLeft | Qt::AlignBottom);
+    painter->drawText(nameRect, Qt::AlignLeft | Qt::AlignBottom, m_fontInfo->familyName);
+
+    // draw style name.
+    const int styleX = nameBoundingRect.right() + 10;
+    QRect styleRect = nameRect;
+    styleRect.setLeft(styleX);
+    styleRect.setRight(rect.right() - 80);
+    styleRect.setHeight(styleRect.height() - 2);
+
+    font.setPointSize(9);
+    font.setWeight(QFont::Normal);
+    painter->setFont(font);
+
+    const QString styleStr = painter->fontMetrics().elidedText(m_fontInfo->styleName, Qt::ElideRight, styleRect.width());
+    painter->drawText(styleRect, Qt::AlignLeft | Qt::AlignBottom, styleStr);
+
+    // draw stauts.
+    QRect statusRect = rect;
+    QString statusStr;
+
+    switch (m_status) {
     case Installed:
-        m_status = Installed;
-        m_statusLabel->setStyleSheet("QLabel { color: #528315; font-size: 12px; }");
-        m_statusLabel->setText(tr("Installed"));
-        m_statusLabel->show();
+        painter->setPen(QColor("#528315"));
+        statusStr = tr("Installed");
         break;
     case Installing:
-        m_status = Installing;
-        m_statusLabel->setText(tr("Installing"));
-    break;
-    case Waiting:
-        m_statusLabel->setText("Waiting");
+        painter->setPen(QColor("#7C7C7C"));
+        statusStr = tr("Installing");
         break;
     }
-}
 
-void ListItem::paintEvent(QPaintEvent *e)
-{
-    Q_UNUSED(e);
+    const int statusWidth = painter->fontMetrics().width(statusStr);
+    statusRect.setRight(rect.right() - 18);
+    statusRect.setLeft(rect.right() - statusWidth - 18);
+    font.setPointSize(11);
+    painter->drawText(statusRect, Qt::AlignVCenter | Qt::AlignRight, statusStr);
 
-    if (m_item->listWidget()->count() >= 1 &&
-        m_item == m_item->listWidget()->item(m_item->listWidget()->count() - 1)) {
-        return;
+    // draw description text.
+    QRect descRect = rect;
+    QString descStr = m_fontInfo->description;
+    descRect.setLeft(iconWidth + 15);
+    descRect.setTop(nameRect.bottom() + 2);
+
+    const bool isInstalled = m_fontInfo->isInstalled;
+    const bool isSampleVersion = m_fontInfo->sysVersion == m_fontInfo->version;
+
+    if (isInstalled) {
+        if (isSampleVersion) {
+            descStr = QString(tr("Sample version installed"));
+        } else {
+            descStr = QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion);
+        }
+        painter->setPen(QColor("#47790C"));
+    } else {
+        if (m_fontInfo->description.isEmpty()) {
+            descStr = QString(tr("Unknown"));
+        } else {
+            descStr = m_fontInfo->description;
+        }
+        painter->setPen(QColor("#5A5A5A"));
     }
 
-    QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing, true);
-    painter.setPen(QColor(151, 151, 151, 255 * 0.1));
-    painter.drawLine(QPoint(60, rect().height() - 1),
-                     QPoint(rect().width() - 5, rect().height() - 1));
-}
-
-void ListItem::enterEvent(QEvent *e)
-{
-    if (m_status == Installed) {
-        return;
-    }
-
-    m_closeBtn->show();
-    m_closeBtn->raise();
-    m_statusLabel->hide();
-
-    QWidget::enterEvent(e);
-}
-
-void ListItem::leaveEvent(QEvent *e)
-{
-    if (m_status == Installed) {
-        return;
-    }
-
-    m_closeBtn->hide();
-    m_statusLabel->show();
-
-    QWidget::leaveEvent(e);
+    font.setPointSize(10);
+    painter->setFont(font);
+    descStr = painter->fontMetrics().elidedText(descStr, Qt::ElideRight, rect.width() - statusWidth - iconWidth - 50);
+    painter->drawText(descRect, Qt::AlignLeft | Qt::AlignTop, descStr);
 }

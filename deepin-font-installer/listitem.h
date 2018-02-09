@@ -20,51 +20,32 @@
 #ifndef LISTITEM_H
 #define LISTITEM_H
 
-#include <QWidget>
-#include <QListWidgetItem>
-#include <QLabel>
-#include "dimagebutton.h"
+#include <DSimpleListItem>
 #include "dfontinfomanager.h"
 
 DWIDGET_USE_NAMESPACE
 
-class ListItem : public QWidget
+class ListItem : public DSimpleListItem
 {
     Q_OBJECT
 
 public:
+    ListItem(DFontInfo *fontInfo);
+    ~ListItem();
 
     enum Status {
-        None,
-        Installed,
-        Installing,
-        Waiting
+        None, Installing, Installed
     };
 
-    ListItem(QWidget *parent = nullptr);
-
-    QListWidgetItem *getItem() { return m_item; };
-    DFontInfo *getFontInfo() { return m_fontInfo; };
-    void updateInfo(DFontInfo *);
+    bool sameAs(DSimpleListItem *item);
     void setStatus(Status status);
-
-signals:
-    void closeBtnClicked(QListWidgetItem *item);
-
-protected:
-    void paintEvent(QPaintEvent *);
-    void enterEvent(QEvent *);
-    void leaveEvent(QEvent *);
+    void drawBackground(QRect rect, QPainter *painter, int index, bool isSelect);
+    void drawForeground(QRect rect, QPainter *painter, int column, int index, bool isSelect);
 
 private:
-    QListWidgetItem *m_item;
     DFontInfo *m_fontInfo;
-    QLabel *m_nameLabel;
-    QLabel *m_styleLabel;
-    QLabel *m_infoLabel;
-    QLabel *m_statusLabel;
-    DImageButton *m_closeBtn;
+    QPixmap m_icon;
     Status m_status;
 };
 
-#endif // LISTITEM_H
+#endif

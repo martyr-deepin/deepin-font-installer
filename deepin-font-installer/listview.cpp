@@ -17,17 +17,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "listwidget.h"
+#include "listview.h"
 
-ListWidget::ListWidget(QWidget *parent)
-    : QListWidget(parent)
+ListView::ListView(QWidget *parent)
+    : DSimpleListView(parent)
 {
+    // enable frame and radius.
+    setFrame(true);
+    setClipRadius(8);
+
+    // set row height.
+    setRowHeight(56);
+
+    // set fixed height.
     setFixedHeight(280);
-    setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-    setSelectionMode(QAbstractItemView::NoSelection);
-    setAutoScroll(false);
+
+    // init scrollbar attributes.
+    scrollbarColor = "#101010";
+    scrollbarNormalOpacity = 0.5;
+    scrollbarHoverOpacity = 0.7;
+    scrollbarPressOpacity = 0.8;
+    scrollbarFrameNormalOpacity = 0;
+    scrollbarFrameHoverOpacity = 0;
+    scrollbarFramePressOpacity = 0;
 }
 
-ListWidget::~ListWidget()
+ListView::~ListView()
 {
 }

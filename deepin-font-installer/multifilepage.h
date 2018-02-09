@@ -25,7 +25,7 @@
 #include <QPushButton>
 #include "dfontinfomanager.h"
 #include "dfontmanager.h"
-#include "listwidget.h"
+#include "listview.h"
 #include "listitem.h"
 #include "progress.h"
 #include "dsuggestbutton.h"
@@ -41,8 +41,7 @@ public:
     ~MultiFilePage();
 
     void addItems(const QStringList &paths);
-    void handleClose(QListWidgetItem *item);
-    QList<DFontInfo *> getInfoList() { return m_infoList; };
+    QList<DFontInfo *> getInfoList() { return m_fontInfoList; };
 
 signals:
     void countChanged();
@@ -57,12 +56,13 @@ private slots:
 private:
     DFontInfoManager *m_fontInfoManager;
     DFontManager *m_fontManager;
-    ListWidget *m_listWidget;
+    ListView *m_listView;
     QLabel *m_tipsLabel;
     DSuggestButton *m_installBtn;
     DSuggestButton *m_viewFileBtn;
     Progress *m_progress;
-    QList<DFontInfo *> m_infoList;
+
+    QList<DFontInfo *> m_fontInfoList;
     QMap<QString, ListItem *> m_listItems;
 };
 

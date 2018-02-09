@@ -107,25 +107,17 @@ void DFontInfoManager::refreshList()
 QStringList DFontInfoManager::getAllFontPath() const
 {
     QStringList pathList;
-    FcStrList *strList = FcConfigGetFontDirs(FcInitLoadConfigAndFonts());
-    FcChar8 *fcDir;
+    QProcess *process = new QProcess;
+    process->start("fc-list", QStringList() << ":" << "file");
+    process->waitForFinished(-1);
 
-    while ((fcDir = FcStrListNext(strList)) != NULL) {
-        const QString pathStr = dirSyntax((const char *) fcDir);
-        const QDir dir(pathStr);
-        const QFileInfoList infoList = dir.entryInfoList(QDir::Files);
+    QString output = process->readAllStandardOutput();
+    QStringList lines = output.split(QChar('\n'));
+    process->deleteLater();
 
-        for (const QFileInfo &info : infoList) {
-            const QString filePath = info.absoluteFilePath();
-            const QString suffix = info.suffix().toLower();
-
-            if (suffix == "ttf" || suffix == "ttc" || suffix == "otf") {
-                pathList.append(filePath);
-            }
-        }
+    for (QString line : lines) {
+        pathList << line.remove(QChar(':')).simplified();
     }
-
-    FcStrListDone(strList);
 
     return pathList;
 }

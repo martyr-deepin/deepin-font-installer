@@ -18,22 +18,22 @@ DEFINES += QT_MESSAGELOGCONTEXT
 
 # Input
 HEADERS += homepage.h \
+           listview.h \
 	   listitem.h \
 	   mainwindow.h \
 	   multifilepage.h \
 	   singlefilepage.h \
 	   utils.h \
-	   listwidget.h \
 	   progress.h
 
 SOURCES += homepage.cpp \
+           listview.cpp \
 	   listitem.cpp \
 	   main.cpp \
 	   mainwindow.cpp \
 	   multifilepage.cpp \
 	   singlefilepage.cpp \
 	   utils.cpp \
-	   listwidget.cpp \
 	   progress.cpp
 
 RESOURCES += deepin-font-installer.qrc

@@ -18,7 +18,6 @@
  */
 
 #include "multifilepage.h"
-#include <QListWidgetItem>
 #include <QApplication>
 #include <QVBoxLayout>
 #include <QProcess>
@@ -30,7 +29,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     : QWidget(parent),
       m_fontInfoManager(DFontInfoManager::instance()),
       m_fontManager(DFontManager::instance()),
-      m_listWidget(new ListWidget),
+      m_listView(new ListView),
       m_tipsLabel(new QLabel(tr("Installed successfully"))),
       m_installBtn(new DSuggestButton),
       m_viewFileBtn(new DSuggestButton),
@@ -38,7 +37,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
 {
     QHBoxLayout *contentLayout = new QHBoxLayout;
     contentLayout->addSpacing(15);
-    contentLayout->addWidget(m_listWidget);
+    contentLayout->addWidget(m_listView);
     contentLayout->addSpacing(15);
 
     QHBoxLayout *btnsLayout = new QHBoxLayout;
@@ -86,6 +85,7 @@ MultiFilePage::~MultiFilePage()
 
 void MultiFilePage::addItems(const QStringList &paths)
 {
+    QList<DSimpleListItem *> listItems;
     for (const QString &path : paths) {
         if (!m_listItems.contains(path)) {
             DFontInfo *fontInfo = m_fontInfoManager->getFontInfo(path);
@@ -96,17 +96,15 @@ void MultiFilePage::addItems(const QStringList &paths)
                 continue;
             }
 
-            m_infoList.append(fontInfo);
-            ListItem *fileItem = new ListItem;
-            m_listWidget->addItem(fileItem->getItem());
-            fileItem->updateInfo(fontInfo);
-            fileItem->getItem()->setSizeHint(QSize(-1, 56));
-            m_listWidget->setItemWidget(fileItem->getItem(), fileItem);
-            connect(fileItem, &ListItem::closeBtnClicked, this, &MultiFilePage::handleClose);
-
+            ListItem *fileItem = new ListItem(fontInfo);
+            listItems << fileItem;
+            m_fontInfoList << fontInfo;
             m_listItems.insert(path, fileItem);
         }
     }
+
+    // add items to listview.
+    m_listView->addItems(listItems);
 
     m_tipsLabel->setVisible(false);
     m_installBtn->setVisible(true);
@@ -115,39 +113,20 @@ void MultiFilePage::addItems(const QStringList &paths)
     refreshList();
 }
 
-void MultiFilePage::handleClose(QListWidgetItem *item)
-{
-    ListItem *fileItem = static_cast<ListItem *>(m_listWidget->itemWidget(item));
-    delete m_listWidget->takeItem(m_listWidget->row(fileItem->getItem()));
-
-    m_infoList.removeAt(m_infoList.indexOf(fileItem->getFontInfo()));
-    m_listItems.remove(fileItem->getFontInfo()->filePath);
-    delete fileItem->getFontInfo();
-    fileItem->deleteLater();
-
-    emit countChanged();
-}
-
 void MultiFilePage::refreshList()
 {
     m_fontInfoManager->refreshList();
 
-    for (auto *item : m_infoList) {
+    for (auto *item : m_fontInfoList) {
         item->isInstalled = m_fontInfoManager->isFontInstalled(item);
     }
-
-    // for (int i = 0; i < m_listWidget->count(); ++i) {
-    //     QListWidgetItem *item = m_listWidget->item(i);
-    //     ListItem *itemWidget = qobject_cast<ListItem *>(m_listWidget->itemWidget(item));
-    //     itemWidget->updateStatus();
-    // }
 }
 
 void MultiFilePage::batchInstallation()
 {
     QStringList filePaths;
 
-    for (auto const &item : m_infoList) {
+    for (auto const &item : m_fontInfoList) {
         filePaths << item->filePath;
     }
 
@@ -165,15 +144,16 @@ void MultiFilePage::onProgressChanged(const QString &filePath, const float &perc
 
     ListItem *item = m_listItems.find(filePath).value();
     item->setStatus(ListItem::Installed);
+    m_listView->update();
 
-    int nextIndex = m_listWidget->row(item->getItem()) + 1;
-    if (nextIndex < m_listWidget->count()) {
-        QListWidgetItem *item = m_listWidget->item(nextIndex);
-        ListItem *nextItem = qobject_cast<ListItem *>(m_listWidget->itemWidget(item));
+    // int nextIndex = m_listWidget->row(item->getItem()) + 1;
+    // if (nextIndex < m_listWidget->count()) {
+    //     QListWidgetItem *item = m_listWidget->item(nextIndex);
+    //     ListItem *nextItem = qobject_cast<ListItem *>(m_listWidget->itemWidget(item));
 
-        nextItem->setStatus(ListItem::Installing);
-        m_listWidget->scrollToItem(nextItem->getItem());
-    }
+    //     nextItem->setStatus(ListItem::Installing);
+    //     m_listWidget->scrollToItem(nextItem->getItem());
+    // }
 
     if (percent == 100) {
         onWorkerFinished();

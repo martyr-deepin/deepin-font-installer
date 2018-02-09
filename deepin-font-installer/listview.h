@@ -20,15 +20,17 @@
 #ifndef LISTVIEW_H
 #define LISTVIEW_H
 
-#include <QListWidget>
+#include <DSimpleListView>
 
-class ListWidget : public QListWidget
+DWIDGET_USE_NAMESPACE
+
+class ListView : public DSimpleListView
 {
     Q_OBJECT
 
 public:
-    ListWidget(QWidget *parent = nullptr);
-    ~ListWidget();
+    ListView(QWidget *parent = nullptr);
+    ~ListView();
 };
 
 #endif
