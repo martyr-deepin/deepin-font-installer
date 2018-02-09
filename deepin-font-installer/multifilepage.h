@@ -23,7 +23,6 @@
 #include <QWidget>
 #include <QLabel>
 #include <QPushButton>
-#include <QPropertyAnimation>
 #include "dfontinfomanager.h"
 #include "dfontmanager.h"
 #include "listwidget.h"
@@ -63,7 +62,6 @@ private:
     DSuggestButton *m_installBtn;
     DSuggestButton *m_viewFileBtn;
     Progress *m_progress;
-    QPropertyAnimation *m_animation;
     QList<DFontInfo *> m_infoList;
     QMap<QString, ListItem *> m_listItems;
 };

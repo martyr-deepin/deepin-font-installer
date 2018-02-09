@@ -34,8 +34,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
       m_tipsLabel(new QLabel(tr("Installed successfully"))),
       m_installBtn(new DSuggestButton),
       m_viewFileBtn(new DSuggestButton),
-      m_progress(new Progress),
-      m_animation(new QPropertyAnimation(m_progress, "value", this))
+      m_progress(new Progress)
 {
     QHBoxLayout *contentLayout = new QHBoxLayout;
     contentLayout->addSpacing(15);
@@ -162,10 +161,7 @@ void MultiFilePage::onProgressChanged(const QString &filePath, const float &perc
     m_installBtn->setVisible(false);
     m_viewFileBtn->setVisible(false);
     m_progress->setVisible(true);
-
-    m_animation->setStartValue(m_progress->value());
-    m_animation->setEndValue((int) percent);
-    m_animation->start();
+    m_progress->setValue(static_cast<int>(percent));
 
     ListItem *item = m_listItems.find(filePath).value();
     item->setStatus(ListItem::Installed);
