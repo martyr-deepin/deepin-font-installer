@@ -100,7 +100,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     mainLayout->addLayout(formLayout);
     mainLayout->addStretch();
     mainLayout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
-    mainLayout->addSpacing(10);
+    mainLayout->addSpacing(8);
     mainLayout->addLayout(m_bottomLayout);
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);
@@ -144,7 +144,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_reinstallBtn->setVisible(false);
 
     m_viewFileBtn->setText(tr("View font directory"));
-    m_viewFileBtn->setFixedSize(160, 36);
+    m_viewFileBtn->setFixedSize(180, 36);
     m_viewFileBtn->setFocusPolicy(Qt::NoFocus);
     m_viewFileBtn->setObjectName("BlueButton");
     m_viewFileBtn->setVisible(false);

@@ -56,22 +56,6 @@ QString convertToUtf8(char *content, int len)
     return convertedStr;
 }
 
-QString dirSyntax(const QString &d)
-{
-    if(!d.isEmpty()) {
-        QString ds(d);
-        ds.replace("//", "/");
-
-        int slashPos = ds.lastIndexOf('/');
-        if (slashPos != (((int) ds.length()) - 1))
-            ds.append('/');
-
-        return ds;
-    }
-
-    return d;
-}
-
 DFontInfoManager *DFontInfoManager::instance()
 {
     if (!m_instance) {

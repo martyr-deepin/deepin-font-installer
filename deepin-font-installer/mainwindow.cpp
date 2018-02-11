@@ -70,6 +70,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *e)
         return e->ignore();
     }
 
+    // traverse.
     for (const auto &url : mime->urls()) {
         const QFileInfo info(url.toLocalFile());
 

@@ -56,7 +56,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     m_viewFileBtn->setObjectName("BlueButton");
     m_viewFileBtn->setText(tr("View font directory"));
     m_viewFileBtn->setFocusPolicy(Qt::NoFocus);
-    m_viewFileBtn->setFixedSize(160, 36);
+    m_viewFileBtn->setFixedSize(180, 36);
     m_viewFileBtn->setVisible(false);
     m_viewFileBtn->setVisible(false);
     m_progress->setVisible(false);
@@ -65,7 +65,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     mainLayout->addLayout(contentLayout);
     mainLayout->addStretch();
     mainLayout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
-    mainLayout->addSpacing(5);
+    mainLayout->addSpacing(8);
     mainLayout->addWidget(m_progress, 0, Qt::AlignHCenter);
     mainLayout->addLayout(btnsLayout);
     mainLayout->addStretch();
@@ -85,10 +85,12 @@ MultiFilePage::~MultiFilePage()
 void MultiFilePage::addItems(const QStringList &paths)
 {
     QList<DSimpleListItem *> listItems;
+
     for (const QString &path : paths) {
         if (!m_listItems.contains(path)) {
             DFontInfo *fontInfo = m_fontInfoManager->getFontInfo(path);
 
+            // if can not open the font.
             if (fontInfo->familyName.isEmpty() &&
                 fontInfo->styleName.isEmpty()) {
                 delete fontInfo;

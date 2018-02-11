@@ -52,6 +52,7 @@ HomePage::HomePage(QWidget *parent)
     m_splitLine->setPixmap(QPixmap(":/images/split_line.svg"));
     m_tipsLabel->setStyleSheet("QLabel { color: #6a6a6a; }");
 
+    // initalize the configuration file.
     if (m_settings->value("dir").toString().isEmpty()) {
         m_settings->setValue("dir", "");
     }
@@ -91,8 +92,11 @@ void HomePage::onChooseBtnClicked()
     dialog.setDirectory(m_settings->value("dir").toString());
 
     const int mode = dialog.exec();
+
+    // save the directory string to config file.
     m_settings->setValue("dir", dialog.directoryUrl().toLocalFile());
 
+    // if click cancel button.
     if (mode != QDialog::Accepted) {
         return;
     }

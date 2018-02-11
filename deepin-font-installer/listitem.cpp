@@ -27,6 +27,7 @@ ListItem::ListItem(DFontInfo *fontInfo)
       m_status(ListItem::None)
 {
     const auto ratio = qApp->devicePixelRatio();
+
     m_icon = DSvgRenderer::render(":/images/font-x-generic.svg", QSize(32, 32) * ratio);
     m_icon.setDevicePixelRatio(ratio);
 }
@@ -42,8 +43,11 @@ bool ListItem::sameAs(DSimpleListItem *item)
 
 void ListItem::drawBackground(QRect rect, QPainter *painter, int index, bool isSelect)
 {
-    // painter->setBrush(QColor("#FFFFFF"));
-    // painter->drawRect(rect);
+    // draw line.
+    painter->setOpacity(1);
+    painter->setPen(QColor(151, 151, 151, 255 * 0.1));
+    painter->drawLine(QPoint(50, rect.y() + rect.height() - 1),
+                      QPoint(rect.width() - 10, rect.y() + rect.height() - 1));
 }
 
 void ListItem::setStatus(Status status)
