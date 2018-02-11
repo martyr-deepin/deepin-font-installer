@@ -41,11 +41,11 @@ SingleFilePage::SingleFilePage(QWidget *parent)
       m_copyrightLabel(new QLabel),
       m_descriptionLabel(new QLabel),
       m_tipsLabel(new QLabel()),
-      m_installBtn(new DSuggestButton),
+      m_installBtn(new QPushButton),
       m_uninstallBtn(new QPushButton(tr("Remove"))),
       m_reinstallBtn(new QPushButton(tr("Reinstall"))),
-      m_viewFileBtn(new DSuggestButton),
-      m_closeBtn(new DSuggestButton),
+      m_viewFileBtn(new QPushButton),
+      m_closeBtn(new QPushButton),
       m_progress(new Progress),
       m_propertyAnimation(new QPropertyAnimation(m_progress, "value", this)),
       m_bottomLayout(new QStackedLayout)
@@ -143,10 +143,10 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_reinstallBtn->setObjectName("GrayButton");
     m_reinstallBtn->setVisible(false);
 
-    m_viewFileBtn->setStyleSheet("QPushButton { font-size: 14px; }");
     m_viewFileBtn->setText(tr("View font directory"));
     m_viewFileBtn->setFixedSize(160, 36);
     m_viewFileBtn->setFocusPolicy(Qt::NoFocus);
+    m_viewFileBtn->setObjectName("BlueButton");
     m_viewFileBtn->setVisible(false);
 
     m_closeBtn->setFixedSize(160, 36);

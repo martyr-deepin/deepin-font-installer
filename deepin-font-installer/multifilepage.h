@@ -28,9 +28,6 @@
 #include "listview.h"
 #include "listitem.h"
 #include "progress.h"
-#include "dsuggestbutton.h"
-
-DWIDGET_USE_NAMESPACE
 
 class MultiFilePage : public QWidget
 {
@@ -58,8 +55,8 @@ private:
     DFontManager *m_fontManager;
     ListView *m_listView;
     QLabel *m_tipsLabel;
-    DSuggestButton *m_installBtn;
-    DSuggestButton *m_viewFileBtn;
+    QPushButton *m_installBtn;
+    QPushButton *m_viewFileBtn;
     Progress *m_progress;
 
     QList<DFontInfo *> m_fontInfoList;
