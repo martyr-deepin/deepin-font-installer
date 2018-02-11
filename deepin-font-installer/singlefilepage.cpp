@@ -30,30 +30,6 @@
 #include <QUrl>
 #include <QDir>
 
-const QString holdTextInRect(const QFontMetrics &fm, const QString &text, const QRect &rect)
-{
-    const int textFlag = Qt::AlignTop | Qt::AlignLeft | Qt::TextWordWrap | Qt::TextWrapAnywhere;
-
-    if (rect.contains(fm.boundingRect(rect, textFlag, text)))
-        return text;
-
-    QString str(text + "...");
-
-    while (true)
-    {
-        if (str.size() < 4)
-            break;
-
-        QRect boundingRect = fm.boundingRect(rect, textFlag, str);
-        if (rect.contains(boundingRect))
-            break;
-
-        str.remove(str.size() - 4, 1);
-    }
-
-    return str;
-}
-
 SingleFilePage::SingleFilePage(QWidget *parent)
     : QWidget(parent),
       m_fontInfoManager(DFontInfoManager::instance()),
@@ -204,22 +180,13 @@ void SingleFilePage::updateInfo(DFontInfo *info)
     m_fontInfo = info;
     refreshPage();
 
+    const QFontMetrics fm(m_copyrightLabel->font());
     m_nameLabel->setText(m_fontInfo->familyName);
     m_styleLabel->setText(m_fontInfo->styleName);
     m_typeLabel->setText(m_fontInfo->type);
-
-    m_versionLabel->setText(holdTextInRect(m_versionLabel->fontMetrics(),
-                                           m_fontInfo->version, QRect(0, 0, 100, 38)));
-
-    const QFontMetrics cpfm(m_copyrightLabel->font());
-    const int cpwidth = 400 - cpfm.width(tr("Copyright: "));
-    m_copyrightLabel->setText(holdTextInRect(m_copyrightLabel->fontMetrics(),
-                                             m_fontInfo->copyright, QRect(0, 0, cpwidth, cpfm.height() * 2)));
-
-    const QFontMetrics descfm(m_descriptionLabel->font());
-    const int descwidth = 400 - descfm.width(tr("Description: "));
-    m_descriptionLabel->setText(holdTextInRect(m_descriptionLabel->fontMetrics(),
-                                               m_fontInfo->description, QRect(0, 0, descwidth, descfm.height() * 2)));
+    m_versionLabel->setText(fm.elidedText(m_fontInfo->version, Qt::ElideRight, 300));
+    m_copyrightLabel->setText(fm.elidedText(m_fontInfo->copyright, Qt::ElideRight, 700));
+    m_descriptionLabel->setText(fm.elidedText(m_fontInfo->description, Qt::ElideRight, 720));
 }
 
 void SingleFilePage::refreshPage()
