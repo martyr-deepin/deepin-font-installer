@@ -24,6 +24,9 @@
 #include <QTimer>
 #include <QUrl>
 #include "listitem.h"
+#include "dsvgrenderer.h"
+
+DWIDGET_USE_NAMESPACE
 
 MultiFilePage::MultiFilePage(QWidget *parent)
     : QWidget(parent),
@@ -33,8 +36,13 @@ MultiFilePage::MultiFilePage(QWidget *parent)
       m_tipsLabel(new QLabel(tr("Installed successfully"))),
       m_installBtn(new QPushButton),
       m_viewFileBtn(new QPushButton),
-      m_progress(new Progress)
+      m_progress(new Progress),
+      m_iconPixmap(new QPixmap)
 {
+    const auto ratio = qApp->devicePixelRatio();
+    *m_iconPixmap = DSvgRenderer::render(":/images/font-x-generic.svg", QSize(32, 32) * ratio);
+    m_iconPixmap->setDevicePixelRatio(ratio);
+
     QHBoxLayout *contentLayout = new QHBoxLayout;
     contentLayout->addSpacing(15);
     contentLayout->addWidget(m_listView);
@@ -80,6 +88,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
 
 MultiFilePage::~MultiFilePage()
 {
+    delete m_iconPixmap;
 }
 
 void MultiFilePage::addItems(const QStringList &paths)
@@ -97,7 +106,7 @@ void MultiFilePage::addItems(const QStringList &paths)
                 continue;
             }
 
-            ListItem *fileItem = new ListItem(fontInfo);
+            ListItem *fileItem = new ListItem(fontInfo, m_iconPixmap);
             listItems << fileItem;
             m_fontInfoList << fontInfo;
             m_listItems.insert(path, fileItem);

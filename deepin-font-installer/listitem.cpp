@@ -22,14 +22,11 @@
 #include <QApplication>
 #include <QPainter>
 
-ListItem::ListItem(DFontInfo *fontInfo)
+ListItem::ListItem(DFontInfo *fontInfo, QPixmap *iconPixmap)
     : m_fontInfo(fontInfo),
-      m_status(ListItem::None)
+      m_status(ListItem::None),
+      m_iconPixmap(iconPixmap)
 {
-    const auto ratio = qApp->devicePixelRatio();
-
-    m_icon = DSvgRenderer::render(":/images/font-x-generic.svg", QSize(32, 32) * ratio);
-    m_icon.setDevicePixelRatio(ratio);
 }
 
 ListItem::~ListItem()
@@ -65,10 +62,10 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
     painter->setOpacity(1);
 
     // draw icon.
-    const int iconY = rect.y() + (rect.height() - m_icon.height() / m_icon.devicePixelRatio()) / 2;
-    const int iconWidth = m_icon.width() / m_icon.devicePixelRatio();
-    const int iconHeight = m_icon.height() / m_icon.devicePixelRatio();
-    painter->drawPixmap(QRect(10, iconY, iconWidth, iconHeight), m_icon);
+    const int iconY = rect.y() + (rect.height() - m_iconPixmap->height() / m_iconPixmap->devicePixelRatio()) / 2;
+    const int iconWidth = m_iconPixmap->width() / m_iconPixmap->devicePixelRatio();
+    const int iconHeight = m_iconPixmap->height() / m_iconPixmap->devicePixelRatio();
+    painter->drawPixmap(QRect(10, iconY, iconWidth, iconHeight), *m_iconPixmap);
 
     // draw name.
     QRect nameRect = rect;

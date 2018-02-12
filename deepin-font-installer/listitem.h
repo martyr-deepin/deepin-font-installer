@@ -30,7 +30,7 @@ class ListItem : public DSimpleListItem
     Q_OBJECT
 
 public:
-    ListItem(DFontInfo *fontInfo);
+    ListItem(DFontInfo *fontInfo, QPixmap *iconPixmap);
     ~ListItem();
 
     enum Status {
@@ -44,8 +44,8 @@ public:
 
 private:
     DFontInfo *m_fontInfo;
-    QPixmap m_icon;
     Status m_status;
+    QPixmap *m_iconPixmap;
 };
 
 #endif

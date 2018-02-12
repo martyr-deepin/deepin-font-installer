@@ -58,6 +58,7 @@ private:
     QPushButton *m_installBtn;
     QPushButton *m_viewFileBtn;
     Progress *m_progress;
+    QPixmap *m_iconPixmap;
 
     QList<DFontInfo *> m_fontInfoList;
     QMap<QString, ListItem *> m_listItems;
