@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 ~ 2018 Deepin Technology Co., Ltd.
+ * Copyright (C) 2017 ~ 2018 Deepin Technology Co., Ltd.
  *
  * Author:     rekols <rekols@foxmail.com>
  * Maintainer: rekols <rekols@foxmail.com>
@@ -20,14 +20,24 @@
 
 #include "utils.h"
 
-#include <QDebug>
-#include <QFile>
 #include <QUrl>
 #include <QDir>
+#include <QFile>
+#include <QDebug>
 #include <QFontInfo>
-#include <QFontDatabase>
 #include <QMimeType>
+#include <QApplication>
 #include <QMimeDatabase>
+#include <QStandardPaths>
+
+Utils::Utils(QObject *parent)
+    : QObject(parent)
+{
+}
+
+Utils::~Utils()
+{
+}
 
 QString Utils::getQssContent(const QString &filePath)
 {
@@ -39,6 +49,14 @@ QString Utils::getQssContent(const QString &filePath)
     }
 
     return qss;
+}
+
+QString Utils::getConfigPath()
+{
+    QDir dir(QDir(QStandardPaths::standardLocations(QStandardPaths::ConfigLocation).first())
+             .filePath(qApp->organizationName()));
+
+    return dir.filePath(qApp->applicationName());
 }
 
 bool Utils::isFontMimeType(const QString &filePath)

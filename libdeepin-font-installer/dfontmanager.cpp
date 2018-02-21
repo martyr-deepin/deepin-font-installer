@@ -20,15 +20,15 @@
 #include "dfontmanager.h"
 #include <QProcess>
 
-static DFontManager *m_instance = 0;
+static DFontManager *INSTANCE = 0;
 
 DFontManager *DFontManager::instance()
 {
-    if (!m_instance) {
-        m_instance = new DFontManager;
+    if (!INSTANCE) {
+        INSTANCE = new DFontManager;
     }
 
-    return m_instance;
+    return INSTANCE;
 }
 
 DFontManager::DFontManager(QObject *parent)

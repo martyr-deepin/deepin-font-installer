@@ -21,14 +21,6 @@
 #include "utils.h"
 #include <DSvgRenderer>
 #include <QApplication>
-#include <QStandardPaths>
-#include <QDir>
-
-QString configPath()
-{
-    return QDir(QDir(QStandardPaths::standardLocations(QStandardPaths::ConfigLocation).first())
-                .filePath(qApp->organizationName())).filePath(qApp->applicationName());
-}
 
 HomePage::HomePage(QWidget *parent)
     : QWidget(parent),
@@ -37,7 +29,8 @@ HomePage::HomePage(QWidget *parent)
       m_tipsLabel(new QLabel(tr("Drag font file here"))),
       m_splitLine(new QLabel),
       m_chooseBtn(new DLinkButton(tr("Select file"))),
-      m_settings(new QSettings(QDir(configPath()).filePath("config.conf"), QSettings::IniFormat))
+      m_settings(new QSettings(QDir(Utils::getConfigPath()).filePath("config.conf"),
+                               QSettings::IniFormat))
 {
     const auto ratio = devicePixelRatioF();
 
@@ -96,7 +89,7 @@ void HomePage::onChooseBtnClicked()
     // save the directory string to config file.
     m_settings->setValue("dir", dialog.directoryUrl().toLocalFile());
 
-    // if click cancel button.
+    // if click cancel button or close button.
     if (mode != QDialog::Accepted) {
         return;
     }

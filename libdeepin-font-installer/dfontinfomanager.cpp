@@ -33,7 +33,7 @@
 #include FT_TRUETYPE_IDS_H
 
 static QList<DFontInfo *> dataList;
-static DFontInfoManager *m_instance = 0;
+static DFontInfoManager *INSTANCE = 0;
 
 QString convertToUtf8(char *content, int len)
 {
@@ -58,11 +58,11 @@ QString convertToUtf8(char *content, int len)
 
 DFontInfoManager *DFontInfoManager::instance()
 {
-    if (!m_instance) {
-        m_instance = new DFontInfoManager;
+    if (!INSTANCE) {
+        INSTANCE = new DFontInfoManager;
     }
 
-    return m_instance;
+    return INSTANCE;
 }
 
 DFontInfoManager::DFontInfoManager(QObject *parent)
@@ -78,7 +78,7 @@ DFontInfoManager::~DFontInfoManager()
 void DFontInfoManager::refreshList()
 {
     if (!dataList.isEmpty()) {
-        qDeleteAll(dataList);
+        qDeleteAll(dataList.begin(), dataList.end());
         dataList.clear();
     }
 

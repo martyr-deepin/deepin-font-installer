@@ -22,11 +22,18 @@
 
 #include <QObject>
 
-namespace Utils
+class Utils : public QObject
 {
-    QString getQssContent(const QString &filePath);
-    bool isFontMimeType(const QString &filePath);
-    QString suffixList();
-}
+    Q_OBJECT
 
-#endif // UTILS_H
+public:
+    Utils(QObject *parent = nullptr);
+    ~Utils();
+
+    static QString getQssContent(const QString &filePath);
+    static QString getConfigPath();
+    static bool isFontMimeType(const QString &filePath);
+    static QString suffixList();
+};
+
+#endif

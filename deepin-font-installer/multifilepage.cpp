@@ -115,6 +115,7 @@ void MultiFilePage::addItems(const QStringList &paths)
 
     // add items to listview.
     m_listView->addItems(listItems);
+    m_listView->update();
 
     m_tipsLabel->setVisible(false);
     m_installBtn->setVisible(true);
