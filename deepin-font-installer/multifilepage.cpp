@@ -100,8 +100,7 @@ void MultiFilePage::addItems(const QStringList &paths)
             DFontInfo *fontInfo = m_fontInfoManager->getFontInfo(path);
 
             // if can not open the font.
-            if (fontInfo->familyName.isEmpty() &&
-                fontInfo->styleName.isEmpty()) {
+            if (fontInfo->isError) {
                 delete fontInfo;
                 continue;
             }
