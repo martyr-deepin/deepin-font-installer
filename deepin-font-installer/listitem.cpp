@@ -91,7 +91,7 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
 
     // draw stauts.
     QRect statusRect = rect;
-    QString statusStr;
+    QString statusStr = "";
 
     switch (m_status) {
     case Installed:

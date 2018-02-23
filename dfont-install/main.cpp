@@ -67,8 +67,14 @@ int main(int argc, char *argv[])
             process->waitForFinished(-1);
         } else {
             const QFileInfo info(file);
-            target = QString("%1/%2/%3").arg(sysDir, fontInfo->familyName, info.fileName());
-            targetDir = QString("%1/%2").arg(sysDir, fontInfo->familyName);
+            QString dirName = fontInfo->familyName;
+
+            if (dirName.at(0) == '.') {
+                dirName = dirName.remove(0, 1);
+            }
+
+            target = QString("%1/%2/%3").arg(sysDir, dirName, info.fileName());
+            targetDir = QString("%1/%2").arg(sysDir, dirName);
 
             // const QDir fontDir(sysDir);
             // if (fontDir.entryList(QDir::Files).count() == 0) {
