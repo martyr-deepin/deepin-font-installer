@@ -107,18 +107,18 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     mainLayout->setContentsMargins(50, 0, 50, 20);
 
     // init property.
-    styleLabel->setStyleSheet("QLabel { color: #797979; font-size: 15px; }");
-    typeLabel->setStyleSheet("QLabel { color: #797979; font-size: 15px; }");
-    versionLabel->setStyleSheet("QLabel { color: #797979; font-size: 15px; }");
-    copyrightLabel->setStyleSheet("QLabel { color: #797979; font-size: 15px; }");
-    descLabel->setStyleSheet("QLabel { color: #797979; font-size: 15px; }");
+    styleLabel->setStyleSheet("QLabel { color: #797979; font-size: 14px; }");
+    typeLabel->setStyleSheet("QLabel { color: #797979; font-size: 14px; }");
+    versionLabel->setStyleSheet("QLabel { color: #797979; font-size: 14px; }");
+    copyrightLabel->setStyleSheet("QLabel { color: #797979; font-size: 14px; }");
+    descLabel->setStyleSheet("QLabel { color: #797979; font-size: 14px; }");
 
     m_nameLabel->setStyleSheet("QLabel { font-size: 18px; font-weight: 510; }");
-    m_styleLabel->setStyleSheet("QLabel { font-size: 15px; }");
-    m_typeLabel->setStyleSheet("QLabel { font-size: 15px; }");
-    m_versionLabel->setStyleSheet("QLabel { font-size: 15px; }");
-    m_copyrightLabel->setStyleSheet("QLabel { font-size: 15px; }");
-    m_descriptionLabel->setStyleSheet("QLabel { font-size: 15px; }");
+    m_styleLabel->setStyleSheet("QLabel { font-size: 14px; }");
+    m_typeLabel->setStyleSheet("QLabel { font-size: 14px; }");
+    m_versionLabel->setStyleSheet("QLabel { font-size: 14px; }");
+    m_copyrightLabel->setStyleSheet("QLabel { font-size: 14px; }");
+    m_descriptionLabel->setStyleSheet("QLabel { font-size: 14px; }");
 
     m_copyrightLabel->setAlignment(Qt::AlignTop);
     m_copyrightLabel->setWordWrap(true);
