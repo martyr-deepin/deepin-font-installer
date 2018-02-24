@@ -37,20 +37,49 @@ MultiFilePage::MultiFilePage(QWidget *parent)
       m_installBtn(new QPushButton),
       m_viewFileBtn(new QPushButton),
       m_progress(new Progress),
-      m_iconPixmap(new QPixmap)
+      m_iconPixmap(new QPixmap),
+      m_refreshThread(new RefreshThread),
+      m_bottomLayout(new QStackedLayout),
+      m_spinner(new DSpinner)
 {
     const auto ratio = qApp->devicePixelRatio();
     *m_iconPixmap = DSvgRenderer::render(":/images/font-x-generic.svg", QSize(32, 32) * ratio);
     m_iconPixmap->setDevicePixelRatio(ratio);
 
+    // list widget.
     QHBoxLayout *contentLayout = new QHBoxLayout;
     contentLayout->addSpacing(15);
     contentLayout->addWidget(m_listView);
     contentLayout->addSpacing(15);
 
+    // init buttons page.
+    QWidget *btnsPage = new QWidget;
+    QVBoxLayout *bmainLayout = new QVBoxLayout(btnsPage);
     QHBoxLayout *btnsLayout = new QHBoxLayout;
     btnsLayout->addWidget(m_installBtn, 0, Qt::AlignHCenter);
     btnsLayout->addWidget(m_viewFileBtn, 0, Qt::AlignHCenter);
+    bmainLayout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
+    bmainLayout->addSpacing(8);
+    bmainLayout->addLayout(btnsLayout);
+
+    // init progress page.
+    QWidget *progPage = new QWidget;
+    QVBoxLayout *progLayout = new QVBoxLayout(progPage);
+    progLayout->addWidget(m_progress, 0, Qt::AlignCenter);
+
+    // init refresh page.
+    QWidget *refPage = new QWidget;
+    QVBoxLayout *refLayout = new QVBoxLayout(refPage);
+    QLabel *tipsLabel = new QLabel(tr("Refreshing font cache, please wait..."));
+    tipsLabel->setStyleSheet("QLabel { color: #606060; font-size: 14px; }");
+    refLayout->addWidget(m_spinner, 0, Qt::AlignHCenter);
+    refLayout->addSpacing(5);
+    refLayout->addWidget(tipsLabel, 0, Qt::AlignHCenter);
+    m_spinner->setFixedSize(30, 30);
+
+    m_bottomLayout->addWidget(btnsPage);
+    m_bottomLayout->addWidget(progPage);
+    m_bottomLayout->addWidget(refPage);
 
     m_tipsLabel->setStyleSheet("QLabel { color: #47790c; font-size: 14px; }");
     m_tipsLabel->setVisible(false);
@@ -67,15 +96,12 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     m_viewFileBtn->setFixedSize(180, 36);
     m_viewFileBtn->setVisible(false);
     m_viewFileBtn->setVisible(false);
-    m_progress->setVisible(false);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addLayout(contentLayout);
     mainLayout->addStretch();
-    mainLayout->addWidget(m_tipsLabel, 0, Qt::AlignHCenter);
-    mainLayout->addSpacing(8);
-    mainLayout->addWidget(m_progress, 0, Qt::AlignHCenter);
-    mainLayout->addLayout(btnsLayout);
+    mainLayout->addLayout(m_bottomLayout);
+
     mainLayout->addStretch();
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);
@@ -84,6 +110,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     connect(m_installBtn, &QPushButton::clicked, this, &MultiFilePage::batchInstallation);
     connect(m_viewFileBtn, &QPushButton::clicked, this, &MultiFilePage::onViewFileBtnClicked);
     connect(m_fontManager, &DFontManager::installing, this, &MultiFilePage::onProgressChanged);
+    connect(m_refreshThread, &RefreshThread::refreshFinished, this, &MultiFilePage::onWorkerFinished);
 }
 
 MultiFilePage::~MultiFilePage()
@@ -147,6 +174,7 @@ void MultiFilePage::batchInstallation()
 
 void MultiFilePage::onProgressChanged(const QString &filePath, const double &percent)
 {
+    m_bottomLayout->setCurrentIndex(1);
     m_installBtn->setVisible(false);
     m_viewFileBtn->setVisible(false);
     m_progress->setVisible(true);
@@ -157,17 +185,22 @@ void MultiFilePage::onProgressChanged(const QString &filePath, const double &per
     m_listView->update();
 
     if (percent == 100) {
-        onWorkerFinished();
+        m_refreshThread->start();
+        m_spinner->start();
+        m_bottomLayout->setCurrentIndex(2);
     }
 }
 
 void MultiFilePage::onWorkerFinished()
 {
+    m_spinner->stop();
+    m_bottomLayout->setCurrentIndex(0);
     m_tipsLabel->setVisible(true);
     m_installBtn->setVisible(false);
     m_viewFileBtn->setVisible(true);
     m_progress->setVisible(false);
     m_progress->setValue(0);
+
     refreshList();
 }
 

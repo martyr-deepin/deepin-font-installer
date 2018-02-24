@@ -21,7 +21,6 @@
 #include <QProcess>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QJsonArray>
 
 static DFontManager *INSTANCE = 0;
 

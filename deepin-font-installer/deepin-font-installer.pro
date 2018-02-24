@@ -24,7 +24,8 @@ HEADERS += homepage.h \
 	   multifilepage.h \
 	   singlefilepage.h \
 	   utils.h \
-	   progress.h
+	   progress.h \
+	   refreshthread.h
 
 SOURCES += homepage.cpp \
            listview.cpp \
@@ -34,7 +35,8 @@ SOURCES += homepage.cpp \
 	   multifilepage.cpp \
 	   singlefilepage.cpp \
 	   utils.cpp \
-	   progress.cpp
+	   progress.cpp \
+	   refreshthread.cpp
 
 RESOURCES += deepin-font-installer.qrc
 TRANSLATIONS += translations/deepin-font-installer.ts

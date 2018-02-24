@@ -22,6 +22,7 @@
 #include <QCryptographicHash>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QThread>
 #include <QFile>
 #include <QFileInfo>
 #include <QProcess>
@@ -125,12 +126,13 @@ int main(int argc, char *argv[])
             QFile::copy(file, target);
         }
 
-        FcCacheUpdate();
+        // FcCacheUpdate();
 
         const int currentIndex = fileList.indexOf(file);
         const int count = fileList.count() - 1;
 
         if (fileList.count() == 1) {
+            FcCacheUpdate();
             std::cout << target.toUtf8().data() << std::endl;
         } else {
             QJsonObject object;
@@ -142,6 +144,9 @@ int main(int argc, char *argv[])
             QByteArray array = document.toJson(QJsonDocument::Compact);
 
             std::cout << array.data() << std::endl;
+
+            // output too fast will crash.
+            QThread::msleep(10);
         }
     }
 

@@ -23,11 +23,16 @@
 #include <QWidget>
 #include <QLabel>
 #include <QPushButton>
+#include <QStackedLayout>
 #include "dfontinfomanager.h"
 #include "dfontmanager.h"
 #include "listview.h"
 #include "listitem.h"
 #include "progress.h"
+#include "refreshthread.h"
+#include "dspinner.h"
+
+DWIDGET_USE_NAMESPACE
 
 class MultiFilePage : public QWidget
 {
@@ -59,6 +64,9 @@ private:
     QPushButton *m_viewFileBtn;
     Progress *m_progress;
     QPixmap *m_iconPixmap;
+    RefreshThread *m_refreshThread;
+    QStackedLayout *m_bottomLayout;
+    DSpinner *m_spinner;
 
     QList<DFontInfo *> m_fontInfoList;
     QMap<QString, ListItem *> m_listItems;

@@ -23,15 +23,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Installing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sample version installed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -69,6 +69,10 @@
     </message>
     <message>
         <source>View font directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
