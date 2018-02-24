@@ -186,7 +186,7 @@ void SingleFilePage::updateInfo(DFontInfo *info)
     m_typeLabel->setText(m_fontInfo->type);
     m_versionLabel->setText(fm.elidedText(m_fontInfo->version, Qt::ElideRight, 300));
     m_copyrightLabel->setText(fm.elidedText(m_fontInfo->copyright, Qt::ElideRight, 700));
-    m_descriptionLabel->setText(fm.elidedText(m_fontInfo->description, Qt::ElideRight, 720));
+    m_descriptionLabel->setText(fm.elidedText(m_fontInfo->description, Qt::ElideRight, 710));
 }
 
 void SingleFilePage::refreshPage()

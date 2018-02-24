@@ -19,6 +19,9 @@
 
 #include "dfontmanager.h"
 #include <QProcess>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 
 static DFontManager *INSTANCE = 0;
 
@@ -89,18 +92,23 @@ bool DFontManager::doCmd(const QString &program, const QStringList &arguments)
     bool failed = false;
 
     if (m_type == Install) {
-        connect(process, &QProcess::readyReadStandardOutput, this, [&] {
-            const QString output = process->readAllStandardOutput();
+        connect(process, &QProcess::readyReadStandardOutput, this,
+                [&] {
+                    const QString output = process->readAllStandardOutput();
 
-            if (m_instFileList.count() == 1) {
-               emit installChanged(output);
-            } else {
-               const QStringList items = output.split(QChar(':'));
-               emit installing(items.first(), items.last().toFloat());
-            }
-        });
+                    // single file installation.
+                    if (m_instFileList.count() == 1) {
+                        emit installChanged(output);
+                    } else {
+                        QJsonDocument document = QJsonDocument::fromJson(output.toUtf8());
+                        QJsonObject object = document.object();
+                        emit installing(object.value("FilePath").toString(),
+                                        object.value("Percent").toDouble());
+                    }
+                });
     } else {
-        connect(process, &QProcess::readyReadStandardOutput, this, [&] { emit output(process->readAllStandardOutput()); });
+        connect(process, &QProcess::readyReadStandardOutput, this,
+                [&] { emit output(process->readAllStandardOutput()); });
     }
 
     process->start(program, arguments);

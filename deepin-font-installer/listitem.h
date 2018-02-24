@@ -41,6 +41,7 @@ public:
     void setStatus(Status status);
     void drawBackground(QRect rect, QPainter *painter, int index, bool isSelect);
     void drawForeground(QRect rect, QPainter *painter, int column, int index, bool isSelect);
+    bool isInstalled() { return m_fontInfo; }
 
 private:
     DFontInfo *m_fontInfo;

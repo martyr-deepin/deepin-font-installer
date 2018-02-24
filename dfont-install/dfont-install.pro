@@ -4,8 +4,9 @@ QT -= gui
 CONFIG += c++11
 
 TARGET = dfont-install
-CONFIG += console
+CONFIG += console link_pkgconfig
 CONFIG -= app_bundle
+PKGCONFIG += fontconfig
 
 TEMPLATE = app
 

@@ -20,6 +20,8 @@
 #include <QCoreApplication>
 #include <QCommandLineParser>
 #include <QCryptographicHash>
+#include <QJsonObject>
+#include <QJsonDocument>
 #include <QFile>
 #include <QFileInfo>
 #include <QProcess>
@@ -27,6 +29,7 @@
 #include <QDebug>
 #include <iostream>
 #include "dfontinfomanager.h"
+#include <fontconfig/fontconfig.h>
 
 inline QString dataToMd5Hex(const QByteArray &data)
 {
@@ -40,6 +43,41 @@ inline void checkDirectory()
         QDir dir(path);
         dir.mkpath(".");
     }
+}
+
+inline bool FcAddAppFont(const char * filepath)
+{
+    FcInit();
+    bool result = FcConfigAppFontAddFile(NULL, (FcChar8 *) filepath);
+    return result;
+}
+
+inline bool FcAddAppFontDir(const char * dir)
+{
+    FcInit();
+    bool result = FcConfigAppFontAddDir(NULL, (FcChar8 *) dir);
+    return result;
+}
+
+inline bool FcLoadConfig(const char * filepath)
+{
+    FcInit();
+    bool result = FcConfigParseAndLoad(FcConfigGetCurrent(), (FcChar8 *) filepath, FcFalse);
+    return result;
+}
+
+inline bool FcCacheUpdate(void)
+{
+    FcInit();
+    FcConfigDestroy(FcConfigGetCurrent());
+    return !FcConfigUptoDate(NULL) && FcInitReinitialize();
+}
+
+inline bool FcEnableUserConfig(bool enable)
+{
+    FcInit();
+    bool result = FcConfigEnableHome(enable);
+    return result;
 }
 
 int main(int argc, char *argv[])
@@ -56,15 +94,15 @@ int main(int argc, char *argv[])
     QString targetDir = "";
 
     for (const QString file : fileList) {
+        QProcess process;
         DFontInfo *fontInfo = fontInfoManager->getFontInfo(file);
-        QProcess *process = new QProcess;
         const bool isInstalled = fontInfo->isInstalled;
 
         if (isInstalled) {
             const QString sysPath = fontInfoManager->getInstalledFontPath(fontInfo);
             target = sysPath;
-            process->start("cp", QStringList() << "-f" << file << sysPath);
-            process->waitForFinished(-1);
+            process.start("cp", QStringList() << "-f" << file << sysPath);
+            process.waitForFinished(-1);
         } else {
             const QFileInfo info(file);
             QString dirName = fontInfo->familyName;
@@ -87,9 +125,7 @@ int main(int argc, char *argv[])
             QFile::copy(file, target);
         }
 
-        process->start("fc-cache", QStringList() << "-v" << target);
-        process->waitForFinished(-1);
-        process->deleteLater();
+        FcCacheUpdate();
 
         const int currentIndex = fileList.indexOf(file);
         const int count = fileList.count() - 1;
@@ -97,8 +133,15 @@ int main(int argc, char *argv[])
         if (fileList.count() == 1) {
             std::cout << target.toUtf8().data() << std::endl;
         } else {
-            const QString output = QString("%1:%2").arg(file, QString::number(currentIndex / float(count) * 100));
-            std::cout << output.toUtf8().data() << std::endl;
+            QJsonObject object;
+            object.insert("FilePath", file);
+            object.insert("Percent", currentIndex / double(count) * 100);
+
+            QJsonDocument document;
+            document.setObject(object);
+            QByteArray array = document.toJson(QJsonDocument::Compact);
+
+            std::cout << array.data() << std::endl;
         }
     }
 

@@ -145,7 +145,7 @@ void MultiFilePage::batchInstallation()
     m_fontManager->start();
 }
 
-void MultiFilePage::onProgressChanged(const QString &filePath, const float &percent)
+void MultiFilePage::onProgressChanged(const QString &filePath, const double &percent)
 {
     m_installBtn->setVisible(false);
     m_viewFileBtn->setVisible(false);
@@ -155,15 +155,6 @@ void MultiFilePage::onProgressChanged(const QString &filePath, const float &perc
     ListItem *item = m_listItems.find(filePath).value();
     item->setStatus(ListItem::Installed);
     m_listView->update();
-
-    // int nextIndex = m_listWidget->row(item->getItem()) + 1;
-    // if (nextIndex < m_listWidget->count()) {
-    //     QListWidgetItem *item = m_listWidget->item(nextIndex);
-    //     ListItem *nextItem = qobject_cast<ListItem *>(m_listWidget->itemWidget(item));
-
-    //     nextItem->setStatus(ListItem::Installing);
-    //     m_listWidget->scrollToItem(nextItem->getItem());
-    // }
 
     if (percent == 100) {
         onWorkerFinished();
