@@ -21,6 +21,7 @@
 #include <QProcess>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QDebug>
 
 static DFontManager *INSTANCE = 0;
 
@@ -68,6 +69,38 @@ void DFontManager::setUnInstallFile(const QString &filePath)
     m_uninstFile = filePath;
 }
 
+void DFontManager::handleInstallOutput(const QString &output)
+{
+    // single file installation.
+    if (m_instFileList.count() == 1) {
+        emit installPositionChanged(output);
+    } else {
+        QJsonDocument document = QJsonDocument::fromJson(output.toUtf8());
+        QJsonObject object = document.object();
+        emit batchInstall(object.value("FilePath").toString(),
+                          object.value("Percent").toDouble());
+    }
+}
+
+void DFontManager::handleReInstallOutput(const QString &output)
+{
+    // 0 is installing.
+    if (output.toInt() == 0) {
+        emit reinstalling();
+    } else {
+        emit reinstallFinished();
+    }
+}
+
+void DFontManager::handleUnInstallOutput(const QString &output)
+{
+    if (output.toInt() == 0) {
+        emit uninstalling();
+    } else {
+        emit uninstallFinished();
+    }
+}
+
 void DFontManager::run()
 {
     switch (m_type) {
@@ -90,36 +123,28 @@ bool DFontManager::doCmd(const QString &program, const QStringList &arguments)
     QProcess *process = new QProcess;
     bool failed = false;
 
-    if (m_type == Install) {
+    switch (m_type) {
+    case Install:
         connect(process, &QProcess::readyReadStandardOutput, this,
-                [&] {
-                    const QString output = process->readAllStandardOutput();
+                [=] { handleInstallOutput(process->readAllStandardOutput()); });
+        break;
 
-                    // single file installation.
-                    if (m_instFileList.count() == 1) {
-                        emit installChanged(output);
-                    } else {
-                        QJsonDocument document = QJsonDocument::fromJson(output.toUtf8());
-                        QJsonObject object = document.object();
-                        emit installing(object.value("FilePath").toString(),
-                                        object.value("Percent").toDouble());
-                    }
-                });
-    } else {
+    case ReInstall:
         connect(process, &QProcess::readyReadStandardOutput, this,
-                [&] { emit output(process->readAllStandardOutput()); });
+                [=] { handleReInstallOutput(process->readAllStandardOutput()); });
+        break;
+
+    case UnInstall:
+        connect(process, &QProcess::readyReadStandardOutput, this,
+                [=] { handleUnInstallOutput(process->readAllStandardOutput()); });
+        break;
     }
 
     process->start(program, arguments);
     process->waitForFinished(-1);
     failed |= process->exitCode();
-
-    if (!failed) {
-        process->execute("fc-cache");
-        process->waitForFinished(-1);
-    }
-
     process->deleteLater();
+
     return !failed;
 }
 

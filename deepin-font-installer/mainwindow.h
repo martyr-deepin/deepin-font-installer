@@ -42,6 +42,8 @@ protected:
     void dropEvent(QDropEvent *) Q_DECL_OVERRIDE;
 
 private slots:
+    void setEnable();
+    void setDisable();
     void refreshPage();
     void onSelected(const QStringList &);
 

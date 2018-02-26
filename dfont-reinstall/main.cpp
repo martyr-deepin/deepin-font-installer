@@ -25,6 +25,7 @@
 #include <QProcess>
 #include <QDir>
 #include <QDebug>
+#include <QThread>
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -34,6 +35,7 @@ int main(int argc, char *argv[])
     parser.process(app);
 
     const QStringList fileList = parser.positionalArguments();
+    std::cout << 0 << std::endl;
 
     bool isFaild = false;
     QProcess process;
@@ -46,7 +48,8 @@ int main(int argc, char *argv[])
         process.waitForFinished();
     }
 
-    std::cout << "reinstall finished.";
+    QThread::msleep(300);
+    std::cout << 1 << std::endl;
 
     return 0;
 }

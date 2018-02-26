@@ -47,6 +47,8 @@ public:
 
 signals:
     void countChanged();
+    void installing();
+    void installFinished();
 
 private slots:
     void refreshList();

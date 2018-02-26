@@ -18,13 +18,14 @@
  */
 
 #include "multifilepage.h"
+#include "dsvgrenderer.h"
+#include "listitem.h"
 #include <QApplication>
 #include <QVBoxLayout>
 #include <QProcess>
 #include <QTimer>
+#include <QDebug>
 #include <QUrl>
-#include "listitem.h"
-#include "dsvgrenderer.h"
 
 DWIDGET_USE_NAMESPACE
 
@@ -109,7 +110,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
 
     connect(m_installBtn, &QPushButton::clicked, this, &MultiFilePage::batchInstallation);
     connect(m_viewFileBtn, &QPushButton::clicked, this, &MultiFilePage::onViewFileBtnClicked);
-    connect(m_fontManager, &DFontManager::installing, this, &MultiFilePage::onProgressChanged);
+    connect(m_fontManager, &DFontManager::batchInstall, this, &MultiFilePage::onProgressChanged);
     connect(m_refreshThread, &RefreshThread::refreshFinished, this, &MultiFilePage::onWorkerFinished);
 }
 
@@ -167,6 +168,8 @@ void MultiFilePage::batchInstallation()
         filePaths << item->filePath;
     }
 
+    qDebug() << "Install List: " << filePaths;
+
     m_fontManager->setType(DFontManager::Install);
     m_fontManager->setInstallFileList(filePaths);
     m_fontManager->start();
@@ -184,7 +187,11 @@ void MultiFilePage::onProgressChanged(const QString &filePath, const double &per
     item->setStatus(ListItem::Installed);
     m_listView->update();
 
+    emit installing();
+
     if (percent == 100) {
+        qDebug() << "Install finished";
+
         m_refreshThread->start();
         m_spinner->start();
         m_bottomLayout->setCurrentIndex(2);
@@ -202,6 +209,7 @@ void MultiFilePage::onWorkerFinished()
     m_progress->setValue(0);
 
     refreshList();
+    emit installFinished();
 }
 
 void MultiFilePage::onViewFileBtnClicked()

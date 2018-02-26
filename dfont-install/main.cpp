@@ -30,12 +30,6 @@
 #include <QDebug>
 #include <iostream>
 #include "dfontinfomanager.h"
-#include <fontconfig/fontconfig.h>
-
-inline QString dataToMd5Hex(const QByteArray &data)
-{
-    return QString(QCryptographicHash::hash(data, QCryptographicHash::Md5).toHex());
-}
 
 inline void checkDirectory()
 {
@@ -46,41 +40,6 @@ inline void checkDirectory()
     }
 }
 
-inline bool FcAddAppFont(const char * filepath)
-{
-    FcInit();
-    bool result = FcConfigAppFontAddFile(NULL, (FcChar8 *) filepath);
-    return result;
-}
-
-inline bool FcAddAppFontDir(const char * dir)
-{
-    FcInit();
-    bool result = FcConfigAppFontAddDir(NULL, (FcChar8 *) dir);
-    return result;
-}
-
-inline bool FcLoadConfig(const char * filepath)
-{
-    FcInit();
-    bool result = FcConfigParseAndLoad(FcConfigGetCurrent(), (FcChar8 *) filepath, FcFalse);
-    return result;
-}
-
-inline bool FcCacheUpdate(void)
-{
-    FcInit();
-    FcConfigDestroy(FcConfigGetCurrent());
-    return !FcConfigUptoDate(NULL) && FcInitReinitialize();
-}
-
-inline bool FcEnableUserConfig(bool enable)
-{
-    FcInit();
-    bool result = FcConfigEnableHome(enable);
-    return result;
-}
-
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
@@ -88,22 +47,24 @@ int main(int argc, char *argv[])
     parser.process(app);
     checkDirectory();
 
-    DFontInfoManager *fontInfoManager = DFontInfoManager::instance();
     const QString sysDir = "/usr/share/fonts/deepin-font-install";
     const QStringList fileList = parser.positionalArguments();
+
+    DFontInfoManager *fontInfoManager = DFontInfoManager::instance();
+    QProcess *process = new QProcess;
     QString target = "";
     QString targetDir = "";
 
     for (const QString file : fileList) {
-        QProcess process;
         DFontInfo *fontInfo = fontInfoManager->getFontInfo(file);
         const bool isInstalled = fontInfo->isInstalled;
 
         if (isInstalled) {
             const QString sysPath = fontInfoManager->getInstalledFontPath(fontInfo);
             target = sysPath;
-            process.start("cp", QStringList() << "-f" << file << sysPath);
-            process.waitForFinished(-1);
+
+            process->start("cp", QStringList() << "-f" << file << target);
+            process->waitForFinished(-1);
         } else {
             const QFileInfo info(file);
             QString dirName = fontInfo->familyName;
@@ -115,25 +76,17 @@ int main(int argc, char *argv[])
             target = QString("%1/%2/%3").arg(sysDir, dirName, info.fileName());
             targetDir = QString("%1/%2").arg(sysDir, dirName);
 
-            // const QDir fontDir(sysDir);
-            // if (fontDir.entryList(QDir::Files).count() == 0) {
-            //     targetDir = sysDir;
-            //     target = QString("%1/%2").arg(sysDir, info.fileName());
-            // }
-
             QDir dir(targetDir);
             dir.mkpath(".");
             QFile::copy(file, target);
         }
 
-        // FcCacheUpdate();
-
         const int currentIndex = fileList.indexOf(file);
         const int count = fileList.count() - 1;
 
         if (fileList.count() == 1) {
-            FcCacheUpdate();
             std::cout << target.toUtf8().data() << std::endl;
+            QThread::msleep(50);
         } else {
             QJsonObject object;
             object.insert("FilePath", file);
@@ -149,6 +102,10 @@ int main(int argc, char *argv[])
             QThread::msleep(10);
         }
     }
+
+    process->start("fc-cache");
+    process->waitForFinished();
+    process->deleteLater();
 
     return 0;
 }

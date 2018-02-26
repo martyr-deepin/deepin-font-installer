@@ -25,6 +25,7 @@
 #include <QProcess>
 #include <QDir>
 #include <QDebug>
+#include <QThread>
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -34,18 +35,20 @@ int main(int argc, char *argv[])
     parser.process(app);
 
     const QStringList fileList = parser.positionalArguments();
+    std::cout << 0 << std::endl;
 
     for (const QString file : fileList) {
         QFile openFile(file);
 
         if (openFile.remove()) {
-            std::cout << "uninstall finished." << std::endl;
-
             QProcess process;
             process.start("fc-cache");
             process.waitForFinished();
         }
     }
+
+    QThread::msleep(300);
+    std::cout << 1 << std::endl;
 
     return 0;
 }

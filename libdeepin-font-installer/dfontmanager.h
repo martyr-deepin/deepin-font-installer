@@ -42,12 +42,17 @@ public:
     void setReInstallFile(const QString &reinstFile, const QString &sysFile);
     void setUnInstallFile(const QString &filePath);
 
+private slots:
+    void handleInstallOutput(const QString &output);
+    void handleReInstallOutput(const QString &output);
+    void handleUnInstallOutput(const QString &output);
+
 signals:
-    void output(const QString &output);
-    void installing(const QString &filePath, const double &percent);
-    void singleInstallFinished();
+    void batchInstall(const QString &filePath, const double &percent);
+    void installPositionChanged(const QString &instPath);
+    void reinstalling();
+    void uninstalling();
     void installFinished();
-    void installChanged(const QString &instPath);
     void reinstallFinished();
     void uninstallFinished();
 

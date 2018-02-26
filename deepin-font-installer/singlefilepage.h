@@ -27,7 +27,10 @@
 #include <QLabel>
 #include "dfontinfomanager.h"
 #include "dfontmanager.h"
+#include "dspinner.h"
 #include "progress.h"
+
+DWIDGET_USE_NAMESPACE
 
 class SingleFilePage : public QWidget
 {
@@ -66,8 +69,7 @@ private:
     QPushButton *m_reinstallBtn;
     QPushButton *m_viewFileBtn;
     QPushButton *m_closeBtn;
-    Progress *m_progress;
-    QPropertyAnimation *m_propertyAnimation;
+    DSpinner *m_spinner;
     QStackedLayout *m_bottomLayout;
     QString m_filePath;
 };

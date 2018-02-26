@@ -19,6 +19,7 @@
 
 #include "refreshthread.h"
 #include <QProcess>
+#include <QDebug>
 
 RefreshThread::RefreshThread(QObject *parent)
     : QThread(parent)
@@ -32,10 +33,14 @@ RefreshThread::~RefreshThread()
 
 void RefreshThread::run()
 {
+    qDebug() << "Refreshing font cache.";
+
     QProcess *process = new QProcess;
-    process->start("fc-cache");
+    process->start("fc-cache", QStringList() << "-v");
     process->waitForFinished(-1);
     process->deleteLater();
+
+    qDebug() << "Refresh font cache finished.";
 
     emit refreshFinished();
 }

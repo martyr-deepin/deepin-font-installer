@@ -46,8 +46,7 @@ SingleFilePage::SingleFilePage(QWidget *parent)
       m_reinstallBtn(new QPushButton(tr("Reinstall"))),
       m_viewFileBtn(new QPushButton),
       m_closeBtn(new QPushButton),
-      m_progress(new Progress),
-      m_propertyAnimation(new QPropertyAnimation(m_progress, "value", this)),
+      m_spinner(new DSpinner),
       m_bottomLayout(new QStackedLayout)
 {
     QSvgWidget *iconWidget = new QSvgWidget(":/images/font-x-generic.svg");
@@ -86,8 +85,9 @@ SingleFilePage::SingleFilePage(QWidget *parent)
 
     QWidget *progressWidget = new QWidget;
     QVBoxLayout *progressLayout = new QVBoxLayout(progressWidget);
-    progressLayout->addWidget(m_progress, 0, Qt::AlignCenter);
-    progressWidget->setFixedHeight(36);
+    progressLayout->addWidget(m_spinner, 0, Qt::AlignCenter);
+    progressWidget->setFixedHeight(40);
+    m_spinner->setFixedSize(30, 30);
 
     m_bottomLayout->addWidget(btnsWidget);
     m_bottomLayout->addWidget(progressWidget);
@@ -155,20 +155,23 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_closeBtn->setObjectName("BlueButton");
     m_closeBtn->setText(tr("Done"));
 
-    m_propertyAnimation->setDuration(500);
-    m_propertyAnimation->setStartValue(0);
-    m_propertyAnimation->setEndValue(100);
-
     // connect the signals to the slots function.
     connect(m_fontManager, &DFontManager::installFinished, this, &SingleFilePage::onInstallFinished);
     connect(m_fontManager, &DFontManager::uninstallFinished, this, &SingleFilePage::onUninstallFinished);
-    connect(m_fontManager, &DFontManager::reinstallFinished, this, &SingleFilePage::onReinstallFinished);
-    connect(m_fontManager, &DFontManager::installChanged, this, [=] (const QString &path) { m_filePath = path.trimmed(); });
+    connect(m_fontManager, &DFontManager::reinstallFinished, this, &SingleFilePage::onReinstallFinished);;;
+    connect(m_fontManager, &DFontManager::reinstalling, this, &SingleFilePage::progressBarStart);
+    connect(m_fontManager, &DFontManager::uninstalling, this, &SingleFilePage::progressBarStart);
     connect(m_installBtn, &QPushButton::clicked, this, &SingleFilePage::handleInstall);
     connect(m_uninstallBtn, &QPushButton::clicked, this, &SingleFilePage::handleRemove);
     connect(m_reinstallBtn, &QPushButton::clicked, this, &SingleFilePage::handleReinstall);
     connect(m_viewFileBtn, &QPushButton::clicked, this, &SingleFilePage::viewFilePath);
     connect(m_closeBtn, &QPushButton::clicked, this, &QApplication::quit);
+
+    connect(m_fontManager, &DFontManager::installPositionChanged, this,
+            [=] (const QString &path) {
+                progressBarStart();
+                m_filePath = path.trimmed();
+            });
 }
 
 SingleFilePage::~SingleFilePage()
@@ -232,8 +235,7 @@ void SingleFilePage::progressBarStart()
 {
     m_bottomLayout->setCurrentIndex(1);
     m_tipsLabel->setText("");
-    m_progress->setValue(0);
-    m_propertyAnimation->start();
+    m_spinner->start();
 }
 
 void SingleFilePage::handleInstall()
@@ -265,58 +267,49 @@ void SingleFilePage::handleReinstall()
 
 void SingleFilePage::onInstallFinished()
 {
-    progressBarStart();
+    m_fontInfo->isInstalled = true;
 
-    QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
-        m_fontInfo->isInstalled = true;
+    m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+    m_tipsLabel->setText(tr("Installed successfully"));
+    m_installBtn->setVisible(false);
+    m_uninstallBtn->setVisible(false);
+    m_reinstallBtn->setVisible(false);
+    m_viewFileBtn->setVisible(true);
+    m_closeBtn->setVisible(false);
 
-        m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
-        m_tipsLabel->setText(tr("Installed successfully"));
-        m_installBtn->setVisible(false);
-        m_uninstallBtn->setVisible(false);
-        m_reinstallBtn->setVisible(false);
-        m_viewFileBtn->setVisible(true);
-        m_closeBtn->setVisible(false);
-        m_progress->setValue(0);
-        m_bottomLayout->setCurrentIndex(0);
-    });
+    m_spinner->stop();
+    m_bottomLayout->setCurrentIndex(0);
 }
 
 void SingleFilePage::onUninstallFinished()
 {
-    progressBarStart();
+    m_fontInfo->isInstalled = false;
 
-    QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
-        m_fontInfo->isInstalled = false;
+    m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+    m_tipsLabel->setText(tr("Removed successfully"));
+    m_installBtn->setVisible(false);
+    m_uninstallBtn->setVisible(false);
+    m_reinstallBtn->setVisible(false);
+    m_viewFileBtn->setVisible(false);
+    m_closeBtn->setVisible(true);
 
-        m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
-        m_tipsLabel->setText(tr("Removed successfully"));
-        m_installBtn->setVisible(false);
-        m_uninstallBtn->setVisible(false);
-        m_reinstallBtn->setVisible(false);
-        m_viewFileBtn->setVisible(false);
-        m_closeBtn->setVisible(true);
-        m_progress->setValue(0);
-        m_bottomLayout->setCurrentIndex(0);
-    });
+    m_spinner->stop();
+    m_bottomLayout->setCurrentIndex(0);
 }
 
 void SingleFilePage::onReinstallFinished()
 {
-    progressBarStart();
+    m_fontInfo->isInstalled = true;
+    m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+    m_tipsLabel->setText(tr("Installed successfully"));
+    m_installBtn->setVisible(false);
+    m_uninstallBtn->setVisible(false);
+    m_reinstallBtn->setVisible(false);
+    m_viewFileBtn->setVisible(true);
+    m_closeBtn->setVisible(false);
 
-    QTimer::singleShot(m_propertyAnimation->duration(), this, [=] {
-        m_fontInfo->isInstalled = true;
-        m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
-        m_tipsLabel->setText(tr("Installed successfully"));
-        m_installBtn->setVisible(false);
-        m_uninstallBtn->setVisible(false);
-        m_reinstallBtn->setVisible(false);
-        m_viewFileBtn->setVisible(true);
-        m_closeBtn->setVisible(false);
-        m_progress->setValue(0);
-        m_bottomLayout->setCurrentIndex(0);
-    });
+    m_spinner->stop();
+    m_bottomLayout->setCurrentIndex(0);
 }
 
 void SingleFilePage::viewFilePath()

@@ -55,6 +55,8 @@ MainWindow::MainWindow(QWidget *parent)
     // connect the signals to the slot function.
     connect(m_homePage, &HomePage::fileSelected, this, &MainWindow::onSelected);
     connect(m_multiFilePage, &MultiFilePage::countChanged, this, &MainWindow::refreshPage);
+    connect(m_multiFilePage, &MultiFilePage::installing, this, &MainWindow::setDisable);
+    connect(m_multiFilePage, &MultiFilePage::installFinished, this, &MainWindow::setEnable);
 }
 
 MainWindow::~MainWindow()
@@ -122,6 +124,21 @@ void MainWindow::dropEvent(QDropEvent *e)
 
     m_homePage->setIconPixmap(false);
     onSelected(fileList);
+}
+
+void MainWindow::setEnable()
+{
+    setAcceptDrops(true);
+    // titlebar()->setDisableFlags(Qt::Widget);
+}
+
+void MainWindow::setDisable()
+{
+    setAcceptDrops(false);
+    // titlebar()->setDisableFlags(Qt::WindowMinimizeButtonHint
+    //                             | Qt::WindowCloseButtonHint
+    //                             | Qt::WindowMaximizeButtonHint
+    //                             | Qt::WindowSystemMenuHint);
 }
 
 void MainWindow::refreshPage()
