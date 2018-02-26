@@ -41,6 +41,13 @@ int main(int argc, char *argv[])
         QFile openFile(file);
 
         if (openFile.remove()) {
+            // remove empty directroy.
+            const QString dirPath = QFileInfo(file).absolutePath();
+            const QDir dir(dirPath);
+            if (dir.entryList(QDir::Files).count() == 0) {
+                dir.rmdir(dirPath);
+            }
+
             QProcess process;
             process.start("fc-cache");
             process.waitForFinished();
