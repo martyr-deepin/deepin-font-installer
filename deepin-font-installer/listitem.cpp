@@ -127,11 +127,7 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
         }
         painter->setPen(QColor("#FF5A5A"));
     } else {
-        if (m_fontInfo->description.isEmpty()) {
-            descStr = QString(tr("Unknown"));
-        } else {
-            descStr = m_fontInfo->description;
-        }
+        descStr = m_fontInfo->description;
         painter->setPen(QColor("#5A5A5A"));
     }
 
