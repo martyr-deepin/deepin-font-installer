@@ -121,7 +121,7 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
 
     if (isInstalled && m_status == ListItem::None) {
         if (isSampleVersion) {
-            descStr = QString(tr("Sample version installed"));
+            descStr = QString(tr("Same version installed"));
         } else {
             descStr = QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion);
         }

@@ -31,7 +31,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sample version installed</source>
+        <source>Same version installed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
