@@ -133,6 +133,19 @@ void MultiFilePage::addItems(const QStringList &paths)
                 continue;
             }
 
+            if (fontInfo->copyright.isEmpty()) {
+                fontInfo->copyright = tr("Unknown");
+            }
+            if (fontInfo->description.isEmpty()) {
+                fontInfo->description = tr("Unknown");
+            }
+            if (fontInfo->version.isEmpty()) {
+                fontInfo->version = tr("Unknown");
+            }
+            if (fontInfo->sysVersion.isEmpty()) {
+                fontInfo->sysVersion = tr("Unknown");
+            }
+
             ListItem *fileItem = new ListItem(fontInfo, m_iconPixmap);
             listItems << fileItem;
             m_fontInfoList << fontInfo;

@@ -75,6 +75,10 @@
         <source>Refreshing font cache, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SingleFilePage</name>
@@ -112,10 +116,6 @@
     </message>
     <message>
         <source>Description: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

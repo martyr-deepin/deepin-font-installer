@@ -205,10 +205,10 @@ void SingleFilePage::refreshPage()
         m_closeBtn->setVisible(false);
 
         if (isSameVersion) {
-            m_tipsLabel->setStyleSheet("QLabel { color: #ff5a5a; }");
+            m_tipsLabel->setStyleSheet("QLabel { color: #FF5A5A; font-size: 14px; }");
             m_tipsLabel->setText(tr("Same version installed"));
         } else {
-            m_tipsLabel->setStyleSheet("QLabel { color: #ff5a5a; }");
+            m_tipsLabel->setStyleSheet("QLabel { color: #FF5A5A; font-size: 14px; }");
             m_tipsLabel->setText(QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion));
         }
     } else {
@@ -218,16 +218,6 @@ void SingleFilePage::refreshPage()
         m_reinstallBtn->setVisible(false);
         m_viewFileBtn->setVisible(false);
         m_closeBtn->setVisible(false);
-    }
-
-    if (m_fontInfo->copyright.isEmpty()) {
-        m_fontInfo->copyright = tr("Unknown");
-    }
-    if (m_fontInfo->description.isEmpty()) {
-        m_fontInfo->description = tr("Unknown");
-    }
-    if (m_fontInfo->version.isEmpty()) {
-        m_fontInfo->version = tr("Unknown");
     }
 }
 
@@ -269,7 +259,7 @@ void SingleFilePage::onInstallFinished()
 {
     m_fontInfo->isInstalled = true;
 
-    m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+    m_tipsLabel->setStyleSheet("QLabel { color: #47790c; font-size: 14px; }");
     m_tipsLabel->setText(tr("Installed successfully"));
     m_installBtn->setVisible(false);
     m_uninstallBtn->setVisible(false);
@@ -285,7 +275,7 @@ void SingleFilePage::onUninstallFinished()
 {
     m_fontInfo->isInstalled = false;
 
-    m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+    m_tipsLabel->setStyleSheet("QLabel { color: #47790c; font-size: 14px; }");
     m_tipsLabel->setText(tr("Removed successfully"));
     m_installBtn->setVisible(false);
     m_uninstallBtn->setVisible(false);
@@ -300,7 +290,7 @@ void SingleFilePage::onUninstallFinished()
 void SingleFilePage::onReinstallFinished()
 {
     m_fontInfo->isInstalled = true;
-    m_tipsLabel->setStyleSheet("QLabel { color: #47790c; }");
+    m_tipsLabel->setStyleSheet("QLabel { color: #47790c; font-size: 14px; }");
     m_tipsLabel->setText(tr("Installed successfully"));
     m_installBtn->setVisible(false);
     m_uninstallBtn->setVisible(false);

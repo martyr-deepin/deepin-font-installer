@@ -125,7 +125,7 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
         } else {
             descStr = QString(tr("Other version installed: %1")).arg(m_fontInfo->sysVersion);
         }
-        painter->setPen(QColor("#47790C"));
+        painter->setPen(QColor("#FF5A5A"));
     } else {
         if (m_fontInfo->description.isEmpty()) {
             descStr = QString(tr("Unknown"));
