@@ -71,13 +71,13 @@ void ListView::handleMouseHoverChanged(DSimpleListItem* oldItem, DSimpleListItem
         if ((static_cast<ListItem*>(newItem))->isHoverCloseButton(pos)) {
             (static_cast<ListItem*>(newItem))->setCloseButtonStatus(Hover);
 
-            qDebug() << "Hover";
+            // qDebug() << "Hover";
 
             repaint();
         } else {
             (static_cast<ListItem*>(newItem))->setCloseButtonStatus(Normal);
 
-            qDebug() << "Normal";
+            // qDebug() << "Normal";
 
             repaint();
         }
@@ -90,7 +90,7 @@ void ListView::handleMousePressChanged(DSimpleListItem* item, int columnIndex, Q
         if ((static_cast<ListItem*>(item))->isHoverCloseButton(pos)) {
             (static_cast<ListItem*>(item))->setCloseButtonStatus(Press);
 
-            qDebug() << "Press";
+            // qDebug() << "Press";
 
             repaint();
         }
@@ -99,16 +99,18 @@ void ListView::handleMousePressChanged(DSimpleListItem* item, int columnIndex, Q
 
 void ListView::handleMouseReleaseChanged(DSimpleListItem* item, int columnIndex, QPoint pos)
 {
+    
+    
     if ((static_cast<ListItem*>(item))->isHoverCloseButton(pos)) {
         (static_cast<ListItem*>(item))->setCloseButtonStatus(Hover);
 
-        qDebug() << "Hover";
+        // qDebug() << "Hover";
 
         repaint();
     } else {
         (static_cast<ListItem*>(item))->setCloseButtonStatus(Normal);
 
-        qDebug() << "Normal";
+        // qDebug() << "Normal";
 
         repaint();
     }
