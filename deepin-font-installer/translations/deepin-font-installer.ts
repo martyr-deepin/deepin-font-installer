@@ -15,10 +15,6 @@
 <context>
     <name>ListItem</name>
     <message>
-        <source>Unknown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Installed</source>
         <translation type="unfinished"></translation>
     </message>
