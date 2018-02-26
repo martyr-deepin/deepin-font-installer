@@ -25,12 +25,16 @@
 
 DWIDGET_USE_NAMESPACE
 
+enum CloseButtonStatus {
+    Hide, Normal, Hover, Press
+};
+
 class ListItem : public DSimpleListItem
 {
     Q_OBJECT
 
 public:
-    ListItem(DFontInfo *fontInfo, QPixmap *iconPixmap);
+    ListItem(DFontInfo *fontInfo, QPixmap *iconPixmap, QPixmap *closeNormalPixmap, QPixmap *closeHoverPixmap, QPixmap *closePressPixmap);
     ~ListItem();
 
     enum Status {
@@ -41,12 +45,23 @@ public:
     void setStatus(Status status);
     void drawBackground(QRect rect, QPainter *painter, int index, bool isSelect);
     void drawForeground(QRect rect, QPainter *painter, int column, int index, bool isSelect);
+    void drawHover(QRect rect, QPainter *painter);
     bool isInstalled() { return m_fontInfo; }
+    QString getFilePath();
+    void setCloseButtonStatus(CloseButtonStatus status);
+    bool isHoverCloseButton(QPoint pos);
 
 private:
     DFontInfo *m_fontInfo;
     Status m_status;
     QPixmap *m_iconPixmap;
+    QPixmap *m_closeNormalPixmap;
+    QPixmap *m_closePressPixmap;
+    QPixmap *m_closeHoverPixmap;
+    CloseButtonStatus m_close_button_status;
+
+    int closeButtonPadding = 36;
+    QRect m_rect;
 };
 
 #endif

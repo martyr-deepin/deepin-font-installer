@@ -39,6 +39,9 @@ MultiFilePage::MultiFilePage(QWidget *parent)
       m_viewFileBtn(new QPushButton),
       m_progress(new Progress),
       m_iconPixmap(new QPixmap),
+      m_closeNormalPixmap(new QPixmap),
+      m_closePressPixmap(new QPixmap),
+      m_closeHoverPixmap(new QPixmap),
       m_refreshThread(new RefreshThread),
       m_bottomLayout(new QStackedLayout),
       m_spinner(new DSpinner)
@@ -46,6 +49,15 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     const auto ratio = qApp->devicePixelRatio();
     *m_iconPixmap = DSvgRenderer::render(":/images/font-x-generic.svg", QSize(32, 32) * ratio);
     m_iconPixmap->setDevicePixelRatio(ratio);
+
+    *m_closeNormalPixmap = DSvgRenderer::render(":/images/close_normal.svg", QSize(16, 16) * ratio);
+    m_closeNormalPixmap->setDevicePixelRatio(ratio);
+
+    *m_closeHoverPixmap = DSvgRenderer::render(":/images/close_hover.svg", QSize(16, 16) * ratio);
+    m_closeHoverPixmap->setDevicePixelRatio(ratio);
+
+    *m_closePressPixmap = DSvgRenderer::render(":/images/close_press.svg", QSize(16, 16) * ratio);
+    m_closePressPixmap->setDevicePixelRatio(ratio);
 
     // list widget.
     QHBoxLayout *contentLayout = new QHBoxLayout;
@@ -117,6 +129,9 @@ MultiFilePage::MultiFilePage(QWidget *parent)
 MultiFilePage::~MultiFilePage()
 {
     delete m_iconPixmap;
+    delete m_closeNormalPixmap;
+    delete m_closePressPixmap;
+    delete m_closeHoverPixmap;
 }
 
 void MultiFilePage::addItems(const QStringList &paths)
@@ -133,6 +148,8 @@ void MultiFilePage::addItems(const QStringList &paths)
                 continue;
             }
 
+            ListItem *fileItem = new ListItem(fontInfo, m_iconPixmap, m_closeNormalPixmap, m_closeHoverPixmap, m_closePressPixmap);
+
             if (fontInfo->copyright.isEmpty()) {
                 fontInfo->copyright = tr("Unknown");
             }
@@ -146,7 +163,6 @@ void MultiFilePage::addItems(const QStringList &paths)
                 fontInfo->sysVersion = tr("Unknown");
             }
 
-            ListItem *fileItem = new ListItem(fontInfo, m_iconPixmap);
             listItems << fileItem;
             m_fontInfoList << fontInfo;
             m_listItems.insert(path, fileItem);

@@ -21,11 +21,15 @@
 #include "dsvgrenderer.h"
 #include <QApplication>
 #include <QPainter>
+#include <QDebug>
 
-ListItem::ListItem(DFontInfo *fontInfo, QPixmap *iconPixmap)
+ListItem::ListItem(DFontInfo *fontInfo, QPixmap *iconPixmap, QPixmap *closeNormalPixmap, QPixmap *closeHoverPixmap, QPixmap *closePressPixmap)
     : m_fontInfo(fontInfo),
       m_status(ListItem::None),
-      m_iconPixmap(iconPixmap)
+      m_iconPixmap(iconPixmap),
+      m_closeNormalPixmap(closeNormalPixmap),
+      m_closeHoverPixmap(closeHoverPixmap),
+      m_closePressPixmap(closePressPixmap)
 {
 }
 
@@ -35,7 +39,7 @@ ListItem::~ListItem()
 
 bool ListItem::sameAs(DSimpleListItem *item)
 {
-    // return name == (static_cast<SingleListItem*>(item))->name;
+    return getFilePath() == (static_cast<ListItem*>(item))->getFilePath();
 }
 
 void ListItem::drawBackground(QRect rect, QPainter *painter, int index, bool isSelect)
@@ -45,6 +49,16 @@ void ListItem::drawBackground(QRect rect, QPainter *painter, int index, bool isS
     painter->setPen(QColor(151, 151, 151, 255 * 0.1));
     painter->drawLine(QPoint(50, rect.y() + rect.height() - 1),
                       QPoint(rect.width() - 10, rect.y() + rect.height() - 1));
+}
+
+void ListItem::drawHover(QRect rect, QPainter *painter)
+{
+    m_rect = rect;
+
+    QPainterPath path;
+    path.addRect(QRectF(rect));
+
+    painter->fillPath(path, QColor(0, 0, 0, 255 * 0.5));
 }
 
 void ListItem::setStatus(Status status)
@@ -135,4 +149,38 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
     painter->setFont(font);
     descStr = painter->fontMetrics().elidedText(descStr, Qt::ElideRight, rect.width() - statusWidth - iconWidth - 50);
     painter->drawText(descRect, Qt::AlignLeft | Qt::AlignTop, descStr);
+
+    if (m_close_button_status == Normal) {
+        painter->drawPixmap(QRect(rect.width() - closeButtonPadding,
+                                  rect.y() + (rect.height() - m_closeNormalPixmap->height()) / 2,
+                                  m_closeNormalPixmap->width(),
+                                  m_closeNormalPixmap->height()), *m_closeNormalPixmap);
+    } else if (m_close_button_status == Hover) {
+        painter->drawPixmap(QRect(rect.width() - closeButtonPadding,
+                                  rect.y() + (rect.height() - m_closeHoverPixmap->height()) / 2,
+                                  m_closeHoverPixmap->width(),
+                                  m_closeHoverPixmap->height()), *m_closeHoverPixmap);
+    } else if (m_close_button_status == Press) {
+        painter->drawPixmap(QRect(rect.width() - closeButtonPadding,
+                                  rect.y() + (rect.height() - m_closePressPixmap->height()) / 2,
+                                  m_closePressPixmap->width(),
+                                  m_closePressPixmap->height()), *m_closePressPixmap);
+    }
+}
+
+QString ListItem::getFilePath()
+{
+    return m_fontInfo->filePath;
+}
+
+void ListItem::setCloseButtonStatus(CloseButtonStatus status)
+{
+    m_close_button_status = status;
+}
+
+bool ListItem::isHoverCloseButton(QPoint pos)
+{
+    qDebug() << pos.x() << pos.y() << m_rect;
+
+    return pos.x() > m_rect.width() - closeButtonPadding && pos.y() > (m_rect.height() - m_closeNormalPixmap->height()) / 2 && pos.y() < m_rect.height() - (m_rect.height() - m_closeNormalPixmap->height()) / 2;
 }
