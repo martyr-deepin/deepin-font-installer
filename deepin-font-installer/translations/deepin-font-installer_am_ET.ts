@@ -21,16 +21,16 @@
         <translation>ተገጥሟል</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation>ተመሳሳይ እትም ተገጥሟል</translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation>ሌላ እትም ተገጥሟል: %1</translation>
     </message>
     <message>
         <source>Installing</source>
         <translation>በ መግጠም ላይ</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -68,6 +68,14 @@
     <message>
         <source>View font directory</source>
         <translation>የ ፊደል ዳይሬክቶሪ መመልከቻ</translation>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>መግለጫ: </translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>ያልታወቀ</translation>
     </message>
     <message>
         <source>Same version installed</source>

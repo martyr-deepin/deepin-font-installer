@@ -21,16 +21,16 @@
         <translation>Zainstalowane</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation>Zainstalowana jest ta sama wersja</translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation>Zainstalowana inna wersja: %1</translation>
     </message>
     <message>
         <source>Installing</source>
         <translation>Instalowanie</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -68,6 +68,14 @@
     <message>
         <source>View font directory</source>
         <translation>Zobacz katalog czcionek</translation>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>Opis:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Nieznane</translation>
     </message>
     <message>
         <source>Same version installed</source>

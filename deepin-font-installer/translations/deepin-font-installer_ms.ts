@@ -21,16 +21,16 @@
         <translation>Dipasang</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation>Versi serupa dipasang</translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation>Versi lain dipasang: %1</translation>
     </message>
     <message>
         <source>Installing</source>
         <translation>Memasang</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -68,6 +68,14 @@
     <message>
         <source>View font directory</source>
         <translation>Lihat direktori fon</translation>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>Keterangan:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Tidak Diketahui</translation>
     </message>
     <message>
         <source>Same version installed</source>

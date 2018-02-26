@@ -21,15 +21,15 @@
         <translation>Instalóse</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Instalóse otra versión: %1</translation>
     </message>
     <message>
         <source>Installing</source>
+        <translation>Instalando</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -41,14 +41,14 @@
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation type="unfinished"/>
+        <translation>Deepin Font Installer úsase pa instalar y desinstalar fontes pa usuarios cola función d&apos;instalación masiva.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation type="unfinished"/>
+        <translation>Deepin Font Installer</translation>
     </message>
     <message>
         <source>Bulk Install</source>
@@ -63,10 +63,18 @@
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Instalóse con ésitu</translation>
     </message>
     <message>
         <source>View font directory</source>
+        <translation>Ver direutoriu de fontes</translation>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>Descripción:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Desconozse</translation>
     </message>
     <message>
         <source>Same version installed</source>

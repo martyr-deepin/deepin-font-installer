@@ -1,140 +1,140 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ug" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>拖拽字体文件到此</translation>
+        <translation>فونتنى تاتىپ ئەكىرىڭ</translation>
     </message>
     <message>
         <source>Select file</source>
-        <translation>选择文件</translation>
+        <translation>ھۆججەت تاللاش</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation>نامەلۇم</translation>
     </message>
     <message>
         <source>Installed</source>
-        <translation>已安装</translation>
+        <translation>قاچىلاش</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>已安装其他版本：%1</translation>
+        <translation>باشقا نەشىردىكىللىرى 1% قاچىلاندى</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation>正在安装</translation>
+        <translation>قاچىلاش</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>已安装相同版本</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>深度字体安装器</translation>
+        <translation>فونت قاچىلىغۇچ</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>深度字体安装器用于帮助用户安装和卸载字体文件，支持批量安装。</translation>
+        <translation>Deepin فونت قاچىلىغۇچ فوننىت ھۆججىتىنى قاچىلايدۇ ۋە ئۆچۈرىدۇ، ئابونتلار ئۈچۈن يەنە باشقا ئىقتىدارلار قوشۇلغان</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>深度字体安装器</translation>
+        <translation>فونت قاچىلىغۇچ</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>批量安装</translation>
+        <translation>كۆپ قاچىلاش</translation>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>安装</translation>
+        <translation>قاچىلاش</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>安装成功</translation>
+        <translation>قاچىلاش تامام</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>查看字体目录</translation>
+        <translation>فونت مۇندەرىجىسىنى كۆرۈش</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation>正在刷新字体缓存，请稍候...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>安装</translation>
+        <translation>قاچىلاش</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>卸载</translation>
+        <translation>چىقىرۋېتىش</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>重新安装</translation>
+        <translation>قايتا قاچىلاش</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>查看字体目录</translation>
+        <translation>فونت مۇندەرىجىسىنى كۆرۈش</translation>
     </message>
     <message>
         <source>Style: </source>
-        <translation>样式：</translation>
+        <translation>ھالىتى:</translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation>类型：</translation>
+        <translation>تىپى:</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation>版本：</translation>
+        <translation>نەشىرى:</translation>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>版权：</translation>
+        <translation>نەشىر ھوقۇقى:</translation>
     </message>
     <message>
         <source>Description: </source>
-        <translation>描述：</translation>
+        <translation>بايانى:</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>已安装相同版本</translation>
+        <translation>ئوخشاش نەشىردىكىسى قاچىلاندى</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>安装成功</translation>
+        <translation>قاچىلاش تامام</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>卸载成功</translation>
+        <translation>ئۆچۈرۈش تامام</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>已安装其他版本：%1</translation>
+        <translation>باشقا نەشىردىكىللىرى 1% قاچىلاندى</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>完成</translation>
+        <translation>تامام</translation>
     </message>
 </context>
 </TS>

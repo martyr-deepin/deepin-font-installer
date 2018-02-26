@@ -21,16 +21,16 @@
         <translation>Instalada</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation>La misma versión instalada</translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation>Otra versión instalada: %1</translation>
     </message>
     <message>
         <source>Installing</source>
         <translation>Instalando</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -69,6 +69,14 @@
         <source>View font directory</source>
         <translation>Ver el directorio de fuentes</translation>
     </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>SingleFilePage</name>
@@ -86,7 +94,7 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Ver directorio de funetes</translation>
+        <translation>Ver directorio fuentes</translation>
     </message>
     <message>
         <source>Style: </source>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>Descripción:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Desconocido</translation>
     </message>
     <message>
         <source>Same version installed</source>

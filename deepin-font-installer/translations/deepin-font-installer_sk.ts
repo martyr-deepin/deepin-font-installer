@@ -21,16 +21,16 @@
         <translation>Nainštalované</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation>Rovnaká verzia je nainštalovaná</translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation>Iná inštalovaná verzia: %1</translation>
     </message>
     <message>
         <source>Installing</source>
         <translation>Inštalujem</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -68,6 +68,14 @@
     <message>
         <source>View font directory</source>
         <translation>Zobraziť adresár písem</translation>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>Popis:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Neznáme</translation>
     </message>
     <message>
         <source>Same version installed</source>

@@ -21,15 +21,15 @@
         <translation>Installiert</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Installing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same version installed</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -67,6 +67,14 @@
     </message>
     <message>
         <source>View font directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>Beschreibung:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Unbekannt</translation>
     </message>
     <message>
         <source>Same version installed</source>

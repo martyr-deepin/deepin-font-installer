@@ -7,22 +7,18 @@
     </message>
     <message>
         <source>Select file</source>
-        <translation>Выберите файл</translation>
+        <translation>Или выберите файл</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Unknown</source>
-        <translation>Неизвестен</translation>
+        <translation>Неизвестеный</translation>
     </message>
     <message>
         <source>Installed</source>
         <translation>Установлен</translation>
-    </message>
-    <message>
-        <source>Same version installed</source>
-        <translation>Эта версия уже установлена</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
@@ -31,6 +27,10 @@
     <message>
         <source>Installing</source>
         <translation>Установка</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -67,7 +67,15 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Просмотр каталога шрифта</translation>
+        <translation>Каталог шрифта</translation>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -86,7 +94,7 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Просмотр каталога шрифта</translation>
+        <translation>Каталог шрифта</translation>
     </message>
     <message>
         <source>Style: </source>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>Описание:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Неизвестен</translation>
     </message>
     <message>
         <source>Same version installed</source>

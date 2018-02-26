@@ -21,16 +21,16 @@
         <translation>Installato</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation>Medesima versione già installata</translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation>Versione installata: %1</translation>
     </message>
     <message>
         <source>Installing</source>
         <translation>Installazione in corso</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -70,6 +70,14 @@ Localizzazione italiana a cura di Massimo A. Carofano.</translation>
         <source>View font directory</source>
         <translation>Apri la cartella del font</translation>
     </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>SingleFilePage</name>
@@ -108,10 +116,6 @@ Localizzazione italiana a cura di Massimo A. Carofano.</translation>
     <message>
         <source>Description: </source>
         <translation>Descrizione: </translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Sconosciuto</translation>
     </message>
     <message>
         <source>Same version installed</source>

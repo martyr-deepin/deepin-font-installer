@@ -21,16 +21,16 @@
         <translation>Nameščeno</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation>Ista različica nameščena</translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation>Druga nameščena različica: %1</translation>
     </message>
     <message>
         <source>Installing</source>
         <translation>Nameščam</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -68,6 +68,14 @@
     <message>
         <source>View font directory</source>
         <translation>Prikaži mapo s pisavami</translation>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>Opis:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Neznano</translation>
     </message>
     <message>
         <source>Same version installed</source>

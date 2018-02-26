@@ -21,16 +21,16 @@
         <translation>Installé</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation>Version identique installée</translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation>Autre version installée : %1</translation>
     </message>
     <message>
         <source>Installing</source>
         <translation>Installation</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -68,6 +68,14 @@
     <message>
         <source>View font directory</source>
         <translation>Afficher le répertoire des polices</translation>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>Description : </translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Inconnu</translation>
     </message>
     <message>
         <source>Same version installed</source>

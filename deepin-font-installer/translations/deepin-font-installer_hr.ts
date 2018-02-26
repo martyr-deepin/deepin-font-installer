@@ -21,16 +21,16 @@
         <translation>Instalirano</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation>Ista verzija je instalirana</translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation>Druga verzija je instalirana: %1</translation>
     </message>
     <message>
         <source>Installing</source>
         <translation>Instaliram</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -67,6 +67,14 @@
     </message>
     <message>
         <source>View font directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>Opis:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Nepoznato</translation>
     </message>
     <message>
         <source>Same version installed</source>

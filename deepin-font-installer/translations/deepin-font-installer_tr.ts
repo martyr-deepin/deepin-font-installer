@@ -21,16 +21,16 @@
         <translation>Yüklendi</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation>Aynı sürüm yüklü</translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation>Diğer sürüm yüklü: %1</translation>
     </message>
     <message>
         <source>Installing</source>
         <translation>Yükleme</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -68,6 +68,14 @@
     <message>
         <source>View font directory</source>
         <translation>Yazı tipi dizinini görüntüle</translation>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>Açıklama:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Bilinmiyor</translation>
     </message>
     <message>
         <source>Same version installed</source>

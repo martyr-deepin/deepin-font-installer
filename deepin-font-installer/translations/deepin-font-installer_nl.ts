@@ -1,140 +1,140 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>拖拽字体文件到此</translation>
+        <translation>Sleep hier het lettertypebestand</translation>
     </message>
     <message>
         <source>Select file</source>
-        <translation>选择文件</translation>
+        <translation>Selecteer bestand</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation>Onbekend</translation>
     </message>
     <message>
         <source>Installed</source>
-        <translation>已安装</translation>
+        <translation>Geïnstalleerd</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>已安装其他版本：%1</translation>
+        <translation>Andere versie geïnstalleerd: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation>正在安装</translation>
+        <translation>Bezig met installeren</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>已安装相同版本</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>深度字体安装器</translation>
+        <translation>Deepin Lettertype Installatie</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>深度字体安装器用于帮助用户安装和卸载字体文件，支持批量安装。</translation>
+        <translation>Deepin Lettertype Installatie wordt gebruikt om lettertypebestanden te installeren, en te de-installeren, voor gebruikers via de massa-installatiefunctie.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>深度字体安装器</translation>
+        <translation>Deepin Lettertype Installatie</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>批量安装</translation>
+        <translation>Massa installatie</translation>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>安装</translation>
+        <translation>Installeren</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>安装成功</translation>
+        <translation>Succesvol geïnstalleerd</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>查看字体目录</translation>
+        <translation>Lettertypemap weergeven</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation>正在刷新字体缓存，请稍候...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>安装</translation>
+        <translation>Installeren</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>卸载</translation>
+        <translation>Verwijderen</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>重新安装</translation>
+        <translation>Opnieuw installeren</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>查看字体目录</translation>
+        <translation>Lettertypemap weergeven</translation>
     </message>
     <message>
         <source>Style: </source>
-        <translation>样式：</translation>
+        <translation>Stijl:</translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation>类型：</translation>
+        <translation>Type:</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation>版本：</translation>
+        <translation>Versie:</translation>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>版权：</translation>
+        <translation>Auteursrecht:</translation>
     </message>
     <message>
         <source>Description: </source>
-        <translation>描述：</translation>
+        <translation>Beschrijving:</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>已安装相同版本</translation>
+        <translation>Dezelfde versie geïnstalleerd</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>安装成功</translation>
+        <translation>Succesvol geïnstalleerd</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>卸载成功</translation>
+        <translation>Succesvol verwijderd</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>已安装其他版本：%1</translation>
+        <translation>Andere versie geïnstalleerd: %1</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>完成</translation>
+        <translation>Klaar</translation>
     </message>
 </context>
 </TS>

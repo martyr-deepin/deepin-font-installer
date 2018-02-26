@@ -21,16 +21,16 @@
         <translation>مثبت</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation>اﻹصدار نفسه مثبت</translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation>إصدار آخر مثبت : %1</translation>
     </message>
     <message>
         <source>Installing</source>
         <translation>يتم التثبيت</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -68,6 +68,14 @@
     <message>
         <source>View font directory</source>
         <translation>عرض دليل الخط</translation>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>الوصف : </translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>غير معروف</translation>
     </message>
     <message>
         <source>Same version installed</source>

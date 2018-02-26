@@ -21,16 +21,16 @@
         <translation>Installeret</translation>
     </message>
     <message>
-        <source>Same version installed</source>
-        <translation>Samme version installeret</translation>
-    </message>
-    <message>
         <source>Other version installed: %1</source>
         <translation>Anden version installeret: %1</translation>
     </message>
     <message>
         <source>Installing</source>
         <translation>Installerer</translation>
+    </message>
+    <message>
+        <source>Same version installed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -68,6 +68,14 @@
     <message>
         <source>View font directory</source>
         <translation>Vis skrifttypemappe</translation>
+    </message>
+    <message>
+        <source>Refreshing font cache, please wait...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -107,10 +115,6 @@
     <message>
         <source>Description: </source>
         <translation>Beskrivelse:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Ukendt</translation>
     </message>
     <message>
         <source>Same version installed</source>
