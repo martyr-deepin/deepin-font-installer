@@ -43,18 +43,3 @@
     border: none;
     background-color: qlineargradient(x1:0 y1:0, x2:0 y2:1, stop:0 #0b8cff, stop:1 #0aa1ff);
 }
-
-QProgressBar{
-    background-color: #F2F2F2;
-    border: 1px solid #EAEAEA;
-    border-radius: 4px;
-}
-
-QProgressBar::chunk{
-    border: 1px solid #378CFA;
-    background-color: #2CA7F8;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-}

@@ -157,19 +157,19 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
 
     if (m_close_button_status == Normal) {
         painter->drawPixmap(QRect(rect.width() - closeButtonPadding,
-                                  rect.y() + (rect.height() - m_closeNormalPixmap->height()) / 2,
-                                  m_closeNormalPixmap->width(),
-                                  m_closeNormalPixmap->height()), *m_closeNormalPixmap);
+                                  rect.y() + (rect.height() - m_closeNormalPixmap->height() / m_closeNormalPixmap->devicePixelRatio()) / 2,
+                                  m_closeNormalPixmap->width() / m_closeNormalPixmap->devicePixelRatio(),
+                                  m_closeNormalPixmap->height() / m_closeNormalPixmap->devicePixelRatio()), *m_closeNormalPixmap);
     } else if (m_close_button_status == Hover) {
         painter->drawPixmap(QRect(rect.width() - closeButtonPadding,
-                                  rect.y() + (rect.height() - m_closeHoverPixmap->height()) / 2,
-                                  m_closeHoverPixmap->width(),
-                                  m_closeHoverPixmap->height()), *m_closeHoverPixmap);
+                                  rect.y() + (rect.height() - m_closeHoverPixmap->height() / m_closeHoverPixmap->devicePixelRatio()) / 2,
+                                  m_closeHoverPixmap->width() / m_closeNormalPixmap->devicePixelRatio(),
+                                  m_closeHoverPixmap->height() / m_closeNormalPixmap->devicePixelRatio()), *m_closeHoverPixmap);
     } else if (m_close_button_status == Press) {
         painter->drawPixmap(QRect(rect.width() - closeButtonPadding,
-                                  rect.y() + (rect.height() - m_closePressPixmap->height()) / 2,
-                                  m_closePressPixmap->width(),
-                                  m_closePressPixmap->height()), *m_closePressPixmap);
+                                  rect.y() + (rect.height() - m_closePressPixmap->height() / m_closeNormalPixmap->devicePixelRatio()) / 2,
+                                  m_closePressPixmap->width() / m_closeNormalPixmap->devicePixelRatio(),
+                                  m_closePressPixmap->height() / m_closeNormalPixmap->devicePixelRatio()), *m_closePressPixmap);
     }
 }
 

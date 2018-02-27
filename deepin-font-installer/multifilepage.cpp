@@ -171,7 +171,7 @@ void MultiFilePage::addItems(const QStringList &paths)
         }
     }
 
-    // add items to listview.
+   // add items to listview.
     m_listView->addItems(listItems);
 
     m_tipsLabel->setVisible(false);
@@ -186,6 +186,7 @@ void MultiFilePage::refreshList()
     m_fontInfoManager->refreshList();
 
     for (auto *item : m_fontInfoList) {
+        // the function called above modifies sysVersion.
         item->isInstalled = m_fontInfoManager->isFontInstalled(item);
 
         if (item->sysVersion.isEmpty())
