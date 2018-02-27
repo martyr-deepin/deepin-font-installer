@@ -31,6 +31,7 @@
 #include "progress.h"
 #include "refreshthread.h"
 #include "dspinner.h"
+#include "dsimplelistitem.h"
 
 DWIDGET_USE_NAMESPACE
 
@@ -56,6 +57,7 @@ private slots:
     void onProgressChanged(const QString &filePath, const double &percent);
     void onWorkerFinished();
     void onViewFileBtnClicked();
+    void handleCloseBtnClicked(DSimpleListItem *);
 
 private:
     DFontInfoManager *m_fontInfoManager;

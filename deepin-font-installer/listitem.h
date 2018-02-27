@@ -46,7 +46,7 @@ public:
     void drawBackground(QRect rect, QPainter *painter, int index, bool isSelect);
     void drawForeground(QRect rect, QPainter *painter, int column, int index, bool isSelect);
     void drawHover(QRect rect, QPainter *painter);
-    bool isInstalled() { return m_fontInfo; }
+    DFontInfo *getFontInfo() { return m_fontInfo; }
     QString getFilePath();
     void setCloseButtonStatus(CloseButtonStatus status);
     bool isHoverCloseButton(QPoint pos);

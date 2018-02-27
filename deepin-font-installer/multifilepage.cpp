@@ -125,6 +125,7 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     connect(m_viewFileBtn, &QPushButton::clicked, this, &MultiFilePage::onViewFileBtnClicked);
     connect(m_fontManager, &DFontManager::batchInstall, this, &MultiFilePage::onProgressChanged);
     connect(m_refreshThread, &RefreshThread::refreshFinished, this, &MultiFilePage::onWorkerFinished);
+    connect(m_listView, &ListView::closeBtnClicked, this, &MultiFilePage::handleCloseBtnClicked);
 }
 
 MultiFilePage::~MultiFilePage()
@@ -246,4 +247,16 @@ void MultiFilePage::onViewFileBtnClicked()
 {
     QUrl url = QUrl::fromLocalFile("/usr/share/fonts/deepin-font-install");
     QProcess::startDetached("dde-file-manager", QStringList() << url.toString());
+}
+
+void MultiFilePage::handleCloseBtnClicked(DSimpleListItem *item)
+{
+    ListItem *listItem = static_cast<ListItem *>(item);
+    DFontInfo *fontInfo = listItem->getFontInfo();
+
+    m_listItems.remove(fontInfo->filePath);
+    m_fontInfoList.removeOne(fontInfo);
+    m_listView->removeItem(item);
+
+    emit countChanged();
 }
