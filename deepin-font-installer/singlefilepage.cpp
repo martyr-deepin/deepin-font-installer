@@ -32,6 +32,7 @@
 
 SingleFilePage::SingleFilePage(QWidget *parent)
     : QWidget(parent),
+      m_fontInfo(nullptr),
       m_fontInfoManager(DFontInfoManager::instance()),
       m_fontManager(DFontManager::instance()),
       m_nameLabel(new QLabel),
@@ -194,6 +195,9 @@ void SingleFilePage::updateInfo(DFontInfo *info)
 
 void SingleFilePage::refreshPage()
 {
+    if (m_fontInfo->sysVersion.isEmpty())
+        m_fontInfo->sysVersion = tr("Unknown");
+
     const bool isInstalled = m_fontInfo->isInstalled;
     const bool isSameVersion = m_fontInfo->sysVersion == m_fontInfo->version;
 

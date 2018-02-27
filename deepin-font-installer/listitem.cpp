@@ -58,7 +58,8 @@ void ListItem::drawHover(QRect rect, QPainter *painter)
     QPainterPath path;
     path.addRect(QRectF(rect));
 
-    painter->fillPath(path, QColor(0, 0, 0, 255 * 0.5));
+    painter->setOpacity(1);
+    painter->fillPath(path, QColor(0, 0, 0, 255 * 0.05));
 }
 
 void ListItem::setStatus(Status status)
@@ -129,6 +130,9 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
     QString descStr = m_fontInfo->description;
     descRect.setLeft(iconWidth + 15);
     descRect.setTop(nameRect.bottom() + 2);
+
+    if (m_fontInfo->sysVersion.isEmpty())
+        m_fontInfo->sysVersion = tr("Unknown");
 
     const bool isInstalled = m_fontInfo->isInstalled;
     const bool isSampleVersion = m_fontInfo->sysVersion == m_fontInfo->version;
