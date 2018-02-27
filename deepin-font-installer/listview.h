@@ -31,6 +31,11 @@ class ListView : public DSimpleListView
 public:
     ListView(QWidget *parent = nullptr);
     ~ListView();
+    
+public slots:
+    void handleMouseHoverChanged(DSimpleListItem* oldItem, DSimpleListItem* newItem, int columnIndex, QPoint pos);
+    void handleMousePressChanged(DSimpleListItem* item, int columnIndex, QPoint pos);
+    void handleMouseReleaseChanged(DSimpleListItem* item, int columnIndex, QPoint pos);
 };
 
 #endif

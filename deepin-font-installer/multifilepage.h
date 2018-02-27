@@ -66,6 +66,9 @@ private:
     QPushButton *m_viewFileBtn;
     Progress *m_progress;
     QPixmap *m_iconPixmap;
+    QPixmap *m_closeNormalPixmap;
+    QPixmap *m_closeHoverPixmap;
+    QPixmap *m_closePressPixmap;
     RefreshThread *m_refreshThread;
     QStackedLayout *m_bottomLayout;
     DSpinner *m_spinner;
