@@ -30,10 +30,6 @@
         <source>Same version installed</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>Main</name>
@@ -136,10 +132,6 @@
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

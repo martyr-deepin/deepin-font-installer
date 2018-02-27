@@ -195,9 +195,6 @@ void SingleFilePage::updateInfo(DFontInfo *info)
 
 void SingleFilePage::refreshPage()
 {
-    if (m_fontInfo->sysVersion.isEmpty())
-        m_fontInfo->sysVersion = tr("Unknown");
-
     const bool isInstalled = m_fontInfo->isInstalled;
     const bool isSameVersion = m_fontInfo->sysVersion == m_fontInfo->version;
 

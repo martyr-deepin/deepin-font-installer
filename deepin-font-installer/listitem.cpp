@@ -131,9 +131,6 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
     descRect.setLeft(iconWidth + 15);
     descRect.setTop(nameRect.bottom() + 2);
 
-    if (m_fontInfo->sysVersion.isEmpty())
-        m_fontInfo->sysVersion = tr("Unknown");
-
     const bool isInstalled = m_fontInfo->isInstalled;
     const bool isSampleVersion = m_fontInfo->sysVersion == m_fontInfo->version;
 

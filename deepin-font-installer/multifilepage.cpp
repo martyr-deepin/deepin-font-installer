@@ -187,6 +187,9 @@ void MultiFilePage::refreshList()
 
     for (auto *item : m_fontInfoList) {
         item->isInstalled = m_fontInfoManager->isFontInstalled(item);
+
+        if (item->sysVersion.isEmpty())
+            item->sysVersion = tr("Unknown");
     }
 }
 
