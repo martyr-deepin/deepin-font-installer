@@ -150,6 +150,10 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
     descStr = painter->fontMetrics().elidedText(descStr, Qt::ElideRight, rect.width() - statusWidth - iconWidth - 50);
     painter->drawText(descRect, Qt::AlignLeft | Qt::AlignTop, descStr);
 
+    if (m_status == Installed) {
+        return;
+    }
+
     if (m_close_button_status == Normal) {
         painter->drawPixmap(QRect(rect.width() - closeButtonPadding,
                                   rect.y() + (rect.height() - m_closeNormalPixmap->height()) / 2,
@@ -180,7 +184,7 @@ void ListItem::setCloseButtonStatus(CloseButtonStatus status)
 
 bool ListItem::isHoverCloseButton(QPoint pos)
 {
-    qDebug() << pos.x() << pos.y() << m_rect;
+    // qDebug() << pos.x() << pos.y() << m_rect;
 
     return pos.x() > m_rect.width() - closeButtonPadding && pos.y() > (m_rect.height() - m_closeNormalPixmap->height()) / 2 && pos.y() < m_rect.height() - (m_rect.height() - m_closeNormalPixmap->height()) / 2;
 }

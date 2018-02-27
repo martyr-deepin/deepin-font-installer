@@ -26,6 +26,7 @@
 #include <QTimer>
 #include <QDebug>
 #include <QUrl>
+#include "dsimplelistitem.h"
 
 DWIDGET_USE_NAMESPACE
 

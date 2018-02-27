@@ -21,6 +21,7 @@
 #define LISTVIEW_H
 
 #include <DSimpleListView>
+#include "listitem.h"
 
 DWIDGET_USE_NAMESPACE
 
@@ -31,7 +32,10 @@ class ListView : public DSimpleListView
 public:
     ListView(QWidget *parent = nullptr);
     ~ListView();
-    
+
+signals:
+    void closeBtnClicked(DSimpleListItem *item);
+
 public slots:
     void handleMouseHoverChanged(DSimpleListItem* oldItem, DSimpleListItem* newItem, int columnIndex, QPoint pos);
     void handleMousePressChanged(DSimpleListItem* item, int columnIndex, QPoint pos);
