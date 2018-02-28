@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
       m_singleFilePage(new SingleFilePage),
       m_multiFilePage(new MultiFilePage)
 {
+    titlebar()->setWindowFlags(titlebar()->windowFlags() & ~Qt::WindowMaximizeButtonHint);
     titlebar()->setIcon(QIcon(":/images/icon.svg"));
     titlebar()->setTitle("");
 #if DTK_VERSION >= 0x02000600
