@@ -25,6 +25,7 @@
 #include <QProcess>
 #include <QTimer>
 #include <QDebug>
+#include <QFile>
 #include <QUrl>
 #include "dsimplelistitem.h"
 
@@ -141,7 +142,7 @@ void MultiFilePage::addItems(const QStringList &paths)
     QList<DSimpleListItem *> listItems;
 
     for (const QString &path : paths) {
-        if (!m_listItems.contains(path)) {
+        if (!m_listItems.contains(path) && QFile(path).exists()) {
             DFontInfo *fontInfo = m_fontInfoManager->getFontInfo(path);
 
             // if can not open the font.

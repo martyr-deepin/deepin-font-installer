@@ -55,7 +55,7 @@ void ListItem::drawBackground(QRect rect, QPainter *painter, int index, bool isS
     painter->setBrush(QColor(0, 0, 0, 255 * 0.05));
 
     if (isHover) {
-        painter->drawRoundedRect(QRect(8, rect.y(), rect.width() - 16, rect.height()), 4, 4);
+        painter->drawRoundedRect(QRect(8, rect.y(), rect.width() - 16, rect.height()), 8, 8);
     } else {
         // draw bottom line.
         painter->drawRect(QRect(50, m_rect.y(), m_rect.width() - 62, 1));

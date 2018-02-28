@@ -59,7 +59,7 @@ private:
     QPixmap *m_closeHoverPixmap;
     CloseButtonStatus m_close_button_status;
 
-    int closeButtonPadding = 30;
+    int closeButtonPadding = 35;
     QRect m_rect;
 };
 
