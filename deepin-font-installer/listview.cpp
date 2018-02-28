@@ -34,9 +34,6 @@ ListView::ListView(QWidget *parent)
     // set fixed height.
     setFixedHeight(280);
 
-    // Enable hover effect.
-    setHoverEffect(true);
-
     // init scrollbar attributes.
     scrollbarColor = "#101010";
     scrollbarNormalOpacity = 0.5;
@@ -59,20 +56,20 @@ void ListView::handleMouseHoverChanged(DSimpleListItem* oldItem, DSimpleListItem
 {
     if (oldItem == nullptr || !oldItem->sameAs(newItem)) {
         if (oldItem != nullptr) {
-            (static_cast<ListItem *>(oldItem))->setCloseButtonStatus(Hide);
+            (static_cast<ListItem *>(oldItem))->setCloseButtonStatus(CloseButtonStatus::Hide);
         }
 
         if (newItem != nullptr) {
-            (static_cast<ListItem *>(newItem))->setCloseButtonStatus(Normal);
+            (static_cast<ListItem *>(newItem))->setCloseButtonStatus(CloseButtonStatus::Normal);
         }
 
         repaint();
     } else {
         if ((static_cast<ListItem *>(newItem))->isHoverCloseButton(pos)) {
-            (static_cast<ListItem *>(newItem))->setCloseButtonStatus(Hover);
+            (static_cast<ListItem *>(newItem))->setCloseButtonStatus(CloseButtonStatus::Hover);
             repaint();
         } else {
-            (static_cast<ListItem *>(newItem))->setCloseButtonStatus(Normal);
+            (static_cast<ListItem *>(newItem))->setCloseButtonStatus(CloseButtonStatus::Normal);
             repaint();
         }
     }
@@ -82,7 +79,7 @@ void ListView::handleMousePressChanged(DSimpleListItem* item, int columnIndex, Q
 {
     if (item != nullptr) {
         if ((static_cast<ListItem *>(item))->isHoverCloseButton(pos)) {
-            (static_cast<ListItem *>(item))->setCloseButtonStatus(Press);
+            (static_cast<ListItem *>(item))->setCloseButtonStatus(CloseButtonStatus::Press);
             repaint();
         }
     }
@@ -91,11 +88,11 @@ void ListView::handleMousePressChanged(DSimpleListItem* item, int columnIndex, Q
 void ListView::handleMouseReleaseChanged(DSimpleListItem* item, int columnIndex, QPoint pos)
 {
     if ((static_cast<ListItem *>(item))->isHoverCloseButton(pos)) {
-        (static_cast<ListItem *>(item))->setCloseButtonStatus(Hover);
+        (static_cast<ListItem *>(item))->setCloseButtonStatus(CloseButtonStatus::Hover);
         emit closeBtnClicked(item);
         repaint();
     } else {
-        (static_cast<ListItem *>(item))->setCloseButtonStatus(Normal);
+        (static_cast<ListItem *>(item))->setCloseButtonStatus(CloseButtonStatus::Normal);
         repaint();
     }
 }

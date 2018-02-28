@@ -25,7 +25,7 @@
 
 ListItem::ListItem(DFontInfo *fontInfo, QPixmap *iconPixmap, QPixmap *closeNormalPixmap, QPixmap *closeHoverPixmap, QPixmap *closePressPixmap)
     : m_fontInfo(fontInfo),
-      m_status(ListItem::None),
+      m_fontStatus(FontStatus::None),
       m_iconPixmap(iconPixmap),
       m_closeNormalPixmap(closeNormalPixmap),
       m_closeHoverPixmap(closeHoverPixmap),
@@ -42,32 +42,27 @@ bool ListItem::sameAs(DSimpleListItem *item)
     return getFilePath() == (static_cast<ListItem*>(item))->getFilePath();
 }
 
-void ListItem::drawBackground(QRect rect, QPainter *painter, int index, bool isSelect)
+void ListItem::setFontStatus(FontStatus status)
 {
-    // draw line.
-    painter->setOpacity(1);
-    painter->setPen(QColor(151, 151, 151, 255 * 0.1));
-    painter->drawLine(QPoint(50, rect.y() + rect.height() - 1),
-                      QPoint(rect.width() - 10, rect.y() + rect.height() - 1));
+    m_fontStatus = status;
 }
 
-void ListItem::drawHover(QRect rect, QPainter *painter)
+void ListItem::drawBackground(QRect rect, QPainter *painter, int index, bool isSelect, bool isHover)
 {
     m_rect = rect;
-
-    QPainterPath path;
-    path.addRect(QRectF(rect));
-
     painter->setOpacity(1);
-    painter->fillPath(path, QColor(0, 0, 0, 255 * 0.05));
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(QColor(0, 0, 0, 255 * 0.05));
+
+    if (isHover) {
+        painter->drawRoundedRect(QRect(8, rect.y(), rect.width() - 16, rect.height()), 4, 4);
+    } else {
+        // draw bottom line.
+        painter->drawRect(QRect(50, m_rect.y(), m_rect.width() - 62, 1));
+    }
 }
 
-void ListItem::setStatus(Status status)
-{
-    m_status = status;
-}
-
-void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int index, bool isSelect)
+void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int index, bool isSelect, bool isHover)
 {
     QFont font;
     font.setPointSize(11);
@@ -108,7 +103,7 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
     QRect statusRect = rect;
     QString statusStr = "";
 
-    switch (m_status) {
+    switch (m_fontStatus) {
     case Installed:
         painter->setPen(QColor("#528315"));
         statusStr = tr("Installed");
@@ -134,7 +129,7 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
     const bool isInstalled = m_fontInfo->isInstalled;
     const bool isSampleVersion = m_fontInfo->sysVersion == m_fontInfo->version;
 
-    if (isInstalled && m_status == ListItem::None) {
+    if (isInstalled && m_fontStatus == FontStatus::None) {
         if (isSampleVersion) {
             descStr = QString(tr("Same version installed"));
         } else {
@@ -151,7 +146,7 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
     descStr = painter->fontMetrics().elidedText(descStr, Qt::ElideRight, rect.width() - statusWidth - iconWidth - 50);
     painter->drawText(descRect, Qt::AlignLeft | Qt::AlignTop, descStr);
 
-    if (m_status == Installed) {
+    if (m_fontStatus == Installed) {
         return;
     }
 

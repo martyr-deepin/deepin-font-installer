@@ -218,7 +218,7 @@ void MultiFilePage::onProgressChanged(const QString &filePath, const double &per
     m_progress->setValue(static_cast<int>(percent));
 
     ListItem *item = m_listItems.find(filePath).value();
-    item->setStatus(ListItem::Installed);
+    item->setFontStatus(FontStatus::Installed);
     m_listView->update();
 
     emit installing();

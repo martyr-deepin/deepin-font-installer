@@ -29,6 +29,10 @@ enum CloseButtonStatus {
     Hide, Normal, Hover, Press
 };
 
+enum FontStatus {
+    None, Installing, Installed
+};
+
 class ListItem : public DSimpleListItem
 {
     Q_OBJECT
@@ -37,15 +41,10 @@ public:
     ListItem(DFontInfo *fontInfo, QPixmap *iconPixmap, QPixmap *closeNormalPixmap, QPixmap *closeHoverPixmap, QPixmap *closePressPixmap);
     ~ListItem();
 
-    enum Status {
-        None, Installing, Installed
-    };
-
     bool sameAs(DSimpleListItem *item);
-    void setStatus(Status status);
-    void drawBackground(QRect rect, QPainter *painter, int index, bool isSelect);
-    void drawForeground(QRect rect, QPainter *painter, int column, int index, bool isSelect);
-    void drawHover(QRect rect, QPainter *painter);
+    void setFontStatus(FontStatus status);
+    void drawBackground(QRect rect, QPainter *painter, int index, bool isSelect, bool isHover);
+    void drawForeground(QRect rect, QPainter *painter, int column, int index, bool isSelect, bool isHover);
     DFontInfo *getFontInfo() { return m_fontInfo; }
     QString getFilePath();
     void setCloseButtonStatus(CloseButtonStatus status);
@@ -53,14 +52,14 @@ public:
 
 private:
     DFontInfo *m_fontInfo;
-    Status m_status;
+    FontStatus m_fontStatus;
     QPixmap *m_iconPixmap;
     QPixmap *m_closeNormalPixmap;
     QPixmap *m_closePressPixmap;
     QPixmap *m_closeHoverPixmap;
     CloseButtonStatus m_close_button_status;
 
-    int closeButtonPadding = 36;
+    int closeButtonPadding = 30;
     QRect m_rect;
 };
 
