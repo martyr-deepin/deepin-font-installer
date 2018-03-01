@@ -13,10 +13,6 @@
 <context>
     <name>ListItem</name>
     <message>
-        <source>Unknown</source>
-        <translation>Nieznane</translation>
-    </message>
-    <message>
         <source>Installed</source>
         <translation>Zainstalowane</translation>
     </message>
@@ -30,7 +26,7 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Zainstalowana jest ta sama wersja</translation>
     </message>
 </context>
 <context>
@@ -71,11 +67,11 @@
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Odświeżanie pamięci podręcznej czcionek, prosimy czekać...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Nieznane</translation>
     </message>
 </context>
 <context>

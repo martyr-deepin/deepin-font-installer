@@ -13,10 +13,6 @@
 <context>
     <name>ListItem</name>
     <message>
-        <source>Unknown</source>
-        <translation>Неизвестеный</translation>
-    </message>
-    <message>
         <source>Installed</source>
         <translation>Установлен</translation>
     </message>
@@ -30,7 +26,7 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Эта версия уже установлена</translation>
     </message>
 </context>
 <context>
@@ -71,11 +67,11 @@
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Обновление кэша шрифтов, пожалуйста ждите...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Неизвестный</translation>
     </message>
 </context>
 <context>

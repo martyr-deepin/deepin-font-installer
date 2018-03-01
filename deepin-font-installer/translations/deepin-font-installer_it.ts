@@ -13,10 +13,6 @@
 <context>
     <name>ListItem</name>
     <message>
-        <source>Unknown</source>
-        <translation>Sconosciuto</translation>
-    </message>
-    <message>
         <source>Installed</source>
         <translation>Installato</translation>
     </message>
@@ -30,7 +26,7 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Medesima versione già installata</translation>
     </message>
 </context>
 <context>
@@ -72,11 +68,11 @@ Localizzazione italiana a cura di Massimo A. Carofano.</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Aggiornamento cache dei font, attendere prego...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Sconosciuto</translation>
     </message>
 </context>
 <context>

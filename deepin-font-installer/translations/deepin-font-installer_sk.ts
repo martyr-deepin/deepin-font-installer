@@ -13,10 +13,6 @@
 <context>
     <name>ListItem</name>
     <message>
-        <source>Unknown</source>
-        <translation>Neznáme</translation>
-    </message>
-    <message>
         <source>Installed</source>
         <translation>Nainštalované</translation>
     </message>

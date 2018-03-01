@@ -13,10 +13,6 @@
 <context>
     <name>ListItem</name>
     <message>
-        <source>Unknown</source>
-        <translation>Nežinoma</translation>
-    </message>
-    <message>
         <source>Installed</source>
         <translation>Įdiegtas</translation>
     </message>
@@ -30,7 +26,7 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Įdiegta ta pati versija</translation>
     </message>
 </context>
 <context>
@@ -71,11 +67,11 @@
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Iš naujo įkeliamas šriftų podėlis, prašome palaukti...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Nežinoma</translation>
     </message>
 </context>
 <context>

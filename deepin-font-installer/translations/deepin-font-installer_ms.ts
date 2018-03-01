@@ -13,10 +13,6 @@
 <context>
     <name>ListItem</name>
     <message>
-        <source>Unknown</source>
-        <translation>Tidak Diketahui</translation>
-    </message>
-    <message>
         <source>Installed</source>
         <translation>Dipasang</translation>
     </message>

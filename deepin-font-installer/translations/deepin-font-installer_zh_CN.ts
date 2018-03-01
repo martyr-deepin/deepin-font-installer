@@ -13,10 +13,6 @@
 <context>
     <name>ListItem</name>
     <message>
-        <source>Unknown</source>
-        <translation>未知</translation>
-    </message>
-    <message>
         <source>Installed</source>
         <translation>已安装</translation>
     </message>

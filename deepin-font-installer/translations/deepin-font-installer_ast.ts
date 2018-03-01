@@ -13,10 +13,6 @@
 <context>
     <name>ListItem</name>
     <message>
-        <source>Unknown</source>
-        <translation>Desconozse</translation>
-    </message>
-    <message>
         <source>Installed</source>
         <translation>Instalóse</translation>
     </message>

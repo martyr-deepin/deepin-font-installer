@@ -13,10 +13,6 @@
 <context>
     <name>ListItem</name>
     <message>
-        <source>Unknown</source>
-        <translation>ያልታወቀ</translation>
-    </message>
-    <message>
         <source>Installed</source>
         <translation>ተገጥሟል</translation>
     </message>
