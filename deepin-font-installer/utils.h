@@ -33,6 +33,7 @@ public:
     static QString getQssContent(const QString &filePath);
     static QString getConfigPath();
     static bool isFontMimeType(const QString &filePath);
+    static bool isFont(const QString &filePath);
     static QString suffixList();
 };
 

@@ -218,11 +218,12 @@ void MultiFilePage::onProgressChanged(const QString &filePath, const double &per
     m_progress->setVisible(true);
     m_progress->setValue(static_cast<int>(percent));
 
-    ListItem *item = m_listItems.find(filePath).value();
-    item->setFontStatus(FontStatus::Installed);
-    m_listView->update();
-
-    emit installing();
+    if (m_listItems.contains(filePath)) {
+        ListItem *item = m_listItems.find(filePath).value();
+        item->setFontStatus(FontStatus::Installed);
+        m_listView->update();
+        emit installing();
+    }
 
     if (percent == 100) {
         qDebug() << "Install finished";

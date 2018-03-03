@@ -73,6 +73,21 @@ bool Utils::isFontMimeType(const QString &filePath)
     return false;
 }
 
+bool Utils::isFont(const QString &filePath)
+{
+    QFileInfo file(filePath);
+
+    if (file.exists()) {
+        QStringList fontMimes;
+        fontMimes << "application/x-font-ttf"
+                  << "application/x-font-otf"
+                  << "application/x-font-type1";
+        return fontMimes.contains(QMimeDatabase().mimeTypeForFile(file).name());
+    } else {
+        return false;
+    }
+}
+
 QString Utils::suffixList()
 {
     return QString("Font Files (*.ttf *.ttc *.otf)");
