@@ -257,11 +257,13 @@ void MultiFilePage::onViewFileBtnClicked()
 void MultiFilePage::handleCloseBtnClicked(DSimpleListItem *item)
 {
     ListItem *listItem = static_cast<ListItem *>(item);
-    DFontInfo *fontInfo = listItem->getFontInfo();
 
-    m_listItems.remove(fontInfo->filePath);
-    m_fontInfoList.removeOne(fontInfo);
-    m_listView->removeItem(item);
+    if (listItem->getFontStatus() != FontStatus::Installed) {
+        DFontInfo *fontInfo = listItem->getFontInfo();
+        m_listItems.remove(fontInfo->filePath);
+        m_fontInfoList.removeOne(fontInfo);
+        m_listView->removeItem(item);
 
-    emit countChanged();
+        emit countChanged();
+    }
 }
