@@ -130,16 +130,20 @@ void MainWindow::dropEvent(QDropEvent *e)
 void MainWindow::setEnable()
 {
     setAcceptDrops(true);
-    // titlebar()->setDisableFlags(Qt::Widget);
+
+    // enable titlebar buttons.
+    titlebar()->setDisableFlags(Qt::Widget);
 }
 
 void MainWindow::setDisable()
 {
     setAcceptDrops(false);
-    // titlebar()->setDisableFlags(Qt::WindowMinimizeButtonHint
-    //                             | Qt::WindowCloseButtonHint
-    //                             | Qt::WindowMaximizeButtonHint
-    //                             | Qt::WindowSystemMenuHint);
+
+    // disable titlebar buttons.
+    titlebar()->setDisableFlags(Qt::WindowMinimizeButtonHint
+                                | Qt::WindowCloseButtonHint
+                                | Qt::WindowMaximizeButtonHint
+                                | Qt::WindowSystemMenuHint);
 }
 
 void MainWindow::refreshPage()
