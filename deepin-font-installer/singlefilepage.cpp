@@ -231,6 +231,8 @@ void SingleFilePage::progressBarStart()
 
 void SingleFilePage::handleInstall()
 {
+    qDebug() << "Install file: " << m_fontInfo->filePath;
+
     m_fontManager->setType(DFontManager::Install);
     m_fontManager->setInstallFileList(QStringList() << m_fontInfo->filePath);
     m_fontManager->start();
