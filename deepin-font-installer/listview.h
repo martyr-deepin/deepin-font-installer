@@ -40,6 +40,12 @@ public slots:
     void handleMouseHoverChanged(DSimpleListItem* oldItem, DSimpleListItem* newItem, int columnIndex, QPoint pos);
     void handleMousePressChanged(DSimpleListItem* item, int columnIndex, QPoint pos);
     void handleMouseReleaseChanged(DSimpleListItem* item, int columnIndex, QPoint pos);
+
+protected:
+	void leaveEvent(QEvent *);
+
+private:
+	ListItem *m_currentItem;
 };
 
 #endif

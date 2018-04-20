@@ -22,7 +22,8 @@
 #include <QDebug>
 
 ListView::ListView(QWidget *parent)
-    : DSimpleListView(parent)
+    : DSimpleListView(parent),
+      m_currentItem(nullptr)
 {
     // enable frame and radius.
     setFrame(true);
@@ -73,6 +74,8 @@ void ListView::handleMouseHoverChanged(DSimpleListItem* oldItem, DSimpleListItem
             repaint();
         }
     }
+
+    m_currentItem = static_cast<ListItem *>(newItem);
 }
 
 void ListView::handleMousePressChanged(DSimpleListItem* item, int columnIndex, QPoint pos)
@@ -95,4 +98,13 @@ void ListView::handleMouseReleaseChanged(DSimpleListItem* item, int columnIndex,
         (static_cast<ListItem *>(item))->setCloseButtonStatus(CloseButtonStatus::Normal);
         repaint();
     }
+}
+
+void ListView::leaveEvent(QEvent *e)
+{
+    if (m_currentItem) {
+        m_currentItem->setCloseButtonStatus(CloseButtonStatus::Hide);
+    }
+
+    DSimpleListView::leaveEvent(e);
 }
