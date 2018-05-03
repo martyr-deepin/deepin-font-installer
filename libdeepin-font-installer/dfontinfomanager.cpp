@@ -217,8 +217,7 @@ bool DFontInfoManager::isFontInstalled(DFontInfo *data)
     for (int i = 0; i < list.count(); ++i) {
         DFontInfo *item = list.at(i);
 
-        if (item->familyName == data->familyName &&
-            item->styleName == data->styleName) {
+        if (*data == *item) {
             data->sysVersion = item->version;
             return true;
         }
