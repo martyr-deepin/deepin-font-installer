@@ -33,9 +33,11 @@ struct DFontInfo
     QString description;
     QString sysVersion;
     bool isInstalled;
+    bool isError;
 
     bool operator ==(const DFontInfo &info) {
-        return info.familyName == familyName && info.styleName == styleName;
+        return info.familyName == familyName &&
+               info.styleName == styleName;
     }
 };
 

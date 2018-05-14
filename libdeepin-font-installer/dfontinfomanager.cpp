@@ -146,13 +146,14 @@ DFontInfo *DFontInfoManager::getFontInfo(const QString &filePath)
     FT_Error error = FT_New_Face(m_library, filePath.toUtf8().constData(), 0, &m_face);
 
     if (error != 0) {
+        fontInfo->isError = true;
         FT_Done_Face(m_face);
         FT_Done_FreeType(m_library);
-        delete fontInfo;
-        return nullptr;
+        return fontInfo;
     }
 
     // get the basic data.
+    fontInfo->isError = false;
     fontInfo->filePath = filePath;
     fontInfo->familyName = QString::fromLatin1(m_face->family_name);
     fontInfo->styleName = QString::fromLatin1(m_face->style_name);
