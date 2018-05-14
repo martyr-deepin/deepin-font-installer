@@ -1,136 +1,136 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="el" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>قم بسحب ملف الخط هنا</translation>
+        <translation>Σείρετε το αρχείο γραμματοσειράς εδώ</translation>
     </message>
     <message>
         <source>Select file</source>
-        <translation>تحديد ملف</translation>
+        <translation>Επιλέξτε αρχείο</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Installed</source>
-        <translation>مثبت</translation>
+        <translation>Εγκατεστημένες</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>إصدار آخر مثبت : %1</translation>
+        <translation>Άλλη έκδοση εγκατεστημένη: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation>يتم التثبيت</translation>
+        <translation>Εγκατάσταση</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>نفس الإصدار مثبت بالفعل.</translation>
+        <translation>Ίδια έκδοση εγκατεστημένη</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>مثبت خطوط ديبين</translation>
+        <translation>Deepin Font Installer</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>مثبت خطوط ديبين : يستخدم لتثبيت الخطوط وإزالتها مع ميرة التثبيت الجماعي</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>مثبت خطوط ديبين</translation>
+        <translation>Deepin Font Installer</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>تثبيت جماعي</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>تثبيت</translation>
+        <translation>Εγκατάσταση</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>تم التثبيت بنجاح</translation>
+        <translation>Επιτυχής εγκατάσταση</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>عرض دليل الخط</translation>
+        <translation>Εμφάνιση φακέλου γραμματοσειρών</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation>جاري تحديث الخط المستخدم، يرجى الانتظار...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>غير محدد</translation>
+        <translation>Άγνωστη</translation>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>تثبيت</translation>
+        <translation>Εγκατάσταση</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>إزالة</translation>
+        <translation>Αφαίρεση</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>إعادة تثبيت</translation>
+        <translation>Επανεγκατάσταση</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>عرض دليل الخط</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Style: </source>
-        <translation>النمط : </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Type: </source>
-        <translation>النوع : </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Version: </source>
-        <translation>اﻹصدار :</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>حقوق النشر :</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Description: </source>
-        <translation>الوصف : </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>اﻹصدار نفسه مثبت</translation>
+        <translation>Ίδια έκδοση εγκατεστημένη</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>تم التثبيت بنجاح</translation>
+        <translation>Επιτυχής εγκατάσταση</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>تمت اﻹزالة بنجاح</translation>
+        <translation>Επιτυχής αφαίρεση</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>إصدار آخر مثبت : %1</translation>
+        <translation>Άλλη έκδοση εγκατεστημένη: %1</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>انتهى</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

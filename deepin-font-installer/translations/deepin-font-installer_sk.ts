@@ -26,7 +26,7 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Rovnaká verzia je nainštalovaná</translation>
     </message>
 </context>
 <context>
@@ -67,11 +67,11 @@
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizácia vyrovnávacej pamäte písma, čakajte prosím...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Neznáme</translation>
     </message>
 </context>
 <context>

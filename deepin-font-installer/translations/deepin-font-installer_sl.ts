@@ -26,7 +26,7 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Ista različica nameščena</translation>
     </message>
 </context>
 <context>
@@ -67,11 +67,11 @@
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Osvežujem predpomnilnik pisav, prosim počakajte...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Neznano</translation>
     </message>
 </context>
 <context>

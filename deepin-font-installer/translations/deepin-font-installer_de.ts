@@ -18,15 +18,15 @@
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Andere Version installiert: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished"/>
+        <translation>Wird installiert</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Identische Version installiert</translation>
     </message>
 </context>
 <context>
@@ -59,19 +59,19 @@
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Erfolgreich installiert</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"/>
+        <translation>Schriftartenverzeichnis einsehen</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Schriftarten-Cache wird erneuert, bitte warten...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Unbekannt</translation>
     </message>
 </context>
 <context>

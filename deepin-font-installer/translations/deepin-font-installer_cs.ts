@@ -7,18 +7,18 @@
     </message>
     <message>
         <source>Select file</source>
-        <translation>Zvolte soubor</translation>
+        <translation>Vybrat soubor</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Installed</source>
-        <translation>Nainstalován</translation>
+        <translation>Nainstalováno</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Je nainstalována jiná verze: %1</translation>
     </message>
     <message>
         <source>Installing</source>
@@ -26,25 +26,25 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Stejná verze je již nainstalována</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Deepin Font Installer</translation>
+        <translation>Instalátor písem</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>Deepin Font Installer se používá k instalaci a odinstalování souboru písem pro uživatele s hromadnou instalací.</translation>
+        <translation>Instalátor písem Deepinu se používá k nainstalování a odinstalování souborů s písmy pro uživatele s hromadnou instalací.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Deepin Font Installer</translation>
+        <translation>Instalátor písem</translation>
     </message>
     <message>
         <source>Bulk Install</source>
@@ -55,30 +55,30 @@
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Nainstalujte</translation>
+        <translation>Instalovat</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Nainstalováno úspěšně</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit adresář s písmy</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Obnovuje se vyrovnávací paměť písem, počkejte, prosím...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Neznámý</translation>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Nainstalovat</translation>
+        <translation>Instalovat</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -86,47 +86,47 @@
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>Reinstalace</translation>
+        <translation>Reinstalovat</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit adresář s písmy</translation>
     </message>
     <message>
         <source>Style: </source>
-        <translation type="unfinished"/>
+        <translation>Styl: </translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation type="unfinished"/>
+        <translation>Typ: </translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation type="unfinished"/>
+        <translation>Verze:</translation>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation type="unfinished"/>
+        <translation>Autorské právo:</translation>
     </message>
     <message>
         <source>Description: </source>
-        <translation type="unfinished"/>
+        <translation>Popis:</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Stejná verze je již nainstalována</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Nainstalováno úspěšně</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Odstraněno úspěšně</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Je nainstalována jiná verze: %1</translation>
     </message>
     <message>
         <source>Done</source>

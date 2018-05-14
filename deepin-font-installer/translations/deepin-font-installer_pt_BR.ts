@@ -67,7 +67,7 @@
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Atualizando cache de fontes, aguarde por favor...</translation>
     </message>
     <message>
         <source>Unknown</source>

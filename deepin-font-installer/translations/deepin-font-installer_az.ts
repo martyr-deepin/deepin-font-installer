@@ -1,136 +1,136 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="az" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>قم بسحب ملف الخط هنا</translation>
+        <translation>Burada şrift faylını sürükləyin</translation>
     </message>
     <message>
         <source>Select file</source>
-        <translation>تحديد ملف</translation>
+        <translation>Fayl seçin</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Installed</source>
-        <translation>مثبت</translation>
+        <translation>Qurulmuş</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>إصدار آخر مثبت : %1</translation>
+        <translation>Digər versiya yükləndi: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation>يتم التثبيت</translation>
+        <translation>Quraşdırma</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>نفس الإصدار مثبت بالفعل.</translation>
+        <translation>Eyni versiya quraşdırılıb</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>مثبت خطوط ديبين</translation>
+        <translation>Deepin Font Installer</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>مثبت خطوط ديبين : يستخدم لتثبيت الخطوط وإزالتها مع ميرة التثبيت الجماعي</translation>
+        <translation>Deepin Font Installer, toplu yükləmə funksiyası olan istifadəçilər üçün şrift faylını yükləmək və aradan qaldırılması üçün istifadə olunur.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>مثبت خطوط ديبين</translation>
+        <translation>Deepin Font Installer</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>تثبيت جماعي</translation>
+        <translation>Toplu Quraşdırma</translation>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>تثبيت</translation>
+        <translation>Quraşdırmaq</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>تم التثبيت بنجاح</translation>
+        <translation>Uğurla quraşdırılmışdır</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>عرض دليل الخط</translation>
+        <translation>Şrift qovluğunu görün</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation>جاري تحديث الخط المستخدم، يرجى الانتظار...</translation>
+        <translation>Yazı şrifti keş məlumatı  yenilənir, xahiş edirik gözləyin ...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>غير محدد</translation>
+        <translation>Naməlum</translation>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>تثبيت</translation>
+        <translation>Quraşdırmaq</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>إزالة</translation>
+        <translation>Sil</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>إعادة تثبيت</translation>
+        <translation>Yenidən Quraşdırmaq</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>عرض دليل الخط</translation>
+        <translation>Şrift qovluğunu görün</translation>
     </message>
     <message>
         <source>Style: </source>
-        <translation>النمط : </translation>
+        <translation>Stil:</translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation>النوع : </translation>
+        <translation>Tipi:</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation>اﻹصدار :</translation>
+        <translation>Versiya:</translation>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>حقوق النشر :</translation>
+        <translation>Müəllif hüquqları:</translation>
     </message>
     <message>
         <source>Description: </source>
-        <translation>الوصف : </translation>
+        <translation>Açığlama</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>اﻹصدار نفسه مثبت</translation>
+        <translation>Eyni versiya quraşdırılıb</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>تم التثبيت بنجاح</translation>
+        <translation>Uğurla quraşdırılmışdır</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>تمت اﻹزالة بنجاح</translation>
+        <translation>Uğurla silindi</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>إصدار آخر مثبت : %1</translation>
+        <translation>Digər versiya yükləndi: %1</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>انتهى</translation>
+        <translation>Ok</translation>
     </message>
 </context>
 </TS>

@@ -18,15 +18,15 @@
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Outra versão instalada: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation type="unfinished"/>
+        <translation>A instalar</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>A mesma versão está instalada</translation>
     </message>
 </context>
 <context>
@@ -59,19 +59,19 @@
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Instalada com sucesso</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"/>
+        <translation>Ver diretório de fontes</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>A atualizar cache de fontes, por favor aguarde...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Desconhecido</translation>
     </message>
 </context>
 <context>
