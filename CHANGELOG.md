@@ -1,4 +1,21 @@
 <a name=""></a>
+##  1.0.5 (2018-05-14)
+
+
+#### Bug Fixes
+
+*   open file crash ([646e3301](https://github.com/linuxdeepin/deepin-font-installer/commit/646e33012900353395f2987269ca2843a4d3a880))
+*   no hidden closeBtn when leaving. ([21d67a06](https://github.com/linuxdeepin/deepin-font-installer/commit/21d67a061871bbaa05b11687300d4c071a6bfad2))
+*   cannot delete item after installation. ([2afab5fa](https://github.com/linuxdeepin/deepin-font-installer/commit/2afab5fa1d492a979713590782e1800265198f51))
+*   remove item will crash during installation. ([37a0af34](https://github.com/linuxdeepin/deepin-font-installer/commit/37a0af345b615ce845e66bd5ed96f222fc4f6bb6))
+
+#### Features
+
+*   when installing disable titlebar buttons. ([c7a709b1](https://github.com/linuxdeepin/deepin-font-installer/commit/c7a709b169aa7290fb951492ddb30b3b48cd7de8))
+
+
+
+<a name=""></a>
 ##  1.0.4 (2018-03-01)
 
 
