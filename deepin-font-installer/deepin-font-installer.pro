@@ -63,7 +63,4 @@ translations.files = $$PWD/translations/*.qm
 icon_files.path = /usr/share/icons/hicolor/scalable/apps
 icon_files.files = $$PWD/images/deepin-font-installer.svg
 
-manual.path = /usr/share/dman/deepin-font-installer
-manual.files = $$PWD/dman/*
-
-INSTALLS += target desktop policy translations icon_files manual
+INSTALLS += target desktop policy translations icon_files

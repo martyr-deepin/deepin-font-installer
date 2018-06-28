@@ -4,4 +4,3 @@ usr/share/polkit-1/actions/*.policy
 usr/share/deepin-font-installer/translations/*.qm
 /usr/lib/*/dde-file-manager/plugins/previews/*.so
 /usr/share/icons/hicolor/scalable/apps/*
-/usr/share/dman
