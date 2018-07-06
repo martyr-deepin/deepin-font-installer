@@ -40,6 +40,7 @@ protected:
     void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
     void dragLeaveEvent(QDragLeaveEvent *) Q_DECL_OVERRIDE;
     void dropEvent(QDropEvent *) Q_DECL_OVERRIDE;
+    void dragMoveEvent(QDragMoveEvent *event) Q_DECL_OVERRIDE;
 
 private slots:
     void setEnable();

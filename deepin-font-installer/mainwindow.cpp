@@ -127,6 +127,11 @@ void MainWindow::dropEvent(QDropEvent *e)
     onSelected(fileList);
 }
 
+void MainWindow::dragMoveEvent(QDragMoveEvent *event)
+{
+    event->accept();
+}
+
 void MainWindow::setEnable()
 {
     setAcceptDrops(true);
