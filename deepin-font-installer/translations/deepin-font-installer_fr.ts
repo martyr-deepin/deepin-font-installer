@@ -3,7 +3,7 @@
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Glissez le fichier de la police ici</translation>
+        <translation>Glissez la police d&apos;écriture ici</translation>
     </message>
     <message>
         <source>Select file</source>
@@ -130,7 +130,7 @@
     </message>
     <message>
         <source>Done</source>
-        <translation>Fini</translation>
+        <translation>Terminé</translation>
     </message>
 </context>
 </TS>

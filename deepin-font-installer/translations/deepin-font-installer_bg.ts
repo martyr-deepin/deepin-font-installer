@@ -1,136 +1,136 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="bg" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Arraste o arquivo de fontes aqui</translation>
+        <translation>Провлачете шрифтовия файл тук</translation>
     </message>
     <message>
         <source>Select file</source>
-        <translation>Selecione o arquivo</translation>
+        <translation>Изберете файл</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Installed</source>
-        <translation>Instalado</translation>
+        <translation>Инсталиран</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Outra versão instalada: %1</translation>
+        <translation>Инсталирана е друга версия: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation>Instalando</translation>
+        <translation>Инсталиране</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Versão já instalada</translation>
+        <translation>Инсталирана е същата версия</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Instalador de Fontes</translation>
+        <translation>Deepin инсталатор на шрифт</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>O Instalador de Fontes é usado para instalar e desinstalar arquivos de fonte para os usuários com a função de instalação em massa.</translation>
+        <translation>Deepin инсталатор на шрифт е необходим за инсталиране или премахване на шрифт за потребителите с възможност за пакетна инсталация.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Instalador de Fontes</translation>
+        <translation>Deepin инсталатор на шрифт</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>Instalar em Massa</translation>
+        <translation>Масово инсталиране</translation>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Instalar</translation>
+        <translation>Инсталиране</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Instalado com sucesso</translation>
+        <translation>Успешна инсталация</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Ver diretório de fontes</translation>
+        <translation>Преглед на папката с шрифтове</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation>Atualizando cache de fontes, aguarde...</translation>
+        <translation>Обновяване на шрифтовия кеш, изчакайте...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Desconhecido</translation>
+        <translation>Непознато</translation>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Instalar</translation>
+        <translation>Инсталиране</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Remover</translation>
+        <translation>Премехване</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>Reinstalar</translation>
+        <translation>Преинсталиране</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Ver o diretório de fontes</translation>
+        <translation>Преглед на папката с шрифтове</translation>
     </message>
     <message>
         <source>Style: </source>
-        <translation>Estilo:</translation>
+        <translation>Стил:</translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation>Tipo:</translation>
+        <translation>Тип:</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation>Versão:</translation>
+        <translation>Версия:</translation>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>Copyright:</translation>
+        <translation>Запазени права:</translation>
     </message>
     <message>
         <source>Description: </source>
-        <translation>Descrição:</translation>
+        <translation>Описание:</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Mesma versão já instalada</translation>
+        <translation>Същата версия е инсталирана</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Instalada com sucesso</translation>
+        <translation>Успешна инсталация</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>Removida com sucesso</translation>
+        <translation>Успешно премахнат</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Outra versão instalada: %1</translation>
+        <translation>Инсталирана е друга версия: %1</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>Feito</translation>
+        <translation>Готово</translation>
     </message>
 </context>
 </TS>
