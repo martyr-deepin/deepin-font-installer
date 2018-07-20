@@ -1,3 +1,13 @@
+<a name="1.0.6"></a>
+### 1.0.6 (2018-07-20)
+
+
+#### Bug Fixes
+
+*   have prohibit drag and drop icons ([6c5c2495](https://github.com/linuxdeepin/deepin-font-installer/commit/6c5c2495c2a9907f15c19f61a395f6ecb0d5eea5))
+
+
+
 <a name=""></a>
 ##  1.0.5 (2018-05-14)
 
