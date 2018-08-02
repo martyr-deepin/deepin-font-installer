@@ -66,7 +66,8 @@ bool Utils::isFontMimeType(const QString &filePath)
 
     if (mimeName == "application/x-font-ttf" ||
         mimeName == "application/x-font-otf" ||
-        mimeName == "application/x-font-type1") {
+        mimeName == "application/x-font-type1" ||
+        mimeName.startsWith("font/")) {
         return true;
     }
 
