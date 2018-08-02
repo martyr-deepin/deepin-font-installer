@@ -1,3 +1,13 @@
+<a name="1.0.7"></a>
+### 1.0.7 (2018-08-02)
+
+
+#### Bug Fixes
+
+*   Drag and drop is not allowed because mimeType is insufficient ([2361ca93](https://github.com/linuxdeepin/deepin-font-installer/commit/2361ca9383896fade8e7b80265093a75b65f1522))
+
+
+
 <a name="1.0.6"></a>
 ### 1.0.6 (2018-07-20)
 
