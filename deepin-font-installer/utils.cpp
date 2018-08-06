@@ -24,6 +24,7 @@
 #include <QDir>
 #include <QFile>
 #include <QDebug>
+#include <QFileInfo>
 #include <QFontInfo>
 #include <QMimeType>
 #include <QApplication>
@@ -61,32 +62,13 @@ QString Utils::getConfigPath()
 
 bool Utils::isFontMimeType(const QString &filePath)
 {
-    const QMimeType mimeType = QMimeDatabase().mimeTypeForUrl(QUrl(filePath));
-    const QString mimeName = mimeType.name();
+    const QString mimeName = QMimeDatabase().mimeTypeForFile(filePath).name();;
 
-    if (mimeName == "application/x-font-ttf" ||
-        mimeName == "application/x-font-otf" ||
-        mimeName == "application/x-font-type1" ||
-        mimeName.startsWith("font/")) {
+    if (mimeName.startsWith("font/")) {
         return true;
     }
 
     return false;
-}
-
-bool Utils::isFont(const QString &filePath)
-{
-    QFileInfo file(filePath);
-
-    if (file.exists()) {
-        QStringList fontMimes;
-        fontMimes << "application/x-font-ttf"
-                  << "application/x-font-otf"
-                  << "application/x-font-type1";
-        return fontMimes.contains(QMimeDatabase().mimeTypeForFile(file).name());
-    } else {
-        return false;
-    }
 }
 
 QString Utils::suffixList()
