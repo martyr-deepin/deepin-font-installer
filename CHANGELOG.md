@@ -1,3 +1,13 @@
+<a name="">1.0.8</a>
+### 1.0.8 (2018-08-07)
+
+
+#### Bug Fixes
+
+*   unable to drag file. ([46d5f835](https://github.com/linuxdeepin/deepin-font-installer/commit/46d5f835ed97b4df4b711a2481367c33273908f8))
+
+
+
 <a name="1.0.7"></a>
 ### 1.0.7 (2018-08-02)
 
