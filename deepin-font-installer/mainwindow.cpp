@@ -21,6 +21,8 @@
 #include "utils.h"
 #include "dtitlebar.h"
 #include "dhidpihelper.h"
+#include "dthememanager.h"
+
 #include <QSvgWidget>
 #include <QDebug>
 #include <QDragEnterEvent>
@@ -34,7 +36,9 @@ MainWindow::MainWindow(QWidget *parent)
       m_mainLayout(new QStackedLayout(m_mainWidget)),
       m_homePage(new HomePage),
       m_singleFilePage(new SingleFilePage),
-      m_multiFilePage(new MultiFilePage)
+      m_multiFilePage(new MultiFilePage),
+      m_settings("deepin", "deepin-font-installer"),
+      m_themeAction(new QAction(tr("Dark theme")))
 {
     titlebar()->setWindowFlags(titlebar()->windowFlags() & ~Qt::WindowMaximizeButtonHint);
     titlebar()->setIcon(QIcon(":/images/icon.svg"));
@@ -53,11 +57,29 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(m_mainWidget);
     setAcceptDrops(true);
 
+    // add menu to titlebar.
+    QMenu *menu = new QMenu;
+    menu->addAction(m_themeAction);
+    menu->addSeparator();
+    titlebar()->setMenu(menu);
+
+    // init theme action.
+    m_themeAction->setCheckable(true);
+
+    // init settings.
+    if (!m_settings.contains("darkTheme")) {
+        m_settings.setValue("darkTheme", false);
+    }
+
+    // init theme.
+    initTheme();
+
     // connect the signals to the slot function.
     connect(m_homePage, &HomePage::fileSelected, this, &MainWindow::onSelected);
     connect(m_multiFilePage, &MultiFilePage::countChanged, this, &MainWindow::refreshPage);
     connect(m_multiFilePage, &MultiFilePage::installing, this, &MainWindow::setDisable);
     connect(m_multiFilePage, &MultiFilePage::installFinished, this, &MainWindow::setEnable);
+    connect(m_themeAction, &QAction::triggered, this, &MainWindow::switchTheme);
 }
 
 MainWindow::~MainWindow()
@@ -130,6 +152,34 @@ void MainWindow::dropEvent(QDropEvent *e)
 void MainWindow::dragMoveEvent(QDragMoveEvent *event)
 {
     event->accept();
+}
+
+void MainWindow::initTheme()
+{
+    const bool isDarkTheme = m_settings.value("darkTheme").toBool();
+
+    if (isDarkTheme) {
+        DThemeManager::instance()->setTheme("dark");
+        m_themeAction->setChecked(true);
+        setStyleSheet(Utils::getQssContent(":/qss/dark.qss"));
+    } else {
+        DThemeManager::instance()->setTheme("light");
+        m_themeAction->setChecked(false);
+        setStyleSheet(Utils::getQssContent(":/qss/light.qss"));
+    }
+}
+
+void MainWindow::switchTheme()
+{
+    const bool isDarkTheme = m_settings.value("darkTheme").toBool();
+
+    if (isDarkTheme) {
+        m_settings.setValue("darkTheme", false);
+    } else {
+        m_settings.setValue("darkTheme", true);
+    }
+
+    initTheme();
 }
 
 void MainWindow::setEnable()

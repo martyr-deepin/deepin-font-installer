@@ -19,6 +19,8 @@
 
 #include "listitem.h"
 #include "dsvgrenderer.h"
+#include "dthememanager.h"
+
 #include <QApplication>
 #include <QPainter>
 #include <QDebug>
@@ -31,10 +33,24 @@ ListItem::ListItem(DFontInfo *fontInfo, QPixmap *iconPixmap, QPixmap *closeNorma
       m_closeHoverPixmap(closeHoverPixmap),
       m_closePressPixmap(closePressPixmap)
 {
+    initTheme();
+
+    connect(DThemeManager::instance(), &DThemeManager::themeChanged, this, &ListItem::initTheme);
 }
 
 ListItem::~ListItem()
 {
+}
+
+void ListItem::initTheme()
+{
+    const QString &theme = DThemeManager::instance()->theme();
+
+    if (theme == "dark") {
+        m_familyColor = "#FFFFFF";
+    } else {
+        m_familyColor = "#000000";
+    }
 }
 
 bool ListItem::sameAs(DSimpleListItem *item)
@@ -68,7 +84,7 @@ void ListItem::drawForeground(QRect rect, QPainter *painter, int column, int ind
     font.setPointSize(11);
     font.setWeight(QFont::DemiBold);
     painter->setFont(font);
-    painter->setPen(QPen(QColor("#000000")));
+    painter->setPen(QPen(QColor(m_familyColor)));
     painter->setOpacity(1);
 
     // draw icon.

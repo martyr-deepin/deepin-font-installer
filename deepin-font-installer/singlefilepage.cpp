@@ -42,11 +42,11 @@ SingleFilePage::SingleFilePage(QWidget *parent)
       m_copyrightLabel(new QLabel),
       m_descriptionLabel(new QLabel),
       m_tipsLabel(new QLabel()),
-      m_installBtn(new QPushButton),
+      m_installBtn(new DSuggestButton),
       m_uninstallBtn(new QPushButton(tr("Remove"))),
       m_reinstallBtn(new QPushButton(tr("Reinstall"))),
-      m_viewFileBtn(new QPushButton),
-      m_closeBtn(new QPushButton),
+      m_viewFileBtn(new DSuggestButton),
+      m_closeBtn(new DSuggestButton),
       m_spinner(new DSpinner),
       m_bottomLayout(new QStackedLayout)
 {
@@ -131,7 +131,6 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_installBtn->setText(tr("Install"));
     m_installBtn->setFixedSize(160, 36);
     m_installBtn->setFocusPolicy(Qt::NoFocus);
-    m_installBtn->setObjectName("BlueButton");
     m_installBtn->setVisible(false);
 
     m_uninstallBtn->setFixedSize(160, 36);
@@ -147,13 +146,11 @@ SingleFilePage::SingleFilePage(QWidget *parent)
     m_viewFileBtn->setText(tr("View font directory"));
     m_viewFileBtn->setFixedSize(180, 36);
     m_viewFileBtn->setFocusPolicy(Qt::NoFocus);
-    m_viewFileBtn->setObjectName("BlueButton");
     m_viewFileBtn->setVisible(false);
 
     m_closeBtn->setFixedSize(160, 36);
     m_closeBtn->setFocusPolicy(Qt::NoFocus);
     m_closeBtn->setVisible(false);
-    m_closeBtn->setObjectName("BlueButton");
     m_closeBtn->setText(tr("Done"));
 
     // connect the signals to the slots function.

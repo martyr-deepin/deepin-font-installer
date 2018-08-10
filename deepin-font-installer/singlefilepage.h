@@ -25,6 +25,7 @@
 #include <QStackedLayout>
 #include <QPushButton>
 #include <QLabel>
+#include "dsuggestbutton.h"
 #include "dfontinfomanager.h"
 #include "dfontmanager.h"
 #include "dspinner.h"
@@ -64,10 +65,10 @@ private:
     QLabel *m_copyrightLabel;
     QLabel *m_descriptionLabel;
     QLabel *m_tipsLabel;
-    QPushButton *m_installBtn;
+    DSuggestButton *m_installBtn;
     QPushButton *m_uninstallBtn;
     QPushButton *m_reinstallBtn;
-    QPushButton *m_viewFileBtn;
+    DSuggestButton *m_viewFileBtn;
     QPushButton *m_closeBtn;
     DSpinner *m_spinner;
     QStackedLayout *m_bottomLayout;

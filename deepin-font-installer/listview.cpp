@@ -19,6 +19,7 @@
 
 #include "listview.h"
 #include "listitem.h"
+#include "dthememanager.h"
 #include <QDebug>
 
 ListView::ListView(QWidget *parent)
@@ -35,18 +36,13 @@ ListView::ListView(QWidget *parent)
     // set fixed height.
     setFixedHeight(280);
 
-    // init scrollbar attributes.
-    scrollbarColor = "#101010";
-    scrollbarNormalOpacity = 0.5;
-    scrollbarHoverOpacity = 0.7;
-    scrollbarPressOpacity = 0.8;
-    scrollbarFrameNormalOpacity = 0;
-    scrollbarFrameHoverOpacity = 0;
-    scrollbarFramePressOpacity = 0;
+    // init theme.
+    initTheme();
 
     connect(this, &ListView::mouseHoverChanged, this, &ListView::handleMouseHoverChanged);
     connect(this, &ListView::mousePressChanged, this, &ListView::handleMousePressChanged);
     connect(this, &ListView::mouseReleaseChanged, this, &ListView::handleMouseReleaseChanged);
+    connect(DThemeManager::instance(), &DThemeManager::themeChanged, this, &ListView::initTheme);
 }
 
 ListView::~ListView()
@@ -97,6 +93,41 @@ void ListView::handleMouseReleaseChanged(DSimpleListItem* item, int columnIndex,
     } else {
         (static_cast<ListItem *>(item))->setCloseButtonStatus(CloseButtonStatus::Normal);
         repaint();
+    }
+}
+
+void ListView::initTheme()
+{
+    if (DThemeManager::instance()->theme() == "light") {
+        backgroundColor = "#FFFFFF";
+        backgroundOpacity = 0.03;
+
+        frameColor = "#000000";
+        frameOpacity = 0.1;
+
+        scrollbarColor = "#101010";
+        scrollbarNormalOpacity = 0.5;
+        scrollbarHoverOpacity = 0.7;
+        scrollbarPressOpacity = 0.8;
+
+        scrollbarFrameNormalOpacity = 0;
+        scrollbarFrameHoverOpacity = 0;
+        scrollbarFramePressOpacity = 0;
+    } else {
+        backgroundColor = "#ffffff";
+        backgroundOpacity = 0.03;
+
+        frameColor = "#000000";
+        frameOpacity = 0;
+
+        scrollbarColor = "#ffffff";
+        scrollbarNormalOpacity = 0.2;
+        scrollbarHoverOpacity = 0.4;
+        scrollbarPressOpacity = 0.15;
+
+        scrollbarFrameNormalOpacity = 0.05;
+        scrollbarFrameHoverOpacity = 0.1;
+        scrollbarFramePressOpacity = 0.05;
     }
 }
 

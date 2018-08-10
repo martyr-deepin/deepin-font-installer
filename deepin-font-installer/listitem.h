@@ -41,6 +41,8 @@ public:
     ListItem(DFontInfo *fontInfo, QPixmap *iconPixmap, QPixmap *closeNormalPixmap, QPixmap *closeHoverPixmap, QPixmap *closePressPixmap);
     ~ListItem();
 
+    void initTheme();
+
     bool sameAs(DSimpleListItem *item);
     void setFontStatus(FontStatus status);
     void drawBackground(QRect rect, QPainter *painter, int index, bool isSelect, bool isHover);
@@ -62,6 +64,8 @@ private:
 
     int closeButtonPadding = 35;
     QRect m_rect;
+
+    QString m_familyColor;
 };
 
 #endif

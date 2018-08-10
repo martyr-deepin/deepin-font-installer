@@ -22,6 +22,8 @@
 
 #include <DMainWindow>
 #include <QStackedLayout>
+#include <QSettings>
+
 #include "homepage.h"
 #include "singlefilepage.h"
 #include "multifilepage.h"
@@ -43,6 +45,8 @@ protected:
     void dragMoveEvent(QDragMoveEvent *event) Q_DECL_OVERRIDE;
 
 private slots:
+    void initTheme();
+    void switchTheme();
     void setEnable();
     void setDisable();
     void refreshPage();
@@ -54,6 +58,8 @@ private:
     HomePage *m_homePage;
     SingleFilePage *m_singleFilePage;
     MultiFilePage *m_multiFilePage;
+    QSettings m_settings;
+    QAction *m_themeAction;
 };
 
 #endif

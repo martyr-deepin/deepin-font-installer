@@ -41,11 +41,14 @@ public slots:
     void handleMousePressChanged(DSimpleListItem* item, int columnIndex, QPoint pos);
     void handleMouseReleaseChanged(DSimpleListItem* item, int columnIndex, QPoint pos);
 
+private:
+    void initTheme();
+
 protected:
-	void leaveEvent(QEvent *);
+    void leaveEvent(QEvent *);
 
 private:
-	ListItem *m_currentItem;
+    ListItem *m_currentItem;
 };
 
 #endif

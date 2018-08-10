@@ -39,8 +39,8 @@ MultiFilePage::MultiFilePage(QWidget *parent)
       m_fontManager(DFontManager::instance()),
       m_listView(new ListView),
       m_tipsLabel(new QLabel(tr("Installed successfully"))),
-      m_installBtn(new QPushButton),
-      m_viewFileBtn(new QPushButton),
+      m_installBtn(new DSuggestButton),
+      m_viewFileBtn(new DSuggestButton),
       m_progress(new Progress),
       m_iconPixmap(new QPixmap),
       m_closeNormalPixmap(new QPixmap),
@@ -96,10 +96,8 @@ MultiFilePage::MultiFilePage(QWidget *parent)
     m_installBtn->setText(tr("Install"));
     m_installBtn->setFocusPolicy(Qt::NoFocus);
     m_installBtn->setFixedSize(160, 36);
-    m_installBtn->setObjectName("BlueButton");
     m_installBtn->setVisible(false);
 
-    m_viewFileBtn->setObjectName("BlueButton");
     m_viewFileBtn->setText(tr("View font directory"));
     m_viewFileBtn->setFocusPolicy(Qt::NoFocus);
     m_viewFileBtn->setFixedSize(180, 36);
