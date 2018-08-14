@@ -43,6 +43,10 @@ int main(int argc, char *argv[])
     process.waitForFinished();
     isFaild |= process.exitCode();
 
+    // the file is readable by the owner of the file.
+    QFile::setPermissions(fileList.last(), QFileDevice::ReadOwner | QFileDevice::ReadGroup | QFileDevice::ReadOther);
+
+
     if (!isFaild) {
         process.start("fc-cache");
         process.waitForFinished();

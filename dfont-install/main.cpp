@@ -65,6 +65,8 @@ int main(int argc, char *argv[])
 
             process->start("cp", QStringList() << "-f" << file << target);
             process->waitForFinished(-1);
+
+            QFile::setPermissions(sysPath, QFileDevice::ReadOwner | QFileDevice::ReadGroup | QFileDevice::ReadOther);
         } else {
             const QFileInfo info(file);
             QString dirName = fontInfo->familyName;
@@ -79,6 +81,9 @@ int main(int argc, char *argv[])
             QDir dir(targetDir);
             dir.mkpath(".");
             QFile::copy(file, target);
+
+            // the file is readable by the owner of the file.
+            QFile::setPermissions(target, QFileDevice::ReadOwner | QFileDevice::ReadGroup | QFileDevice::ReadOther);
         }
 
         const int currentIndex = fileList.indexOf(file);
