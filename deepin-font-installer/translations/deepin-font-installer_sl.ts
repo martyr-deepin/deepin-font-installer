@@ -50,6 +50,10 @@
         <source>Bulk Install</source>
         <translation>Namestitev z Bulkom</translation>
     </message>
+    <message>
+        <source>Dark theme</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiFilePage</name>

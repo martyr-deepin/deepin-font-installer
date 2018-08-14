@@ -50,6 +50,10 @@
         <source>Bulk Install</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Dark theme</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiFilePage</name>

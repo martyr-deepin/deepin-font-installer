@@ -50,6 +50,10 @@
         <source>Bulk Install</source>
         <translation>Instalacja masowa</translation>
     </message>
+    <message>
+        <source>Dark theme</source>
+        <translation>Motyw ciemny</translation>
+    </message>
 </context>
 <context>
     <name>MultiFilePage</name>

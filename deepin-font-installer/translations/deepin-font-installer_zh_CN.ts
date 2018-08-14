@@ -50,6 +50,10 @@
         <source>Bulk Install</source>
         <translation>批量安装</translation>
     </message>
+    <message>
+        <source>Dark theme</source>
+        <translation>深色主题</translation>
+    </message>
 </context>
 <context>
     <name>MultiFilePage</name>

@@ -50,6 +50,10 @@
         <source>Bulk Install</source>
         <translation>Toplu Kurulum</translation>
     </message>
+    <message>
+        <source>Dark theme</source>
+        <translation>Koyu tema</translation>
+    </message>
 </context>
 <context>
     <name>MultiFilePage</name>
