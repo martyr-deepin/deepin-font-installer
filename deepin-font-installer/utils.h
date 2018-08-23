@@ -34,6 +34,7 @@ public:
     static QString getConfigPath();
     static bool isFontMimeType(const QString &filePath);
     static QString suffixList();
+    static QPixmap renderSVG(const QString &filePath, const QSize &size);
 };
 
 #endif

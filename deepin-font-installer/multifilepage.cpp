@@ -18,8 +18,11 @@
  */
 
 #include "multifilepage.h"
+#include "dsimplelistitem.h"
 #include "dsvgrenderer.h"
 #include "listitem.h"
+#include "utils.h"
+
 #include <QApplication>
 #include <QVBoxLayout>
 #include <QProcess>
@@ -27,7 +30,6 @@
 #include <QDebug>
 #include <QFile>
 #include <QUrl>
-#include "dsimplelistitem.h"
 
 DWIDGET_USE_NAMESPACE
 
@@ -48,18 +50,10 @@ MultiFilePage::MultiFilePage(QWidget *parent)
       m_bottomLayout(new QStackedLayout),
       m_spinner(new DSpinner)
 {
-    const auto ratio = qApp->devicePixelRatio();
-    *m_iconPixmap = DSvgRenderer::render(":/images/font-x-generic.svg", QSize(32, 32) * ratio);
-    m_iconPixmap->setDevicePixelRatio(ratio);
-
-    *m_closeNormalPixmap = DSvgRenderer::render(":/images/close_normal.svg", QSize(16, 16) * ratio);
-    m_closeNormalPixmap->setDevicePixelRatio(ratio);
-
-    *m_closeHoverPixmap = DSvgRenderer::render(":/images/close_hover.svg", QSize(16, 16) * ratio);
-    m_closeHoverPixmap->setDevicePixelRatio(ratio);
-
-    *m_closePressPixmap = DSvgRenderer::render(":/images/close_press.svg", QSize(16, 16) * ratio);
-    m_closePressPixmap->setDevicePixelRatio(ratio);
+    *m_iconPixmap = Utils::renderSVG(":/images/font-x-generic.svg", QSize(32, 32));
+    *m_closeNormalPixmap = Utils::renderSVG(":/images/close_normal.svg", QSize(16, 16));
+    *m_closeHoverPixmap = Utils::renderSVG(":/images/close_hover.svg", QSize(16, 16));
+    *m_closePressPixmap = Utils::renderSVG(":/images/close_press.svg", QSize(16, 16));
 
     // list widget.
     QHBoxLayout *contentLayout = new QHBoxLayout;

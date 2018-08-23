@@ -30,6 +30,8 @@
 #include <QApplication>
 #include <QMimeDatabase>
 #include <QStandardPaths>
+#include <QImageReader>
+#include <QPixmap>
 
 Utils::Utils(QObject *parent)
     : QObject(parent)
@@ -74,4 +76,23 @@ bool Utils::isFontMimeType(const QString &filePath)
 QString Utils::suffixList()
 {
     return QString("Font Files (*.ttf *.ttc *.otf)");
+}
+
+QPixmap Utils::renderSVG(const QString &filePath, const QSize &size)
+{
+    QImageReader reader;
+    QPixmap pixmap;
+
+    reader.setFileName(filePath);
+
+    if (reader.canRead()) {
+        const qreal ratio = qApp->devicePixelRatio();
+        reader.setScaledSize(size * ratio);
+        pixmap = QPixmap::fromImage(reader.read());
+        pixmap.setDevicePixelRatio(ratio);
+    } else {
+        pixmap.load(filePath);
+    }
+
+    return pixmap;
 }

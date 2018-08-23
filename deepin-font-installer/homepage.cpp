@@ -19,7 +19,6 @@
 
 #include "homepage.h"
 #include "utils.h"
-#include <DSvgRenderer>
 #include <QApplication>
 
 HomePage::HomePage(QWidget *parent)
@@ -32,13 +31,8 @@ HomePage::HomePage(QWidget *parent)
       m_settings(new QSettings(QDir(Utils::getConfigPath()).filePath("config.conf"),
                                QSettings::IniFormat))
 {
-    const auto ratio = devicePixelRatioF();
-
-    m_unloadPixmap = DSvgRenderer::render(":/images/font_unload.svg", QSize(160, 160) * ratio);
-    m_unloadPixmap.setDevicePixelRatio(ratio);
-
-    m_loadedPixmap = DSvgRenderer::render(":/images/font_loaded.svg", QSize(160, 160) * ratio);
-    m_loadedPixmap.setDevicePixelRatio(ratio);
+    m_unloadPixmap = Utils::renderSVG(":/images/font_unload.svg", QSize(160, 160));
+    m_loadedPixmap = Utils::renderSVG(":/images/font_loaded.svg", QSize(160, 160));
 
     m_iconLabel->setFixedSize(160, 160);
     m_iconLabel->setPixmap(m_unloadPixmap);
