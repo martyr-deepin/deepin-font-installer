@@ -143,6 +143,3 @@
   *  draw separator line. ([8225e4db](https://github.com/linuxdeepin/deepin-font-installer/commit/8225e4db6b336513f85a362dae153f35cbf33b14))
   *  use QFormLayout. ([73834340](https://github.com/linuxdeepin/deepin-font-installer/commit/73834340c9688aba476026cd6ef83364d76c417a))
 * **progressbar:**  add animation. ([a6b130e5](https://github.com/linuxdeepin/deepin-font-installer/commit/a6b130e5e6cbca5ac7fe49f1dfd1a14c88d0313a))
-
-
-

@@ -38,6 +38,8 @@ public:
 
     void setFileUrl(const QString &url);
 
+    QFontDatabase *fontDatabase;
+
 protected:
     void paintEvent(QPaintEvent *);
 
@@ -52,7 +54,6 @@ private:
     FT_Library m_library;
     FT_Face m_face;
     FT_Error m_error = 1;
-    QFontDatabase *m_fontDatabase;
 };
 
 #endif  // DFONTPREVIEW_H

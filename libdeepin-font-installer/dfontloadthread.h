@@ -1,4 +1,8 @@
 /*
+ * Copyright (C) 2017 ~ 2018 Deepin Technology Co., Ltd.
+ *
+ * Author:     rekols <rekols@foxmail.com>
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -13,39 +17,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef FONTPREVIEWPLUGIN_H
-#define FONTPREVIEWPLUGIN_H
+#ifndef DFONTLOADTHREAD_H
+#define DFONTLOADTHREAD_H
 
-#include <QObject>
+#include <QThread>
 
-#include "dfmfilepreview.h"
-#include "durl.h"
-#include "dfontwidget.h"
-
-DFM_BEGIN_NAMESPACE
-
-class FontPreview : public DFMFilePreview
+class DFontLoadThread : public QThread
 {
     Q_OBJECT
 
 public:
-    explicit FontPreview(QObject* parent = 0);
-    ~FontPreview();
+    DFontLoadThread(QObject *parent = nullptr);
+    ~DFontLoadThread();
 
-    bool setFileUrl(const DUrl &url) Q_DECL_OVERRIDE;
+    void run();
+    void open(const QString &filepath);
 
-    QWidget *contentWidget() const Q_DECL_OVERRIDE;
-
-    QString title() const Q_DECL_OVERRIDE;
-    bool showStatusBarSeparator() const Q_DECL_OVERRIDE;
+signals:
+    void loadFinished(const QByteArray &data);
 
 private:
-    DUrl m_url;
-    QString m_title;
-
-    DFontWidget *m_previewWidget;
+    QString m_filePath;
 };
 
-DFM_END_NAMESPACE
-
-#endif // FONTPREVIEWPLUGIN_H
+#endif

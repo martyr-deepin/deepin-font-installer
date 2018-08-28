@@ -1,4 +1,8 @@
 /*
+ * Copyright (C) 2017 ~ 2018 Deepin Technology Co., Ltd.
+ *
+ * Author:     rekols <rekols@foxmail.com>
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -13,39 +17,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef FONTPREVIEWPLUGIN_H
-#define FONTPREVIEWPLUGIN_H
+#ifndef DFONTWIDGET_H
+#define DFONTWIDGET_H
 
-#include <QObject>
+#include <QWidget>
+#include <QStackedLayout>
+#include "dspinner.h"
+#include "dfontpreview.h"
+#include "dfontloadthread.h"
 
-#include "dfmfilepreview.h"
-#include "durl.h"
-#include "dfontwidget.h"
+DWIDGET_USE_NAMESPACE
 
-DFM_BEGIN_NAMESPACE
-
-class FontPreview : public DFMFilePreview
+class DFontWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit FontPreview(QObject* parent = 0);
-    ~FontPreview();
+    DFontWidget(QWidget *parent = nullptr);
+    ~DFontWidget();
 
-    bool setFileUrl(const DUrl &url) Q_DECL_OVERRIDE;
-
-    QWidget *contentWidget() const Q_DECL_OVERRIDE;
-
-    QString title() const Q_DECL_OVERRIDE;
-    bool showStatusBarSeparator() const Q_DECL_OVERRIDE;
+    void setFileUrl(const QString &url);
 
 private:
-    DUrl m_url;
-    QString m_title;
+    void handleFinished(const QByteArray &data);
 
-    DFontWidget *m_previewWidget;
+private:
+    QStackedLayout *m_layout;
+    DFontPreview *m_preview;
+    DFontLoadThread *m_thread;
+    DSpinner *m_spinner;
+    QString m_filePath;
 };
 
-DFM_END_NAMESPACE
-
-#endif // FONTPREVIEWPLUGIN_H
+#endif

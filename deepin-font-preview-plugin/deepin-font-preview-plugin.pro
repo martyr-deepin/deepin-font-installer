@@ -9,7 +9,7 @@ QT       += core gui widgets
 TARGET = deepin-font-preview-plugin
 TEMPLATE = lib
 CONFIG += plugin link_pkgconfig
-PKGCONFIG += freetype2 fontconfig dde-file-manager
+PKGCONFIG += freetype2 fontconfig dde-file-manager dtkwidget
 
 LIBS += -L$$OUT_PWD/../libdeepin-font-installer -ldeepin-font-installer
 INCLUDEPATH += $$PWD/../libdeepin-font-installer

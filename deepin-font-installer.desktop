@@ -1,6 +1,6 @@
 [Desktop Entry]
 Categories=Utility
-MimeType=font/collection;font/ttf;font/otf
+MimeType=font/collection;font/ttf;font/otf;application/x-font-otf;application/x-font-ttf;application/x-font-type1
 Exec=deepin-font-installer %f
 Icon=deepin-font-installer
 Name=Deepin Font Installer

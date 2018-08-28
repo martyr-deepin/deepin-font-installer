@@ -39,7 +39,7 @@ DFontPreview::DFontPreview(QWidget *parent)
     : QWidget(parent),
       m_library(0),
       m_face(0),
-      m_fontDatabase(new QFontDatabase)
+      fontDatabase(new QFontDatabase)
 {
     initContents();
 
@@ -53,8 +53,8 @@ DFontPreview::~DFontPreview()
 
 void DFontPreview::setFileUrl(const QString &url)
 {
-    m_fontDatabase->removeAllApplicationFonts();
-    m_fontDatabase->addApplicationFont(url);
+    // fontDatabase->removeAllApplicationFonts();
+    // fontDatabase->addApplicationFont(url);
 
     FT_Init_FreeType(&m_library);
     m_error = FT_New_Face(m_library, url.toUtf8().constData(), 0, &m_face);
@@ -79,7 +79,7 @@ void DFontPreview::paintEvent(QPaintEvent *e)
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
 
-    QFont font(m_fontDatabase->applicationFontFamilies(0).first());
+    QFont font(fontDatabase->applicationFontFamilies(0).first());
     painter.setPen(Qt::black);
 
     if (styleName.contains("Italic")) {

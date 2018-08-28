@@ -9,7 +9,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = deepin-font-installer
 TEMPLATE = lib
 CONFIG += c++11 link_pkgconfig
-PKGCONFIG += freetype2 fontconfig
+PKGCONFIG += freetype2 fontconfig dtkwidget
 
 CONFIG += create_pc create_prl no_install_prl
 
@@ -19,12 +19,16 @@ DEFINES += QT_MESSAGELOGCONTEXT
 HEADERS += \
 	   dfontpreview.h \
 	   dfontinfomanager.h \
-	   dfontmanager.h
+	   dfontmanager.h \
+           dfontloadthread.h \
+           dfontwidget.h
 
 SOURCES += \
 	   dfontpreview.cpp \
 	   dfontinfomanager.cpp \
-	   dfontmanager.cpp
+	   dfontmanager.cpp \
+           dfontloadthread.cpp \
+           dfontwidget.cpp
 
 QMAKE_PKGCONFIG_LIBDIR = $$target.path
 QMAKE_PKGCONFIG_VERSION = $$VERSION

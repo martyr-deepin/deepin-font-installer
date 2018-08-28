@@ -20,7 +20,7 @@ DFM_BEGIN_NAMESPACE
 
 FontPreview::FontPreview(QObject *parent):
     DFMFilePreview(parent),
-    m_previewWidget(new DFontPreview)
+    m_previewWidget(new DFontWidget)
 {
 }
 
