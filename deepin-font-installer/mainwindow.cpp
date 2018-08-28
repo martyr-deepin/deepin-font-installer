@@ -59,8 +59,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     // add menu to titlebar.
     QMenu *menu = new QMenu;
-    menu->addAction(m_themeAction);
-    menu->addSeparator();
+    // menu->addAction(m_themeAction);
+    // menu->addSeparator();
     titlebar()->setMenu(menu);
 
     // init theme action.

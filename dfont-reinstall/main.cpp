@@ -43,9 +43,9 @@ int main(int argc, char *argv[])
     process.waitForFinished();
     isFaild |= process.exitCode();
 
-    // the file is readable by the owner of the file.
-    QFile::setPermissions(fileList.last(), QFileDevice::ReadOwner | QFileDevice::ReadGroup | QFileDevice::ReadOther);
-
+    // set permission.
+    process.start("chmod", QStringList() << "644" << fileList.last());
+    process.waitForFinished(-1);
 
     if (!isFaild) {
         process.start("fc-cache");
