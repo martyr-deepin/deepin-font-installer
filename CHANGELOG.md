@@ -1,3 +1,19 @@
+<a name="">1.0.9</a>
+### 1.0.9 (2018-08-28)
+
+
+#### Bug Fixes
+
+*   install permission ([e36f5de4](https://github.com/linuxdeepin/deepin-font-installer/commit/e36f5de4231bf5e13a2679b9ed9452dc722f80eb))
+*   file permissions. ([1fb407fa](https://github.com/linuxdeepin/deepin-font-installer/commit/1fb407faffe839ff5368123b36fbedf532f9b5d5))
+* **desktop:**  mime type ([34038c59](https://github.com/linuxdeepin/deepin-font-installer/commit/34038c591b90d1842c8a6190d2c7d187432cece4))
+
+#### Features
+
+*   add dark theme. ([8b9c6fde](https://github.com/linuxdeepin/deepin-font-installer/commit/8b9c6fde92c3cb446ce8f14e1390aa5ac7f7b374))
+
+
+
 <a name="">1.0.8</a>
 ### 1.0.8 (2018-08-07)
 
