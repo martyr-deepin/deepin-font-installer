@@ -1,3 +1,13 @@
+<a name="">1.1</a>
+##  1.1 (2018-08-30)
+
+
+#### Features
+
+*   multi-threaded loadding font. ([f5eb1ff7](https://github.com/linuxdeepin/deepin-font-installer/commit/f5eb1ff762fab5402d4f3405eb52df4266ca8a72))
+
+
+
 <a name="">1.0.9</a>
 ### 1.0.9 (2018-08-28)
 

@@ -9,19 +9,26 @@ en:We do we change...
 cs:Pracujeme pilně a zavádíme novinky.
 fr:Nous créons, nous innovons.
 de:Wir sind die Veränderung!
-it:Cambiamo assieme.
+it:Noi facciamo, noi cambiamo
 pt:Fazemos a mudança
 ru:Съешь мягких булочек и выпей чаю
 sr:Ми радимо, ми стварамо...
-si:Spremembe in razvoj - naše poslanstvo!
+si:Spremembe in razvoj - naše poslanstvo! 
 es:Lo hacemos, cambiamos.
 tr:Biz değiştiririz
 uk:Ми працюємо та змінюємось...
 ca:Fem, innovem...
 sr:Mi radimo. Mi menjamo
 sr:Ми радимо. Ми мењамо
-bs_BA:Mi radimo. Mi menjamo.
+bs_BA:Mi radimo. Mi menjamo. 
 sk:Tvoríme, meníme...
 pt_br:Nós fazemos. Nós inovamos...
 nl:wij doen, wij veranderen
-pl:Pracujemy, wprowadzamy innowacje
+pl:Innowacyjne zmiany - naszą ciężką pracą z myślą o Waszej wygodzie
+si:අපි  ක්‍රියාත්මක කරනවා අපි වෙනස ඇ ති කරනවා
+lt:Mes darome ir kuriame pokyčius...
+hi:हम करते है, हम बदलते है।
+mr:आम्ही करतो, आम्ही बदलतो
+fi:Me teemme, me innovoimme
+kn:ಸದಾ ಮುನ್ನಡೆಯುತ್ತಾ, ಸದಾ ಆವಿಷ್ಕರಿಸುತ್ತಾ...
+kr:우리는 할 것이고, 우리는 바꿀 것이다

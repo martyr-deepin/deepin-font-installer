@@ -38,9 +38,8 @@ MainWindow::MainWindow(QWidget *parent)
       m_singleFilePage(new SingleFilePage),
       m_multiFilePage(new MultiFilePage),
       m_settings("deepin", "deepin-font-installer"),
-      m_themeAction(new QAction(tr("Dark theme")))
+      m_themeAction(new QAction(tr("Dark theme"), this))
 {
-    titlebar()->setWindowFlags(titlebar()->windowFlags() & ~Qt::WindowMaximizeButtonHint);
     titlebar()->setIcon(QIcon(":/images/icon.svg"));
     titlebar()->setTitle("");
 #if DTK_VERSION >= 0x02000600
