@@ -75,10 +75,15 @@ void DFontManager::handleInstallOutput(const QString &output)
     if (m_instFileList.count() == 1) {
         emit installPositionChanged(output);
     } else {
-        QJsonDocument document = QJsonDocument::fromJson(output.toUtf8());
-        QJsonObject object = document.object();
-        emit batchInstall(object.value("FilePath").toString(),
-                          object.value("Percent").toDouble());
+        // FIXME(Rekols): this operation is required under the Loongson platform.
+        for (const QString &line : output.split("\n")) {
+            QJsonDocument document = QJsonDocument::fromJson(line.toUtf8());
+            QJsonObject object = document.object();
+
+            emit batchInstall(object.value("FilePath").toString(),
+                              object.value("Percent").toDouble());
+        }
+
     }
 }
 

@@ -204,6 +204,10 @@ void MultiFilePage::batchInstallation()
 
 void MultiFilePage::onProgressChanged(const QString &filePath, const double &percent)
 {
+    if (filePath.isEmpty()) {
+        return;
+    }
+
     qDebug() << filePath << "is installed, " << percent;
 
     m_bottomLayout->setCurrentIndex(1);
