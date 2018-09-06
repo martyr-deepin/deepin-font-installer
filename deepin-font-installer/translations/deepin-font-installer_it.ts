@@ -51,6 +51,10 @@ Localizzazione italiana a cura di Massimo A. Carofano.</translation>
         <source>Bulk Install</source>
         <translation>Installazione di massa</translation>
     </message>
+    <message>
+        <source>Dark theme</source>
+        <translation>Tema scuro</translation>
+    </message>
 </context>
 <context>
     <name>MultiFilePage</name>

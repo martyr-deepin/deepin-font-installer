@@ -3,7 +3,7 @@
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Sleep hier het lettertypebestand</translation>
+        <translation>Versleep lettertypebestand hierheen</translation>
     </message>
     <message>
         <source>Select file</source>
@@ -26,29 +26,33 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Dezelfde versie geïnstalleerd</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Deepin Lettertype Installatie</translation>
+        <translation>Deepin Lettertype-installatie</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>Deepin Lettertype Installatie wordt gebruikt om lettertypebestanden te installeren, en te de-installeren, voor gebruikers via de massa-installatiefunctie.</translation>
+        <translation>Deepin Lettertype-installatie wordt gebruikt om lettertypebestanden te installeren en deïnstalleren voor gebruikers via de massa-installatiefunctie.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Deepin Lettertype Installatie</translation>
+        <translation>Deepin Lettertype-installatie</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>Massa installatie</translation>
+        <translation>Massa-installatie</translation>
+    </message>
+    <message>
+        <source>Dark theme</source>
+        <translation>Donker thema</translation>
     </message>
 </context>
 <context>
@@ -59,19 +63,19 @@
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Succesvol geïnstalleerd</translation>
+        <translation>Geïnstalleerd</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Lettertypemap weergeven</translation>
+        <translation>Lettertypemap tonen</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Bezig met verversen van lettertypecache; even geduld...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Onbekend</translation>
     </message>
 </context>
 <context>
@@ -86,11 +90,11 @@
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>Opnieuw installeren</translation>
+        <translation>Herinstalleren</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Lettertypemap weergeven</translation>
+        <translation>Lettertypemap tonen</translation>
     </message>
     <message>
         <source>Style: </source>
@@ -110,7 +114,7 @@
     </message>
     <message>
         <source>Description: </source>
-        <translation>Beschrijving:</translation>
+        <translation>Omschrijving:</translation>
     </message>
     <message>
         <source>Same version installed</source>
@@ -118,11 +122,11 @@
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Succesvol geïnstalleerd</translation>
+        <translation>Geïnstalleerd</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>Succesvol verwijderd</translation>
+        <translation>Verwijderd</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>

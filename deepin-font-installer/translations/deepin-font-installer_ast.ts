@@ -26,7 +26,7 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Instalóse la mesma versión</translation>
     </message>
 </context>
 <context>
@@ -50,6 +50,10 @@
         <source>Bulk Install</source>
         <translation>Instalación masiva</translation>
     </message>
+    <message>
+        <source>Dark theme</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiFilePage</name>
@@ -67,11 +71,11 @@
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Refrescando na caché de fontes...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Desconozse</translation>
     </message>
 </context>
 <context>

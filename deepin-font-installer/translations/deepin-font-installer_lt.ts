@@ -50,6 +50,10 @@
         <source>Bulk Install</source>
         <translation>Masinis diegimas</translation>
     </message>
+    <message>
+        <source>Dark theme</source>
+        <translation>Tamsi tema</translation>
+    </message>
 </context>
 <context>
     <name>MultiFilePage</name>
