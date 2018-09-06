@@ -198,5 +198,8 @@ bool ListItem::isHoverCloseButton(QPoint pos)
 {
     // qDebug() << pos.x() << pos.y() << m_rect;
 
-    return pos.x() > m_rect.width() - closeButtonPadding && pos.y() > (m_rect.height() - m_closeNormalPixmap->height()) / 2 && pos.y() < m_rect.height() - (m_rect.height() - m_closeNormalPixmap->height()) / 2;
+    return pos.x() > m_rect.width() - closeButtonPadding &&
+           pos.x() < m_rect.width() - 15 &&
+           pos.y() > (m_rect.height() - m_closeNormalPixmap->height()) / 2 &&
+           pos.y() < m_rect.height() - (m_rect.height() - m_closeNormalPixmap->height()) / 2;
 }
