@@ -49,6 +49,8 @@ DFontPreview::DFontPreview(QWidget *parent)
 
 DFontPreview::~DFontPreview()
 {
+    FT_Done_Face(m_face);
+    FT_Done_FreeType(m_library);
 }
 
 void DFontPreview::setFileUrl(const QString &url)
@@ -64,9 +66,6 @@ void DFontPreview::setFileUrl(const QString &url)
 
     sampleString = getSampleString().simplified();
     styleName = (char *) m_face->style_name;
-
-    FT_Done_Face(m_face);
-    FT_Done_FreeType(m_library);
 
     repaint();
 }
@@ -115,20 +114,29 @@ void DFontPreview::paintEvent(QPaintEvent *e)
     painter.setFont(font);
 
     const QFontMetrics metrics(font);
-    const int lowerWidth = metrics.width(lowerTextStock);
-    const int lowerHeight = metrics.height();
-    painter.drawText(QRect(x, y + padding, lowerWidth, lowerHeight), Qt::AlignLeft, lowerTextStock);
-    y += lowerHeight;
 
-    const int upperWidth = metrics.width(upperTextStock);
-    const int upperHeight = metrics.height();
-    painter.drawText(QRect(x, y + padding, upperWidth, upperHeight), Qt::AlignLeft, upperTextStock);
-    y += upperHeight;
+    // if we don't have lowercase/uppercase/punctuation text in the face
+    // we omit it directly, and render a random text below.
+    if (checkFontContainText(lowerTextStock)) {
+        const int lowerWidth = metrics.width(lowerTextStock);
+        const int lowerHeight = metrics.height();
+        painter.drawText(QRect(x, y + padding, lowerWidth, lowerHeight), Qt::AlignLeft, lowerTextStock);
+        y += lowerHeight;
+    }
 
-    const int punWidth = metrics.width(punctuationTextStock);
-    int punHeight = metrics.height();
-    painter.drawText(QRect(x, y + padding, punWidth, punHeight), Qt::AlignLeft, punctuationTextStock);
-    y += punHeight;
+    if (checkFontContainText(upperTextStock)) {
+        const int upperWidth = metrics.width(upperTextStock);
+        const int upperHeight = metrics.height();
+        painter.drawText(QRect(x, y + padding, upperWidth, upperHeight), Qt::AlignLeft, upperTextStock);
+        y += upperHeight;
+    }
+
+    if (checkFontContainText(punctuationTextStock)) {
+        const int punWidth = metrics.width(punctuationTextStock);
+        int punHeight = metrics.height();
+        painter.drawText(QRect(x, y + padding, punWidth, punHeight), Qt::AlignLeft, punctuationTextStock);
+        y += punHeight;
+    }
 
     for (int i = 0; i < 20; ++i) {
         fontSize += 3;
