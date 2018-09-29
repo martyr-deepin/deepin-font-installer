@@ -1,140 +1,140 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Schriftarten-Datei hier ablegen</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select file</source>
-        <translation>Datei auswählen</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Installed</source>
-        <translation>Installiert</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Andere Version installiert: %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Installing</source>
-        <translation>Wird installiert</translation>
+        <translation>インストール中</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Identische Version installiert</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Deepin Schriftarten-Manager</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>Der Deepin Schriftarten-Manager unterstützt den Anwender bei der Installlation und Deinstallation von losen Schriftarten-Dateien.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Deepin Schriftarten-Manager</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>Lose Installation</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Dark theme</source>
-        <translation>Dunkles Thema</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Installation</translation>
+        <translation>インストール</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Erfolgreich installiert</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Schriftartenverzeichnis einsehen</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation>Schriftarten-Cache wird erneuert, bitte warten...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Unbekannt</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Installieren</translation>
+        <translation>インストール</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Entfernen</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>Erneut installieren</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Schriftarten-Ordner anzeigen</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Style: </source>
-        <translation>Stil:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Type: </source>
-        <translation>Typ:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Version: </source>
-        <translation>Version:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>Copyright:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Description: </source>
-        <translation>Beschreibung:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Die gleiche Version ist installiert</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Installation erfolgreich</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>Entfernen erfolgreich</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Andere Version installiert: %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
-        <translation>Fertig</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
