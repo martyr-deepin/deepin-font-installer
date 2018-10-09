@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     app.loadTranslator();
     app.setOrganizationName("deepin");
     app.setApplicationVersion(DApplication::buildVersion("1.0"));
-    app.setApplicationAcknowledgementPage("https://www.deepin.org/acknowledgments/deepin-font-installer");
+    app.setApplicationAcknowledgementPage("https://www.deepin.org/original/deepin-font-installer/");
     app.setProductIcon(QIcon(":/images/deepin-font-installer.svg"));
     app.setProductName(DApplication::translate("Main", "Deepin Font Installer"));
     app.setStyleSheet(Utils::getQssContent(":/qss/style.qss"));
