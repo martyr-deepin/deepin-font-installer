@@ -20,6 +20,7 @@
 #include "homepage.h"
 #include "utils.h"
 #include <QApplication>
+#include <QDir>
 
 HomePage::HomePage(QWidget *parent)
     : QWidget(parent),
@@ -76,7 +77,12 @@ void HomePage::onChooseBtnClicked()
     QFileDialog dialog;
     dialog.setFileMode(QFileDialog::ExistingFiles);
     dialog.setNameFilter(Utils::suffixList());
-    dialog.setDirectory(m_settings->value("dir").toString());
+
+    QString historyDir = m_settings->value("dir").toString();
+    if (historyDir.isEmpty()) {
+        historyDir = QDir::homePath();
+    }
+    dialog.setDirectory(historyDir);
 
     const int mode = dialog.exec();
 
