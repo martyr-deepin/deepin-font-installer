@@ -1,3 +1,23 @@
+<a name="">1.1.1</a>
+##  1.1.1 (2018-10-25)
+
+
+#### Bug Fixes
+
+*   history dir is empty. ([761f9f70](https://github.com/linuxdeepin/deepin-font-installer/commit/761f9f702a657a184ff0657e31afa4dfb9032ff9))
+*   acknowledgement link ([abdae5c3](https://github.com/linuxdeepin/deepin-font-installer/commit/abdae5c37ea4e6ba3ffcd85eef08ceaea010f735))
+*   mime type. ([e3a901bd](https://github.com/linuxdeepin/deepin-font-installer/commit/e3a901bde520186b6b3c08971d421fa4d40e7ea6))
+*   items area deleted when scrolling the scrollbar. ([721dc3e8](https://github.com/linuxdeepin/deepin-font-installer/commit/721dc3e8538646e0f7b297661718c0bd794cd47c))
+*   data transmission for loongson ([a0ead335](https://github.com/linuxdeepin/deepin-font-installer/commit/a0ead33598045e0cad3f22e81129cd2078fb6bfa))
+*   mime type compatible qt5.6 ([b3b15f37](https://github.com/linuxdeepin/deepin-font-installer/commit/b3b15f37ccec9cf66522628e10c7c22131cb16d9))
+* **preview:**  lowercase/uppercase/punctuation text in the face ([ff767223](https://github.com/linuxdeepin/deepin-font-installer/commit/ff767223a095ca49e866c988bca9e2ff3a05969d))
+
+#### Features
+
+*   restore theme action. ([d8245e8d](https://github.com/linuxdeepin/deepin-font-installer/commit/d8245e8d5eab515e6ca8bb26496d1d1309ee585c))
+
+
+
 <a name="">1.1</a>
 ##  1.1 (2018-08-30)
 
