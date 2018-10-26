@@ -21,6 +21,7 @@
 #include <QApplication>
 #include <QVBoxLayout>
 #include <QFormLayout>
+#include <QTextLayout>
 #include <QSvgWidget>
 #include <QFileInfo>
 #include <QUrlQuery>
@@ -29,6 +30,56 @@
 #include <QTimer>
 #include <QUrl>
 #include <QDir>
+
+const QString holdTextInRect(const QFont &font, QString text, const QSize &size)
+{
+    QFontMetrics fm(font);
+    QTextLayout layout(text);
+
+    layout.setFont(font);
+
+    QStringList lines;
+    QTextOption &text_option = *const_cast<QTextOption*>(&layout.textOption());
+
+    text_option.setWrapMode(QTextOption::WordWrap);
+    text_option.setAlignment(Qt::AlignTop | Qt::AlignLeft);
+
+    layout.beginLayout();
+
+    QTextLine line = layout.createLine();
+    int height = 0;
+    int lineHeight = fm.height();
+
+    while (line.isValid()) {
+        height += lineHeight;
+
+        if (height + lineHeight > lineHeight * 2) {
+            const QString &end_str = fm.elidedText(text.mid(line.textStart()), Qt::ElideRight, size.width());
+
+            layout.endLayout();
+            layout.setText(end_str);
+
+            text_option.setWrapMode(QTextOption::NoWrap);
+            layout.beginLayout();
+            line = layout.createLine();
+            line.setLineWidth(size.width() - 1);
+            text = end_str;
+        } else {
+            line.setLineWidth(size.width());
+        }
+
+        lines.append(text.mid(line.textStart(), line.textLength()));
+
+        if (height + lineHeight > lineHeight * 2)
+            break;
+
+        line = layout.createLine();
+    }
+
+    layout.endLayout();
+
+    return lines.join("");
+}
 
 SingleFilePage::SingleFilePage(QWidget *parent)
     : QWidget(parent),
@@ -186,8 +237,9 @@ void SingleFilePage::updateInfo(DFontInfo *info)
     m_styleLabel->setText(m_fontInfo->styleName);
     m_typeLabel->setText(m_fontInfo->type);
     m_versionLabel->setText(fm.elidedText(m_fontInfo->version, Qt::ElideRight, 300));
-    m_copyrightLabel->setText(fm.elidedText(m_fontInfo->copyright, Qt::ElideRight, 700));
-    m_descriptionLabel->setText(fm.elidedText(m_fontInfo->description, Qt::ElideRight, 710));
+    const QSize boundingSize = QSize(m_descriptionLabel->width(), m_descriptionLabel->maximumHeight());
+    m_copyrightLabel->setText(holdTextInRect(m_copyrightLabel->font(), m_fontInfo->copyright, boundingSize));
+    m_descriptionLabel->setText(holdTextInRect(m_descriptionLabel->font(), m_fontInfo->description, boundingSize));
 }
 
 void SingleFilePage::refreshPage()
