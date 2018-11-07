@@ -18,7 +18,7 @@
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Друга верзија је инсталирана: %1</translation>
     </message>
     <message>
         <source>Installing</source>
@@ -26,33 +26,33 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Иста верзија је инсталирана</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation type="unfinished"/>
+        <translation>Дипин Инсталатер Фонта</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation type="unfinished"/>
+        <translation>Дипин Инсталатер Фонта се користи за корисничко инсталирање и уклањање фонт датотека. Подржава функцију групног инсталирања. </translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation type="unfinished"/>
+        <translation>Дипин Инсталатер Фонта</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation type="unfinished"/>
+        <translation>Групно инсталирање</translation>
     </message>
     <message>
         <source>Dark theme</source>
-        <translation type="unfinished"/>
+        <translation>Тамна тема</translation>
     </message>
 </context>
 <context>
@@ -63,19 +63,19 @@
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Успешно инсталиран</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"/>
+        <translation>Прикажи директоријум фонта</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Освежавање кеша фонтова, молимо сачекајте...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Непознато</translation>
     </message>
 </context>
 <context>
@@ -94,7 +94,7 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"/>
+        <translation>Прикажи директоријум фонта</translation>
     </message>
     <message>
         <source>Style: </source>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Copyright: </source>
-        <translation type="unfinished"/>
+        <translation>Ауторско право:</translation>
     </message>
     <message>
         <source>Description: </source>
@@ -118,19 +118,19 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Иста верзија је инсталирана</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Успешно инсталиран</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Успешно уклоњен</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Друга верзија је инсталирана: %1</translation>
     </message>
     <message>
         <source>Done</source>

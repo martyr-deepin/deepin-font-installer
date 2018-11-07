@@ -1,140 +1,140 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="id" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Přetáhněte soubor písem zde</translation>
+        <translation>Tarik berkas font ke sini</translation>
     </message>
     <message>
         <source>Select file</source>
-        <translation>Vybrat soubor</translation>
+        <translation>Pilih berkas</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Installed</source>
-        <translation>Nainstalováno</translation>
+        <translation>Terpasang</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Je nainstalována jiná verze: %1</translation>
+        <translation>Versi lain telah terpasang: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation>Instalace</translation>
+        <translation>Sedang memasang</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Stejná verze je již nainstalována</translation>
+        <translation>Versi yang sama telah terpasang</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Instalátor písem</translation>
+        <translation>Pemasang Font Deepin</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>Instalátor písem Deepinu se používá k nainstalování a odinstalování souborů s písmy pro uživatele s hromadnou instalací.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Instalátor písem</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>Hromadná instalace</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Dark theme</source>
-        <translation>Tmavý vzhled</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Instalovat</translation>
+        <translation>Pasang</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Nainstalováno úspěšně</translation>
+        <translation>Berhasil terpasang</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Zobrazit adresář s písmy</translation>
+        <translation>Lihat direktori font</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation>Obnovuje se vyrovnávací paměť písem, počkejte, prosím...</translation>
+        <translation>Segarkan cache font, tunggu ...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Neznámý</translation>
+        <translation>Tidak diketahui</translation>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Instalovat</translation>
+        <translation>Pasang</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Odstranit</translation>
+        <translation>Hapus</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>Reinstalovat</translation>
+        <translation>Install Ulang</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Zobrazit adresář s písmy</translation>
+        <translation>Lihat direktori font</translation>
     </message>
     <message>
         <source>Style: </source>
-        <translation>Styl: </translation>
+        <translation>Gaya:</translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation>Typ: </translation>
+        <translation>Tipe:</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation>Verze:</translation>
+        <translation>Versi:</translation>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>Autorské právo:</translation>
+        <translation>Hak cipta:</translation>
     </message>
     <message>
         <source>Description: </source>
-        <translation>Popis:</translation>
+        <translation>Deskripsi:</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Stejná verze je již nainstalována</translation>
+        <translation>Versi yang sama telah terpasang</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Nainstalováno úspěšně</translation>
+        <translation>Pemasangan berhasil</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>Odstraněno úspěšně</translation>
+        <translation>Pembongkaran berhasil</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Je nainstalována jiná verze: %1</translation>
+        <translation>Versi lain terpasang: %1</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>Hotovo</translation>
+        <translation>Berhasil</translation>
     </message>
 </context>
 </TS>
