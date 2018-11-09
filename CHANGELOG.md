@@ -1,3 +1,13 @@
+<a name="">1.1.2</a>
+##  1.1.2 (2018-11-09)
+
+
+#### Bug Fixes
+
+*   keep two lines of info omitted. ([9c67330f](https://github.com/linuxdeepin/deepin-font-installer/commit/9c67330fc111500cb5cff9b365bd5ae7f6eeb706))
+
+
+
 <a name="">1.1.1</a>
 ##  1.1.1 (2018-10-25)
 
