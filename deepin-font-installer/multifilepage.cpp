@@ -31,6 +31,9 @@
 #include <QFile>
 #include <QUrl>
 
+#include <DRecentManager>
+
+DCORE_USE_NAMESPACE
 DWIDGET_USE_NAMESPACE
 
 MultiFilePage::MultiFilePage(QWidget *parent)
@@ -142,6 +145,11 @@ void MultiFilePage::addItems(const QStringList &paths)
                 delete fontInfo;
                 continue;
             }
+
+            DRecentData data;
+            data.appName = "Deepin Font Installer";
+            data.appExec = "deepin-font-installer";
+            DRecentManager::addItem(path, data);
 
             ListItem *fileItem = new ListItem(fontInfo, m_iconPixmap, m_closeNormalPixmap, m_closeHoverPixmap, m_closePressPixmap);
 
