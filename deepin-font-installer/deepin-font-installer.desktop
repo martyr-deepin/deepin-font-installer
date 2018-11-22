@@ -1,0 +1,12 @@
+[Desktop Entry]
+Categories=Utility
+Exec=deepin-font-installer %f
+GenericName=Font Installer
+Icon=deepin-font-installer
+MimeType=font/collection;font/ttf;font/otf;application/x-font-otf;application/x-font-ttf;application/x-font-type1;
+Name=Deepin Font Installer
+StartupNotify=true
+TryExec=deepin-font-installer
+Type=Application
+X-Deepin-Vendor=deepin
+

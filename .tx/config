@@ -8,3 +8,9 @@ file_filter = deepin-font-installer/translations/deepin-font-installer_<lang>.ts
 source_file = deepin-font-installer/translations/deepin-font-installer.ts
 source_lang = en
 type = QT
+
+[deepin-font-installer.desktop]
+file_filter = deepin-font-installer/translations/desktop/desktop_<lang>.ts
+source_file = deepin-font-installer/translations/desktop/desktop.ts
+source_lang = en
+type = QT
