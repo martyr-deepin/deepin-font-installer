@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "dfontinfomanager.h"
+
 #include <QCoreApplication>
 #include <QCommandLineParser>
 #include <QCryptographicHash>
@@ -29,7 +31,6 @@
 #include <QDir>
 #include <QDebug>
 #include <iostream>
-#include "dfontinfomanager.h"
 
 inline void checkDirectory()
 {
@@ -58,6 +59,11 @@ int main(int argc, char *argv[])
     for (const QString file : fileList) {
         DFontInfo *fontInfo = fontInfoManager->getFontInfo(file);
         const bool isInstalled = fontInfo->isInstalled;
+
+        // reinstall status.
+        if (fileList.count() == 1 && isInstalled) {
+            std::cout << 0 << std::endl;
+        }
 
         if (isInstalled) {
             const QString sysPath = fontInfoManager->getInstalledFontPath(fontInfo);
