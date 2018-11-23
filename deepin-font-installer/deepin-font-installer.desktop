@@ -10,3 +10,14 @@ TryExec=deepin-font-installer
 Type=Application
 X-Deepin-Vendor=deepin
 
+# Translations:
+# Do not manually modify!
+GenericName[it]=Font Installer
+GenericName[ko]=글체 설치자
+GenericName[ru]=Установщик Шрифтов
+GenericName[zh_CN]=字体安装器
+Name[it]=Deepin Font Installer
+Name[ko]=Deepin 글체 설치자
+Name[ru]=Установщик Шрифтов Deepin
+Name[zh_CN]=深度字体安装器
+
