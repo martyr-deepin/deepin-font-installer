@@ -1,3 +1,14 @@
+<a name=""></a>
+##  1.1.3 (2018-11-23)
+
+
+#### Features
+
+*   support the recent file spec. ([09f6cfd2](https://github.com/linuxdeepin/deepin-font-installer/commit/09f6cfd2f81eef05275a0e25e68b67d23944cb23))
+* **desktop:**  add generic name. ([e0ec121c](https://github.com/linuxdeepin/deepin-font-installer/commit/e0ec121cd758b7e81456f7c77bc81c984a2e79b3))
+
+
+
 <a name="">1.1.2</a>
 ##  1.1.2 (2018-11-09)
 
