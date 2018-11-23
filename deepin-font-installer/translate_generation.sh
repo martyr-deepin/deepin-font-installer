@@ -9,11 +9,3 @@ do
     printf "\nprocess ${ts}\n"
     lrelease "${ts}"
 done
-
-# desktop update.
-DESKTOP_TEMP_FILE=deepin-font-installer.desktop.tmp
-DESKTOP_SOURCE_FILE=deepin-font-installer.desktop
-DESKTOP_TS_DIR=deepin-font-installer/translations/desktop/
-
-deepin-desktop-ts-convert ts2desktop $DESKTOP_SOURCE_FILE $DESKTOP_TS_DIR $DESKTOP_TEMP_FILE
-mv $DESKTOP_TEMP_FILE $DESKTOP_SOURCE_FILE
