@@ -3,7 +3,7 @@
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Arrastra equí&apos;l ficheru de fonte</translation>
+        <translation>Arrastra equí&apos;l ficheru de la fonte</translation>
     </message>
     <message>
         <source>Select file</source>
@@ -18,7 +18,7 @@
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Instalóse otra versión: %1</translation>
+        <translation>Hai otra versión instalada: %1</translation>
     </message>
     <message>
         <source>Installing</source>
@@ -26,7 +26,7 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Instalóse la mesma versión</translation>
+        <translation>Ta instalada la mesma versión</translation>
     </message>
 </context>
 <context>
@@ -37,7 +37,7 @@
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>Deepin Font Installer úsase pa instalar y desinstalar fontes pa usuarios cola función d&apos;instalación masiva.</translation>
+        <translation>Deepin Font Installer úsase pa des/instalar fontes con opción d&apos;instalación masiva.</translation>
     </message>
 </context>
 <context>
@@ -52,7 +52,7 @@
     </message>
     <message>
         <source>Dark theme</source>
-        <translation type="unfinished"/>
+        <translation>Estilu escuru</translation>
     </message>
 </context>
 <context>
@@ -71,7 +71,7 @@
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation>Refrescando na caché de fontes...</translation>
+        <translation>Refrescando la caché de les fontes, espera...</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -94,7 +94,7 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Ver direutoriu de fontes</translation>
+        <translation>Ver direutoriu de les fontes</translation>
     </message>
     <message>
         <source>Style: </source>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Instalóse la mesma versión</translation>
+        <translation>Ta instalada la mesma versión</translation>
     </message>
     <message>
         <source>Installed successfully</source>
@@ -130,7 +130,7 @@
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Instalóse otra versión: %1</translation>
+        <translation>Hai otra versión instalada: %1</translation>
     </message>
     <message>
         <source>Done</source>

@@ -37,18 +37,18 @@
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation type="unfinished"/>
+        <translation>Pemasang Huruf Deepin digunakan untuk memasang dan membuang berkas huruf untuk pengguna dengan fungsi pasang massal.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation type="unfinished"/>
+        <translation>Pemasang Huruf Deepin</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation type="unfinished"/>
+        <translation>Install massal</translation>
     </message>
     <message>
         <source>Dark theme</source>

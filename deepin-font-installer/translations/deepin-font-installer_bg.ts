@@ -52,7 +52,7 @@
     </message>
     <message>
         <source>Dark theme</source>
-        <translation type="unfinished"/>
+        <translation>Тъмна тема</translation>
     </message>
 </context>
 <context>

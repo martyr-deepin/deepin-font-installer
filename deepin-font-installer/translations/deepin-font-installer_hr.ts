@@ -26,7 +26,7 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation type="unfinished"/>
+        <translation>Instalirana je ista inačica</translation>
     </message>
 </context>
 <context>
@@ -52,7 +52,7 @@
     </message>
     <message>
         <source>Dark theme</source>
-        <translation type="unfinished"/>
+        <translation>Tamna tema</translation>
     </message>
 </context>
 <context>
@@ -67,7 +67,7 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"/>
+        <translation>Pogledaj direktorij fonta</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
@@ -75,7 +75,7 @@
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Nepoznato</translation>
     </message>
 </context>
 <context>
@@ -94,7 +94,7 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"/>
+        <translation>Pogledaj direktorij fonta</translation>
     </message>
     <message>
         <source>Style: </source>
