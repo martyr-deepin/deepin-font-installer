@@ -32,6 +32,7 @@ public:
     explicit FontPreview(QObject* parent = 0);
     ~FontPreview();
 
+    DUrl fileUrl() const Q_DECL_OVERRIDE;
     bool setFileUrl(const DUrl &url) Q_DECL_OVERRIDE;
 
     QWidget *contentWidget() const Q_DECL_OVERRIDE;
