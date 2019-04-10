@@ -30,6 +30,11 @@ FontPreview::~FontPreview()
         m_previewWidget->deleteLater();
 }
 
+DUrl FontPreview::fileUrl() const
+{
+    return m_url;
+}
+
 bool FontPreview::setFileUrl(const DUrl &url)
 {
     if (m_url == url)
