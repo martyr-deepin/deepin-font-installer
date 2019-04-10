@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>Select file</source>
-        <translation>Одабери датотеку</translation>
+        <translation>Изабери датотеку</translation>
     </message>
 </context>
 <context>
