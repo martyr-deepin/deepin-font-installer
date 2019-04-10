@@ -1,140 +1,140 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es_419" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.1">
 <context>
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Arrastre el archivo de fuente hasta aquí</translation>
+        <translation>Vedä fontti tähän</translation>
     </message>
     <message>
         <source>Select file</source>
-        <translation>Seleccione el archivo</translation>
+        <translation>Valitse tiedosto</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Installed</source>
-        <translation>Instalado</translation>
+        <translation>Asennettu</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Otra versión instalada: %1</translation>
+        <translation>Muut asennetut versiot: %1</translation>
     </message>
     <message>
         <source>Installing</source>
-        <translation>Instalando</translation>
+        <translation>Asentaa</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>La misma versión instalada</translation>
+        <translation>Sama versio on asennettu</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Deepin Font Installer</translation>
+        <translation>Deepin fonttien asennus</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>Deepin Font Installer es utilizado para instalar y desinstalar archivos de fuentes para usuarios con función de instalación por lotes.</translation>
+        <translation>Deepin Font asennus -ohjelmaa käytetään fonttitiedostojen asentamiseen ja poistamiseen käyttäjille, joilla on omat asennusfontit tiedostona.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Deepin Font Installer</translation>
+        <translation>Deepin fonttien asennus</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>Instalación por lote</translation>
+        <translation>Asenna fontti</translation>
     </message>
     <message>
         <source>Dark theme</source>
-        <translation>Tema oscuro</translation>
+        <translation>Tumma teema</translation>
     </message>
 </context>
 <context>
     <name>MultiFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Instalar</translation>
+        <translation>Asenna</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Instalado correctamente</translation>
+        <translation>Asennus onnistui</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Ver el directorio de fuentes</translation>
+        <translation>Näytä fonttikansion</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation>Refrescando caché de fuentes, por favor espere...</translation>
+        <translation>Päivitetään fonttien välimuisti, odota ...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Desconocido</translation>
+        <translation>Tuntematon</translation>
     </message>
 </context>
 <context>
     <name>SingleFilePage</name>
     <message>
         <source>Install</source>
-        <translation>Instalar</translation>
+        <translation>Asenna</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Eliminar</translation>
+        <translation>Poista</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>Reinstalar</translation>
+        <translation>Uudestaan</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Ver fuente en el directorio</translation>
+        <translation>Näytä fonttikansion</translation>
     </message>
     <message>
         <source>Style: </source>
-        <translation>Estilo:</translation>
+        <translation>Tyyli:</translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation>Tipo:</translation>
+        <translation>Tyyppi:</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation>Versión:</translation>
+        <translation>Versio:</translation>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>Derechos de autor:</translation>
+        <translation>Tekijänoikeus</translation>
     </message>
     <message>
         <source>Description: </source>
-        <translation>Descripción:</translation>
+        <translation>Kuvaus:</translation>
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Misma versión instalada</translation>
+        <translation>Sama versio on asennettu</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Instalado exitosamente</translation>
+        <translation>Asennus onnistui</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>Eliminado exitosamente</translation>
+        <translation>Poisto onnistui</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Otra versión instalada: %1</translation>
+        <translation>Muut asennetut versiot: %1</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>Terminado</translation>
+        <translation>Valmis</translation>
     </message>
 </context>
 </TS>

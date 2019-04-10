@@ -3,7 +3,7 @@
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Húzza ide a betűkészlet-fájlt</translation>
+        <translation>Húzd ide a betűkészlet-fájlt</translation>
     </message>
     <message>
         <source>Select file</source>
