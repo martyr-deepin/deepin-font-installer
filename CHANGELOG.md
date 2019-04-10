@@ -1,3 +1,13 @@
+<a name="1.1.5"></a>
+## 1.1.5 (2019-04-10)
+
+
+#### Bug Fixes
+
+*   not implements dfm preview plugin new interface ([10db21d3](https://github.com/linuxdeepin/deepin-font-installer/commit/10db21d3f5ee7ed2b390f1c107975a04f3c7b7f4))
+
+
+
 <a name="1.1.4"></a>
 ## 1.1.4 (2019-02-26)
 
