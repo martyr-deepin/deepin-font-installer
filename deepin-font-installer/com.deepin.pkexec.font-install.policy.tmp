@@ -6,7 +6,7 @@
   <vendor>LinuxDeepin</vendor>
   <vendor_url>https://www.deepin.com/</vendor_url>
   <action id="com.deepin.pkexec.font-install">
-    <message>Password is required to install font file</message>
+    <message>Authentication is required to install the font file</message>
     <message xml:lang="zh_CN">安装字体文件包需要授权</message>
     <icon_name>font-x-generic</icon_name>
     <defaults>
