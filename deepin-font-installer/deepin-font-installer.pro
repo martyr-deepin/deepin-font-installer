@@ -41,6 +41,15 @@ SOURCES += homepage.cpp \
 RESOURCES += deepin-font-installer.qrc
 TRANSLATIONS += translations/deepin-font-installer.ts
 
+!system(deepin-policy-ts-convert policy2ts com.deepin.pkexec.font-install.policy.tmp translations): message("Failed policy to ts")
+!system(deepin-policy-ts-convert policy2ts com.deepin.pkexec.font-uninstall.policy.tmp translations): message("Failed policy to ts")
+!system(deepin-policy-ts-convert ts2policy com.deepin.pkexec.font-install.policy.tmp translations com.deepin.pkexec.font-install.policy) {
+    system(cp com.deepin.pkexec.font-install.policy.tmp com.deepin.pkexec.font-install.policy)
+}
+!system(deepin-policy-ts-convert ts2policy com.deepin.pkexec.font-uninstall.policy.tmp translations com.deepin.pkexec.font-uninstall.policy) {
+    system(cp com.deepin.pkexec.font-uninstall.policy.tmp com.deepin.pkexec.font-uninstall.policy)
+}
+
 isEmpty(BINDIR):BINDIR=/usr/bin
 isEmpty(APPDIR):APPDIR=/usr/share/applications
 isEmpty(DSRDIR):DSRDIR=/usr/share/deepin-font-installer
