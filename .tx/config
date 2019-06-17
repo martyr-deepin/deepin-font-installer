@@ -15,8 +15,14 @@ source_file = deepin-font-installer/translations/desktop/desktop.ts
 source_lang = en
 type = QT
 
-[deepin-font-installer.policy]
-file_filter = deepin-font-installer/translations/policy_<lang>.ts
-source_file = deepin-font-installer/translations/policy.ts
+[deepin-font-installer.policy-install]
+file_filter = deepin-font-installer/policy-install-translation/policy_<lang>.ts
+source_file = deepin-font-installer/policy-install-translation/policy.ts
+source_lang = en
+type = QT
+
+[deepin-font-installer.policy-uninstall]
+file_filter = deepin-font-installer/policy-uninstall-translation/policy_<lang>.ts
+source_file = deepin-font-installer/policy-uninstall-translation/policy.ts
 source_lang = en
 type = QT
