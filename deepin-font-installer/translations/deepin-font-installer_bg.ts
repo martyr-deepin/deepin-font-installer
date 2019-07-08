@@ -3,7 +3,7 @@
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Провлачете шрифтовия файл тук</translation>
+        <translation>Издърпайте файла с шрифта тук</translation>
     </message>
     <message>
         <source>Select file</source>
@@ -33,22 +33,22 @@
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Deepin инсталатор на шрифт</translation>
+        <translation>Deepin Инсталатор на шрифт</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>Deepin инсталатор на шрифт е необходим за инсталиране или премахване на шрифт за потребителите с възможност за пакетна инсталация.</translation>
+        <translation>Deepin инсталатор на шрифт се използва за инсталиране или премахване на шрифтове за потребителите с възможност за пакетна инсталация.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Deepin инсталатор на шрифт</translation>
+        <translation>Deepin Инсталатор на шрифт</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>Масово инсталиране</translation>
+        <translation>Групово инсталиране</translation>
     </message>
     <message>
         <source>Dark theme</source>
@@ -67,15 +67,15 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Преглед на папката с шрифтове</translation>
+        <translation>Преглед на папката с шрифта</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation>Обновяване на шрифтовия кеш, изчакайте...</translation>
+        <translation>Обновяване на кеша на шрифтовете, моля, изчакайте...</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Непознато</translation>
+        <translation>Непознат</translation>
     </message>
 </context>
 <context>
@@ -94,7 +94,7 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Преглед на папката с шрифтове</translation>
+        <translation>Преглед на папката с шрифта</translation>
     </message>
     <message>
         <source>Style: </source>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>Запазени права:</translation>
+        <translation>Авторски права:</translation>
     </message>
     <message>
         <source>Description: </source>
@@ -122,7 +122,7 @@
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Успешна инсталация</translation>
+        <translation>Успешно инсталиран</translation>
     </message>
     <message>
         <source>Removed successfully</source>
