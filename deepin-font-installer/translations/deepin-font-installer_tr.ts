@@ -3,18 +3,18 @@
     <name>HomePage</name>
     <message>
         <source>Drag font file here</source>
-        <translation>Yazı tipi dosyasını sürükleyip buraya bırakın</translation>
+        <translation>Yazı tipi dosyasını buraya sürükle</translation>
     </message>
     <message>
         <source>Select file</source>
-        <translation>Dosya seçin</translation>
+        <translation>Dosya seç</translation>
     </message>
 </context>
 <context>
     <name>ListItem</name>
     <message>
         <source>Installed</source>
-        <translation>Kurulmuş</translation>
+        <translation>Kurulu</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
@@ -26,7 +26,7 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Aynı sürüm kurulmuş</translation>
+        <translation>Aynı sürüm kurulu</translation>
     </message>
 </context>
 <context>
@@ -63,11 +63,11 @@
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Kuruldu</translation>
+        <translation>Başarıyla kuruldu</translation>
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Yazı tipi klasörünü görüntüle</translation>
+        <translation>Yazı tipi dizinini görüntüle</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
@@ -118,19 +118,19 @@
     </message>
     <message>
         <source>Same version installed</source>
-        <translation>Aynı sürüm kurulmuş</translation>
+        <translation>Aynı sürüm kurulu</translation>
     </message>
     <message>
         <source>Installed successfully</source>
-        <translation>Kuruldu</translation>
+        <translation>Başarıyla kuruldu</translation>
     </message>
     <message>
         <source>Removed successfully</source>
-        <translation>Kaldırıldı</translation>
+        <translation>Başarıyla kaldırıldı</translation>
     </message>
     <message>
         <source>Other version installed: %1</source>
-        <translation>Başka bir sürüm kurulmuş: %1</translation>
+        <translation>Kurulu diğer sürüm: %1</translation>
     </message>
     <message>
         <source>Done</source>

@@ -33,22 +33,22 @@
     <name>Main</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Installateur de Police Deepin</translation>
+        <translation>Installateur de polices Deepin</translation>
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation>L&apos;installateur de polices est utilisé pour permettre à l&apos;utilisateur d&apos;installer et désinstaller une ou plusieurs polices à partir de fichiers.</translation>
+        <translation>Deepin Font Installer est utilisé pour permettre à l&apos;utilisateur d&apos;installer et désinstaller une ou plusieurs polices à partir de fichiers.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Deepin Font Installer</source>
-        <translation>Installateur de Police Deepin</translation>
+        <translation>Installateur de polices Deepin</translation>
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation>Installation en Vrac</translation>
+        <translation>Installation en vrac</translation>
     </message>
     <message>
         <source>Dark theme</source>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>Copyright:</translation>
+        <translation>Droits d&apos;auteur :</translation>
     </message>
     <message>
         <source>Description: </source>

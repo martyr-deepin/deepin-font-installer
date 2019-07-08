@@ -37,7 +37,7 @@
     </message>
     <message>
         <source>Deepin Font Installer is used to install and uninstall font file for users with bulk install function.</source>
-        <translation type="unfinished"/>
+        <translation>Το Deepin Font Installer χρησιμοποιείται για την εγκατάσταση και την απεγκατάσταση αρχείου γραμματοσειράς για χρήστες με μαζική εγκατάσταση.</translation>
     </message>
 </context>
 <context>
@@ -48,11 +48,11 @@
     </message>
     <message>
         <source>Bulk Install</source>
-        <translation type="unfinished"/>
+        <translation>Μαζική Εγκατάσταση</translation>
     </message>
     <message>
         <source>Dark theme</source>
-        <translation type="unfinished"/>
+        <translation>Σκοτεινό θέμα</translation>
     </message>
 </context>
 <context>
@@ -71,7 +71,7 @@
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Ανανέωση κρυφής μνήμης γραμματοσειράς, παρακαλώ περιμένετε...</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -94,27 +94,27 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση φακέλου γραμματοσειρών</translation>
     </message>
     <message>
         <source>Style: </source>
-        <translation type="unfinished"/>
+        <translation>Στυλ:</translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation type="unfinished"/>
+        <translation>Τύπος:</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation type="unfinished"/>
+        <translation>Έκδοση:</translation>
     </message>
     <message>
         <source>Copyright: </source>
-        <translation type="unfinished"/>
+        <translation>Δικαιώματα:</translation>
     </message>
     <message>
         <source>Description: </source>
-        <translation type="unfinished"/>
+        <translation>Περιγραφή:</translation>
     </message>
     <message>
         <source>Same version installed</source>
@@ -134,7 +134,7 @@
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Ολοκληρώθηκε</translation>
     </message>
 </context>
 </TS>

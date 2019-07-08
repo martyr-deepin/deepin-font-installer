@@ -67,7 +67,7 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Näytä fonttikansion</translation>
+        <translation>Näytä fonttikansio</translation>
     </message>
     <message>
         <source>Refreshing font cache, please wait...</source>
@@ -94,7 +94,7 @@
     </message>
     <message>
         <source>View font directory</source>
-        <translation>Näytä fonttikansion</translation>
+        <translation>Näytä fonttikansio</translation>
     </message>
     <message>
         <source>Style: </source>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Copyright: </source>
-        <translation>Tekijänoikeus</translation>
+        <translation>Tekijänoikeus:</translation>
     </message>
     <message>
         <source>Description: </source>

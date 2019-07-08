@@ -52,7 +52,7 @@
     </message>
     <message>
         <source>Dark theme</source>
-        <translation type="unfinished"/>
+        <translation>الشكل المظلم</translation>
     </message>
 </context>
 <context>
